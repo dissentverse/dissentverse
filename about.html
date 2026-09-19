@@ -1,1 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>About | DissentVerse</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: #ffffff;
+    color: #17131a;
+    font-family: Georgia, "Times New Roman", serif;
+    line-height: 1.7;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* =========================
+   LAYOUT
+========================= */
+
+.site {
+    min-height: 100vh;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    padding: 30px 55px;
+    background: #ffffff;
+    border-bottom: 1px solid #ded6e2;
+}
+
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.site-title {
+    color: #5d285b;
+    font-size: 42px;
+    font-style: italic;
+    font-weight: bold;
+    letter-spacing: -1px;
+}
+
+.search {
+    width: 230px;
+    padding: 11px 18px;
+    border: 1px solid #b9aabd;
+    border-radius: 50px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    outline: none;
+}
+
+.search:focus {
+    border-color: #c94f91;
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.nav {
+    background: #eee5f2;
+    padding: 15px 55px;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+.nav a:hover {
+    color: #c94f91;
+}
+
+
+/* =========================
+   ABOUT HERO
+========================= */
+
+.about-hero {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    padding: 80px 25px 75px;
+    background: linear-gradient(
+        135deg,
+        #ffffff 0%,
+        #f7eef9 50%,
+        #f4dceb 100%
+    );
+    border-bottom: 1px solid #ded6e2;
+}
+
+.about-hero::before {
+    content: "";
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: #f4c5df;
+    opacity: .35;
+    top: -130px;
+    right: -70px;
+}
+
+.about-hero::after {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: #d9c2e4;
+    opacity: .35;
+    bottom: -90px;
+    left: -60px;
+}
+
+.about-logo {
+    position: relative;
+    z-index: 2;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 8px 25px rgba(92, 49, 91, .16);
+}
+
+.about-hero h1 {
+    position: relative;
+    z-index: 2;
+    margin: 20px 0 5px;
+    color: #5d285b;
+    font-size: clamp(44px, 6vw, 70px);
+    font-style: italic;
+    font-weight: bold;
+    line-height: 1.1;
+}
+
+.tagline {
+    position: relative;
+    z-index: 2;
+    color: #9b3976;
+    font-size: 18px;
+    font-style: italic;
+}
+
+
+/* =========================
+   ABOUT CONTENT
+========================= */
+
+.about-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 75px 45px;
+}
+
+.about-content p {
+    margin: 0 0 24px;
+    font-size: 17px;
+    line-height: 1.9;
+}
+
+.about-content strong {
+    color: #6e3069;
+}
+
+
+/* =========================
+   CONNECT
+========================= */
+
+.connect {
+    padding: 70px 30px;
+    text-align: center;
+    background: #eee5f2;
+    border-top: 1px solid #ded6e2;
+    border-bottom: 1px solid #ded6e2;
+}
+
+.connect h2 {
+    margin: 0 0 10px;
+    color: #5d285b;
+    font-size: 34px;
+    font-style: italic;
+    font-weight: normal;
+}
+
+.connect-intro {
+    margin: 0 auto 35px;
+    color: #514953;
+    font-size: 15px;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+.social-link {
+    width: 150px;
+    min-height: 115px;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #ffffff;
+    border: 1px solid #ddd2e1;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.social-link:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(82, 42, 82, .10);
+}
+
+.social-icon {
+    width: 30px;
+    height: 30px;
+    color: #7c3978;
+}
+
+.social-name {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.instagram-placeholder {
+    opacity: .55;
+    cursor: default;
+}
+
+.instagram-placeholder:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+    background: #211b25;
+    color: white;
+    padding: 45px 55px;
+    border-top: 4px solid #c94f91;
+}
+
+.footer-title {
+    color: #f3a7cf;
+    font-size: 30px;
+    font-style: italic;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.footer p {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.footer-links a:hover {
+    color: #f3a7cf;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .header {
+        padding: 25px;
+    }
+
+    .header-top {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .site-title {
+        font-size: 35px;
+    }
+
+    .search {
+        width: 100%;
+    }
+
+    .nav {
+        padding: 14px 25px;
+        gap: 18px;
+    }
+
+    .about-hero {
+        padding: 60px 20px;
+    }
+
+    .about-content {
+        padding: 55px 25px;
+    }
+
+    .about-content p {
+        font-size: 16px;
+    }
+
+    .social-links {
+        gap: 12px;
+    }
+
+    .social-link {
+        width: 135px;
+    }
+
+    .footer {
+        padding: 35px 25px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="site">
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="header-top">
+
+            <div class="site-title">
+                DissentVerse
+            </div>
+
+            <input
+                class="search"
+                type="search"
+                placeholder="Search..."
+            >
+
+        </div>
+
+    </header>
+
+
+    <!-- NAVIGATION -->
+
+    <nav class="nav">
+
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="#">Articles</a>
+        <a href="#">Contact</a>
+
+    </nav>
+
+
+    <!-- ABOUT INTRO -->
+
+    <section class="about-hero">
+
+        <img
+            class="about-logo"
+            src="https://dissentverse.wordpress.com/wp-content/uploads/2025/08/img-20260628-wa00071.jpg?w=756"
+            alt="DissentVerse logo"
+        >
+
+        <h1>DissentVerse</h1>
+
+        <div class="tagline">
+            Where Dissent finds its Verse.
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT TEXT -->
+
+    <section class="about-content">
+
+        <p>
+            DissentVerse is a space for exploring the experiences, pressures
+            and issues shaping young people’s lives.
+        </p>
+
+        <p>
+            From education and career choices to social expectations,
+            competition, technology and the everyday realities that often go
+            unnoticed, DissentVerse looks beyond easy explanations to ask
+            deeper questions.
+        </p>
+
+        <p>
+            The aim isn’t to provide easy answers or tell people what to think.
+            It is to <strong>question, explore and understand</strong>—and
+            hopefully leave readers with something worth thinking about.
+        </p>
+
+        <p>
+            What began as a space for expressing thoughts is growing into a
+            platform for conversations that challenge familiar ideas and look
+            at ordinary things from a different perspective.
+        </p>
+
+        <p>
+            <strong>
+                DissentVerse is a space for questions that deserve to be heard.
+            </strong>
+        </p>
+
+        <p>
+            <strong>
+                Welcome to DissentVerse, Where Dissent finds its Verse.
+            </strong>
+        </p>
+
+    </section>
+
+
+    <!-- SOCIAL MEDIA -->
+
+    <section class="connect">
+
+        <h2>Let's Connect</h2>
+
+        <p class="connect-intro">
+            Follow DissentVerse and stay connected with our latest ideas.
+        </p>
+
+        <div class="social-links">
+
+
+            <!-- YOUTUBE -->
+
+            <a
+                class="social-link"
+                href="https://www.youtube.com/@DissentVerse"
+                target="_blank"
+            >
+
+                <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.7V8.3l6.5 3.7-6.5 3.7z"/>
+                </svg>
+
+                <span class="social-name">YouTube</span>
+
+            </a>
+
+
+            <!-- TELEGRAM -->
+
+            <a
+                class="social-link"
+                href="https://t.me/dissentverse"
+                target="_blank"
+            >
+
+                <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M21.8 3.2 2.7 10.6c-1.3.5-1.3 1.2-.2 1.5l4.9 1.5 1.9 5.8c.2.6.1.9.8.9.5 0 .7-.2 1-.5l2.4-2.3 5 3.7c.9.5 1.5.3 1.7-.8l3.2-15c.3-1.4-.5-2-1.8-1.7zM8.1 13.3l10.9-6.9c.5-.3 1-.1.6.2l-8.9 8-.3 3.1-1.7-4.4-4.2-1.3 3.6-.7z"/>
+                </svg>
+
+                <span class="social-name">Telegram</span>
+
+            </a>
+
+
+            <!-- PINTEREST -->
+
+            <a
+                class="social-link"
+                href="https://pin.it/4ZKIbFLnW"
+                target="_blank"
+            >
+
+                <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 1.5a10.5 10.5 0 0 0-3.8 20.3c-.1-1.7 0-3.8.4-5.5l1.4-5.9s-.4-.8-.4-2c0-1.9 1.1-3.3 2.5-3.3 1.2 0 1.8.9 1.8 2 0 1.2-.8 3-1.2 4.7-.3 1.4.7 2.5 2.1 2.5 2.5 0 4.2-2.6 4.2-6.3 0-3.3-2.4-5.7-5.9-5.7-4 0-6.4 3-6.4 6.1 0 1.2.5 2.5 1.1 3.2.1.1.1.2.1.4l-.4 1.5c-.1.5-.4.6-.8.4-1.8-.8-2.9-3.2-2.9-5.1 0-4.2 3.1-8.1 8.9-8.1 4.7 0 8.3 3.3 8.3 7.7 0 4.6-2.9 8.4-6.9 8.4-1.3 0-2.5-.7-2.9-1.5l-.8 3c-.3 1.1-1.1 2.5-1.6 3.3.9.3 1.9.4 2.9.4A10.5 10.5 0 1 0 12 1.5z"/>
+                </svg>
+
+                <span class="social-name">Pinterest</span>
+
+            </a>
+
+
+            <!-- GMAIL -->
+
+            <a
+                class="social-link"
+                href="mailto:dissentverse@gmail.com"
+            >
+
+                <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.2-8 5-8-5V6l8 5 8-5v2.2z"/>
+                </svg>
+
+                <span class="social-name">Gmail</span>
+
+            </a>
+
+
+            <!-- INSTAGRAM — ACCOUNT NOT CREATED YET -->
+
+            <div class="social-link instagram-placeholder">
+
+                <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <rect x="3" y="3" width="18" height="18" rx="5"/>
+                    <circle cx="12" cy="12" r="4"/>
+                    <circle cx="17.5" cy="6.5" r="1"/>
+                </svg>
+
+                <span class="social-name">Instagram</span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <div class="footer-title">
+            DissentVerse
+        </div>
+
+        <p>
+            Where Dissent finds its Verse.
+        </p>
+
+        <div class="footer-links">
+
+            <a href="https://pin.it/69zhtNAvx" target="_blank">
+                Pinterest
+            </a>
+
+            <a href="https://www.youtube.com/@DissentVerse" target="_blank">
+                YouTube
+            </a>
+
+            <a href="https://t.me/dissentverse" target="_blank">
+                Telegram
+            </a>
+
+            <a href="mailto:dissentverse@gmail.com">
+                Email
+            </a>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
+            <a href="#">
+                Articles
+            </a>
+
+            <a href="#">
+                Contact
+            </a>
+
+        </div>
+
+    </footer>
+
+
+</div>
+
+</body>
+</html>
