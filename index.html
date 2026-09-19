@@ -465,6 +465,85 @@ a {
 @media (max-width: 800px) {
 
     .site {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Main website comes first on mobile */
+    .main {
+        order: 1;
+    }
+
+    /* Sidebar moves below the main content */
+    .sidebar {
+        order: 2;
+        position: relative;
+        height: auto;
+        border-right: none;
+        border-top: 1px solid #ded6e2;
+        border-bottom: none;
+        padding: 30px 25px;
+    }
+
+    .join-box,
+    .recent {
+        margin-left: -25px;
+        margin-right: -25px;
+    }
+
+    .header {
+        padding: 25px;
+    }
+
+    .header-top {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .site-title {
+        font-size: 35px;
+    }
+
+    .search {
+        width: 100%;
+    }
+
+    .nav {
+        padding: 14px 25px;
+        gap: 18px;
+    }
+
+    .intro {
+        padding: 65px 25px;
+    }
+
+    .intro-brand h1 {
+        font-size: 48px;
+    }
+
+    .intro-text {
+        padding: 30px 25px;
+    }
+
+    .intro-text p {
+        font-size: 16px;
+    }
+
+    .articles {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .article-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer {
+        padding: 35px 25px;
+    }
+
+}
+    .site {
         display: block;
     }
 
