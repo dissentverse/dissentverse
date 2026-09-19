@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,6 @@
 <title>DissentVerse</title>
 
 <style>
-
-/* =========================
-   GENERAL
-========================= */
 
 * {
     box-sizing: border-box;
@@ -238,7 +235,7 @@ a {
 
 
 /* =========================
-   DISSENTVERSE INTRO
+   INTRO
 ========================= */
 
 .intro {
@@ -254,9 +251,6 @@ a {
     border-top: 1px solid #ded6e2;
     border-bottom: 1px solid #ded6e2;
 }
-
-
-/* Decorative shapes */
 
 .intro::before {
     content: "";
@@ -281,9 +275,6 @@ a {
     bottom: -90px;
     left: -60px;
 }
-
-
-/* Logo + name + tagline */
 
 .intro-brand {
     position: relative;
@@ -319,9 +310,6 @@ a {
     font-size: 18px;
     font-style: italic;
 }
-
-
-/* About text */
 
 .intro-text {
     position: relative;
@@ -465,93 +453,28 @@ a {
 @media (max-width: 800px) {
 
     .site {
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: 1fr;
+        min-height: 100vh;
     }
 
-    /* Main website comes first on mobile */
     .main {
-        order: 1;
+        grid-column: 1;
+        grid-row: 1;
     }
 
-    /* Sidebar moves below the main content */
     .sidebar {
-        order: 2;
+        grid-column: 1;
+        grid-row: 2;
+
         position: relative;
+        top: auto;
         height: auto;
+
         border-right: none;
         border-top: 1px solid #ded6e2;
         border-bottom: none;
-        padding: 30px 25px;
-    }
 
-    .join-box,
-    .recent {
-        margin-left: -25px;
-        margin-right: -25px;
-    }
-
-    .header {
-        padding: 25px;
-    }
-
-    .header-top {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .site-title {
-        font-size: 35px;
-    }
-
-    .search {
-        width: 100%;
-    }
-
-    .nav {
-        padding: 14px 25px;
-        gap: 18px;
-    }
-
-    .intro {
-        padding: 65px 25px;
-    }
-
-    .intro-brand h1 {
-        font-size: 48px;
-    }
-
-    .intro-text {
-        padding: 30px 25px;
-    }
-
-    .intro-text p {
-        font-size: 16px;
-    }
-
-    .articles {
-        padding-left: 25px;
-        padding-right: 25px;
-    }
-
-    .article-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .footer {
-        padding: 35px 25px;
-    }
-
-}
-    .site {
-        display: block;
-    }
-
-    .sidebar {
-        position: relative;
-        height: auto;
-        border-right: none;
-        border-bottom: 1px solid #ded6e2;
         padding: 30px 25px;
     }
 
@@ -631,7 +554,9 @@ a {
 
         <h2>Welcome to</h2>
 
-        <div class="brand">DissentVerse</div>
+        <div class="brand">
+            DissentVerse
+        </div>
 
         <img
             class="sidebar-logo"
@@ -646,13 +571,27 @@ a {
             what lies beneath the surface.
         </p>
 
-        <div class="sidebar-title">Let's connect</div>
+
+        <div class="sidebar-title">
+            Let's connect
+        </div>
 
         <div class="social-links">
-            <a href="https://pin.it/4ZKIbFLnW" target="_blank">Pinterest</a>
-            <a href="https://www.youtube.com/@DissentVerse" target="_blank">YouTube</a>
-            <a href="https://t.me/dissentverse" target="_blank">Telegram</a>
+
+            <a href="https://pin.it/4ZKIbFLnW" target="_blank">
+                Pinterest
+            </a>
+
+            <a href="https://www.youtube.com/@DissentVerse" target="_blank">
+                YouTube
+            </a>
+
+            <a href="https://t.me/dissentverse" target="_blank">
+                Telegram
+            </a>
+
         </div>
+
 
         <div class="join-box">
 
@@ -669,6 +608,7 @@ a {
             >
 
         </div>
+
 
         <div class="recent">
 
@@ -720,7 +660,7 @@ a {
 
 
     <!-- =========================
-         MAIN
+         MAIN WEBSITE
     ========================== -->
 
     <main class="main">
@@ -751,17 +691,26 @@ a {
 
         <nav class="nav">
 
-            <a href="index.html">Home</a>
-           <a href="./about.html">About</a>
-            <a href="#">Articles</a>
-            <a href="#">Contact</a>
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
+            <a href="#">
+                Articles
+            </a>
+
+            <a href="#">
+                Contact
+            </a>
 
         </nav>
 
 
-        <!-- =========================
-             DISSENTVERSE MAIN SECTION
-        ========================== -->
+        <!-- INTRO -->
 
         <section class="intro">
 
@@ -773,7 +722,9 @@ a {
                     alt="DissentVerse logo"
                 >
 
-                <h1>DissentVerse</h1>
+                <h1>
+                    DissentVerse
+                </h1>
 
                 <div class="intro-tagline">
                     Where Dissent finds its Verse.
@@ -809,11 +760,15 @@ a {
                 </p>
 
                 <p>
-                    <strong>DissentVerse is a space for questions that deserve to be heard.</strong>
+                    <strong>
+                        DissentVerse is a space for questions that deserve to be heard.
+                    </strong>
                 </p>
 
                 <p>
-                    <strong>Welcome to DissentVerse, Where Dissent finds its Verse.</strong>
+                    <strong>
+                        Welcome to DissentVerse, Where Dissent finds its Verse.
+                    </strong>
                 </p>
 
             </div>
@@ -821,9 +776,7 @@ a {
         </section>
 
 
-        <!-- =========================
-             ARTICLES
-        ========================== -->
+        <!-- LATEST ARTICLES -->
 
         <section class="articles">
 
@@ -832,6 +785,7 @@ a {
             </h2>
 
             <div class="article-grid">
+
 
                 <article class="article">
 
@@ -878,14 +832,13 @@ a {
 
                 </article>
 
+
             </div>
 
         </section>
 
 
-        <!-- =========================
-             FOOTER
-        ========================== -->
+        <!-- FOOTER -->
 
         <footer class="footer">
 
@@ -915,9 +868,10 @@ a {
                     Email
                 </a>
 
-               <a href="./about.html">
-    About
-</a>
+                <a href="about.html">
+                    About
+                </a>
+
                 <a href="#">
                     Articles
                 </a>
