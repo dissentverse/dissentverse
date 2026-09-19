@@ -1,5 +1,4 @@
-
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -9,16 +8,24 @@
 
 <style>
 
+/* =========================
+   GENERAL
+========================= */
+
 * {
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
-    font-family: Georgia, "Times New Roman", serif;
-    color: #11181f;
     background: #ffffff;
-    line-height: 1.6;
+    color: #17131a;
+    font-family: Georgia, "Times New Roman", serif;
+    line-height: 1.7;
 }
 
 a {
@@ -26,21 +33,30 @@ a {
     text-decoration: none;
 }
 
+
+/* =========================
+   MAIN LAYOUT
+========================= */
+
 .site {
     display: grid;
     grid-template-columns: 260px 1fr;
     min-height: 100vh;
 }
 
-/* ---------------- SIDEBAR ---------------- */
+
+/* =========================
+   SIDEBAR
+========================= */
 
 .sidebar {
     padding: 45px 28px;
-    border-right: 1px solid #d8d8d8;
+    border-right: 1px solid #ded6e2;
     position: sticky;
     top: 0;
     height: 100vh;
     overflow-y: auto;
+    background: #ffffff;
 }
 
 .sidebar h2 {
@@ -50,6 +66,7 @@ a {
 }
 
 .sidebar .brand {
+    color: #7c3978;
     font-size: 28px;
     font-style: italic;
     margin: 2px 0 22px;
@@ -70,6 +87,7 @@ a {
 }
 
 .sidebar-title {
+    color: #7c3978;
     font-size: 18px;
     font-style: italic;
     margin-bottom: 14px;
@@ -85,17 +103,19 @@ a {
 }
 
 .social-links a:hover {
+    color: #c94f91;
     text-decoration: underline;
 }
 
 .join-box {
-    background: #11181f;
+    background: #211b25;
     color: white;
     padding: 25px 20px;
     margin: 0 -28px 30px;
 }
 
 .join-box h3 {
+    color: #f3a7cf;
     margin: 0 0 8px;
     font-size: 19px;
     font-style: italic;
@@ -118,12 +138,13 @@ a {
 }
 
 .recent {
-    background: #e9e4dc;
+    background: #eee5f2;
     margin: 0 -28px;
     padding: 28px 20px;
 }
 
 .recent h3 {
+    color: #693465;
     margin-top: 0;
     font-size: 19px;
     font-style: italic;
@@ -143,20 +164,27 @@ a {
 }
 
 .recent-item a:hover {
+    color: #c94f91;
     text-decoration: underline;
 }
 
-/* ---------------- MAIN ---------------- */
+
+/* =========================
+   MAIN
+========================= */
 
 .main {
     min-width: 0;
-    border-right: 1px solid #d8d8d8;
 }
 
-/* Header */
+
+/* =========================
+   HEADER
+========================= */
 
 .header {
     padding: 30px 45px;
+    background: #ffffff;
 }
 
 .header-top {
@@ -167,6 +195,7 @@ a {
 }
 
 .site-title {
+    color: #201a22;
     font-size: 42px;
     font-weight: normal;
     letter-spacing: -1px;
@@ -175,17 +204,24 @@ a {
 .search {
     width: 230px;
     padding: 11px 18px;
-    border: 1px solid #999;
+    border: 1px solid #b9aabd;
     border-radius: 50px;
     font-family: Arial, sans-serif;
     font-size: 14px;
     outline: none;
 }
 
-/* Navigation */
+.search:focus {
+    border-color: #c94f91;
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
 
 .nav {
-    background: #e9e4dc;
+    background: #eee5f2;
     padding: 15px 45px;
     display: flex;
     gap: 28px;
@@ -197,75 +233,136 @@ a {
 }
 
 .nav a:hover {
-    text-decoration: underline;
+    color: #c94f91;
 }
 
-/* Hero */
 
-.hero {
-    min-height: 430px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 70px 50px;
-    border-bottom: 1px solid #d8d8d8;
-    background: #302936;
-    color: white;
-}
-
-.hero-content {
-    max-width: 720px;
-}
-
-.hero h1 {
-    font-size: clamp(42px, 6vw, 76px);
-    line-height: 1.05;
-    font-weight: normal;
-    margin: 0 0 20px;
-}
-}
-
-.hero .tagline {
-    font-size: 18px;
-    font-style: italic;
-    margin-bottom: 22px;
-}
-
-.hero p {
-    font-size: 17px;
-    line-height: 1.8;
-}
-
-/* Intro */
+/* =========================
+   DISSENTVERSE INTRO
+========================= */
 
 .intro {
+    position: relative;
+    overflow: hidden;
+    padding: 90px 70px 85px;
+    background: linear-gradient(
+        135deg,
+        #ffffff 0%,
+        #f7eef9 48%,
+        #f4dceb 100%
+    );
+    border-top: 1px solid #ded6e2;
+    border-bottom: 1px solid #ded6e2;
+}
+
+
+/* Decorative shapes */
+
+.intro::before {
+    content: "";
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: #f4c5df;
+    opacity: .35;
+    top: -130px;
+    right: -80px;
+}
+
+.intro::after {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: #d9c2e4;
+    opacity: .35;
+    bottom: -90px;
+    left: -60px;
+}
+
+
+/* Logo + name + tagline */
+
+.intro-brand {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    margin-bottom: 55px;
+}
+
+.intro-logo {
+    width: 105px;
+    height: 105px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 20px;
+    box-shadow: 0 8px 25px rgba(92, 49, 91, .16);
+}
+
+.intro-brand h1 {
+    margin: 0;
+    color: #5d285b;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(42px, 6vw, 68px);
+    font-style: italic;
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 1.1;
+}
+
+.intro-tagline {
+    margin-top: 12px;
+    color: #9b3976;
+    font-size: 18px;
+    font-style: italic;
+}
+
+
+/* About text */
+
+.intro-text {
+    position: relative;
+    z-index: 2;
     max-width: 850px;
     margin: auto;
-    padding: 70px 45px;
+    padding: 40px 45px;
+    background: rgba(255, 255, 255, .82);
+    border: 1px solid rgba(124, 57, 120, .15);
+    box-shadow: 0 10px 35px rgba(76, 40, 77, .08);
 }
 
-.intro h2 {
-    font-size: 36px;
-    font-weight: normal;
-    margin-top: 0;
-}
-
-.intro p {
+.intro-text p {
+    margin: 0 0 22px;
     font-size: 17px;
     line-height: 1.9;
 }
 
-/* Articles */
+.intro-text p:last-child {
+    margin-bottom: 0;
+}
+
+.intro-text strong {
+    color: #6e3069;
+}
+
+
+/* =========================
+   ARTICLES
+========================= */
 
 .articles {
-    border-top: 1px solid #d8d8d8;
-    padding: 60px 45px 80px;
+    padding: 65px 45px 80px;
+    background: #ffffff;
 }
 
 .section-title {
-    font-size: 32px;
+    color: #5d285b;
+    font-size: 34px;
     font-weight: normal;
+    font-style: italic;
     margin: 0 0 35px;
 }
 
@@ -276,16 +373,19 @@ a {
 }
 
 .article {
-    border: 1px solid #d8d8d8;
-    padding: 28px;
-    transition: transform .2s ease;
+    padding: 30px;
+    background: #ffffff;
+    border: 1px solid #ddd2e1;
+    transition: transform .2s ease, box-shadow .2s ease;
 }
 
 .article:hover {
-    transform: translateY(-3px);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(82, 42, 82, .10);
 }
 
 .article-label {
+    color: #c04c8e;
     font-family: Arial, sans-serif;
     font-size: 11px;
     text-transform: uppercase;
@@ -294,6 +394,7 @@ a {
 }
 
 .article h3 {
+    color: #241c26;
     font-size: 25px;
     line-height: 1.25;
     font-weight: normal;
@@ -303,28 +404,38 @@ a {
 .article p {
     font-size: 15px;
     line-height: 1.7;
-    color: #444;
+    color: #4d4650;
 }
 
 .read-more {
+    color: #7c3978;
     display: inline-block;
     margin-top: 8px;
     font-family: Arial, sans-serif;
     font-size: 13px;
-    text-decoration: underline;
 }
 
-/* Footer */
+.read-more:hover {
+    color: #c94f91;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
 
 .footer {
-    background: #e9e4dc;
+    background: #211b25;
+    color: white;
     padding: 45px;
-    border-top: 1px solid #d8d8d8;
+    border-top: 4px solid #c94f91;
 }
 
 .footer-title {
-    font-size: 28px;
+    color: #f3a7cf;
+    font-size: 30px;
     font-style: italic;
+    font-weight: bold;
     margin-bottom: 15px;
 }
 
@@ -343,10 +454,13 @@ a {
 }
 
 .footer-links a:hover {
-    text-decoration: underline;
+    color: #f3a7cf;
 }
 
-/* ---------------- MOBILE ---------------- */
+
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width: 800px) {
 
@@ -358,7 +472,7 @@ a {
         position: relative;
         height: auto;
         border-right: none;
-        border-bottom: 1px solid #d8d8d8;
+        border-bottom: 1px solid #ded6e2;
         padding: 30px 25px;
     }
 
@@ -390,12 +504,22 @@ a {
         gap: 18px;
     }
 
-    .hero {
-        min-height: 400px;
-        padding: 50px 25px;
+    .intro {
+        padding: 65px 25px;
     }
 
-    .intro,
+    .intro-brand h1 {
+        font-size: 48px;
+    }
+
+    .intro-text {
+        padding: 30px 25px;
+    }
+
+    .intro-text p {
+        font-size: 16px;
+    }
+
     .articles {
         padding-left: 25px;
         padding-right: 25px;
@@ -408,16 +532,21 @@ a {
     .footer {
         padding: 35px 25px;
     }
+
 }
 
 </style>
 </head>
 
+
 <body>
 
 <div class="site">
 
-    <!-- SIDEBAR -->
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
 
     <aside class="sidebar">
 
@@ -511,9 +640,12 @@ a {
     </aside>
 
 
-    <!-- MAIN -->
+    <!-- =========================
+         MAIN
+    ========================== -->
 
     <main class="main">
+
 
         <!-- HEADER -->
 
@@ -548,23 +680,61 @@ a {
         </nav>
 
 
-        <!-- HERO -->
+        <!-- =========================
+             DISSENTVERSE MAIN SECTION
+        ========================== -->
 
-        <section class="hero">
+        <section class="intro">
 
-            <div class="hero-content">
+            <div class="intro-brand">
 
-                <div class="tagline">
+                <img
+                    class="intro-logo"
+                    src="https://dissentverse.wordpress.com/wp-content/uploads/2025/08/img-20260628-wa00071.jpg?w=756"
+                    alt="DissentVerse logo"
+                >
+
+                <h1>DissentVerse</h1>
+
+                <div class="intro-tagline">
                     Where Dissent finds its Verse.
                 </div>
 
-                <h1>
-                    Question what we accept.
-                </h1>
+            </div>
+
+
+            <div class="intro-text">
 
                 <p>
-                    A space for questioning the things we often accept without
-                    questioning.
+                    DissentVerse is a space for exploring the experiences, pressures
+                    and issues shaping young people’s lives.
+                </p>
+
+                <p>
+                    From education and career choices to social expectations,
+                    competition, technology and the everyday realities that often
+                    go unnoticed, DissentVerse looks beyond easy explanations to
+                    ask deeper questions.
+                </p>
+
+                <p>
+                    The aim isn’t to provide easy answers or tell people what to think.
+                    It is to <strong>question, explore and understand</strong>—and hopefully
+                    leave readers with something worth thinking about.
+                </p>
+
+                <p>
+                    What began as a space for expressing thoughts is growing into a
+                    platform for conversations that challenge familiar ideas and look
+                    at ordinary things from a different perspective.
+                </p>
+
+                <p>
+                    <strong>DissentVerse is a space for questions that deserve to be heard.</strong>
+                </p>
+
+                <p>
+                    <strong>Welcome to DissentVerse, Where Dissent finds its Verse.</strong>
                 </p>
 
             </div>
@@ -572,30 +742,9 @@ a {
         </section>
 
 
-        <!-- INTRO -->
-
-        <section class="intro">
-
-            <h2>
-                Look beyond the surface.
-            </h2>
-
-            <p>
-                From education and career choices to social expectations,
-                technology, culture, and the realities shaping everyday life,
-                DissentVerse explores the questions behind what we see and
-                experience.
-            </p>
-
-            <p>
-                Not every question needs an easy answer. Sometimes, asking the
-                right question is where the conversation begins.
-            </p>
-
-        </section>
-
-
-        <!-- ARTICLES -->
+        <!-- =========================
+             ARTICLES
+        ========================== -->
 
         <section class="articles">
 
@@ -655,7 +804,9 @@ a {
         </section>
 
 
-        <!-- FOOTER -->
+        <!-- =========================
+             FOOTER
+        ========================== -->
 
         <footer class="footer">
 
@@ -700,6 +851,7 @@ a {
             </div>
 
         </footer>
+
 
     </main>
 
