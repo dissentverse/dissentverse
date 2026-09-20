@@ -2,11 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <meta
     name="description"
-    content="DissentVerse — A space for questioning the things we often accept without questioning."
+    content="DissentVerse — Where Dissent finds its Verse. A space for questioning the things we often accept without questioning."
   >
 
   <title>DissentVerse — Where Dissent finds its Verse</title>
@@ -20,37 +24,29 @@
     rel="stylesheet"
   >
 
-  <!-- Main stylesheet -->
+  <!-- Main CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 
+
 <body>
 
-  <!-- =========================
+  <!-- =====================================================
        TOP NAVIGATION
-  ========================== -->
+  ====================================================== -->
 
-  <header class="topbar">
+  <header class="top-header">
 
-    <div class="topbar-inner">
+    <div class="top-header-inner">
 
-      <!-- Logo / Brand -->
-      <a
-        class="brand-mini"
-        href="index.html"
-        aria-label="DissentVerse Home"
-      >
-        <span>Dissent</span><b>Verse</b>
+      <a href="index.html" class="mobile-brand">
+        <span>Dissent</span><strong>Verse</strong>
       </a>
 
 
-      <!-- Navigation -->
-      <nav class="nav" aria-label="Primary navigation">
+      <nav class="main-nav">
 
-        <a
-          class="active"
-          href="index.html"
-        >
+        <a href="index.html" class="active">
           Home
         </a>
 
@@ -69,13 +65,27 @@
       </nav>
 
 
-      <!-- Search button -->
       <button
         class="search-button"
-        type="button"
         aria-label="Search"
+        type="button"
       >
-        <span class="search-icon">⌕</span>
+
+        <svg
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <circle
+            cx="11"
+            cy="11"
+            r="6.5"
+          ></circle>
+
+          <path
+            d="M16 16L21 21"
+          ></path>
+        </svg>
+
       </button>
 
     </div>
@@ -83,34 +93,35 @@
   </header>
 
 
-  <!-- =========================
-       PAGE LAYOUT
-  ========================== -->
 
-  <div class="page-shell">
+  <!-- =====================================================
+       MAIN PAGE LAYOUT
+  ====================================================== -->
+
+  <div class="page-wrapper">
 
 
-    <!-- =========================
+    <!-- =================================================
          LEFT SIDEBAR
-    ========================== -->
+    ================================================== -->
 
     <aside class="sidebar">
 
 
-      <!-- DissentVerse branding -->
+      <!-- Brand -->
 
       <div class="sidebar-brand">
 
         <a
           href="index.html"
-          class="logo-link"
-          aria-label="DissentVerse"
+          class="logo-container"
         >
 
+          <!-- Actual WordPress site-icon from XML -->
+
           <img
-            src="https://dissentverse.wordpress.com/wp-content/uploads/2026/09/img-20260628-wa00071.jpg"
-            alt="DissentVerse"
-            class="site-logo"
+            src="https://dissentverse.wordpress.com/wp-content/uploads/2025/07/cropped-img-20250730-wa0030.jpg"
+            alt="DissentVerse logo"
           >
 
         </a>
@@ -118,9 +129,9 @@
 
         <a
           href="index.html"
-          class="sidebar-name"
+          class="sidebar-title"
         >
-          <span>Dissent</span><b>Verse</b>
+          <span>Dissent</span><strong>Verse</strong>
         </a>
 
 
@@ -134,7 +145,7 @@
 
       <!-- Description -->
 
-      <div class="sidebar-description">
+      <div class="sidebar-intro">
 
         <p>
           A space for questioning the things we often accept without
@@ -147,14 +158,18 @@
 
 
 
-      <!-- Social links -->
+      <!-- =================================================
+           SOCIAL LINKS
+      ================================================== -->
 
-      <div class="sidebar-block connect">
+      <section class="sidebar-section">
 
-        <h3>Let's connect</h3>
+        <h3 class="sidebar-heading">
+          Let's connect
+        </h3>
 
 
-        <div class="social-list">
+        <div class="social-links">
 
 
           <!-- Pinterest -->
@@ -163,15 +178,18 @@
             href="https://pin.it/4ZKIbFLnW"
             target="_blank"
             rel="noopener noreferrer"
+            class="social-link"
           >
 
-            <span class="social-icon pinterest">
-              P
+            <span class="social-icon pinterest-icon">
+
+              <svg viewBox="0 0 24 24">
+                <path d="M12.2 2.2c-5.1 0-8.3 3.7-8.3 7.7 0 3 1.7 5.6 4.3 6.6-.1-.6-.1-1.6 0-2.3l1-4.1s-.3-.7-.3-1.7c0-1.6.9-2.8 2-2.8.9 0 1.3.7 1.3 1.5 0 .9-.6 2.2-.9 3.4-.3 1 .5 1.8 1.5 1.8 1.8 0 3.1-1.9 3.1-4.7 0-2.5-1.8-4.2-4.4-4.2-3 0-4.8 2.2-4.8 4.5 0 .9.3 1.9.7 2.4.1.1.1.2.1.3l-.3 1.2c-.1.4-.4.5-.8.3-1.5-.7-2.4-2.8-2.4-4.5 0-3.7 2.7-7.1 7.8-7.1 4.1 0 7.3 2.9 7.3 6.7 0 4-2.5 7.2-6 7.2-1.2 0-2.4-.6-2.8-1.3l-.7 2.8c-.3 1.1-1 2.5-1.5 3.3.9.3 1.9.5 2.9.5 5.1 0 9.2-4.1 9.2-9.2S17.3 2.2 12.2 2.2z"/>
+              </svg>
+
             </span>
 
-            <span>
-              Pinterest
-            </span>
+            <span>Pinterest</span>
 
           </a>
 
@@ -183,15 +201,18 @@
             href="https://www.youtube.com/@DissentVerse"
             target="_blank"
             rel="noopener noreferrer"
+            class="social-link"
           >
 
-            <span class="social-icon youtube">
-              ▶
+            <span class="social-icon youtube-icon">
+
+              <svg viewBox="0 0 24 24">
+                <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.7V8.3l6.2 3.7-6.2 3.7z"/>
+              </svg>
+
             </span>
 
-            <span>
-              YouTube
-            </span>
+            <span>YouTube</span>
 
           </a>
 
@@ -203,32 +224,54 @@
             href="https://t.me/dissentverse"
             target="_blank"
             rel="noopener noreferrer"
+            class="social-link"
           >
 
-            <span class="social-icon telegram">
-              ➤
+            <span class="social-icon telegram-icon">
+
+              <svg viewBox="0 0 24 24">
+                <path d="M21.6 3.4 2.8 10.7c-1.3.5-1.3 1.2-.2 1.5l4.8 1.5 1.8 5.6c.2.6.1.9.7.9.5 0 .7-.2 1-.4.3-.3 1.3-1.3 2.6-2.6l5.1 3.8c.9.5 1.5.3 1.7-.8l3.1-14.7c.3-1.3-.5-1.9-1.7-1.4zM8.1 13.3l10.5-6.6c.5-.3 1-.1.6.2l-8.6 7.8-.3 3.1-1.8-4.5-4.2-1.3 3.8-1.2z"/>
+              </svg>
+
             </span>
 
-            <span>
-              Telegram
-            </span>
+            <span>Telegram</span>
 
           </a>
 
 
 
-          <!-- Instagram
-               Link intentionally left blank -->
+          <!-- Instagram intentionally blank -->
 
-          <div class="social-row-empty">
+          <div class="social-link social-disabled">
 
-            <span class="social-icon instagram">
-              ◎
+            <span class="social-icon instagram-icon">
+
+              <svg viewBox="0 0 24 24">
+                <rect
+                  x="3"
+                  y="3"
+                  width="18"
+                  height="18"
+                  rx="5"
+                ></rect>
+
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="4"
+                ></circle>
+
+                <circle
+                  cx="17.5"
+                  cy="6.5"
+                  r="1"
+                ></circle>
+              </svg>
+
             </span>
 
-            <span>
-              Instagram
-            </span>
+            <span>Instagram</span>
 
           </div>
 
@@ -236,10 +279,27 @@
 
           <!-- Email -->
 
-          <a href="mailto:dissentverse@gmail.com">
+          <a
+            href="mailto:dissentverse@gmail.com"
+            class="social-link"
+          >
 
-            <span class="social-icon email">
-              @
+            <span class="social-icon email-icon">
+
+              <svg viewBox="0 0 24 24">
+                <rect
+                  x="3"
+                  y="5"
+                  width="18"
+                  height="14"
+                  rx="2"
+                ></rect>
+
+                <path
+                  d="m4 7 8 6 8-6"
+                ></path>
+              </svg>
+
             </span>
 
             <span>
@@ -251,19 +311,19 @@
 
         </div>
 
-      </div>
+      </section>
 
 
 
-      <!-- =========================
+      <!-- =================================================
            SUBSCRIBE
-      ========================== -->
+      ================================================== -->
 
-      <div class="sidebar-block subscribe-box">
+      <section class="subscribe-box">
 
-        <div class="subscribe-kicker">
+        <span class="subscribe-label">
           JOIN US!
-        </div>
+        </span>
 
 
         <h3>
@@ -282,53 +342,43 @@
           method="post"
         >
 
-          <label
-            class="sr-only"
-            for="email"
-          >
-            Email address
-          </label>
-
-
           <input
-            id="email"
             type="email"
+            name="email"
             placeholder="Your email address"
+            aria-label="Your email address"
             required
           >
 
 
           <button type="submit">
             Subscribe
-            <span>→</span>
           </button>
 
         </form>
 
-      </div>
+      </section>
 
 
 
-      <!-- =========================
+      <!-- =================================================
            RECENT POSTS
-      ========================== -->
+      ================================================== -->
 
-      <div class="sidebar-block recent">
+      <section class="recent-posts">
 
-        <h3>
+        <h3 class="sidebar-heading">
           Recent posts
         </h3>
 
 
-        <!-- Latest -->
-
         <a
-          class="recent-post"
           href="article.html"
+          class="recent-item"
         >
 
           <span class="recent-date">
-            SEP 19, 2026
+            19 SEP 2026
           </span>
 
           <span class="recent-title">
@@ -338,54 +388,45 @@
         </a>
 
 
-
-        <!-- Post 2 -->
-
         <a
-          class="recent-post"
           href="article.html"
+          class="recent-item"
         >
 
           <span class="recent-date">
-            JAN 31, 2026
+            31 JAN 2026
           </span>
 
           <span class="recent-title">
-            The Fear of Being Ordinary
+            The Fear of being Ordinary
           </span>
 
         </a>
 
 
-
-        <!-- Post 3 -->
-
         <a
-          class="recent-post"
           href="article.html"
+          class="recent-item"
         >
 
           <span class="recent-date">
-            JAN 15, 2026
+            15 JAN 2026
           </span>
 
           <span class="recent-title">
-            Cybercrime: The Cost of Convenience
+            Cybercrime : The Cost of Convenience
           </span>
 
         </a>
 
 
-
-        <!-- Post 4 -->
-
         <a
-          class="recent-post"
           href="article.html"
+          class="recent-item"
         >
 
           <span class="recent-date">
-            DEC 31, 2025
+            31 DEC 2025
           </span>
 
           <span class="recent-title">
@@ -394,95 +435,101 @@
 
         </a>
 
-      </div>
+      </section>
 
 
     </aside>
 
 
 
-    <!-- =========================
+    <!-- =================================================
          MAIN CONTENT
-    ========================== -->
+    ================================================== -->
 
     <main class="main-content">
 
 
-      <!-- =========================
+      <!-- =================================================
            HERO
-      ========================== -->
+      ================================================== -->
 
       <section class="hero">
 
+        <div class="hero-decoration"></div>
 
-        <div class="hero-label">
 
-          <span></span>
+        <div class="hero-content">
 
-          DissentVerse
+          <span class="eyebrow">
+            WHERE DISSENT FINDS ITS VERSE
+          </span>
+
+
+          <h1>
+            Question the things
+            <br>
+            <em>we often accept.</em>
+          </h1>
+
+
+          <p>
+            DissentVerse looks beyond easy explanations to explore
+            the ideas, pressures and everyday realities shaping
+            how we see the world.
+          </p>
+
+
+          <div class="hero-actions">
+
+            <a
+              href="article.html"
+              class="primary-button"
+            >
+              Read latest article
+              <span>↗</span>
+            </a>
+
+
+            <a
+              href="about.html"
+              class="text-button"
+            >
+              Discover DissentVerse
+              <span>→</span>
+            </a>
+
+          </div>
 
         </div>
 
 
-
-        <h1>
-
-          Question what we
-          <br>
-
-          <em>often accept.</em>
-
-        </h1>
-
-
-
-        <p>
-
-          From education and career choices to social expectations,
-          technology, culture and everyday realities — we look beyond
-          the surface.
-
-        </p>
-
-
-
-        <a
-          class="hero-link"
-          href="article.html"
-        >
-
-          Explore the latest article
-
-          <span>
-            ↗
-          </span>
-
-        </a>
-
+        <div class="hero-side-text">
+          QUESTION<br>
+          EXPLORE<br>
+          UNDERSTAND
+        </div>
 
       </section>
 
 
 
-      <!-- =========================
-           LATEST ARTICLE
-      ========================== -->
+      <!-- =================================================
+           LATEST ARTICLES
+      ================================================== -->
 
-      <section class="latest-section">
+      <section class="articles-section">
 
 
-        <div class="section-heading">
-
+        <div class="section-top">
 
           <div>
 
             <span class="eyebrow">
-              LATEST ARTICLE
+              FROM THE VERSE
             </span>
 
-
             <h2>
-              Read what we're questioning.
+              Latest articles
             </h2>
 
           </div>
@@ -490,44 +537,42 @@
 
           <a
             href="article.html"
-            class="view-all"
+            class="all-articles"
           >
-            View all articles →
+            View all articles
+            <span>→</span>
           </a>
-
 
         </div>
 
 
 
-        <!-- Featured article -->
+        <!-- =================================================
+             FEATURED ARTICLE
+        ================================================== -->
 
-        <article class="featured-card">
+        <article class="featured-article">
 
 
-          <!-- Article image -->
-
-          <div class="featured-image-wrap">
+          <a
+            href="article.html"
+            class="featured-image"
+          >
 
             <img
               src="https://dissentverse.wordpress.com/wp-content/uploads/2026/09/img-20260919-wa0009-edited.jpg?w=1024"
-              alt="Illustration for The Career Choice You Didn’t Actually Choose"
-              class="featured-image"
+              alt="The Career Choice You Didn’t Actually Choose"
             >
 
 
-            <span class="image-tag">
-              CAREER &amp; EDUCATION
+            <span class="featured-badge">
+              LATEST
             </span>
 
-          </div>
+          </a>
 
 
-
-          <!-- Article information -->
-
-          <div class="featured-copy">
-
+          <div class="featured-content">
 
             <div class="article-meta">
 
@@ -535,9 +580,7 @@
                 19 SEP 2026
               </span>
 
-              <span class="dot">
-                •
-              </span>
+              <span class="meta-line"></span>
 
               <span>
                 DISSENTVERSE
@@ -546,287 +589,350 @@
             </div>
 
 
-
             <h3>
-              The Career Choice You Didn’t Actually Choose
+              <a href="article.html">
+                The Career Choice You Didn’t Actually Choose
+              </a>
             </h3>
 
 
-
-            <p class="lead">
-
+            <p>
               What do you want to become? Seems like a simple question.
-              But for many students, the answer may be shaped by parents,
-              teachers, friends, social media, money and society long before
-              they get the chance to ask what they actually want.
-
+              But for many students, the answer is shaped by parents,
+              teachers, friends, social expectations, financial security
+              and the idea of what a successful career is supposed to look like.
             </p>
-
 
 
             <p>
-
-              A career decision is rarely made by one person alone.
-              The question is whether the influences around us sometimes
-              become louder than the student's own voice.
-
+              The article asks a deeper question:
+              <strong>
+                How much of your career choice is actually yours?
+              </strong>
             </p>
-
 
 
             <a
               href="article.html"
-              class="read-link"
+              class="read-more"
             >
-
               Continue reading
-
-              <span>
-                →
-              </span>
-
+              <span>→</span>
             </a>
 
-
           </div>
-
 
         </article>
 
 
+
+        <!-- =================================================
+             THREE OTHER LATEST ARTICLES
+        ================================================== -->
+
+        <div class="article-grid">
+
+
+          <!-- ARTICLE 2 -->
+
+          <article class="article-card">
+
+            <a
+              href="article.html"
+              class="card-image"
+            >
+
+              <img
+                src="https://dissentverse.wordpress.com/wp-content/uploads/2026/01/img-20260131-wa0003.jpg"
+                alt="The Fear of being Ordinary"
+              >
+
+            </a>
+
+
+            <div class="card-content">
+
+              <div class="article-meta">
+
+                <span>
+                  31 JAN 2026
+                </span>
+
+              </div>
+
+
+              <h3>
+                <a href="article.html">
+                  The Fear of being Ordinary
+                </a>
+              </h3>
+
+
+              <p>
+                In a world where success constantly appears on our screens,
+                being ordinary can start feeling like failure.
+              </p>
+
+
+              <a
+                href="article.html"
+                class="card-read"
+              >
+                Read article
+                <span>→</span>
+              </a>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- ARTICLE 3 -->
+
+          <article class="article-card">
+
+            <a
+              href="article.html"
+              class="card-image"
+            >
+
+              <img
+                src="https://dissentverse.wordpress.com/wp-content/uploads/2026/01/img-20260115-wa0007.jpg"
+                alt="Cybercrime : The Cost of Convenience"
+              >
+
+            </a>
+
+
+            <div class="card-content">
+
+              <div class="article-meta">
+
+                <span>
+                  15 JAN 2026
+                </span>
+
+              </div>
+
+
+              <h3>
+                <a href="article.html">
+                  Cybercrime : The Cost of Convenience
+                </a>
+              </h3>
+
+
+              <p>
+                The internet has made everyday life easier.
+                But what happens when the same convenience creates
+                new risks for ordinary users?
+              </p>
+
+
+              <a
+                href="article.html"
+                class="card-read"
+              >
+                Read article
+                <span>→</span>
+              </a>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- ARTICLE 4 -->
+
+          <article class="article-card">
+
+            <a
+              href="article.html"
+              class="card-image"
+            >
+
+              <img
+                src="https://dissentverse.wordpress.com/wp-content/uploads/2025/12/img-20251231-wa0025.jpg"
+                alt="Civic Sense: Missing in Action"
+              >
+
+            </a>
+
+
+            <div class="card-content">
+
+              <div class="article-meta">
+
+                <span>
+                  31 DEC 2025
+                </span>
+
+              </div>
+
+
+              <h3>
+                <a href="article.html">
+                  Civic Sense: Missing in Action
+                </a>
+              </h3>
+
+
+              <p>
+                Development is not only about infrastructure.
+                It is also about the behaviour of the people who use it.
+              </p>
+
+
+              <a
+                href="article.html"
+                class="card-read"
+              >
+                Read article
+                <span>→</span>
+              </a>
+
+            </div>
+
+          </article>
+
+
+        </div>
+
+
       </section>
 
 
 
-      <!-- =========================
-           DISSENTVERSE BANNER
-      ========================== -->
+      <!-- =================================================
+           DISSENTVERSE STATEMENT
+      ================================================== -->
 
-      <section class="question-banner">
+      <section class="statement-section">
 
-
-        <div class="question-mark">
+        <div class="statement-number">
           ?
         </div>
 
 
-        <div>
+        <div class="statement-content">
 
           <span class="eyebrow">
-            THE DISSENTVERSE
+            DISSENTVERSE
           </span>
 
 
           <h2>
-            Some questions deserve more than quick answers.
+            Not here to tell you
+            <em>what to think.</em>
           </h2>
 
 
           <p>
-            Question. Explore. Understand.
+            Here to create space for questions that deserve to be heard.
           </p>
 
         </div>
 
 
-      </section>
-
-
-
-      <!-- =========================
-           TOPICS
-      ========================== -->
-
-      <section class="topics">
-
-
-        <div class="section-heading compact">
-
-
-          <div>
-
-            <span class="eyebrow">
-              WHAT WE EXPLORE
-            </span>
-
-
-            <h2>
-              Beyond the obvious.
-            </h2>
-
-          </div>
-
-
-        </div>
-
-
-
-        <div class="topic-grid">
-
-
-          <!-- Topic 1 -->
-
-          <a
-            href="article.html"
-            class="topic-card"
-          >
-
-            <span class="topic-number">
-              01
-            </span>
-
-
-            <h3>
-              Education &amp;<br>
-              Career Choices
-            </h3>
-
-
-            <span class="topic-arrow">
-              ↗
-            </span>
-
-          </a>
-
-
-
-          <!-- Topic 2 -->
-
-          <a
-            href="article.html"
-            class="topic-card"
-          >
-
-            <span class="topic-number">
-              02
-            </span>
-
-
-            <h3>
-              Social<br>
-              Expectations
-            </h3>
-
-
-            <span class="topic-arrow">
-              ↗
-            </span>
-
-          </a>
-
-
-
-          <!-- Topic 3 -->
-
-          <a
-            href="article.html"
-            class="topic-card"
-          >
-
-            <span class="topic-number">
-              03
-            </span>
-
-
-            <h3>
-              Technology &amp;<br>
-              Everyday Life
-            </h3>
-
-
-            <span class="topic-arrow">
-              ↗
-            </span>
-
-          </a>
-
-
-        </div>
-
+        <a
+          href="about.html"
+          class="statement-arrow"
+          aria-label="About DissentVerse"
+        >
+          ↗
+        </a>
 
       </section>
 
 
 
-      <!-- =========================
+      <!-- =================================================
            FOOTER
-      ========================== -->
+      ================================================== -->
 
       <footer class="footer">
 
 
-        <div class="footer-brand">
-
-          <a
-            href="index.html"
-            class="footer-name"
-          >
-
-            <span>Dissent</span><b>Verse</b>
-
-          </a>
+        <div class="footer-top">
 
 
-          <p>
-            Where Dissent finds its Verse
-          </p>
+          <div class="footer-brand">
+
+            <a
+              href="index.html"
+              class="footer-logo"
+            >
+              <span>Dissent</span><strong>Verse</strong>
+            </a>
+
+
+            <p>
+              Where Dissent finds its Verse
+            </p>
+
+          </div>
+
+
+
+          <div class="footer-navigation">
+
+            <a href="index.html">
+              Home
+            </a>
+
+            <a href="about.html">
+              About
+            </a>
+
+            <a href="article.html">
+              Articles
+            </a>
+
+            <a href="mailto:dissentverse@gmail.com">
+              Contact
+            </a>
+
+          </div>
+
+
+
+          <div class="footer-social">
+
+            <a
+              href="https://pin.it/69zhtNAvx"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Pinterest
+            </a>
+
+            <a
+              href="https://www.youtube.com/@DissentVerse"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              YouTube
+            </a>
+
+            <a
+              href="https://t.me/dissentverse"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Telegram
+            </a>
+
+            <a href="mailto:dissentverse@gmail.com">
+              Email
+            </a>
+
+          </div>
 
         </div>
 
 
-
-        <!-- Footer links -->
-
-        <div class="footer-links">
-
-
-          <a
-            href="https://pin.it/69zhtNAvx"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Pinterest
-          </a>
-
-
-          <a
-            href="https://www.youtube.com/@DissentVerse"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            YouTube
-          </a>
-
-
-          <a
-            href="https://t.me/dissentverse"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Telegram
-          </a>
-
-
-          <a href="mailto:dissentverse@gmail.com">
-            Email
-          </a>
-
-
-          <a href="about.html">
-            About
-          </a>
-
-
-          <a href="article.html">
-            Articles
-          </a>
-
-
-        </div>
-
-
-
-        <!-- Footer bottom -->
 
         <div class="footer-bottom">
 
@@ -846,7 +952,6 @@
 
 
     </main>
-
 
   </div>
 
