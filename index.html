@@ -1,893 +1,897 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>DissentVerse</title>
-
-<style>
-
-* {
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    margin: 0;
-    background: #ffffff;
-    color: #17131a;
-    font-family: Georgia, "Times New Roman", serif;
-    line-height: 1.7;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-
-/* =========================
-   MAIN LAYOUT
-========================= */
-
-.site {
-    display: grid;
-    grid-template-columns: 260px 1fr;
-    min-height: 100vh;
-}
-
-
-/* =========================
-   SIDEBAR
-========================= */
-
-.sidebar {
-    padding: 45px 28px;
-    border-right: 1px solid #ded6e2;
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    overflow-y: auto;
-    background: #ffffff;
-}
-
-.sidebar h2 {
-    margin: 0;
-    font-size: 15px;
-    font-weight: normal;
-}
-
-.sidebar .brand {
-    color: #7c3978;
-    font-size: 28px;
-    font-style: italic;
-    margin: 2px 0 22px;
-}
-
-.sidebar-logo {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 22px;
-}
-
-.sidebar-description {
-    font-size: 14px;
-    line-height: 1.7;
-    margin-bottom: 30px;
-}
-
-.sidebar-title {
-    color: #7c3978;
-    font-size: 18px;
-    font-style: italic;
-    margin-bottom: 14px;
-}
-
-.social-links {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    font-family: Arial, sans-serif;
-    font-size: 13px;
-    margin-bottom: 35px;
-}
-
-.social-links a:hover {
-    color: #c94f91;
-    text-decoration: underline;
-}
-
-.join-box {
-    background: #211b25;
-    color: white;
-    padding: 25px 20px;
-    margin: 0 -28px 30px;
-}
-
-.join-box h3 {
-    color: #f3a7cf;
-    margin: 0 0 8px;
-    font-size: 19px;
-    font-style: italic;
-    font-weight: normal;
-}
-
-.join-box p {
-    font-family: Arial, sans-serif;
-    font-size: 13px;
-    line-height: 1.6;
-    margin: 0 0 18px;
-}
-
-.email-box {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #777;
-    background: white;
-    font-family: Arial, sans-serif;
-}
-
-.recent {
-    background: #eee5f2;
-    margin: 0 -28px;
-    padding: 28px 20px;
-}
-
-.recent h3 {
-    color: #693465;
-    margin-top: 0;
-    font-size: 19px;
-    font-style: italic;
-    font-weight: normal;
-}
-
-.recent-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-}
-
-.recent-item {
-    font-family: Arial, sans-serif;
-    font-size: 12px;
-    line-height: 1.4;
-}
-
-.recent-item a:hover {
-    color: #c94f91;
-    text-decoration: underline;
-}
-
-
-/* =========================
-   MAIN
-========================= */
-
-.main {
-    min-width: 0;
-}
-
-
-/* =========================
-   HEADER
-========================= */
-
-.header {
-    padding: 30px 45px;
-    background: #ffffff;
-}
-
-.header-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 25px;
-}
-
-.site-title {
-    color: #201a22;
-    font-size: 42px;
-    font-weight: normal;
-    letter-spacing: -1px;
-}
-
-.search {
-    width: 230px;
-    padding: 11px 18px;
-    border: 1px solid #b9aabd;
-    border-radius: 50px;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    outline: none;
-}
-
-.search:focus {
-    border-color: #c94f91;
-}
-
-
-/* =========================
-   NAVIGATION
-========================= */
-
-.nav {
-    background: #eee5f2;
-    padding: 15px 45px;
-    display: flex;
-    gap: 28px;
-    flex-wrap: wrap;
-    font-family: Arial, sans-serif;
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: .5px;
-}
-
-.nav a:hover {
-    color: #c94f91;
-}
-
-
-/* =========================
-   INTRO
-========================= */
-
-.intro {
-    position: relative;
-    overflow: hidden;
-    padding: 90px 70px 85px;
-    background: linear-gradient(
-        135deg,
-        #ffffff 0%,
-        #f7eef9 48%,
-        #f4dceb 100%
-    );
-    border-top: 1px solid #ded6e2;
-    border-bottom: 1px solid #ded6e2;
-}
-
-.intro::before {
-    content: "";
-    position: absolute;
-    width: 280px;
-    height: 280px;
-    border-radius: 50%;
-    background: #f4c5df;
-    opacity: .35;
-    top: -130px;
-    right: -80px;
-}
-
-.intro::after {
-    content: "";
-    position: absolute;
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    background: #d9c2e4;
-    opacity: .35;
-    bottom: -90px;
-    left: -60px;
-}
-
-.intro-brand {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    margin-bottom: 55px;
-}
-
-.intro-logo {
-    width: 105px;
-    height: 105px;
-    border-radius: 50%;
-    object-fit: cover;
-    display: block;
-    margin: 0 auto 20px;
-    box-shadow: 0 8px 25px rgba(92, 49, 91, .16);
-}
-
-.intro-brand h1 {
-    margin: 0;
-    color: #5d285b;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(42px, 6vw, 68px);
-    font-style: italic;
-    font-weight: bold;
-    letter-spacing: -1px;
-    line-height: 1.1;
-}
-
-.intro-tagline {
-    margin-top: 12px;
-    color: #9b3976;
-    font-size: 18px;
-    font-style: italic;
-}
-
-.intro-text {
-    position: relative;
-    z-index: 2;
-    max-width: 850px;
-    margin: auto;
-    padding: 40px 45px;
-    background: rgba(255, 255, 255, .82);
-    border: 1px solid rgba(124, 57, 120, .15);
-    box-shadow: 0 10px 35px rgba(76, 40, 77, .08);
-}
-
-.intro-text p {
-    margin: 0 0 22px;
-    font-size: 17px;
-    line-height: 1.9;
-}
-
-.intro-text p:last-child {
-    margin-bottom: 0;
-}
-
-.intro-text strong {
-    color: #6e3069;
-}
-
-
-/* =========================
-   ARTICLES
-========================= */
-
-.articles {
-    padding: 65px 45px 80px;
-    background: #ffffff;
-}
-
-.section-title {
-    color: #5d285b;
-    font-size: 34px;
-    font-weight: normal;
-    font-style: italic;
-    margin: 0 0 35px;
-}
-
-.article-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
-}
-
-.article {
-    padding: 30px;
-    background: #ffffff;
-    border: 1px solid #ddd2e1;
-    transition: transform .2s ease, box-shadow .2s ease;
-}
-
-.article:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 25px rgba(82, 42, 82, .10);
-}
-
-.article-label {
-    color: #c04c8e;
-    font-family: Arial, sans-serif;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 15px;
-}
-
-.article h3 {
-    color: #241c26;
-    font-size: 25px;
-    line-height: 1.25;
-    font-weight: normal;
-    margin: 0 0 15px;
-}
-
-.article p {
-    font-size: 15px;
-    line-height: 1.7;
-    color: #4d4650;
-}
-
-.read-more {
-    color: #7c3978;
-    display: inline-block;
-    margin-top: 8px;
-    font-family: Arial, sans-serif;
-    font-size: 13px;
-}
-
-.read-more:hover {
-    color: #c94f91;
-}
-
-
-/* =========================
-   FOOTER
-========================= */
-
-.footer {
-    background: #211b25;
-    color: white;
-    padding: 45px;
-    border-top: 4px solid #c94f91;
-}
-
-.footer-title {
-    color: #f3a7cf;
-    font-size: 30px;
-    font-style: italic;
-    font-weight: bold;
-    margin-bottom: 15px;
-}
-
-.footer p {
-    font-size: 14px;
-    margin-bottom: 20px;
-}
-
-.footer-links {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    font-family: Arial, sans-serif;
-    font-size: 12px;
-    text-transform: uppercase;
-}
-
-.footer-links a:hover {
-    color: #f3a7cf;
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 800px) {
-
-    .site {
-        display: grid;
-        grid-template-columns: 1fr;
-        min-height: 100vh;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>DissentVerse – Where Dissent finds its Verse</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --white: #ffffff;
+      --black: #17151a;
+      --light-purple: #cbb8e8;
+      --purple: #75539b;
+      --dark-purple: #49305f;
+      --light-pink: #f8dce9;
+      --dark-pink: #b85b83;
+      --soft-bg: #fcf8fd;
+      --border: #eadff0;
+      --muted: #706a74;
     }
 
-    .main {
-        grid-column: 1;
-        grid-row: 1;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    .sidebar {
-        grid-column: 1;
-        grid-row: 2;
-
-        position: relative;
-        top: auto;
-        height: auto;
-
-        border-right: none;
-        border-top: 1px solid #ded6e2;
-        border-bottom: none;
-
-        padding: 30px 25px;
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.7;
     }
 
-    .join-box,
-    .recent {
-        margin-left: -25px;
-        margin-right: -25px;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    .header {
-        padding: 25px;
+    img {
+      max-width: 100%;
+      display: block;
     }
 
-    .header-top {
-        flex-direction: column;
-        align-items: flex-start;
+    /* HEADER */
+
+    header {
+      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.96);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
-    .site-title {
-        font-size: 35px;
+    .header-inner {
+      max-width: 1250px;
+      margin: auto;
+      min-height: 82px;
+      padding: 0 35px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .brand {
+      font-family: "Playfair Display", serif;
+      font-size: 29px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .brand .dissent {
+      color: var(--black);
+    }
+
+    .brand .verse {
+      color: var(--purple);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    nav a {
+      font-size: 14px;
+      font-weight: 600;
+      position: relative;
+    }
+
+    nav a:hover {
+      color: var(--dark-pink);
+    }
+
+    nav a.active {
+      color: var(--dark-purple);
     }
 
     .search {
-        width: 100%;
+      width: 180px;
+      padding: 9px 13px;
+      border: 1px solid var(--border);
+      border-radius: 25px;
+      outline: none;
+      font-family: inherit;
+      background: var(--soft-bg);
     }
 
-    .nav {
-        padding: 14px 25px;
-        gap: 18px;
+    .search:focus {
+      border-color: var(--light-purple);
     }
 
-    .intro {
-        padding: 65px 25px;
+    /* PAGE */
+
+    .page {
+      max-width: 1250px;
+      margin: auto;
+      padding: 55px 35px 80px;
+
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 65px;
     }
 
-    .intro-brand h1 {
-        font-size: 48px;
+    /* SIDEBAR */
+
+    .sidebar {
+      border-right: 1px solid var(--border);
+      padding-right: 35px;
     }
 
-    .intro-text {
-        padding: 30px 25px;
+    .sidebar-brand {
+      margin-bottom: 20px;
     }
 
-    .intro-text p {
-        font-size: 16px;
+    .sidebar-logo {
+      width: 72px;
+      height: 72px;
+      margin-bottom: 15px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--light-pink), var(--light-purple));
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-family: "Playfair Display", serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--dark-purple);
     }
+
+    .sidebar-brand h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 27px;
+      line-height: 1.2;
+    }
+
+    .sidebar-brand h2 span {
+      color: var(--purple);
+    }
+
+    .tagline {
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      color: var(--dark-pink);
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    .sidebar-description {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+      margin-top: 15px;
+    }
+
+    .sidebar-section {
+      margin-top: 35px;
+    }
+
+    .sidebar-section h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+
+    .social-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .social-links a {
+      font-size: 13px;
+      color: var(--muted);
+      transition: 0.2s;
+    }
+
+    .social-links a:hover {
+      color: var(--dark-pink);
+      transform: translateX(3px);
+    }
+
+    .subscribe-box {
+      background: linear-gradient(
+        145deg,
+        var(--light-pink),
+        #f5ecfa
+      );
+
+      padding: 20px;
+      border-radius: 15px;
+    }
+
+    .subscribe-box p {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 15px;
+    }
+
+    .subscribe-box input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      outline: none;
+      margin-bottom: 10px;
+      font-family: inherit;
+    }
+
+    .subscribe-box button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 7px;
+      background: var(--dark-purple);
+      color: white;
+      font-family: inherit;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .subscribe-box button:hover {
+      background: var(--dark-pink);
+    }
+
+    .recent-posts {
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+    }
+
+    .recent-posts a {
+      font-family: "Playfair Display", serif;
+      font-size: 14px;
+      line-height: 1.4;
+      color: var(--black);
+    }
+
+    .recent-posts a:hover {
+      color: var(--dark-pink);
+    }
+
+    /* MAIN */
+
+    .hero {
+      padding: 20px 0 60px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-logo {
+      display: inline-block;
+      padding: 8px 15px;
+      border-radius: 30px;
+      background: var(--light-pink);
+      color: var(--dark-purple);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(48px, 7vw, 82px);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 .dissent {
+      color: var(--black);
+    }
+
+    .hero h1 .verse {
+      color: var(--purple);
+    }
+
+    .hero .tagline-large {
+      font-family: "Playfair Display", serif;
+      font-size: 22px;
+      font-style: italic;
+      color: var(--dark-pink);
+      margin-bottom: 22px;
+    }
+
+    .hero-description {
+      max-width: 700px;
+      font-size: 17px;
+      color: var(--muted);
+    }
+
+    /* LATEST ARTICLE */
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 50px 0 22px;
+    }
+
+    .section-heading h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 30px;
+    }
+
+    .section-heading span {
+      color: var(--purple);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .featured {
+      background: linear-gradient(
+        135deg,
+        #fff,
+        #faf2fc
+      );
+
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 35px;
+
+      position: relative;
+      overflow: hidden;
+    }
+
+    .featured::after {
+      content: "";
+      position: absolute;
+      width: 170px;
+      height: 170px;
+      right: -60px;
+      top: -60px;
+      border-radius: 50%;
+      background: var(--light-pink);
+      opacity: 0.65;
+    }
+
+    .featured-label {
+      color: var(--dark-pink);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .featured h3 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(30px, 4vw, 45px);
+      line-height: 1.15;
+      max-width: 700px;
+      margin: 12px 0;
+    }
+
+    .featured p {
+      color: var(--muted);
+      max-width: 650px;
+      margin-bottom: 20px;
+    }
+
+    .read-more {
+      color: var(--dark-purple);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .read-more:hover {
+      color: var(--dark-pink);
+    }
+
+    /* ARTICLES */
 
     .articles {
-        padding-left: 25px;
-        padding-right: 25px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
     }
 
-    .article-grid {
+    .article-card {
+      border-top: 3px solid var(--light-purple);
+      padding: 22px 5px 25px;
+    }
+
+    .article-card:nth-child(2n) {
+      border-color: var(--light-pink);
+    }
+
+    .article-card .date {
+      font-size: 11px;
+      color: var(--dark-pink);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .article-card h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 24px;
+      line-height: 1.3;
+      margin: 8px 0;
+    }
+
+    .article-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      background: var(--black);
+      color: white;
+      padding: 45px 35px;
+    }
+
+    .footer-inner {
+      max-width: 1250px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .footer-brand {
+      font-family: "Playfair Display", serif;
+      font-size: 25px;
+    }
+
+    .footer-brand span {
+      color: var(--light-purple);
+    }
+
+    .footer-tagline {
+      color: #d7d1db;
+      font-size: 13px;
+      font-style: italic;
+      margin-top: 3px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-size: 13px;
+    }
+
+    .footer-links a:hover {
+      color: var(--light-purple);
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 900px) {
+
+      .header-inner {
+        padding: 18px 22px;
+        flex-wrap: wrap;
+      }
+
+      nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        gap: 22px;
+      }
+
+      .search {
+        width: 140px;
+      }
+
+      .page {
         grid-template-columns: 1fr;
+        padding: 40px 22px 65px;
+        gap: 45px;
+      }
+
+      .sidebar {
+        order: 2;
+        border-right: none;
+        border-top: 1px solid var(--border);
+        padding-right: 0;
+        padding-top: 40px;
+      }
+
+      .main-content {
+        order: 1;
+      }
+
+      .articles {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
 
-    .footer {
-        padding: 35px 25px;
+    @media (max-width: 560px) {
+
+      .header-inner {
+        padding: 16px;
+      }
+
+      .brand {
+        font-size: 24px;
+      }
+
+      nav {
+        gap: 14px;
+        justify-content: flex-start;
+        overflow-x: auto;
+      }
+
+      nav a {
+        font-size: 12px;
+      }
+
+      .search {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 52px;
+      }
+
+      .hero .tagline-large {
+        font-size: 18px;
+      }
+
+      .hero-description {
+        font-size: 15px;
+      }
+
+      .featured {
+        padding: 25px;
+      }
+
+      .featured h3 {
+        font-size: 30px;
+      }
+
+      .section-heading h2 {
+        font-size: 25px;
+      }
     }
-
-}
-
-</style>
+  </style>
 </head>
-
 
 <body>
 
-<div class="site">
+  <!-- HEADER -->
+
+  <header>
+    <div class="header-inner">
+
+      <a href="index.html" class="brand">
+        <span class="dissent">Dissent</span><span class="verse">Verse</span>
+      </a>
+
+      <nav>
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About</a>
+        <a href="article.html">Articles</a>
+        <a href="mailto:your@email.com">Contact</a>
+      </nav>
+
+      <input
+        type="search"
+        class="search"
+        placeholder="Search..."
+        aria-label="Search"
+      >
+
+    </div>
+  </header>
 
 
-    <!-- =========================
-         SIDEBAR
-    ========================== -->
+  <!-- PAGE -->
+
+  <div class="page">
+
+    <!-- SIDEBAR -->
 
     <aside class="sidebar">
 
-        <h2>Welcome to</h2>
+      <div class="sidebar-brand">
 
-        <div class="brand">
-            DissentVerse
+        <div class="sidebar-logo">
+          DV
         </div>
 
-        <img
-            class="sidebar-logo"
-            src="https://dissentverse.wordpress.com/wp-content/uploads/2025/08/img-20260628-wa00071.jpg?w=756"
-            alt="DissentVerse"
-        >
+        <h2>
+          <span>Dissent</span>Verse
+        </h2>
+
+        <div class="tagline">
+          Where Dissent finds its Verse
+        </div>
 
         <p class="sidebar-description">
-            A space for questioning the things we often accept without questioning.
-            From education and career choices to social expectations, technology,
-            culture, and the realities shaping everyday life, DissentVerse explores
-            what lies beneath the surface.
+          A space for questioning the things we often accept without questioning.
         </p>
 
+      </div>
 
-        <div class="sidebar-title">
-            Let's connect
-        </div>
+
+      <div class="sidebar-section">
+
+        <h3>Let's Connect</h3>
 
         <div class="social-links">
+          <a href="#" target="_blank">◈ Pinterest</a>
+          <a href="#" target="_blank">▶ YouTube</a>
+          <a href="#" target="_blank">✈ Telegram</a>
+          <a href="#" target="_blank">◎ Instagram</a>
+        </div>
 
-            <a href="https://pin.it/4ZKIbFLnW" target="_blank">
-                Pinterest
-            </a>
+      </div>
 
-            <a href="https://www.youtube.com/@DissentVerse" target="_blank">
-                YouTube
-            </a>
 
-            <a href="https://t.me/dissentverse" target="_blank">
-                Telegram
-            </a>
+      <div class="sidebar-section">
+
+        <h3>Join Us</h3>
+
+        <div class="subscribe-box">
+
+          <p>
+            Stay updated with the latest articles and ideas from DissentVerse.
+          </p>
+
+          <input
+            type="email"
+            placeholder="Your email address"
+          >
+
+          <button type="button">
+            Subscribe
+          </button>
 
         </div>
 
-
-        <div class="join-box">
-
-            <h3>Join us!</h3>
-
-            <p>
-                Stay updated with our latest articles and ideas by joining our blog.
-            </p>
-
-            <input
-                class="email-box"
-                type="email"
-                placeholder="Your email"
-            >
-
-        </div>
+      </div>
 
 
-        <div class="recent">
+      <div class="sidebar-section">
 
-            <h3>Recent posts</h3>
+        <h3>Recent Posts</h3>
 
-            <div class="recent-grid">
+        <div class="recent-posts">
 
-                <div class="recent-item">
-                    <a href="#">
-                        The Career Choice You Didn't Actually Choose
-                    </a>
-                </div>
+          <a href="article.html">
+            The Career Choice You Didn't Actually Choose
+          </a>
 
-                <div class="recent-item">
-                    <a href="#">
-                        The Fear of Being Ordinary
-                    </a>
-                </div>
+          <a href="article.html">
+            The Fear of Being Ordinary
+          </a>
 
-                <div class="recent-item">
-                    <a href="#">
-                        Explore DissentVerse
-                    </a>
-                </div>
+          <a href="article.html">
+            Cybercrime: The Cost of Convenience
+          </a>
 
-                <div class="recent-item">
-                    <a href="#">
-                        Latest Articles
-                    </a>
-                </div>
+          <a href="article.html">
+            Civic Sense: Missing in Action
+          </a>
 
-                <div class="recent-item">
-                    <a href="#">
-                        Ideas & Perspectives
-                    </a>
-                </div>
-
-                <div class="recent-item">
-                    <a href="#">
-                        More from DissentVerse
-                    </a>
-                </div>
-
-            </div>
+          <a href="article.html">
+            The Talent Flight
+          </a>
 
         </div>
+
+      </div>
 
     </aside>
 
 
-    <!-- =========================
-         MAIN WEBSITE
-    ========================== -->
+    <!-- MAIN CONTENT -->
 
-    <main class="main">
+    <main class="main-content">
 
+      <section class="hero">
 
-        <!-- HEADER -->
+        <div class="hero-logo">
+          DissentVerse
+        </div>
 
-        <header class="header">
+        <h1>
+          <span class="dissent">Dissent</span><span class="verse">Verse</span>
+        </h1>
 
-            <div class="header-top">
+        <div class="tagline-large">
+          Where Dissent finds its Verse
+        </div>
 
-                <div class="site-title">
-                    DissentVerse
-                </div>
+        <p class="hero-description">
+          A space for questioning the things we often accept without questioning.
+          From education and career choices to social expectations, technology,
+          culture, and the realities shaping everyday life, DissentVerse explores
+          what lies beneath the surface.
+        </p>
 
-                <input
-                    class="search"
-                    type="search"
-                    placeholder="Search..."
-                >
+      </section>
 
-            </div>
 
-        </header>
+      <!-- LATEST ARTICLE -->
 
+      <div class="section-heading">
 
-        <!-- NAVIGATION -->
+        <h2>Latest Article</h2>
 
-        <nav class="nav">
+        <span>From DissentVerse</span>
 
-            <a href="index.html">
-                Home
-            </a>
+      </div>
 
-            <a href="about.html">
-                About
-            </a>
 
-            <a href="#">
-                Articles
-            </a>
+      <article class="featured">
 
-            <a href="#">
-                Contact
-            </a>
+        <div class="featured-label">
+          September 19, 2026
+        </div>
 
-        </nav>
+        <h3>
+          The Career Choice You Didn't Actually Choose
+        </h3>
 
+        <p>
+          What happens when the career you are preparing for was never really
+          your choice in the first place?
+        </p>
 
-        <!-- INTRO -->
+        <a href="article.html" class="read-more">
+          Continue reading →
+        </a>
 
-        <section class="intro">
+      </article>
 
-            <div class="intro-brand">
 
-                <img
-                    class="intro-logo"
-                    src="https://dissentverse.wordpress.com/wp-content/uploads/2025/08/img-20260628-wa00071.jpg?w=756"
-                    alt="DissentVerse logo"
-                >
+      <!-- ARTICLES -->
 
-                <h1>
-                    DissentVerse
-                </h1>
+      <div class="section-heading">
 
-                <div class="intro-tagline">
-                    Where Dissent finds its Verse.
-                </div>
+        <h2>Latest from DissentVerse</h2>
 
-            </div>
+      </div>
 
 
-            <div class="intro-text">
+      <section class="articles">
 
-                <p>
-                    DissentVerse is a space for exploring the experiences, pressures
-                    and issues shaping young people’s lives.
-                </p>
+        <article class="article-card">
 
-                <p>
-                    From education and career choices to social expectations,
-                    competition, technology and the everyday realities that often
-                    go unnoticed, DissentVerse looks beyond easy explanations to
-                    ask deeper questions.
-                </p>
+          <div class="date">January 31, 2026</div>
 
-                <p>
-                    The aim isn’t to provide easy answers or tell people what to think.
-                    It is to <strong>question, explore and understand</strong>—and hopefully
-                    leave readers with something worth thinking about.
-                </p>
+          <h3>
+            The Fear of Being Ordinary
+          </h3>
 
-                <p>
-                    What began as a space for expressing thoughts is growing into a
-                    platform for conversations that challenge familiar ideas and look
-                    at ordinary things from a different perspective.
-                </p>
+          <p>
+            Exploring the pressure to constantly achieve, improve and stand out.
+          </p>
 
-                <p>
-                    <strong>
-                        DissentVerse is a space for questions that deserve to be heard.
-                    </strong>
-                </p>
+          <a href="article.html" class="read-more">
+            Read article →
+          </a>
 
-                <p>
-                    <strong>
-                        Welcome to DissentVerse, Where Dissent finds its Verse.
-                    </strong>
-                </p>
+        </article>
 
-            </div>
 
-        </section>
+        <article class="article-card">
 
+          <div class="date">January 15, 2026</div>
 
-        <!-- LATEST ARTICLES -->
+          <h3>
+            Cybercrime: The Cost of Convenience
+          </h3>
 
-        <section class="articles">
+          <p>
+            Looking at the risks hidden behind the convenience of our digital lives.
+          </p>
 
-            <h2 class="section-title">
-                Latest Articles
-            </h2>
+          <a href="article.html" class="read-more">
+            Read article →
+          </a>
 
-            <div class="article-grid">
+        </article>
 
 
-                <article class="article">
+        <article class="article-card">
 
-                    <div class="article-label">
-                        Education & Career
-                    </div>
+          <div class="date">December 31, 2025</div>
 
-                    <h3>
-                        The Career Choice You Didn't Actually Choose
-                    </h3>
+          <h3>
+            Civic Sense: Missing in Action
+          </h3>
 
-                    <p>
-                        What happens when the career you are preparing for
-                        was shaped by expectations that were never really
-                        your own?
-                    </p>
+          <p>
+            A look at the everyday behaviours that shape public spaces and society.
+          </p>
 
-                    <a class="read-more" href="#">
-                        Read article →
-                    </a>
+          <a href="article.html" class="read-more">
+            Read article →
+          </a>
 
-                </article>
+        </article>
 
 
-                <article class="article">
+        <article class="article-card">
 
-                    <div class="article-label">
-                        Society
-                    </div>
+          <div class="date">November 11, 2025</div>
 
-                    <h3>
-                        The Fear of Being Ordinary
-                    </h3>
+          <h3>
+            The Talent Flight
+          </h3>
 
-                    <p>
-                        When achievement becomes the measure of a meaningful
-                        life, the pressure to keep up can quietly change
-                        how young people see themselves.
-                    </p>
+          <p>
+            Exploring why talent leaves and what that means for the future.
+          </p>
 
-                    <a class="read-more" href="#">
-                        Read article →
-                    </a>
+          <a href="article.html" class="read-more">
+            Read article →
+          </a>
 
-                </article>
+        </article>
 
-
-            </div>
-
-        </section>
-
-
-        <!-- FOOTER -->
-
-        <footer class="footer">
-
-            <div class="footer-title">
-                DissentVerse
-            </div>
-
-            <p>
-                Where Dissent finds its Verse.
-            </p>
-
-            <div class="footer-links">
-
-                <a href="https://pin.it/69zhtNAvx" target="_blank">
-                    Pinterest
-                </a>
-
-                <a href="https://www.youtube.com/@DissentVerse" target="_blank">
-                    YouTube
-                </a>
-
-                <a href="https://t.me/dissentverse" target="_blank">
-                    Telegram
-                </a>
-
-                <a href="mailto:dissentverse@gmail.com">
-                    Email
-                </a>
-
-                <a href="about.html">
-                    About
-                </a>
-
-                <a href="#">
-                    Articles
-                </a>
-
-                <a href="#">
-                    Contact
-                </a>
-
-            </div>
-
-        </footer>
-
+      </section>
 
     </main>
 
-</div>
+  </div>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="footer-inner">
+
+      <div>
+        <div class="footer-brand">
+          <span>Dissent</span>Verse
+        </div>
+
+        <div class="footer-tagline">
+          Where Dissent finds its Verse
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="article.html">Articles</a>
+        <a href="mailto:your@email.com">Email</a>
+        <a href="#">Pinterest</a>
+        <a href="#">YouTube</a>
+        <a href="#">Telegram</a>
+      </div>
+
+    </div>
+
+  </footer>
 
 </body>
 </html>
