@@ -13,7 +13,7 @@ collections:
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
       - {label: "Featured Image", name: "featured_image", widget: "image"}
       - {label: "Date", name: "date", widget: "datetime"}
       - {label: "Article", name: "body", widget: "richtext"}
