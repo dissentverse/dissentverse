@@ -4,7 +4,9 @@ permalink: /about.html
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -43,7 +45,7 @@ permalink: /about.html
     }
 
     /* =========================
-       MAIN PAGE STRUCTURE
+       PAGE
        ========================= */
 
     .page-wrapper {
@@ -248,7 +250,7 @@ permalink: /about.html
     }
 
     /* =========================
-       MAIN CONTENT
+       MAIN
        ========================= */
 
     .main-content {
@@ -257,7 +259,7 @@ permalink: /about.html
     }
 
     /* =========================
-       TOP HEADER
+       HEADER
        ========================= */
 
     .top-header {
@@ -316,7 +318,7 @@ permalink: /about.html
     }
 
     /* =========================
-       NAVIGATION
+       NAV
        ========================= */
 
     .nav-bar {
@@ -367,10 +369,12 @@ permalink: /about.html
       position: relative;
       overflow: hidden;
       padding: 90px 8% 80px;
+
       background:
         radial-gradient(circle at 90% 15%, rgba(202,126,177,0.18) 0 80px, transparent 81px),
         radial-gradient(circle at 8% 85%, rgba(170,116,181,0.12) 0 110px, transparent 111px),
         linear-gradient(135deg, #fbf7fb 0%, #f7eef7 100%);
+
       border-bottom: 1px solid #eee2ed;
     }
 
@@ -434,18 +438,20 @@ permalink: /about.html
     }
 
     /* =========================
-       FEATURE QUOTE
+       STATEMENT
        ========================= */
 
     .statement {
       margin: 45px 0;
       padding: 35px 38px;
       border-left: 4px solid #8f2860;
+
       background: linear-gradient(
         135deg,
         #f8edf6,
         #f2e4f0
       );
+
       border-radius: 0 15px 15px 0;
     }
 
@@ -464,7 +470,7 @@ permalink: /about.html
     }
 
     /* =========================
-       CLOSING SECTION
+       CLOSING
        ========================= */
 
     .closing-section {
@@ -582,9 +588,10 @@ permalink: /about.html
       color: white;
     }
 
-    .copyright {
+    .footer-copy {
       font-size: 11px;
       color: #8b8389;
+      text-align: right;
     }
 
     /* =========================
@@ -631,9 +638,6 @@ permalink: /about.html
         padding: 60px 7%;
       }
 
-      .search-box {
-        width: 230px;
-      }
     }
 
     @media (max-width: 650px) {
@@ -697,18 +701,24 @@ permalink: /about.html
       .closing-section {
         padding: 50px 22px;
       }
+
+      .footer-copy {
+        text-align: right;
+      }
+
     }
 
   </style>
+
 </head>
+
 
 <body>
 
 <div class="page-wrapper">
 
-  <!-- =========================
-       SIDEBAR
-       ========================= -->
+
+  <!-- SIDEBAR -->
 
   <aside class="sidebar">
 
@@ -718,7 +728,9 @@ permalink: /about.html
       class="sidebar-logo"
     >
 
-    <div class="welcome">Welcome to</div>
+    <div class="welcome">
+      Welcome to
+    </div>
 
     <div class="sidebar-title">
       Dissent<span>Verse</span>
@@ -731,7 +743,9 @@ permalink: /about.html
       what lies beneath the surface.
     </p>
 
-    <div class="connect-title">Let's connect</div>
+    <div class="connect-title">
+      Let's connect
+    </div>
 
     <div class="social-links">
 
@@ -775,17 +789,23 @@ permalink: /about.html
 
     </div>
 
+
     <!-- JOIN US -->
 
     <div class="join-box">
 
-      <h3>Join Us</h3>
+      <h3>
+        Join Us
+      </h3>
 
       <p>
         Stay updated with our latest articles and ideas by joining our blog.
       </p>
 
-      <form class="join-form" onsubmit="joinDissentVerse(event)">
+      <form
+        class="join-form"
+        onsubmit="joinDissentVerse(event)"
+      >
 
         <input
           type="email"
@@ -795,7 +815,10 @@ permalink: /about.html
           required
         >
 
-        <button type="submit" class="join-button">
+        <button
+          type="submit"
+          class="join-button"
+        >
           Join Us →
         </button>
 
@@ -803,9 +826,12 @@ permalink: /about.html
 
     </div>
 
+
     <!-- RECENT POSTS -->
 
-    <div class="recent-title">Recent Posts</div>
+    <div class="recent-title">
+      Recent Posts
+    </div>
 
     <ul class="recent-posts">
 
@@ -826,13 +852,12 @@ permalink: /about.html
   </aside>
 
 
-  <!-- =========================
-       MAIN CONTENT
-       ========================= -->
+  <!-- MAIN -->
 
   <main class="main-content">
 
-    <!-- TOP HEADER -->
+
+    <!-- HEADER -->
 
     <header class="top-header">
 
@@ -846,7 +871,6 @@ permalink: /about.html
           type="text"
           placeholder="Search..."
           aria-label="Search"
-          id="aboutSearch"
         >
 
         <i class="fa-solid fa-magnifying-glass"></i>
@@ -856,7 +880,7 @@ permalink: /about.html
     </header>
 
 
-    <!-- NAVIGATION -->
+    <!-- NAV -->
 
     <nav class="nav-bar">
 
@@ -864,7 +888,10 @@ permalink: /about.html
         HOME
       </a>
 
-      <a href="{{ '/about.html' | relative_url }}" class="active">
+      <a
+        href="{{ '/about.html' | relative_url }}"
+        class="active"
+      >
         ABOUT
       </a>
 
@@ -879,9 +906,7 @@ permalink: /about.html
     </nav>
 
 
-    <!-- =========================
-         ABOUT HERO
-         ========================= -->
+    <!-- ABOUT HERO -->
 
     <section class="about-hero">
 
@@ -902,9 +927,7 @@ permalink: /about.html
     </section>
 
 
-    <!-- =========================
-         ABOUT CONTENT
-         ========================= -->
+    <!-- ABOUT CONTENT -->
 
     <section class="about-section">
 
@@ -930,7 +953,9 @@ permalink: /about.html
         The platform focuses on thoughtful writing that examines familiar
         issues from different perspectives. Rather than offering quick answers
         or telling readers what to think, DissentVerse aims to
-        <span class="highlight">question, explore and understand</span>—
+        <span class="highlight">
+          question, explore and understand
+        </span>—
         and create space for ideas that are often overlooked or left
         unquestioned.
       </p>
@@ -960,7 +985,9 @@ permalink: /about.html
 
         <h2>
           DissentVerse is a space for
-          <span>questions that deserve to be heard.</span>
+          <span>
+            questions that deserve to be heard.
+          </span>
         </h2>
 
         <p>
@@ -972,9 +999,7 @@ permalink: /about.html
     </section>
 
 
-    <!-- =========================
-         FOOTER
-         ========================= -->
+    <!-- FOOTER -->
 
     <footer>
 
@@ -1028,7 +1053,7 @@ permalink: /about.html
 
       </div>
 
-      <div class="copyright">
+      <div class="footer-copy">
         © 2026 DissentVerse. All rights reserved.
       </div>
 
@@ -1039,9 +1064,7 @@ permalink: /about.html
 </div>
 
 
-<!-- =========================
-     JOIN US SCRIPT
-     ========================= -->
+<!-- JOIN US SCRIPT -->
 
 <script>
 
@@ -1049,23 +1072,25 @@ function joinDissentVerse(event) {
 
   event.preventDefault();
 
-  const email = document.getElementById("joinEmail").value.trim();
+  const email =
+    document.getElementById("joinEmail").value.trim();
 
   if (!email) return;
 
-  const subject = encodeURIComponent(
-    "Join DissentVerse"
-  );
+  const subject =
+    encodeURIComponent("Join DissentVerse");
 
-  const body = encodeURIComponent(
-    "I would like to join DissentVerse.\n\nMy email: " + email
-  );
+  const body =
+    encodeURIComponent(
+      "I would like to join DissentVerse.\n\nMy email: " + email
+    );
 
   window.location.href =
     "mailto:dissentverse@gmail.com?subject=" +
     subject +
     "&body=" +
     body;
+
 }
 
 </script>
