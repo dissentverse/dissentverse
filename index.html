@@ -1,17 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>DissentVerse | Where Dissent finds its Verse</title>
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    DissentVerse | Where Dissent finds its Verse
+  </title>
+
 
   <style>
+
+    /* =========================
+       BASIC
+    ========================= */
+
     * {
       box-sizing: border-box;
     }
 
-    html, body {
+    html,
+    body {
       margin: 0;
       padding: 0;
       min-height: 100%;
@@ -20,7 +35,7 @@
     body {
       font-family: Georgia, "Times New Roman", serif;
       color: #171717;
-      background: #fdf9ff;
+      background: #fdfafd;
     }
 
     a {
@@ -28,25 +43,31 @@
       color: inherit;
     }
 
+
     /* =========================
-       PAGE STRUCTURE
+       MAIN LAYOUT
     ========================= */
 
     .site {
       min-height: 100vh;
+
       display: grid;
-      grid-template-columns: 260px 1fr;
+
+      grid-template-columns: 270px 1fr;
     }
 
 
     /* =========================
-       LEFT SIDEBAR
+       SIDEBAR
     ========================= */
 
     .sidebar {
       background: #ffffff;
+
       border-right: 1px solid #ddd6df;
+
       padding: 42px 28px 35px;
+
       min-height: 100vh;
 
       display: flex;
@@ -55,67 +76,180 @@
 
     .welcome {
       font-size: 17px;
+
       margin-bottom: 8px;
     }
 
     .sidebar-brand {
       font-size: 28px;
+
       font-style: italic;
-      color: #67346f;
+
+      color: #B02A72;
+
       margin-bottom: 30px;
     }
 
     .sidebar-logo {
       width: 78px;
       height: 78px;
+
       object-fit: cover;
+
       border-radius: 50%;
-      margin-bottom: 43px;
+
+      margin-bottom: 38px;
     }
 
     .sidebar-description {
       font-size: 15px;
+
       line-height: 1.65;
-      margin: 0 0 32px;
-    }
 
-    .connect-title {
-      font-size: 17px;
-      font-style: italic;
-      font-weight: bold;
-      color: #81476f;
-      margin-bottom: 16px;
-    }
-
-    .social-links {
-      display: flex;
-      flex-direction: column;
-      gap: 13px;
-    }
-
-    .social-links a {
-      font-size: 14px;
-      transition: color 0.2s ease;
-    }
-
-    .social-links a:hover {
-      color: #713875;
+      margin: 0 0 34px;
     }
 
 
     /* =========================
-       MAIN AREA
+       JOIN US
+    ========================= */
+
+    .join-box {
+      background: #B02A72;
+
+      color: white;
+
+      padding: 24px 20px;
+
+      margin: 5px -8px 32px;
+    }
+
+    .join-title {
+      font-size: 20px;
+
+      font-style: italic;
+
+      font-weight: 500;
+
+      margin-bottom: 10px;
+    }
+
+    .join-text {
+      font-family: Arial, Helvetica, sans-serif;
+
+      font-size: 13px;
+
+      line-height: 1.55;
+
+      margin-bottom: 17px;
+    }
+
+    .subscribe-form {
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 8px;
+    }
+
+    .subscribe-form input {
+      width: 100%;
+
+      padding: 9px 10px;
+
+      border: 1px solid #ffffff;
+
+      background: #ffffff;
+
+      color: #222;
+
+      font-family: Arial, Helvetica, sans-serif;
+
+      font-size: 12px;
+
+      outline: none;
+    }
+
+    .subscribe-form button {
+      width: 100%;
+
+      padding: 9px;
+
+      border: 1px solid #ffffff;
+
+      background: #ffffff;
+
+      color: #B02A72;
+
+      font-family: Georgia, "Times New Roman", serif;
+
+      font-size: 13px;
+
+      cursor: pointer;
+    }
+
+
+    /* =========================
+       RECENT ARTICLES
+    ========================= */
+
+    .recent-title {
+      font-size: 18px;
+
+      font-style: italic;
+
+      font-weight: 500;
+
+      color: #B02A72;
+
+      margin-bottom: 16px;
+    }
+
+    .recent-articles {
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 0;
+    }
+
+    .recent-articles a {
+      padding: 12px 0;
+
+      border-bottom: 1px solid #ddd6df;
+
+      font-size: 14px;
+
+      line-height: 1.45;
+
+      transition: color 0.2s ease;
+    }
+
+    .recent-articles a:first-child {
+      border-top: 1px solid #ddd6df;
+    }
+
+    .recent-articles a:hover {
+      color: #B02A72;
+    }
+
+
+    /* =========================
+       MAIN
     ========================= */
 
     .main {
       min-width: 0;
+
       background:
+
         radial-gradient(
           circle at 93% 20%,
-          rgba(221, 170, 218, 0.42) 0,
-          rgba(221, 170, 218, 0.42) 125px,
+          rgba(233, 196, 216, 0.42) 0,
+          rgba(233, 196, 216, 0.42) 125px,
           transparent 126px
         ),
+
         linear-gradient(
           135deg,
           #ffffff 0%,
@@ -131,11 +265,17 @@
 
     .top-header {
       height: 135px;
+
       display: grid;
+
       grid-template-columns: 1fr auto;
+
       align-items: center;
+
       padding: 0 45px;
+
       background:
+
         linear-gradient(
           180deg,
           #a8a8a8 0%,
@@ -145,7 +285,9 @@
 
     .site-title {
       font-size: 43px;
+
       font-weight: normal;
+
       letter-spacing: -1px;
     }
 
@@ -153,38 +295,52 @@
       color: #111111;
     }
 
-    .site-title .purple {
-      color: #54235e;
+    .site-title .pink {
+      color: #B02A72;
     }
 
 
-    /* SEARCH */
+    /* =========================
+       SEARCH
+    ========================= */
 
     .search-area {
       display: flex;
+
       align-items: center;
     }
 
     .search-box {
       width: 230px;
+
       height: 41px;
+
       border: 1px solid #999;
+
       border-radius: 24px;
+
       background: rgba(255,255,255,0.25);
 
       display: flex;
+
       align-items: center;
+
       padding: 0 17px;
     }
 
     .search-box input {
       width: 100%;
+
       border: none;
+
       outline: none;
+
       background: transparent;
 
       font-family: Georgia, "Times New Roman", serif;
+
       font-size: 14px;
+
       color: #333;
     }
 
@@ -199,24 +355,32 @@
 
     .navigation {
       height: 53px;
+
       display: flex;
+
       align-items: center;
+
       gap: 34px;
+
       padding: 0 45px;
 
       background: #eee5f2;
+
       border-bottom: 1px solid #ddd1e2;
     }
 
     .navigation a {
       font-family: Arial, Helvetica, sans-serif;
+
       font-size: 14px;
+
       color: #262329;
+
       letter-spacing: 0.2px;
     }
 
     .navigation a:hover {
-      color: #74377c;
+      color: #B02A72;
     }
 
 
@@ -225,55 +389,66 @@
     ========================= */
 
     .hero {
-      min-height: 390px;
-      padding: 85px 40px 55px;
+      min-height: 380px;
+
+      padding: 78px 40px 50px;
 
       display: flex;
+
       flex-direction: column;
+
       align-items: center;
+
       text-align: center;
 
       position: relative;
+
       overflow: hidden;
     }
 
-    /* soft decorative circles */
-
     .hero::before {
       content: "";
+
       position: absolute;
 
       width: 210px;
+
       height: 210px;
 
       left: -105px;
+
       bottom: -100px;
 
       border-radius: 50%;
+
       background: rgba(228, 201, 230, 0.42);
     }
 
     .hero::after {
       content: "";
+
       position: absolute;
 
       width: 190px;
+
       height: 190px;
 
       right: -55px;
+
       top: -80px;
 
       border-radius: 50%;
+
       background: rgba(228, 201, 230, 0.42);
     }
 
-
-    /* LOGO IN HERO */
-
     .hero-logo {
       width: 106px;
+
       height: 106px;
+
       object-fit: cover;
+
       border-radius: 50%;
 
       border: 3px solid white;
@@ -284,22 +459,23 @@
       margin-bottom: 24px;
 
       position: relative;
+
       z-index: 2;
     }
-
-
-    /* HERO TITLE */
 
     .hero-title {
       margin: 0;
 
       font-size: 67px;
+
       line-height: 1;
 
       font-style: italic;
+
       font-weight: bold;
 
       position: relative;
+
       z-index: 2;
     }
 
@@ -307,30 +483,34 @@
       color: #111111;
     }
 
-    .hero-title .purple {
-      color: #63276b;
+    .hero-title .pink {
+      color: #B02A72;
     }
 
     .hero-tagline {
       margin-top: 20px;
 
       font-size: 19px;
+
       font-style: italic;
 
-      color: #984d78;
+      color: #B02A72;
 
       position: relative;
+
       z-index: 2;
     }
 
 
     /* =========================
-       CONTENT CARD
+       DESCRIPTION
     ========================= */
 
     .content-area {
       max-width: 850px;
-      margin: -5px auto 80px;
+
+      margin: -5px auto 65px;
+
       padding: 0 35px;
     }
 
@@ -349,6 +529,7 @@
       margin: 0 0 24px;
 
       font-size: 18px;
+
       line-height: 1.8;
     }
 
@@ -358,21 +539,157 @@
 
 
     /* =========================
+       LATEST ARTICLES
+    ========================= */
+
+    .latest-section {
+      max-width: 850px;
+
+      margin: 0 auto 80px;
+
+      padding: 0 35px;
+    }
+
+    .section-title {
+      font-size: 27px;
+
+      font-style: italic;
+
+      font-weight: 500;
+
+      color: #B02A72;
+
+      margin: 0 0 25px;
+    }
+
+    .article-list {
+      display: grid;
+
+      grid-template-columns: repeat(2, 1fr);
+
+      gap: 20px;
+    }
+
+    .article-card {
+      background: #ffffff;
+
+      border: 1px solid #ddd8dd;
+
+      padding: 25px;
+
+      min-height: 120px;
+
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .article-card:hover {
+      transform: translateY(-3px);
+
+      box-shadow:
+        0 8px 22px rgba(80, 45, 85, 0.10);
+    }
+
+    .article-card h3 {
+      margin: 0;
+
+      font-size: 20px;
+
+      line-height: 1.4;
+
+      font-weight: 500;
+    }
+
+    .article-card h3 a:hover {
+      color: #B02A72;
+    }
+
+    .article-card .article-date {
+      margin-top: 13px;
+
+      font-family: Arial, Helvetica, sans-serif;
+
+      font-size: 12px;
+
+      color: #777;
+    }
+
+
+    /* =========================
        FOOTER
     ========================= */
 
     footer {
-      padding: 30px;
-      text-align: center;
+      background: #eee5f2;
 
       border-top: 1px solid #ddd1e2;
 
-      color: #777;
-      font-size: 13px;
+      text-align: center;
+
+      padding: 45px 30px 25px;
     }
 
-    footer strong {
-      color: #54235e;
+    .footer-brand {
+      font-size: 28px;
+
+      font-style: italic;
+
+      margin-bottom: 8px;
+    }
+
+    .footer-brand .black {
+      color: #111111;
+    }
+
+    .footer-brand .pink {
+      color: #B02A72;
+    }
+
+    .footer-tagline {
+      font-size: 15px;
+
+      font-style: italic;
+
+      color: #B02A72;
+
+      margin-bottom: 25px;
+    }
+
+    .footer-socials {
+      display: flex;
+
+      justify-content: center;
+
+      flex-wrap: wrap;
+
+      gap: 22px;
+
+      margin-bottom: 28px;
+    }
+
+    .footer-socials a {
+      font-family: Arial, Helvetica, sans-serif;
+
+      font-size: 13px;
+
+      color: #333;
+    }
+
+    .footer-socials a:hover {
+      color: #B02A72;
+    }
+
+    .copyright {
+      padding-top: 20px;
+
+      border-top: 1px solid #d7ccd9;
+
+      font-family: Arial, Helvetica, sans-serif;
+
+      font-size: 12px;
+
+      color: #777;
     }
 
 
@@ -401,138 +718,237 @@
       .hero-title {
         font-size: 55px;
       }
+
     }
 
 
     /* =========================
-       MOBILE
+       PHONE
+       SIDEBAR GOES BELOW
+       THE WHOLE HOMEPAGE
     ========================= */
 
     @media (max-width: 700px) {
 
       .site {
-        display: block;
+
+        display: flex;
+
+        flex-direction: column;
+
       }
+
+
+      /* Main homepage first */
+
+      .main {
+
+        order: 1;
+
+      }
+
+
+      /* Sidebar after footer */
 
       .sidebar {
+
+        order: 2;
+
         min-height: auto;
-        padding: 28px 25px 30px;
+
+        padding: 35px 25px 40px;
 
         border-right: none;
-        border-bottom: 1px solid #ddd6df;
+
+        border-top: 1px solid #ddd6df;
+
+        border-bottom: none;
+
       }
+
 
       .sidebar-logo {
+
         margin-bottom: 25px;
+
       }
+
 
       .sidebar-description {
+
         max-width: 500px;
+
       }
 
-      .social-links {
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 16px;
-      }
 
       .top-header {
+
         height: auto;
+
         padding: 30px 22px;
 
         display: block;
+
         text-align: center;
+
       }
+
 
       .site-title {
+
         font-size: 38px;
+
         margin-bottom: 22px;
+
       }
+
 
       .search-area {
+
         justify-content: center;
+
       }
 
+
       .navigation {
+
         height: auto;
+
         min-height: 52px;
 
         padding: 13px 20px;
 
         justify-content: center;
+
         flex-wrap: wrap;
 
         gap: 22px;
+
       }
+
 
       .hero {
+
         padding: 60px 20px 50px;
+
         min-height: 340px;
+
       }
+
 
       .hero-logo {
+
         width: 90px;
+
         height: 90px;
+
       }
+
 
       .hero-title {
+
         font-size: 44px;
+
       }
+
 
       .hero-tagline {
+
         font-size: 17px;
+
       }
 
-      .content-area {
+
+      .content-area,
+      .latest-section {
+
         padding: 0 20px;
+
       }
+
 
       .content-card {
+
         padding: 30px 25px;
+
       }
+
 
       .content-card p {
+
         font-size: 17px;
+
       }
+
+
+      .article-list {
+
+        grid-template-columns: 1fr;
+
+      }
+
+
+      .footer-socials {
+
+        gap: 15px 20px;
+
+      }
+
     }
 
+
+    /* =========================
+       SMALL PHONE
+    ========================= */
 
     @media (max-width: 430px) {
 
       .hero-title {
+
         font-size: 36px;
+
       }
 
       .site-title {
+
         font-size: 32px;
+
       }
 
       .search-box {
+
         width: 100%;
+
         max-width: 250px;
+
       }
+
     }
 
   </style>
+
 </head>
 
 
 <body>
 
+
 <div class="site">
 
 
-  <!-- =========================
-       LEFT SIDEBAR
-  ========================== -->
+  <!-- =================================
+       SIDEBAR
+  ================================= -->
 
   <aside class="sidebar">
 
     <div>
 
+
       <div class="welcome">
         Welcome to
       </div>
+
 
       <div class="sidebar-brand">
         DissentVerse
@@ -547,35 +963,78 @@
 
 
       <p class="sidebar-description">
+
         A space for questioning the things we often accept without questioning.
         From education and career choices to social expectations, technology,
         culture, and the realities shaping everyday life, DissentVerse explores
         what lies beneath the surface.
+
       </p>
 
 
-      <div class="connect-title">
-        Let's connect
+      <!-- JOIN US -->
+
+      <div class="join-box">
+
+        <div class="join-title">
+          Join us!
+        </div>
+
+
+        <div class="join-text">
+
+          Stay updated with our latest articles and ideas by joining our blog.
+
+        </div>
+
+
+        <form class="subscribe-form">
+
+          <input
+            type="email"
+            placeholder="Your email"
+            aria-label="Your email"
+          >
+
+
+          <button type="submit">
+            Subscribe →
+          </button>
+
+        </form>
+
       </div>
 
 
-      <div class="social-links">
+      <!-- RECENT ARTICLES -->
 
-        <a href="https://pin.it/4ZKIbFLnW">
-          Pinterest
+      <div class="recent-title">
+        Recent articles
+      </div>
+
+
+      <div class="recent-articles">
+
+
+        <a href="#">
+          The Fear of being Ordinary
         </a>
 
-        <a href="https://www.youtube.com/@DissentVerse">
-          YouTube
+
+        <a href="#">
+          Cybercrime: The Cost of Convenience
         </a>
 
-        <a href="https://t.me/dissentverse">
-          Telegram
+
+        <a href="#">
+          Civic Sense: Missing in Action
         </a>
 
-        <a href="mailto:dissentverse@gmail.com">
-          Email
+
+        <a href="#">
+          The Talent Flight ✈️
         </a>
+
 
       </div>
 
@@ -585,9 +1044,9 @@
 
 
 
-  <!-- =========================
-       MAIN WEBSITE
-  ========================== -->
+  <!-- =================================
+       MAIN
+  ================================= -->
 
   <main class="main">
 
@@ -596,8 +1055,15 @@
 
     <header class="top-header">
 
+
       <div class="site-title">
-        <span class="black">Dissent</span><span class="purple">Verse</span>
+
+        <span class="black">
+          Dissent
+        </span><span class="pink">
+          Verse
+        </span>
+
       </div>
 
 
@@ -623,21 +1089,26 @@
 
     <nav class="navigation">
 
+
       <a href="{{ site.baseurl }}/">
         HOME
       </a>
+
 
       <a href="{{ site.baseurl }}/about.html">
         ABOUT
       </a>
 
+
       <a href="{{ site.baseurl }}/articles.html">
         ARTICLES
       </a>
 
+
       <a href="{{ site.baseurl }}/contact.html">
         CONTACT
       </a>
+
 
     </nav>
 
@@ -657,13 +1128,19 @@
 
       <h1 class="hero-title">
 
-        <span class="black">Dissent</span><span class="purple">Verse</span>
+        <span class="black">
+          Dissent
+        </span><span class="pink">
+          Verse
+        </span>
 
       </h1>
 
 
       <div class="hero-tagline">
+
         Where Dissent finds its Verse.
+
       </div>
 
 
@@ -671,44 +1148,205 @@
 
 
 
-    <!-- CONTENT -->
+    <!-- DESCRIPTION -->
 
     <section class="content-area">
 
+
       <div class="content-card">
 
-        <p>
-          DissentVerse is a space for exploring the experiences, pressures and
-          issues shaping young people’s lives.
-        </p>
 
         <p>
+
+          DissentVerse is a space for exploring the experiences, pressures and
+          issues shaping young people’s lives.
+
+        </p>
+
+
+        <p>
+
           From education and career choices to social expectations, competition,
           technology and the everyday realities that often go unnoticed,
           DissentVerse looks beyond easy explanations to ask deeper questions.
+
         </p>
 
+
       </div>
+
 
     </section>
 
 
 
-    <!-- FOOTER -->
+    <!-- LATEST ARTICLES -->
+
+    <section class="latest-section">
+
+
+      <h2 class="section-title">
+        Latest articles
+      </h2>
+
+
+      <div class="article-list">
+
+
+        <article class="article-card">
+
+          <h3>
+
+            <a href="#">
+              The Fear of being Ordinary
+            </a>
+
+          </h3>
+
+
+          <div class="article-date">
+            2026
+          </div>
+
+        </article>
+
+
+
+        <article class="article-card">
+
+          <h3>
+
+            <a href="#">
+              Cybercrime: The Cost of Convenience
+            </a>
+
+          </h3>
+
+
+          <div class="article-date">
+            2025
+          </div>
+
+        </article>
+
+
+
+        <article class="article-card">
+
+          <h3>
+
+            <a href="#">
+              Civic Sense: Missing in Action
+            </a>
+
+          </h3>
+
+
+          <div class="article-date">
+            2025
+          </div>
+
+        </article>
+
+
+
+        <article class="article-card">
+
+          <h3>
+
+            <a href="#">
+              The Talent Flight ✈️
+            </a>
+
+          </h3>
+
+
+          <div class="article-date">
+            2025
+          </div>
+
+        </article>
+
+
+      </div>
+
+
+    </section>
+
+
+
+    <!-- =================================
+         FOOTER
+    ================================= -->
 
     <footer>
 
-      <strong>DissentVerse</strong>
-      &nbsp; · &nbsp;
-      Where Dissent finds its Verse.
+
+      <div class="footer-brand">
+
+        <span class="black">
+          Dissent
+        </span><span class="pink">
+          Verse
+        </span>
+
+      </div>
+
+
+      <div class="footer-tagline">
+
+        Where Dissent finds its Verse.
+
+      </div>
+
+
+      <div class="footer-socials">
+
+
+        <a href="https://www.instagram.com/">
+          Instagram
+        </a>
+
+
+        <a href="https://pin.it/4ZKIbFLnW">
+          Pinterest
+        </a>
+
+
+        <a href="https://www.youtube.com/@DissentVerse">
+          YouTube
+        </a>
+
+
+        <a href="https://t.me/dissentverse">
+          Telegram
+        </a>
+
+
+        <a href="mailto:dissentverse@gmail.com">
+          Email
+        </a>
+
+
+      </div>
+
+
+      <div class="copyright">
+
+        © 2026 DissentVerse. All rights reserved.
+
+      </div>
+
 
     </footer>
 
 
   </main>
 
+
 </div>
 
 
 </body>
+
 </html>
