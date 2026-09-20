@@ -17,68 +17,71 @@
     body {
       margin: 0;
       font-family: Georgia, "Times New Roman", serif;
-      color: #29242a;
-
-      background:
-        radial-gradient(circle at 5% 10%, rgba(248, 210, 230, 0.6), transparent 30%),
-        radial-gradient(circle at 95% 15%, rgba(225, 214, 245, 0.6), transparent 30%),
-        linear-gradient(135deg, #fff7fb, #f7f2fc);
-
-      min-height: 100vh;
+      background: #fff;
+      color: #171717;
     }
 
     /* HEADER */
 
     .site-header {
-      background: rgba(255, 255, 255, 0.82);
-      border-bottom: 1px solid rgba(190, 150, 180, 0.18);
-      backdrop-filter: blur(8px);
-      padding: 22px 30px;
+      border-bottom: 1px solid #eee;
+      background: #fff;
     }
 
     .header-inner {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
-
+      padding: 22px 30px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+      gap: 30px;
     }
 
-    .brand-block {
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #171717;
+    }
+
+    .brand img {
+      width: 48px;
+      height: 48px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .brand-text {
       display: flex;
       flex-direction: column;
     }
 
-    .brand {
-      color: #171717;
-      text-decoration: none;
+    .brand-name {
       font-size: 25px;
       font-weight: bold;
-      letter-spacing: -0.5px;
+      letter-spacing: 0.3px;
     }
 
-    .brand span {
-      color: #b02a72;
-    }
-
-    .tagline {
-      margin-top: 3px;
+    .brand-tagline {
+      font-size: 12px;
       color: #777;
-      font-size: 11px;
+      margin-top: 3px;
       font-style: italic;
     }
 
     .navigation {
       display: flex;
-      gap: 24px;
+      gap: 28px;
+      align-items: center;
     }
 
     .navigation a {
-      color: #4f4a50;
       text-decoration: none;
-      font-size: 14px;
-      font-weight: bold;
+      color: #333;
+      font-size: 15px;
+      transition: 0.2s;
     }
 
     .navigation a:hover {
@@ -88,128 +91,16 @@
     /* ARTICLE */
 
     .article-page {
-      max-width: 1000px;
+      max-width: 900px;
       margin: 0 auto;
-      padding: 75px 25px 100px;
+      padding: 65px 25px 90px;
     }
-
-    .article-container {
-      background: rgba(255, 255, 255, 0.91);
-
-      border: 1px solid rgba(190, 150, 180, 0.2);
-      border-radius: 28px;
-
-      padding: 65px 70px;
-
-      box-shadow:
-        0 18px 50px rgba(100, 60, 100, 0.08);
-    }
-
-    .article-label {
-      color: #b02a72;
-      font-size: 12px;
-      font-weight: bold;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-
-      margin-bottom: 18px;
-    }
-
-    .article-title {
-      font-size: 55px;
-      line-height: 1.12;
-      letter-spacing: -1.5px;
-
-      margin: 0 0 20px;
-      color: #171717;
-    }
-
-    .article-date {
-      color: #777;
-      font-size: 14px;
-      margin-bottom: 45px;
-    }
-
-    /* FEATURED IMAGE */
-
-    .featured-image {
-      width: 100%;
-      max-height: 520px;
-      object-fit: cover;
-
-      display: block;
-
-      border-radius: 20px;
-      margin-bottom: 50px;
-    }
-
-    /* CONTENT */
-
-    .article-content {
-      max-width: 760px;
-      margin: 0 auto;
-
-      font-size: 19px;
-      line-height: 1.9;
-
-      color: #302b31;
-    }
-
-    .article-content p {
-      margin: 0 0 27px;
-    }
-
-    .article-content h2 {
-      font-size: 31px;
-      line-height: 1.3;
-
-      margin: 55px 0 20px;
-
-      color: #171717;
-    }
-
-    .article-content h3 {
-      font-size: 25px;
-      line-height: 1.4;
-
-      margin: 40px 0 15px;
-
-      color: #171717;
-    }
-
-    .article-content strong {
-      color: #171717;
-    }
-
-    .article-content em {
-      color: #514951;
-    }
-
-    .article-content a {
-      color: #b02a72;
-      font-weight: bold;
-    }
-
-    .article-content ul,
-    .article-content ol {
-      margin: 20px 0 30px;
-      padding-left: 30px;
-    }
-
-    .article-content li {
-      margin-bottom: 10px;
-    }
-
-    /* BACK LINK */
 
     .back-link {
       display: inline-block;
-
-      margin-top: 55px;
-
+      margin-bottom: 35px;
       color: #b02a72;
       text-decoration: none;
-
       font-size: 15px;
       font-weight: bold;
     }
@@ -218,83 +109,105 @@
       text-decoration: underline;
     }
 
+    .article-date {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    .article-title {
+      font-size: 50px;
+      line-height: 1.12;
+      margin: 0 0 35px;
+      color: #171717;
+    }
+
+    .featured-image {
+      width: 100%;
+      max-height: 520px;
+      object-fit: cover;
+      border-radius: 18px;
+      margin-bottom: 42px;
+      display: block;
+    }
+
+    .article-content {
+      font-size: 19px;
+      line-height: 1.85;
+      color: #292929;
+    }
+
+    .article-content p {
+      margin: 0 0 24px;
+    }
+
+    .article-content h2 {
+      font-size: 30px;
+      margin: 48px 0 18px;
+    }
+
+    .article-content h3 {
+      font-size: 24px;
+      margin: 38px 0 15px;
+    }
+
+    .article-content strong {
+      color: #171717;
+    }
+
+    .article-content a {
+      color: #b02a72;
+    }
+
+    .article-content blockquote {
+      border-left: 4px solid #b02a72;
+      margin: 30px 0;
+      padding: 5px 25px;
+      color: #666;
+      font-style: italic;
+    }
+
     /* FOOTER */
 
     .site-footer {
+      border-top: 1px solid #eee;
       text-align: center;
-
       padding: 30px 20px;
-
-      border-top: 1px solid rgba(190, 150, 180, 0.2);
-
       color: #777;
-      font-size: 13px;
-
-      background: rgba(255, 255, 255, 0.45);
+      font-size: 14px;
     }
 
     /* MOBILE */
 
     @media (max-width: 750px) {
 
-      .site-header {
-        padding: 18px 20px;
-      }
-
       .header-inner {
+        padding: 18px 20px;
+        flex-direction: column;
         align-items: flex-start;
-      }
-
-      .brand {
-        font-size: 21px;
-      }
-
-      .tagline {
-        font-size: 10px;
+        gap: 18px;
       }
 
       .navigation {
-        gap: 12px;
-      }
-
-      .navigation a {
-        font-size: 12px;
+        gap: 20px;
+        flex-wrap: wrap;
       }
 
       .article-page {
-        padding: 45px 15px 65px;
-      }
-
-      .article-container {
-        padding: 40px 25px;
-        border-radius: 22px;
+        padding: 45px 20px 70px;
       }
 
       .article-title {
-        font-size: 38px;
-        letter-spacing: -0.8px;
-      }
-
-      .article-date {
-        margin-bottom: 35px;
-      }
-
-      .featured-image {
-        border-radius: 14px;
-        margin-bottom: 40px;
+        font-size: 36px;
       }
 
       .article-content {
         font-size: 17px;
-        line-height: 1.8;
+        line-height: 1.75;
       }
 
-      .article-content h2 {
-        font-size: 26px;
-      }
-
-      .article-content h3 {
-        font-size: 22px;
+      .featured-image {
+        border-radius: 12px;
       }
     }
   </style>
@@ -302,37 +215,30 @@
 
 <body>
 
+  <!-- HEADER -->
+
   <header class="site-header">
 
     <div class="header-inner">
 
-      <div class="brand-block">
+      <a class="brand" href="{{ site.baseurl }}/">
 
-        <a class="brand" href="{{ site.baseurl }}/">
-          Dissent<span>Verse</span>
-        </a>
+        <img
+          src="https://dissentverse.wordpress.com/wp-content/uploads/2025/08/cropped-img-20250811-wa0002.jpg"
+          alt="DissentVerse logo"
+        >
 
-        <div class="tagline">
-          Where Dissent finds its Verse.
+        <div class="brand-text">
+          <div class="brand-name">DissentVerse</div>
+          <div class="brand-tagline">Where Dissent finds its Verse.</div>
         </div>
 
-      </div>
-
+      </a>
 
       <nav class="navigation">
-
-        <a href="{{ site.baseurl }}/">
-          Home
-        </a>
-
-        <a href="{{ site.baseurl }}/about.html">
-          About
-        </a>
-
-        <a href="{{ site.baseurl }}/articles.html">
-          Articles
-        </a>
-
+        <a href="{{ site.baseurl }}/">Home</a>
+        <a href="{{ site.baseurl }}/about.html">About</a>
+        <a href="{{ site.baseurl }}/articles.html">Articles</a>
       </nav>
 
     </div>
@@ -340,59 +246,43 @@
   </header>
 
 
+  <!-- ARTICLE -->
+
   <main class="article-page">
 
-    <article class="article-container">
+    <a class="back-link" href="{{ site.baseurl }}/articles.html">
+      ← Back to Articles
+    </a>
 
-      <div class="article-label">
-        Article
-      </div>
+    <div class="article-date">
+      {{ page.date | date: "%d %B %Y" }}
+    </div>
 
+    <h1 class="article-title">
+      {{ page.title }}
+    </h1>
 
-      <h1 class="article-title">
-        {{ page.title }}
-      </h1>
+    {% if page.featured_image %}
 
-
-      <div class="article-date">
-        {{ page.date | date: "%d %B %Y" }}
-      </div>
-
-
-      {% if page.featured_image %}
-
-        <img
-          class="featured-image"
-          src="{{ page.featured_image | relative_url }}"
-          alt="{{ page.title }}"
-        >
-
-      {% endif %}
-
-
-      <div class="article-content">
-
-        {{ content }}
-
-      </div>
-
-
-      <a
-        class="back-link"
-        href="{{ site.baseurl }}/articles.html"
+      <img
+        class="featured-image"
+        src="{{ page.featured_image | relative_url }}"
+        alt="{{ page.title }}"
       >
-        ← Back to Articles
-      </a>
 
+    {% endif %}
+
+    <article class="article-content">
+      {{ content }}
     </article>
 
   </main>
 
 
+  <!-- FOOTER -->
+
   <footer class="site-footer">
-
-    © 2026 DissentVerse · Where Dissent finds its Verse.
-
+    © {{ "now" | date: "%Y" }} DissentVerse · Where Dissent finds its Verse.
   </footer>
 
 </body>
