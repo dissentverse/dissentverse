@@ -1,0 +1,19 @@
+backend:
+  name: turbo-github
+  branch: main
+  turbo_site_id: YOUR_SITE_ID
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "articles"
+    label: "Articles"
+    folder: "_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Featured Image", name: "featured_image", widget: "image"}
+      - {label: "Date", name: "date", widget: "datetime"}
+      - {label: "Article", name: "body", widget: "richtext"}
