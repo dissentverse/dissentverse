@@ -1,0 +1,120 @@
+---
+layout: default
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>{{ page.title }} | DissentVerse</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background: #fff;
+      color: #171717;
+    }
+
+    .article-page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 70px 25px;
+    }
+
+    .article-date {
+      color: #777;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    .article-title {
+      font-size: 46px;
+      line-height: 1.15;
+      margin: 0 0 35px;
+      color: #171717;
+    }
+
+    .featured-image {
+      width: 100%;
+      max-height: 500px;
+      object-fit: cover;
+      border-radius: 18px;
+      margin-bottom: 40px;
+    }
+
+    .article-content {
+      font-size: 19px;
+      line-height: 1.8;
+    }
+
+    .article-content h2 {
+      margin-top: 45px;
+    }
+
+    .article-content h3 {
+      margin-top: 35px;
+    }
+
+    .article-content a {
+      color: #b02a72;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 45px;
+      color: #b02a72;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    @media (max-width: 700px) {
+      .article-page {
+        padding: 45px 20px;
+      }
+
+      .article-title {
+        font-size: 34px;
+      }
+
+      .article-content {
+        font-size: 17px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="article-page">
+
+    <a class="back-link" href="{{ site.baseurl }}/articles.html">
+      ← Back to Articles
+    </a>
+
+    <div class="article-date">
+      {{ page.date | date: "%d %B %Y" }}
+    </div>
+
+    <h1 class="article-title">
+      {{ page.title }}
+    </h1>
+
+    {% if page.featured_image %}
+      <img
+        class="featured-image"
+        src="{{ page.featured_image | relative_url }}"
+        alt="{{ page.title }}"
+      >
+    {% endif %}
+
+    <article class="article-content">
+      {{ content }}
+    </article>
+
+  </main>
+
+</body>
+</html>
