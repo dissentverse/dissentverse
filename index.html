@@ -1,27 +1,22 @@
 ---
 ---
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
   <meta charset="UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>DissentVerse</title>
 
-  <link
-    rel="icon"
-    type="image/jpeg"
-    href="https://dissentverse.wordpress.com/wp-content/uploads/2025/08/cropped-img-20250811-wa0002.jpg"
-  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-  >
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
   <style>
 
@@ -36,9 +31,9 @@
     }
 
     body {
-      font-family: Georgia, "Times New Roman", serif;
-      background: #f8f5f8;
-      color: #222;
+      font-family: "DM Sans", sans-serif;
+      background: #f7f3f7;
+      color: #252225;
       line-height: 1.7;
     }
 
@@ -47,22 +42,14 @@
       color: inherit;
     }
 
-
     /* =========================
-       PAGE STRUCTURE
+       PAGE
        ========================= */
 
     .page-wrapper {
       display: flex;
       min-height: 100vh;
     }
-
-    .main-content {
-      flex: 1;
-      min-width: 0;
-      background: #f8f5f8;
-    }
-
 
     /* =========================
        SIDEBAR
@@ -72,174 +59,168 @@
       width: 270px;
       min-width: 270px;
       background: #ffffff;
-      padding: 38px 25px 30px;
-      border-right: 1px solid #e5dfe5;
-      position: relative;
-      z-index: 5;
-    }
-
-    .sidebar-inner {
+      padding: 34px 25px;
+      border-right: 1px solid #eee5ed;
       position: sticky;
-      top: 30px;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
     }
 
     .sidebar-logo {
       width: 115px;
       height: 115px;
-      object-fit: cover;
       border-radius: 50%;
+      object-fit: cover;
       display: block;
-      margin: 0 auto 20px;
+      margin: 0 auto 22px;
     }
 
     .welcome {
       text-align: center;
-      color: #555;
-      font-size: 15px;
+      color: #777077;
+      font-size: 14px;
       margin-bottom: 2px;
     }
 
     .sidebar-title {
       text-align: center;
-      font-size: 30px;
+      font-family: "Playfair Display", serif;
+      font-size: 27px;
       font-style: italic;
-      font-weight: 700;
-      margin-bottom: 17px;
-      line-height: 1.2;
+      font-weight: 600;
+      margin-bottom: 18px;
+      color: #171417;
     }
 
-    .black {
-      color: #111111;
-    }
-
-    .pink {
+    .sidebar-title span {
       color: #8f2860;
     }
 
     .sidebar-description {
+      font-size: 13px;
+      line-height: 1.7;
       text-align: center;
-      color: #555;
-      font-size: 14px;
-      line-height: 1.65;
+      color: #696269;
       margin-bottom: 25px;
     }
 
-
-    /* =========================
-       SOCIAL LINKS
-       ========================= */
-
     .connect-title {
+      font-family: "Playfair Display", serif;
+      font-size: 18px;
+      font-style: italic;
       text-align: center;
-      font-size: 17px;
-      font-weight: 700;
-      color: #222;
       margin-bottom: 13px;
+      color: #2b252a;
     }
 
     .social-links {
       display: flex;
       justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
       gap: 9px;
-      margin-bottom: 28px;
+      flex-wrap: wrap;
+      margin-bottom: 27px;
     }
 
     .social-links a {
-      width: 35px;
-      height: 35px;
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
-      background: #f0e4f0;
-      color: #70204d;
       display: flex;
-      justify-content: center;
       align-items: center;
-      font-size: 16px;
-      transition: 0.25s ease;
+      justify-content: center;
+      background: #f5eaf4;
+      color: #8f2860;
+      font-size: 14px;
+      transition: all 0.25s ease;
     }
 
     .social-links a:hover {
       background: #8f2860;
-      color: #ffffff;
+      color: white;
       transform: translateY(-2px);
     }
-
 
     /* =========================
        JOIN US
        ========================= */
 
     .join-box {
-      background: #f5edf6;
-      border: 1px solid #e5d5e7;
-      border-radius: 10px;
-      padding: 20px 17px;
+      background: linear-gradient(
+        145deg,
+        #f8edf6,
+        #f3e4f0
+      );
+      border: 1px solid #ead7e6;
+      border-radius: 14px;
+      padding: 18px 15px;
       margin-bottom: 28px;
-      text-align: center;
     }
 
     .join-box h3 {
+      font-family: "Playfair Display", serif;
       font-size: 19px;
-      color: #70204d;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
+      color: #30272e;
     }
 
     .join-box p {
-      font-size: 13px;
-      color: #555;
+      font-size: 12px;
       line-height: 1.6;
-      margin-bottom: 14px;
+      color: #716971;
+      margin-bottom: 13px;
     }
 
     .join-form {
-      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
 
     .email-input {
       width: 100%;
-      padding: 9px 10px;
-      border: 1px solid #d2c2d3;
-      border-radius: 5px;
-      outline: none;
-      background: #ffffff;
-      color: #333;
-      font-family: Arial, Helvetica, sans-serif;
+      padding: 10px 11px;
+      border: 1px solid #ddcbd9;
+      border-radius: 7px;
+      background: white;
+      font-family: "DM Sans", sans-serif;
       font-size: 12px;
-      margin-bottom: 9px;
+      outline: none;
     }
 
     .email-input:focus {
-      border-color: #8f2860;
+      border-color: #a94d82;
     }
 
     .join-button {
-      width: 100%;
       border: none;
       background: #8f2860;
-      color: #ffffff;
-      padding: 9px 15px;
-      border-radius: 5px;
-      font-size: 13px;
+      color: white;
+      padding: 10px;
+      border-radius: 7px;
+      font-family: "DM Sans", sans-serif;
+      font-size: 12px;
+      font-weight: 600;
       cursor: pointer;
-      font-family: Georgia, "Times New Roman", serif;
-      transition: 0.25s ease;
+      transition: background 0.2s ease;
     }
 
     .join-button:hover {
-      background: #651a44;
+      background: #72204d;
     }
-
 
     /* =========================
        RECENT POSTS
        ========================= */
 
     .recent-title {
+      font-family: "Playfair Display", serif;
       font-size: 18px;
-      text-align: center;
-      margin-bottom: 13px;
-      color: #222;
+      font-style: italic;
+      color: #30272e;
+      margin-bottom: 10px;
     }
 
     .recent-posts {
@@ -247,8 +228,8 @@
     }
 
     .recent-posts li {
-      border-bottom: 1px solid #eee5ee;
-      padding: 10px 0;
+      padding: 8px 0;
+      border-bottom: 1px solid #eee7ed;
     }
 
     .recent-posts li:last-child {
@@ -256,262 +237,209 @@
     }
 
     .recent-posts a {
-      font-size: 13px;
-      color: #555;
-      line-height: 1.45;
-      transition: 0.2s ease;
+      font-size: 12px;
+      line-height: 1.5;
+      color: #625b61;
+      transition: color 0.2s ease;
     }
 
     .recent-posts a:hover {
       color: #8f2860;
     }
 
+    /* =========================
+       MAIN
+       ========================= */
+
+    .main-content {
+      flex: 1;
+      min-width: 0;
+    }
 
     /* =========================
-       TOP HEADER
+       HEADER
        ========================= */
 
     .top-header {
-      min-height: 115px;
-      padding: 25px 45px;
+      min-height: 145px;
+      padding: 32px 7%;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 30px;
 
-      background:
-        linear-gradient(
-          135deg,
-          #b96b9d 0%,
-          #d495bd 42%,
-          #e8cfe5 72%,
-          #f5eaf4 100%
-        );
-
-      border-bottom: 1px solid #d7c4d5;
+      background: linear-gradient(
+        135deg,
+        #b96b9d 0%,
+        #d495bd 42%,
+        #e8cfe5 72%,
+        #f5eaf4 100%
+      );
     }
 
-    .header-brand {
-      font-size: 30px;
-      font-weight: 700;
+    .top-brand {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(36px, 5vw, 65px);
       font-style: italic;
-      letter-spacing: 0.5px;
+      font-weight: 700;
+      line-height: 1;
+      color: #111111;
     }
 
-    .header-brand .pink {
+    .top-brand span {
       color: #70204d;
     }
 
-
-    /* =========================
-       SEARCH
-       ========================= */
-
     .search-box {
-      display: flex;
-      align-items: center;
-      background: rgba(255, 255, 255, 0.9);
-      border: 1px solid rgba(100, 50, 90, 0.25);
-      border-radius: 25px;
-      overflow: hidden;
-      width: 250px;
+      width: 270px;
+      position: relative;
     }
 
     .search-box input {
       width: 100%;
+      padding: 12px 43px 12px 16px;
       border: none;
+      border-radius: 25px;
       outline: none;
-      background: transparent;
-      padding: 10px 14px;
-      font-family: Georgia, "Times New Roman", serif;
+      font-family: "DM Sans", sans-serif;
+      font-size: 13px;
+      background: rgba(255,255,255,0.82);
+    }
+
+    .search-box i {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #765b6c;
       font-size: 14px;
-      color: #333;
     }
-
-    .search-box button {
-      border: none;
-      background: transparent;
-      color: #70204d;
-      padding: 0 14px;
-      cursor: pointer;
-      font-size: 15px;
-    }
-
 
     /* =========================
-       NAVIGATION
+       NAV
        ========================= */
 
-    .navigation {
-      background: #e6d5e9;
-      border-bottom: 1px solid #d9c5dd;
-      padding: 0 30px;
-    }
-
-    .navigation ul {
-      list-style: none;
+    .nav-bar {
+      background: #eee1ed;
+      min-height: 58px;
       display: flex;
-      justify-content: center;
       align-items: center;
-      gap: 42px;
-      min-height: 52px;
+      padding: 0 7%;
+      gap: 34px;
+      border-bottom: 1px solid #e5d6e3;
     }
 
-    .navigation a {
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      color: #333;
-      transition: 0.25s ease;
+    .nav-bar a {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.7px;
+      color: #50474e;
+      position: relative;
+      padding: 20px 0;
     }
 
-    .navigation a:hover {
+    .nav-bar a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 13px;
+      width: 0;
+      height: 2px;
+      background: #8f2860;
+      transition: width 0.25s ease;
+    }
+
+    .nav-bar a:hover {
       color: #8f2860;
     }
 
+    .nav-bar a:hover::after {
+      width: 100%;
+    }
 
     /* =========================
        HERO
        ========================= */
 
     .hero {
-      min-height: 475px;
-      position: relative;
-      overflow: hidden;
-
-      background:
-        radial-gradient(
-          circle at 10% 20%,
-          rgba(224, 157, 201, 0.45) 0,
-          rgba(224, 157, 201, 0.45) 75px,
-          transparent 76px
-        ),
-
-        radial-gradient(
-          circle at 92% 28%,
-          rgba(184, 151, 206, 0.35) 0,
-          rgba(184, 151, 206, 0.35) 100px,
-          transparent 101px
-        ),
-
-        radial-gradient(
-          circle at 85% 90%,
-          rgba(230, 184, 216, 0.35) 0,
-          rgba(230, 184, 216, 0.35) 120px,
-          transparent 121px
-        ),
-
-        linear-gradient(
-          135deg,
-          #f7e9f5,
-          #eee1f1,
-          #f9edf7
-        );
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      padding: 80px 7% 75px;
       text-align: center;
-      padding: 55px 25px;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 900px;
+      background:
+        radial-gradient(circle at 15% 25%, rgba(196,118,171,0.16) 0 90px, transparent 91px),
+        radial-gradient(circle at 85% 75%, rgba(165,114,177,0.12) 0 120px, transparent 121px),
+        linear-gradient(135deg, #fbf7fb, #f5edf6);
     }
 
     .hero-logo {
       width: 190px;
       height: 190px;
-      object-fit: cover;
       border-radius: 50%;
-      display: block;
-      margin: 0 auto 24px;
-      box-shadow: 0 8px 28px rgba(70, 30, 65, 0.15);
+      object-fit: cover;
+      margin-bottom: 25px;
     }
 
     .hero-title {
-      font-size: clamp(52px, 7vw, 88px);
+      font-family: "Playfair Display", serif;
+      font-size: clamp(48px, 7vw, 85px);
+      line-height: 1;
       font-style: italic;
       font-weight: 700;
-      line-height: 1;
-      margin-bottom: 16px;
-      letter-spacing: -2px;
+      color: #111111;
     }
 
-    .hero-title .pink {
+    .hero-title span {
       color: #8f2860;
     }
 
     .hero-tagline {
+      margin-top: 14px;
+      font-family: "Playfair Display", serif;
       font-size: 20px;
       font-style: italic;
-      color: #555;
-      letter-spacing: 0.5px;
+      color: #655a62;
     }
-
 
     /* =========================
-       INTRODUCTION
+       INTRO
        ========================= */
-
-    .intro-section {
-      padding: 60px 8%;
-      background: #ffffff;
-    }
 
     .intro-card {
       max-width: 900px;
-      margin: 0 auto;
-      background: #ffffff;
-      border: 1px solid #eadfea;
-      box-shadow: 0 8px 30px rgba(80, 40, 75, 0.07);
-      padding: 38px 45px;
-      border-radius: 8px;
-    }
-
-    .intro-card h2 {
-      text-align: center;
-      font-size: 29px;
-      margin-bottom: 23px;
-      color: #222;
-    }
-
-    .intro-card h2 span {
-      color: #8f2860;
+      margin: -20px auto 0;
+      position: relative;
+      background: white;
+      border-radius: 18px;
+      padding: 42px 50px;
+      box-shadow: 0 12px 35px rgba(80,45,70,0.08);
     }
 
     .intro-card p {
       font-size: 16px;
-      color: #555;
       line-height: 1.85;
-      margin-bottom: 14px;
+      color: #5b555a;
+      text-align: center;
     }
-
-    .intro-card p:last-child {
-      margin-bottom: 0;
-    }
-
 
     /* =========================
        LATEST ARTICLES
        ========================= */
 
     .latest-section {
-      padding: 65px 8%;
-      background: #f8f5f8;
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 75px 7%;
     }
 
     .section-heading {
       text-align: center;
-      margin-bottom: 35px;
+      margin-bottom: 38px;
     }
 
     .section-heading h2 {
-      font-size: 32px;
-      color: #222;
-      margin-bottom: 8px;
+      font-family: "Playfair Display", serif;
+      font-size: 38px;
+      font-style: italic;
+      color: #292329;
     }
 
     .section-heading h2 span {
@@ -519,45 +447,45 @@
     }
 
     .section-heading p {
-      color: #777;
-      font-size: 14px;
+      font-size: 13px;
+      color: #7a7278;
+      margin-top: 5px;
     }
 
     .articles-grid {
-      max-width: 1050px;
-      margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 22px;
     }
 
     .article-card {
-      background: #ffffff;
-      border: 1px solid #eadfea;
-      border-radius: 8px;
-      padding: 27px;
-      transition: 0.25s ease;
+      background: white;
+      border: 1px solid #eee4ec;
+      border-radius: 15px;
+      padding: 25px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
     .article-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 10px 28px rgba(70, 30, 65, 0.09);
+      box-shadow: 0 12px 30px rgba(80,45,70,0.08);
     }
 
     .article-date {
-      font-family: Arial, Helvetica, sans-serif;
-      text-transform: uppercase;
       font-size: 11px;
+      color: #9a6d8a;
+      font-weight: 700;
+      text-transform: uppercase;
       letter-spacing: 1px;
-      color: #8f2860;
-      margin-bottom: 8px;
+      margin-bottom: 9px;
     }
 
     .article-card h3 {
-      font-size: 21px;
+      font-family: "Playfair Display", serif;
+      font-size: 24px;
       line-height: 1.35;
+      color: #2b252a;
       margin-bottom: 12px;
-      color: #252525;
     }
 
     .article-card h3 a:hover {
@@ -565,97 +493,80 @@
     }
 
     .article-card p {
-      color: #666;
-      font-size: 14px;
-      line-height: 1.65;
+      font-size: 13px;
+      line-height: 1.7;
+      color: #6d666b;
+      margin-bottom: 16px;
     }
 
     .read-more {
-      display: inline-block;
-      margin-top: 15px;
-      font-family: Arial, Helvetica, sans-serif;
       font-size: 12px;
-      font-weight: 600;
+      font-weight: 700;
       color: #8f2860;
-      letter-spacing: 0.5px;
     }
-
-    .no-results {
-      display: none;
-      text-align: center;
-      color: #777;
-      font-size: 15px;
-      padding: 30px;
-      grid-column: 1 / -1;
-    }
-
 
     /* =========================
        FOOTER
        ========================= */
 
-    .footer {
-      background: #211b22;
-      color: #ffffff;
-      padding: 45px 30px 25px;
+    footer {
+      background: #ffffff;
+      border-top: 1px solid #eee5ed;
+      padding: 40px 7%;
       text-align: center;
     }
 
-    .footer-title {
-      font-size: 31px;
+    .footer-brand {
+      font-family: "Playfair Display", serif;
+      font-size: 27px;
       font-style: italic;
-      font-weight: 700;
-      margin-bottom: 5px;
+      font-weight: 600;
+      color: #181518;
+      margin-bottom: 4px;
     }
 
-    .footer-title .black {
-      color: #ffffff;
-    }
-
-    .footer-title .pink {
-      color: #d28ab7;
+    .footer-brand span {
+      color: #8f2860;
     }
 
     .footer-tagline {
-      font-size: 14px;
-      color: #c8c0c8;
+      font-family: "Playfair Display", serif;
       font-style: italic;
-      margin-bottom: 22px;
+      font-size: 14px;
+      color: #766d74;
+      margin-bottom: 20px;
     }
 
     .footer-social {
       display: flex;
       justify-content: center;
       gap: 10px;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
+      margin-bottom: 20px;
     }
 
     .footer-social a {
-      width: 37px;
-      height: 37px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid #625763;
-      border-radius: 50%;
-      color: #ffffff;
-      transition: 0.25s ease;
+      background: #f5eaf4;
+      color: #8f2860;
+      font-size: 14px;
+      transition: all 0.25s ease;
     }
 
     .footer-social a:hover {
       background: #8f2860;
-      border-color: #8f2860;
+      color: white;
     }
 
     .footer-copy {
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 12px;
-      color: #aaa2aa;
-      border-top: 1px solid #40383f;
-      padding-top: 20px;
+      font-size: 11px;
+      color: #8b8389;
+      text-align: right;
     }
-
 
     /* =========================
        MOBILE
@@ -675,112 +586,71 @@
       .sidebar {
         order: 2;
         width: 100%;
-        min-width: 100%;
+        min-width: 0;
+        height: auto;
+        position: relative;
         border-right: none;
-        border-top: 1px solid #e5dfe5;
-        padding: 40px 25px;
+        border-top: 1px solid #eee5ed;
+        padding: 45px 25px;
       }
-
-      .sidebar-inner {
-        position: static;
-        max-width: 500px;
-        margin: 0 auto;
-      }
-
-      .articles-grid {
-        grid-template-columns: 1fr;
-      }
-
-    }
-
-
-    @media (max-width: 700px) {
 
       .top-header {
-        min-height: 105px;
-        flex-direction: column;
-        gap: 17px;
-        justify-content: center;
-        padding: 22px 20px;
+        padding: 30px 6%;
       }
 
-      .header-brand {
-        font-size: 27px;
-      }
-
-      .search-box {
-        width: min(300px, 90%);
-      }
-
-      .navigation {
-        padding: 0 10px;
-      }
-
-      .navigation ul {
-        gap: 25px;
-        min-height: 48px;
-      }
-
-      .navigation a {
-        font-size: 11px;
-      }
-
-      .hero {
-        min-height: 430px;
-        padding: 45px 20px;
+      .nav-bar {
+        padding: 0 6%;
+        gap: 24px;
+        overflow-x: auto;
       }
 
       .hero-logo {
         width: 145px;
         height: 145px;
-        margin-bottom: 22px;
-      }
-
-      .hero-title {
-        font-size: 57px;
-      }
-
-      .hero-tagline {
-        font-size: 17px;
-      }
-
-      .intro-section,
-      .latest-section {
-        padding: 45px 20px;
       }
 
       .intro-card {
-        padding: 28px 23px;
+        margin-left: 6%;
+        margin-right: 6%;
+        padding: 35px 30px;
       }
 
-      .intro-card h2 {
-        font-size: 25px;
-      }
-
-      .intro-card p {
-        font-size: 15px;
-      }
-
-      .section-heading h2 {
-        font-size: 28px;
+      .latest-section {
+        padding: 65px 6%;
       }
 
     }
 
+    @media (max-width: 650px) {
 
-    @media (max-width: 430px) {
-
-      .navigation ul {
-        gap: 17px;
+      .top-header {
+        min-height: 125px;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 20px;
       }
 
-      .navigation a {
-        font-size: 10px;
-        letter-spacing: 0.5px;
+      .top-brand {
+        font-size: 40px;
+      }
+
+      .search-box {
+        width: 100%;
+      }
+
+      .nav-bar {
+        min-height: 52px;
+        gap: 22px;
+      }
+
+      .nav-bar a {
+        white-space: nowrap;
+        padding: 17px 0;
       }
 
       .hero {
-        min-height: 400px;
+        padding: 60px 7% 65px;
       }
 
       .hero-logo {
@@ -789,33 +659,35 @@
       }
 
       .hero-title {
-        font-size: 47px;
-        letter-spacing: -1px;
+        font-size: 48px;
       }
 
       .hero-tagline {
-        font-size: 15px;
+        font-size: 17px;
       }
 
       .intro-card {
-        padding: 25px 20px;
-      }
-
-      .intro-card h2 {
-        font-size: 23px;
+        padding: 30px 24px;
       }
 
       .intro-card p {
-        font-size: 14px;
+        font-size: 15px;
       }
 
-      .article-card {
-        padding: 23px;
+      .latest-section {
+        padding: 55px 7%;
       }
 
-      .footer {
-        padding-left: 20px;
-        padding-right: 20px;
+      .section-heading h2 {
+        font-size: 32px;
+      }
+
+      .articles-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-copy {
+        text-align: right;
       }
 
     }
@@ -827,301 +699,216 @@
 
 <body>
 
-
 <div class="page-wrapper">
 
-
-  <!-- =========================
-       SIDEBAR
-       ========================= -->
+  <!-- SIDEBAR -->
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner">
+    <img
+      src="https://dissentverse.wordpress.com/wp-content/uploads/2025/08/cropped-img-20250811-wa0002.jpg"
+      alt="DissentVerse logo"
+      class="sidebar-logo"
+    >
 
-      <img
-        class="sidebar-logo"
-        src="https://dissentverse.wordpress.com/wp-content/uploads/2025/08/cropped-img-20250811-wa0002.jpg"
-        alt="DissentVerse Logo"
-      >
+    <div class="welcome">
+      Welcome to
+    </div>
 
-      <div class="welcome">
-        Welcome to
-      </div>
+    <div class="sidebar-title">
+      Dissent<span>Verse</span>
+    </div>
 
-      <div class="sidebar-title">
-        <span class="black">Dissent</span><span class="pink">Verse</span>
-      </div>
+    <p class="sidebar-description">
+      A space for questioning the things we often accept without questioning.
+      From education and career choices to social expectations, technology,
+      culture, and the realities shaping everyday life, DissentVerse explores
+      what lies beneath the surface.
+    </p>
 
-      <p class="sidebar-description">
-        A space for questioning the things we often accept without questioning.
-        From education and career choices to social expectations, technology,
-        culture, and the realities shaping everyday life, DissentVerse explores
-        what lies beneath the surface.
-      </p>
+    <div class="connect-title">
+      Let's connect
+    </div>
 
+    <div class="social-links">
 
-      <div class="connect-title">
-        Let's connect
-      </div>
+      <a href="" aria-label="Instagram">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
 
+      <a href="https://pin.it/4ZKIbFLnW"
+         target="_blank"
+         rel="noopener"
+         aria-label="Pinterest">
+        <i class="fa-brands fa-pinterest-p"></i>
+      </a>
 
-      <div class="social-links">
+      <a href="https://www.youtube.com/@DissentVerse"
+         target="_blank"
+         rel="noopener"
+         aria-label="YouTube">
+        <i class="fa-brands fa-youtube"></i>
+      </a>
 
-        <!-- Instagram intentionally blank -->
+      <a href="https://t.me/dissentverse"
+         target="_blank"
+         rel="noopener"
+         aria-label="Telegram">
+        <i class="fa-brands fa-telegram"></i>
+      </a>
 
-        <a href="" aria-label="Instagram">
-          <i class="fa-brands fa-instagram"></i>
-        </a>
-
-        <a
-          href="https://pin.it/4ZKIbFLnW"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Pinterest"
-        >
-          <i class="fa-brands fa-pinterest-p"></i>
-        </a>
-
-        <a
-          href="https://www.youtube.com/@DissentVerse"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="YouTube"
-        >
-          <i class="fa-brands fa-youtube"></i>
-        </a>
-
-        <a
-          href="https://t.me/dissentverse"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Telegram"
-        >
-          <i class="fa-brands fa-telegram"></i>
-        </a>
-
-        <a
-          href="mailto:dissentverse@gmail.com"
-          aria-label="Email"
-        >
-          <i class="fa-solid fa-envelope"></i>
-        </a>
-
-      </div>
-
-
-      <!-- =========================
-           JOIN US
-           ========================= -->
-
-      <div class="join-box">
-
-        <h3>
-          Join Us!
-        </h3>
-
-        <p>
-          Stay updated with our latest articles and ideas by joining our blog.
-        </p>
-
-        <form
-          class="join-form"
-          onsubmit="joinDissentVerse(event)"
-        >
-
-          <input
-            type="email"
-            id="joinEmail"
-            class="email-input"
-            placeholder="Enter your email"
-            required
-          >
-
-          <button
-            type="submit"
-            class="join-button"
-          >
-            Join Us →
-          </button>
-
-        </form>
-
-      </div>
-
-
-      <!-- =========================
-           RECENT POSTS
-           ========================= -->
-
-      <h3 class="recent-title">
-        Recent Posts
-      </h3>
-
-      <ul class="recent-posts">
-
-        {% assign recent_posts = site.posts | sort: "date" | reverse %}
-
-        {% for post in recent_posts limit: 6 %}
-
-        <li>
-          <a href="{{ post.url | relative_url }}">
-            {{ post.title }}
-          </a>
-        </li>
-
-        {% endfor %}
-
-      </ul>
+      <a href="mailto:dissentverse@gmail.com"
+         aria-label="Email">
+        <i class="fa-solid fa-envelope"></i>
+      </a>
 
     </div>
+
+
+    <!-- JOIN US -->
+
+    <div class="join-box">
+
+      <h3>Join Us</h3>
+
+      <p>
+        Stay updated with our latest articles and ideas by joining our blog.
+      </p>
+
+      <form class="join-form" onsubmit="joinDissentVerse(event)">
+
+        <input
+          type="email"
+          id="joinEmail"
+          class="email-input"
+          placeholder="Enter your email"
+          required
+        >
+
+        <button type="submit" class="join-button">
+          Join Us →
+        </button>
+
+      </form>
+
+    </div>
+
+
+    <!-- RECENT POSTS -->
+
+    <div class="recent-title">
+      Recent Posts
+    </div>
+
+    <ul class="recent-posts">
+
+      {% assign recent_posts = site.posts | sort: "date" | reverse %}
+
+      {% for post in recent_posts limit: 6 %}
+
+      <li>
+        <a href="{{ post.url | relative_url }}">
+          {{ post.title }}
+        </a>
+      </li>
+
+      {% endfor %}
+
+    </ul>
 
   </aside>
 
 
-
-  <!-- =========================
-       MAIN CONTENT
-       ========================= -->
+  <!-- MAIN -->
 
   <main class="main-content">
 
 
-    <!-- TOP HEADER -->
+    <!-- HEADER -->
 
     <header class="top-header">
 
-      <div class="header-brand">
-        <span class="black">Dissent</span><span class="pink">Verse</span>
+      <div class="top-brand">
+        Dissent<span>Verse</span>
       </div>
-
 
       <div class="search-box">
 
         <input
           type="text"
-          id="articleSearch"
-          placeholder="Search articles..."
-          aria-label="Search articles"
-          autocomplete="off"
-        >
-
-        <button
-          type="button"
-          id="searchButton"
+          id="searchInput"
+          placeholder="Search..."
           aria-label="Search"
         >
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </button>
+
+        <i class="fa-solid fa-magnifying-glass"></i>
 
       </div>
 
     </header>
 
 
+    <!-- NAV -->
 
-    <!-- NAVIGATION -->
+    <nav class="nav-bar">
 
-    <nav class="navigation">
+      <a href="{{ '/' | relative_url }}">
+        HOME
+      </a>
 
-      <ul>
+      <a href="{{ '/about.html' | relative_url }}">
+        ABOUT
+      </a>
 
-        <li>
-          <a href="index.html">
-            HOME
-          </a>
-        </li>
+      <a href="{{ '/articles.html' | relative_url }}">
+        ARTICLES
+      </a>
 
-        <li>
-          <a href="about.html">
-            ABOUT
-          </a>
-        </li>
-
-        <li>
-          <a href="articles.html">
-            ARTICLES
-          </a>
-        </li>
-
-        <li>
-          <a href="contact.html">
-            CONTACT
-          </a>
-        </li>
-
-      </ul>
+      <a href="#">
+        CONTACT
+      </a>
 
     </nav>
 
 
-
-    <!-- =========================
-         HERO
-         ========================= -->
+    <!-- HERO -->
 
     <section class="hero">
 
-      <div class="hero-content">
+      <img
+        src="https://dissentverse.wordpress.com/wp-content/uploads/2025/08/cropped-img-20250811-wa0002.jpg"
+        alt="DissentVerse logo"
+        class="hero-logo"
+      >
 
-        <img
-          class="hero-logo"
-          src="https://dissentverse.wordpress.com/wp-content/uploads/2025/08/cropped-img-20250811-wa0002.jpg"
-          alt="DissentVerse Logo"
-        >
+      <h1 class="hero-title">
+        Dissent<span>Verse</span>
+      </h1>
 
-        <h1 class="hero-title">
-          <span class="black">Dissent</span><span class="pink">Verse</span>
-        </h1>
-
-        <p class="hero-tagline">
-          Where Dissent finds its Verse.
-        </p>
-
-      </div>
+      <p class="hero-tagline">
+        Where Dissent finds its Verse.
+      </p>
 
     </section>
 
 
+    <!-- INTRO -->
 
-    <!-- =========================
-         INTRODUCTION
-         ========================= -->
+    <div class="intro-card">
 
-    <section class="intro-section">
+      <p>
+        A space for questioning the things we often accept without questioning.
+        From education and career choices to social expectations, technology,
+        culture, and the realities shaping everyday life, DissentVerse explores
+        what lies beneath the surface.
+      </p>
 
-      <div class="intro-card">
-
-        <h2>
-          Welcome to <span>DissentVerse</span>
-        </h2>
-
-        <p>
-          DissentVerse is a space for exploring the experiences, pressures
-          and issues shaping young people's lives.
-        </p>
-
-        <p>
-          From education and career choices to social expectations,
-          competition, technology and the everyday realities that often
-          go unnoticed, DissentVerse looks beyond easy explanations to
-          ask deeper questions.
-        </p>
-
-      </div>
-
-    </section>
+    </div>
 
 
+    <!-- LATEST ARTICLES -->
 
-    <!-- =========================
-         LATEST ARTICLES
-         ========================= -->
-
-    <section
-      class="latest-section"
-      id="latest-articles"
-    >
+    <section class="latest-section">
 
       <div class="section-heading">
 
@@ -1130,20 +917,15 @@
         </h2>
 
         <p>
-          Thoughts, questions and perspectives worth exploring.
+          Ideas, questions and perspectives worth exploring.
         </p>
 
       </div>
 
 
-      <div
-        class="articles-grid"
-        id="articlesGrid"
-      >
-
+      <div class="articles-grid" id="articlesGrid">
 
         {% assign latest_posts = site.posts | sort: "date" | reverse %}
-
 
         {% for post in latest_posts limit: 6 %}
 
@@ -1153,33 +935,22 @@
         >
 
           <div class="article-date">
-
             {{ post.date | date: "%d %B %Y" }}
-
           </div>
 
-
           <h3>
-
             <a href="{{ post.url | relative_url }}">
-
               {{ post.title }}
-
             </a>
-
           </h3>
 
-
           <p>
-
             {{ post.content
               | strip_html
               | strip_newlines
               | truncatewords: 28
             }}
-
           </p>
-
 
           <a
             href="{{ post.url | relative_url }}"
@@ -1192,230 +963,132 @@
 
         {% endfor %}
 
-
-        <div
-          class="no-results"
-          id="noResults"
-        >
-          No articles found.
-        </div>
-
-
       </div>
 
     </section>
 
 
+    <!-- FOOTER -->
 
-    <!-- =========================
-         FOOTER
-         ========================= -->
+    <footer>
 
-    <footer class="footer">
-
-      <div class="footer-title">
-
-        <span class="black">Dissent</span><span class="pink">Verse</span>
-
+      <div class="footer-brand">
+        Dissent<span>Verse</span>
       </div>
-
 
       <div class="footer-tagline">
-
         Where Dissent finds its Verse.
-
       </div>
 
-
       <div class="footer-social">
-
-
-        <!-- Instagram intentionally blank -->
 
         <a href="" aria-label="Instagram">
           <i class="fa-brands fa-instagram"></i>
         </a>
 
-
-        <a
-          href="https://pin.it/4ZKIbFLnW"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Pinterest"
-        >
+        <a href="https://pin.it/4ZKIbFLnW"
+           target="_blank"
+           rel="noopener"
+           aria-label="Pinterest">
           <i class="fa-brands fa-pinterest-p"></i>
         </a>
 
-
-        <a
-          href="https://t.me/dissentverse"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Telegram"
-        >
-          <i class="fa-brands fa-telegram"></i>
-        </a>
-
-
-        <a
-          href="https://www.youtube.com/@DissentVerse"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="YouTube"
-        >
+        <a href="https://www.youtube.com/@DissentVerse"
+           target="_blank"
+           rel="noopener"
+           aria-label="YouTube">
           <i class="fa-brands fa-youtube"></i>
         </a>
 
+        <a href="https://t.me/dissentverse"
+           target="_blank"
+           rel="noopener"
+           aria-label="Telegram">
+          <i class="fa-brands fa-telegram"></i>
+        </a>
 
-        <a
-          href="mailto:dissentverse@gmail.com"
-          aria-label="Email"
-        >
+        <a href="mailto:dissentverse@gmail.com"
+           aria-label="Email">
           <i class="fa-solid fa-envelope"></i>
         </a>
 
-
       </div>
 
-
       <div class="footer-copy">
-
         © 2026 DissentVerse. All rights reserved.
-
       </div>
 
     </footer>
-
 
   </main>
 
 </div>
 
 
-
-<!-- =========================
-     JAVASCRIPT
-     ========================= -->
+<!-- JOIN US -->
 
 <script>
 
-  /* =========================
-     ARTICLE SEARCH
-     ========================= */
+function joinDissentVerse(event) {
 
-  const searchInput =
-    document.getElementById("articleSearch");
+  event.preventDefault();
 
-  const searchButton =
-    document.getElementById("searchButton");
+  const email =
+    document.getElementById("joinEmail").value.trim();
 
-  const articleCards =
-    document.querySelectorAll(".article-card");
+  if (!email) return;
 
-  const noResults =
-    document.getElementById("noResults");
+  const subject =
+    encodeURIComponent("Join DissentVerse");
 
+  const body =
+    encodeURIComponent(
+      "I would like to join DissentVerse.\n\nMy email: " + email
+    );
 
-  function searchArticles() {
+  window.location.href =
+    "mailto:dissentverse@gmail.com?subject=" +
+    subject +
+    "&body=" +
+    body;
 
-    const searchTerm =
-      searchInput.value.toLowerCase().trim();
-
-    let visibleArticles = 0;
-
-
-    articleCards.forEach(function(article) {
-
-      const searchableText =
-        article.getAttribute("data-search") || "";
-
-      if (
-        searchTerm === "" ||
-        searchableText.includes(searchTerm)
-      ) {
-
-        article.style.display = "";
-
-        visibleArticles++;
-
-      } else {
-
-        article.style.display = "none";
-
-      }
-
-    });
+}
 
 
-    if (visibleArticles === 0 && searchTerm !== "") {
+<!-- SEARCH -->
 
-      noResults.style.display = "block";
+const searchInput =
+  document.getElementById("searchInput");
+
+const articleCards =
+  document.querySelectorAll(".article-card");
+
+
+searchInput.addEventListener("input", function () {
+
+  const query =
+    this.value.toLowerCase().trim();
+
+  articleCards.forEach(function (card) {
+
+    const text =
+      card.getAttribute("data-search") || "";
+
+    if (text.includes(query)) {
+
+      card.style.display = "";
 
     } else {
 
-      noResults.style.display = "none";
+      card.style.display = "none";
 
     }
 
-  }
+  });
 
-
-  searchInput.addEventListener(
-    "input",
-    searchArticles
-  );
-
-
-  searchButton.addEventListener(
-    "click",
-    searchArticles
-  );
-
-
-  /* =========================
-     JOIN US EMAIL
-     ========================= */
-
-  function joinDissentVerse(event) {
-
-    event.preventDefault();
-
-    const email =
-      document.getElementById("joinEmail").value.trim();
-
-
-    if (!email) {
-      return;
-    }
-
-
-    const subject =
-      encodeURIComponent(
-        "Join DissentVerse"
-      );
-
-
-    const body =
-      encodeURIComponent(
-        "Hello DissentVerse,\n\n" +
-        "I would like to join the DissentVerse community.\n\n" +
-        "My email address is: " +
-        email
-      );
-
-
-    window.location.href =
-      "mailto:dissentverse@gmail.com" +
-      "?subject=" +
-      subject +
-      "&body=" +
-      body;
-
-  }
+});
 
 </script>
 
-
 </body>
-
 </html>
