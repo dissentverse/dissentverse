@@ -11,17 +11,86 @@ permalink: /articles.html
   <title>Articles | DissentVerse</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: Georgia, "Times New Roman", serif;
-      background: #fff;
-      color: #171717;
+      color: #242024;
+
+      background:
+        radial-gradient(circle at 10% 10%, rgba(248, 210, 230, 0.55), transparent 32%),
+        radial-gradient(circle at 90% 20%, rgba(225, 214, 245, 0.55), transparent 30%),
+        linear-gradient(135deg, #fff7fb, #f7f2fc);
+      min-height: 100vh;
     }
+
+    /* HEADER */
+
+    .site-header {
+      background: rgba(255, 255, 255, 0.82);
+      border-bottom: 1px solid rgba(190, 150, 180, 0.18);
+      backdrop-filter: blur(8px);
+      padding: 22px 30px;
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-block {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand {
+      text-decoration: none;
+      color: #171717;
+      font-size: 25px;
+      font-weight: bold;
+      letter-spacing: -0.5px;
+    }
+
+    .brand span {
+      color: #b02a72;
+    }
+
+    .tagline {
+      margin-top: 3px;
+      color: #777;
+      font-size: 11px;
+      font-style: italic;
+    }
+
+    .navigation {
+      display: flex;
+      gap: 24px;
+    }
+
+    .navigation a {
+      color: #4f4a50;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .navigation a:hover {
+      color: #b02a72;
+    }
+
+    /* PAGE */
 
     .articles-page {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 70px 25px;
+      padding: 75px 25px 100px;
     }
 
     .page-heading {
@@ -29,15 +98,31 @@ permalink: /articles.html
       margin-bottom: 60px;
     }
 
+    .page-label {
+      color: #b02a72;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
     .page-heading h1 {
-      font-size: 52px;
+      font-size: 56px;
+      line-height: 1.1;
       margin: 0 0 15px;
+      color: #171717;
     }
 
     .page-heading p {
-      color: #666;
+      margin: 0 auto;
+      max-width: 600px;
+      color: #6d6670;
       font-size: 18px;
+      line-height: 1.7;
     }
+
+    /* ARTICLE CARDS */
 
     .article-list {
       display: grid;
@@ -46,57 +131,128 @@ permalink: /articles.html
     }
 
     .article-card {
-      border: 1px solid #eee;
-      border-radius: 18px;
-      padding: 30px;
-      background: #fff;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(190, 150, 180, 0.2);
+      border-radius: 22px;
+      padding: 32px;
+
+      box-shadow:
+        0 12px 35px rgba(100, 60, 100, 0.07);
+
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .article-card:hover {
+      transform: translateY(-4px);
+
+      box-shadow:
+        0 18px 40px rgba(100, 60, 100, 0.11);
     }
 
     .article-date {
       color: #b02a72;
-      font-size: 14px;
+      font-size: 13px;
+      font-weight: bold;
       margin-bottom: 15px;
     }
 
     .article-card h2 {
-      font-size: 27px;
+      font-size: 28px;
       line-height: 1.25;
       margin: 0 0 15px;
+      color: #171717;
     }
 
     .article-card p {
-      color: #555;
-      line-height: 1.7;
+      color: #635d64;
       font-size: 16px;
+      line-height: 1.7;
+      margin: 0;
     }
 
     .read-more {
       display: inline-block;
-      margin-top: 12px;
+      margin-top: 25px;
+
       color: #b02a72;
       text-decoration: none;
+      font-size: 15px;
       font-weight: bold;
     }
 
-    .no-articles {
-      text-align: center;
-      color: #777;
-      font-size: 18px;
-      padding: 50px 0;
+    .read-more:hover {
+      text-decoration: underline;
     }
 
+    .no-articles {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 20px;
+      padding: 60px 20px;
+      text-align: center;
+      color: #777;
+    }
+
+    /* FOOTER */
+
+    .site-footer {
+      text-align: center;
+      padding: 30px 20px;
+      border-top: 1px solid rgba(190, 150, 180, 0.2);
+      color: #777;
+      font-size: 13px;
+      background: rgba(255, 255, 255, 0.45);
+    }
+
+    /* MOBILE */
+
     @media (max-width: 750px) {
+
+      .site-header {
+        padding: 18px 20px;
+      }
+
+      .header-inner {
+        align-items: flex-start;
+      }
+
+      .brand {
+        font-size: 21px;
+      }
+
+      .tagline {
+        font-size: 10px;
+      }
+
+      .navigation {
+        gap: 12px;
+      }
+
+      .navigation a {
+        font-size: 12px;
+      }
+
       .articles-page {
-        padding: 45px 20px;
+        padding: 55px 20px 70px;
       }
 
       .page-heading h1 {
-        font-size: 40px;
+        font-size: 42px;
+      }
+
+      .page-heading p {
+        font-size: 16px;
       }
 
       .article-list {
         grid-template-columns: 1fr;
+      }
+
+      .article-card {
+        padding: 27px;
+      }
+
+      .article-card h2 {
+        font-size: 25px;
       }
     }
   </style>
@@ -104,12 +260,45 @@ permalink: /articles.html
 
 <body>
 
+  <header class="site-header">
+    <div class="header-inner">
+
+      <div class="brand-block">
+        <a class="brand" href="{{ site.baseurl }}/">
+          Dissent<span>Verse</span>
+        </a>
+
+        <div class="tagline">
+          Where Dissent finds its Verse.
+        </div>
+      </div>
+
+      <nav class="navigation">
+        <a href="{{ site.baseurl }}/">Home</a>
+        <a href="{{ site.baseurl }}/about.html">About</a>
+        <a href="{{ site.baseurl }}/articles.html">Articles</a>
+      </nav>
+
+    </div>
+  </header>
+
+
   <main class="articles-page">
 
     <section class="page-heading">
+
+      <div class="page-label">
+        DissentVerse
+      </div>
+
       <h1>Articles</h1>
-      <p>Thoughts, questions and perspectives worth exploring.</p>
+
+      <p>
+        Thoughts, questions and perspectives worth exploring.
+      </p>
+
     </section>
+
 
     {% if site.posts.size > 0 %}
 
@@ -123,13 +312,18 @@ permalink: /articles.html
               {{ post.date | date: "%d %B %Y" }}
             </div>
 
-            <h2>{{ post.title }}</h2>
+            <h2>
+              {{ post.title }}
+            </h2>
 
             <p>
               {{ post.excerpt | strip_html | truncatewords: 30 }}
             </p>
 
-            <a class="read-more" href="{{ post.url | relative_url }}">
+            <a
+              class="read-more"
+              href="{{ post.url | relative_url }}"
+            >
               Read Article →
             </a>
 
@@ -148,6 +342,11 @@ permalink: /articles.html
     {% endif %}
 
   </main>
+
+
+  <footer class="site-footer">
+    © 2026 DissentVerse · Where Dissent finds its Verse.
+  </footer>
 
 </body>
 </html>
