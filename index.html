@@ -1,14 +1,27 @@
+---
+---
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>DissentVerse</title>
 
-  <link rel="icon" type="image/jpeg" href="https://dissentverse.wordpress.com/wp-content/uploads/2025/08/cropped-img-20250811-wa0002.jpg">
+  <link
+    rel="icon"
+    type="image/jpeg"
+    href="https://dissentverse.wordpress.com/wp-content/uploads/2025/08/cropped-img-20250811-wa0002.jpg"
+  >
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  >
 
   <style>
 
@@ -34,14 +47,22 @@
       color: inherit;
     }
 
+
     /* =========================
-       MAIN PAGE STRUCTURE
+       PAGE STRUCTURE
        ========================= */
 
     .page-wrapper {
       display: flex;
       min-height: 100vh;
     }
+
+    .main-content {
+      flex: 1;
+      min-width: 0;
+      background: #f8f5f8;
+    }
+
 
     /* =========================
        SIDEBAR
@@ -87,11 +108,11 @@
       line-height: 1.2;
     }
 
-    .sidebar-title .black {
+    .black {
       color: #111111;
     }
 
-    .sidebar-title .pink {
+    .pink {
       color: #8f2860;
     }
 
@@ -102,6 +123,11 @@
       line-height: 1.65;
       margin-bottom: 25px;
     }
+
+
+    /* =========================
+       SOCIAL LINKS
+       ========================= */
 
     .connect-title {
       text-align: center;
@@ -139,6 +165,7 @@
       transform: translateY(-2px);
     }
 
+
     /* =========================
        JOIN US
        ========================= */
@@ -165,19 +192,44 @@
       margin-bottom: 14px;
     }
 
+    .join-form {
+      width: 100%;
+    }
+
+    .email-input {
+      width: 100%;
+      padding: 9px 10px;
+      border: 1px solid #d2c2d3;
+      border-radius: 5px;
+      outline: none;
+      background: #ffffff;
+      color: #333;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      margin-bottom: 9px;
+    }
+
+    .email-input:focus {
+      border-color: #8f2860;
+    }
+
     .join-button {
-      display: inline-block;
+      width: 100%;
+      border: none;
       background: #8f2860;
       color: #ffffff;
-      padding: 8px 18px;
+      padding: 9px 15px;
       border-radius: 5px;
       font-size: 13px;
+      cursor: pointer;
+      font-family: Georgia, "Times New Roman", serif;
       transition: 0.25s ease;
     }
 
     .join-button:hover {
       background: #651a44;
     }
+
 
     /* =========================
        RECENT POSTS
@@ -214,15 +266,6 @@
       color: #8f2860;
     }
 
-    /* =========================
-       MAIN CONTENT
-       ========================= */
-
-    .main-content {
-      flex: 1;
-      min-width: 0;
-      background: #f8f5f8;
-    }
 
     /* =========================
        TOP HEADER
@@ -254,22 +297,23 @@
       letter-spacing: 0.5px;
     }
 
-    .header-brand .black {
-      color: #111111;
-    }
-
     .header-brand .pink {
       color: #70204d;
     }
 
+
+    /* =========================
+       SEARCH
+       ========================= */
+
     .search-box {
       display: flex;
       align-items: center;
-      background: rgba(255, 255, 255, 0.85);
-      border: 1px solid rgba(100, 50, 90, 0.2);
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(100, 50, 90, 0.25);
       border-radius: 25px;
       overflow: hidden;
-      width: 240px;
+      width: 250px;
     }
 
     .search-box input {
@@ -291,6 +335,7 @@
       cursor: pointer;
       font-size: 15px;
     }
+
 
     /* =========================
        NAVIGATION
@@ -324,6 +369,7 @@
       color: #8f2860;
     }
 
+
     /* =========================
        HERO
        ========================= */
@@ -340,18 +386,21 @@
           rgba(224, 157, 201, 0.45) 75px,
           transparent 76px
         ),
+
         radial-gradient(
           circle at 92% 28%,
           rgba(184, 151, 206, 0.35) 0,
           rgba(184, 151, 206, 0.35) 100px,
           transparent 101px
         ),
+
         radial-gradient(
           circle at 85% 90%,
           rgba(230, 184, 216, 0.35) 0,
           rgba(230, 184, 216, 0.35) 120px,
           transparent 121px
         ),
+
         linear-gradient(
           135deg,
           #f7e9f5,
@@ -391,10 +440,6 @@
       letter-spacing: -2px;
     }
 
-    .hero-title .black {
-      color: #111111;
-    }
-
     .hero-title .pink {
       color: #8f2860;
     }
@@ -406,8 +451,9 @@
       letter-spacing: 0.5px;
     }
 
+
     /* =========================
-       INTRODUCTION CARD
+       INTRODUCTION
        ========================= */
 
     .intro-section {
@@ -446,6 +492,7 @@
     .intro-card p:last-child {
       margin-bottom: 0;
     }
+
 
     /* =========================
        LATEST ARTICLES
@@ -497,7 +544,7 @@
       box-shadow: 0 10px 28px rgba(70, 30, 65, 0.09);
     }
 
-    .article-card .article-date {
+    .article-date {
       font-family: Arial, Helvetica, sans-serif;
       text-transform: uppercase;
       font-size: 11px;
@@ -532,6 +579,16 @@
       color: #8f2860;
       letter-spacing: 0.5px;
     }
+
+    .no-results {
+      display: none;
+      text-align: center;
+      color: #777;
+      font-size: 15px;
+      padding: 30px;
+      grid-column: 1 / -1;
+    }
+
 
     /* =========================
        FOOTER
@@ -599,8 +656,9 @@
       padding-top: 20px;
     }
 
+
     /* =========================
-       MOBILE SIDEBAR POSITION
+       MOBILE
        ========================= */
 
     @media (max-width: 900px) {
@@ -629,18 +687,12 @@
         margin: 0 auto;
       }
 
-      .top-header {
-        padding: 25px 30px;
-      }
-
       .articles-grid {
         grid-template-columns: 1fr;
       }
+
     }
 
-    /* =========================
-       TABLET / SMALL SCREEN
-       ========================= */
 
     @media (max-width: 700px) {
 
@@ -712,11 +764,9 @@
       .section-heading h2 {
         font-size: 28px;
       }
+
     }
 
-    /* =========================
-       SMALL MOBILE
-       ========================= */
 
     @media (max-width: 430px) {
 
@@ -767,506 +817,605 @@
         padding-left: 20px;
         padding-right: 20px;
       }
+
     }
 
   </style>
+
 </head>
+
 
 <body>
 
-  <div class="page-wrapper">
+
+<div class="page-wrapper">
+
+
+  <!-- =========================
+       SIDEBAR
+       ========================= -->
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner">
+
+      <img
+        class="sidebar-logo"
+        src="https://dissentverse.wordpress.com/wp-content/uploads/2025/08/cropped-img-20250811-wa0002.jpg"
+        alt="DissentVerse Logo"
+      >
+
+      <div class="welcome">
+        Welcome to
+      </div>
+
+      <div class="sidebar-title">
+        <span class="black">Dissent</span><span class="pink">Verse</span>
+      </div>
+
+      <p class="sidebar-description">
+        A space for questioning the things we often accept without questioning.
+        From education and career choices to social expectations, technology,
+        culture, and the realities shaping everyday life, DissentVerse explores
+        what lies beneath the surface.
+      </p>
+
+
+      <div class="connect-title">
+        Let's connect
+      </div>
+
+
+      <div class="social-links">
+
+        <!-- Instagram intentionally blank -->
+
+        <a href="" aria-label="Instagram">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+
+        <a
+          href="https://pin.it/4ZKIbFLnW"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Pinterest"
+        >
+          <i class="fa-brands fa-pinterest-p"></i>
+        </a>
+
+        <a
+          href="https://www.youtube.com/@DissentVerse"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="YouTube"
+        >
+          <i class="fa-brands fa-youtube"></i>
+        </a>
+
+        <a
+          href="https://t.me/dissentverse"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Telegram"
+        >
+          <i class="fa-brands fa-telegram"></i>
+        </a>
+
+        <a
+          href="mailto:dissentverse@gmail.com"
+          aria-label="Email"
+        >
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+
+      </div>
+
+
+      <!-- =========================
+           JOIN US
+           ========================= -->
+
+      <div class="join-box">
+
+        <h3>
+          Join Us!
+        </h3>
+
+        <p>
+          Stay updated with our latest articles and ideas by joining our blog.
+        </p>
+
+        <form
+          class="join-form"
+          onsubmit="joinDissentVerse(event)"
+        >
+
+          <input
+            type="email"
+            id="joinEmail"
+            class="email-input"
+            placeholder="Enter your email"
+            required
+          >
+
+          <button
+            type="submit"
+            class="join-button"
+          >
+            Join Us →
+          </button>
+
+        </form>
+
+      </div>
+
+
+      <!-- =========================
+           RECENT POSTS
+           ========================= -->
+
+      <h3 class="recent-title">
+        Recent Posts
+      </h3>
+
+      <ul class="recent-posts">
+
+        {% assign recent_posts = site.posts | sort: "date" | reverse %}
+
+        {% for post in recent_posts limit: 6 %}
+
+        <li>
+          <a href="{{ post.url | relative_url }}">
+            {{ post.title }}
+          </a>
+        </li>
+
+        {% endfor %}
+
+      </ul>
+
+    </div>
+
+  </aside>
+
+
+
+  <!-- =========================
+       MAIN CONTENT
+       ========================= -->
+
+  <main class="main-content">
+
+
+    <!-- TOP HEADER -->
+
+    <header class="top-header">
+
+      <div class="header-brand">
+        <span class="black">Dissent</span><span class="pink">Verse</span>
+      </div>
+
+
+      <div class="search-box">
+
+        <input
+          type="text"
+          id="articleSearch"
+          placeholder="Search articles..."
+          aria-label="Search articles"
+          autocomplete="off"
+        >
+
+        <button
+          type="button"
+          id="searchButton"
+          aria-label="Search"
+        >
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+
+      </div>
+
+    </header>
+
+
+
+    <!-- NAVIGATION -->
+
+    <nav class="navigation">
+
+      <ul>
+
+        <li>
+          <a href="index.html">
+            HOME
+          </a>
+        </li>
+
+        <li>
+          <a href="about.html">
+            ABOUT
+          </a>
+        </li>
+
+        <li>
+          <a href="articles.html">
+            ARTICLES
+          </a>
+        </li>
+
+        <li>
+          <a href="contact.html">
+            CONTACT
+          </a>
+        </li>
+
+      </ul>
+
+    </nav>
+
+
 
     <!-- =========================
-         SIDEBAR
+         HERO
          ========================= -->
 
-    <aside class="sidebar">
+    <section class="hero">
 
-      <div class="sidebar-inner">
+      <div class="hero-content">
 
         <img
-          class="sidebar-logo"
+          class="hero-logo"
           src="https://dissentverse.wordpress.com/wp-content/uploads/2025/08/cropped-img-20250811-wa0002.jpg"
           alt="DissentVerse Logo"
         >
 
-        <div class="welcome">Welcome to</div>
-
-        <div class="sidebar-title">
+        <h1 class="hero-title">
           <span class="black">Dissent</span><span class="pink">Verse</span>
-        </div>
+        </h1>
 
-        <p class="sidebar-description">
-          A space for questioning the things we often accept without questioning.
-          From education and career choices to social expectations, technology,
-          culture, and the realities shaping everyday life, DissentVerse explores
-          what lies beneath the surface.
+        <p class="hero-tagline">
+          Where Dissent finds its Verse.
         </p>
-
-        <div class="connect-title">Let's connect</div>
-
-        <div class="social-links">
-
-          <!-- Instagram intentionally left blank for now -->
-          <a href="" aria-label="Instagram">
-            <i class="fa-brands fa-instagram"></i>
-          </a>
-
-          <a
-            href="https://pin.it/4ZKIbFLnW"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Pinterest"
-          >
-            <i class="fa-brands fa-pinterest-p"></i>
-          </a>
-
-          <a
-            href="https://www.youtube.com/@DissentVerse"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="YouTube"
-          >
-            <i class="fa-brands fa-youtube"></i>
-          </a>
-
-          <a
-            href="https://t.me/dissentverse"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Telegram"
-          >
-            <i class="fa-brands fa-telegram"></i>
-          </a>
-
-          <a
-            href="mailto:dissentverse@gmail.com"
-            aria-label="Email"
-          >
-            <i class="fa-solid fa-envelope"></i>
-          </a>
-
-        </div>
-
-        <!-- JOIN US -->
-
-        <div class="join-box">
-
-          <h3>Join Us!</h3>
-
-          <p>
-            Stay updated with our latest articles and ideas by joining our blog.
-          </p>
-
-          <a href="#join" class="join-button">
-            Subscribe
-          </a>
-
-        </div>
-
-        <!-- RECENT ARTICLES -->
-
-        <h3 class="recent-title">Recent Posts</h3>
-
-        <ul class="recent-posts">
-
-          <li>
-            <a href="#">
-              The Fear of being Ordinary
-            </a>
-          </li>
-
-          <li>
-            <a href="#">
-              Cybercrime: The Cost of Convenience
-            </a>
-          </li>
-
-          <li>
-            <a href="#">
-              Civic Sense: Missing in Action
-            </a>
-          </li>
-
-          <li>
-            <a href="#">
-              The Talent Flight ✈️
-            </a>
-          </li>
-
-        </ul>
 
       </div>
 
-    </aside>
+    </section>
+
 
 
     <!-- =========================
-         MAIN CONTENT
+         INTRODUCTION
          ========================= -->
 
-    <main class="main-content">
+    <section class="intro-section">
 
-      <!-- TOP HEADER -->
+      <div class="intro-card">
 
-      <header class="top-header">
+        <h2>
+          Welcome to <span>DissentVerse</span>
+        </h2>
 
-        <div class="header-brand">
-          <span class="black">Dissent</span><span class="pink">Verse</span>
-        </div>
+        <p>
+          DissentVerse is a space for exploring the experiences, pressures
+          and issues shaping young people's lives.
+        </p>
 
-        <div class="search-box">
+        <p>
+          From education and career choices to social expectations,
+          competition, technology and the everyday realities that often
+          go unnoticed, DissentVerse looks beyond easy explanations to
+          ask deeper questions.
+        </p>
 
-          <input
-            type="text"
-            id="articleSearch"
-            placeholder="Search articles..."
-            aria-label="Search articles"
-          >
+      </div>
 
-          <button
-            type="button"
-            aria-label="Search"
-            onclick="searchArticles()"
-          >
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </button>
-
-        </div>
-
-      </header>
+    </section>
 
 
-      <!-- NAVIGATION -->
 
-      <nav class="navigation">
+    <!-- =========================
+         LATEST ARTICLES
+         ========================= -->
 
-        <ul>
+    <section
+      class="latest-section"
+      id="latest-articles"
+    >
 
-          <li>
-            <a href="index.html">HOME</a>
-          </li>
+      <div class="section-heading">
 
-          <li>
-            <a href="about.html">ABOUT</a>
-          </li>
+        <h2>
+          Latest <span>Articles</span>
+        </h2>
 
-          <li>
-            <a href="articles.html">ARTICLES</a>
-          </li>
+        <p>
+          Thoughts, questions and perspectives worth exploring.
+        </p>
 
-          <li>
-            <a href="contact.html">CONTACT</a>
-          </li>
-
-        </ul>
-
-      </nav>
+      </div>
 
 
-      <!-- HERO -->
-
-      <section class="hero">
-
-        <div class="hero-content">
-
-          <img
-            class="hero-logo"
-            src="https://dissentverse.wordpress.com/wp-content/uploads/2025/08/cropped-img-20250811-wa0002.jpg"
-            alt="DissentVerse Logo"
-          >
-
-          <h1 class="hero-title">
-            <span class="black">Dissent</span><span class="pink">Verse</span>
-          </h1>
-
-          <p class="hero-tagline">
-            Where Dissent finds its Verse.
-          </p>
-
-        </div>
-
-      </section>
+      <div
+        class="articles-grid"
+        id="articlesGrid"
+      >
 
 
-      <!-- INTRODUCTION -->
+        {% assign latest_posts = site.posts | sort: "date" | reverse %}
 
-      <section class="intro-section">
 
-        <div class="intro-card">
+        {% for post in latest_posts limit: 6 %}
 
-          <h2>
-            Welcome to <span>DissentVerse</span>
-          </h2>
+        <article
+          class="article-card"
+          data-search="{{ post.title | downcase }} {{ post.content | strip_html | downcase }}"
+        >
+
+          <div class="article-date">
+
+            {{ post.date | date: "%d %B %Y" }}
+
+          </div>
+
+
+          <h3>
+
+            <a href="{{ post.url | relative_url }}">
+
+              {{ post.title }}
+
+            </a>
+
+          </h3>
+
 
           <p>
-            DissentVerse is a space for exploring the experiences, pressures
-            and issues shaping young people's lives.
+
+            {{ post.content
+              | strip_html
+              | strip_newlines
+              | truncatewords: 28
+            }}
+
           </p>
 
-          <p>
-            From education and career choices to social expectations,
-            competition, technology and the everyday realities that often
-            go unnoticed, DissentVerse looks beyond easy explanations to
-            ask deeper questions.
-          </p>
-
-        </div>
-
-      </section>
-
-
-      <!-- LATEST ARTICLES -->
-
-      <section class="latest-section" id="latest-articles">
-
-        <div class="section-heading">
-
-          <h2>
-            Latest <span>Articles</span>
-          </h2>
-
-          <p>
-            Thoughts, questions and perspectives worth exploring.
-          </p>
-
-        </div>
-
-
-        <div class="articles-grid" id="articlesGrid">
-
-
-          <!-- ARTICLE 1 -->
-
-          <article class="article-card">
-
-            <div class="article-date">
-              2026
-            </div>
-
-            <h3>
-              <a href="#">
-                The Fear of being Ordinary
-              </a>
-            </h3>
-
-            <p>
-              Exploring the pressure to constantly achieve, stand out and
-              become more than ordinary.
-            </p>
-
-            <a href="#" class="read-more">
-              Read Article →
-            </a>
-
-          </article>
-
-
-          <!-- ARTICLE 2 -->
-
-          <article class="article-card">
-
-            <div class="article-date">
-              2025
-            </div>
-
-            <h3>
-              <a href="#">
-                Cybercrime: The Cost of Convenience
-              </a>
-            </h3>
-
-            <p>
-              Looking beyond the convenience of technology and at the
-              risks that often come with it.
-            </p>
-
-            <a href="#" class="read-more">
-              Read Article →
-            </a>
-
-          </article>
-
-
-          <!-- ARTICLE 3 -->
-
-          <article class="article-card">
-
-            <div class="article-date">
-              2025
-            </div>
-
-            <h3>
-              <a href="#">
-                Civic Sense: Missing in Action
-              </a>
-            </h3>
-
-            <p>
-              A look at everyday behaviour and the small responsibilities
-              that shape the society around us.
-            </p>
-
-            <a href="#" class="read-more">
-              Read Article →
-            </a>
-
-          </article>
-
-
-          <!-- ARTICLE 4 -->
-
-          <article class="article-card">
-
-            <div class="article-date">
-              2025
-            </div>
-
-            <h3>
-              <a href="#">
-                The Talent Flight ✈️
-              </a>
-            </h3>
-
-            <p>
-              Exploring the movement of talent and the questions surrounding
-              opportunities, choices and migration.
-            </p>
-
-            <a href="#" class="read-more">
-              Read Article →
-            </a>
-
-          </article>
-
-
-        </div>
-
-      </section>
-
-
-      <!-- FOOTER -->
-
-      <footer class="footer">
-
-        <div class="footer-title">
-          <span class="black">Dissent</span><span class="pink">Verse</span>
-        </div>
-
-        <div class="footer-tagline">
-          Where Dissent finds its Verse.
-        </div>
-
-
-        <div class="footer-social">
-
-          <!-- Instagram intentionally left blank -->
-          <a href="" aria-label="Instagram">
-            <i class="fa-brands fa-instagram"></i>
-          </a>
 
           <a
-            href="https://pin.it/4ZKIbFLnW"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Pinterest"
+            href="{{ post.url | relative_url }}"
+            class="read-more"
           >
-            <i class="fa-brands fa-pinterest-p"></i>
+            Read Article →
           </a>
 
-          <a
-            href="https://t.me/dissentverse"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Telegram"
-          >
-            <i class="fa-brands fa-telegram"></i>
-          </a>
+        </article>
 
-          <a
-            href="https://www.youtube.com/@DissentVerse"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="YouTube"
-          >
-            <i class="fa-brands fa-youtube"></i>
-          </a>
+        {% endfor %}
 
-          <a
-            href="mailto:dissentverse@gmail.com"
-            aria-label="Email"
-          >
-            <i class="fa-solid fa-envelope"></i>
-          </a>
 
+        <div
+          class="no-results"
+          id="noResults"
+        >
+          No articles found.
         </div>
 
 
-        <div class="footer-copy">
-          © 2026 DissentVerse. All rights reserved.
-        </div>
+      </div>
 
-      </footer>
-
-    </main>
-
-  </div>
+    </section>
 
 
-  <!-- =========================
-       SEARCH SCRIPT
-       ========================= -->
 
-  <script>
+    <!-- =========================
+         FOOTER
+         ========================= -->
 
-    function searchArticles() {
+    <footer class="footer">
 
-      const searchInput =
-        document.getElementById("articleSearch");
+      <div class="footer-title">
 
-      const searchTerm =
-        searchInput.value.toLowerCase().trim();
+        <span class="black">Dissent</span><span class="pink">Verse</span>
 
-      const articles =
-        document.querySelectorAll(".article-card");
+      </div>
 
-      articles.forEach(function(article) {
 
-        const articleText =
-          article.textContent.toLowerCase();
+      <div class="footer-tagline">
 
-        if (articleText.includes(searchTerm)) {
-          article.style.display = "";
-        } else {
-          article.style.display = "none";
-        }
+        Where Dissent finds its Verse.
 
-      });
+      </div>
+
+
+      <div class="footer-social">
+
+
+        <!-- Instagram intentionally blank -->
+
+        <a href="" aria-label="Instagram">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+
+
+        <a
+          href="https://pin.it/4ZKIbFLnW"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Pinterest"
+        >
+          <i class="fa-brands fa-pinterest-p"></i>
+        </a>
+
+
+        <a
+          href="https://t.me/dissentverse"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Telegram"
+        >
+          <i class="fa-brands fa-telegram"></i>
+        </a>
+
+
+        <a
+          href="https://www.youtube.com/@DissentVerse"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="YouTube"
+        >
+          <i class="fa-brands fa-youtube"></i>
+        </a>
+
+
+        <a
+          href="mailto:dissentverse@gmail.com"
+          aria-label="Email"
+        >
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+
+
+      </div>
+
+
+      <div class="footer-copy">
+
+        © 2026 DissentVerse. All rights reserved.
+
+      </div>
+
+    </footer>
+
+
+  </main>
+
+</div>
+
+
+
+<!-- =========================
+     JAVASCRIPT
+     ========================= -->
+
+<script>
+
+  /* =========================
+     ARTICLE SEARCH
+     ========================= */
+
+  const searchInput =
+    document.getElementById("articleSearch");
+
+  const searchButton =
+    document.getElementById("searchButton");
+
+  const articleCards =
+    document.querySelectorAll(".article-card");
+
+  const noResults =
+    document.getElementById("noResults");
+
+
+  function searchArticles() {
+
+    const searchTerm =
+      searchInput.value.toLowerCase().trim();
+
+    let visibleArticles = 0;
+
+
+    articleCards.forEach(function(article) {
+
+      const searchableText =
+        article.getAttribute("data-search") || "";
+
+      if (
+        searchTerm === "" ||
+        searchableText.includes(searchTerm)
+      ) {
+
+        article.style.display = "";
+
+        visibleArticles++;
+
+      } else {
+
+        article.style.display = "none";
+
+      }
+
+    });
+
+
+    if (visibleArticles === 0 && searchTerm !== "") {
+
+      noResults.style.display = "block";
+
+    } else {
+
+      noResults.style.display = "none";
 
     }
 
+  }
 
-    document
-      .getElementById("articleSearch")
-      .addEventListener("keyup", function(event) {
 
-        if (event.key === "Enter") {
-          searchArticles();
-        }
+  searchInput.addEventListener(
+    "input",
+    searchArticles
+  );
 
-        if (this.value.trim() === "") {
 
-          document
-            .querySelectorAll(".article-card")
-            .forEach(function(article) {
-              article.style.display = "";
-            });
+  searchButton.addEventListener(
+    "click",
+    searchArticles
+  );
 
-        }
 
-      });
+  /* =========================
+     JOIN US EMAIL
+     ========================= */
 
-  </script>
+  function joinDissentVerse(event) {
+
+    event.preventDefault();
+
+    const email =
+      document.getElementById("joinEmail").value.trim();
+
+
+    if (!email) {
+      return;
+    }
+
+
+    const subject =
+      encodeURIComponent(
+        "Join DissentVerse"
+      );
+
+
+    const body =
+      encodeURIComponent(
+        "Hello DissentVerse,\n\n" +
+        "I would like to join the DissentVerse community.\n\n" +
+        "My email address is: " +
+        email
+      );
+
+
+    window.location.href =
+      "mailto:dissentverse@gmail.com" +
+      "?subject=" +
+      subject +
+      "&body=" +
+      body;
+
+  }
+
+</script>
+
 
 </body>
+
 </html>
