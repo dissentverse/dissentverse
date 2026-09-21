@@ -26,9 +26,21 @@ permalink: /articles.html
       color: #242024;
 
       background:
-        radial-gradient(circle at 10% 10%, rgba(248, 210, 230, 0.55), transparent 32%),
-        radial-gradient(circle at 90% 20%, rgba(225, 214, 245, 0.55), transparent 30%),
-        linear-gradient(135deg, #fff7fb, #f7f2fc);
+        radial-gradient(
+          circle at 10% 10%,
+          rgba(248, 210, 230, 0.55),
+          transparent 32%
+        ),
+        radial-gradient(
+          circle at 90% 20%,
+          rgba(225, 214, 245, 0.55),
+          transparent 30%
+        ),
+        linear-gradient(
+          135deg,
+          #fff7fb,
+          #f7f2fc
+        );
 
       min-height: 100vh;
 
@@ -36,7 +48,10 @@ permalink: /articles.html
       flex-direction: column;
     }
 
-    /* HEADER */
+
+    /* =========================
+       HEADER
+       ========================= */
 
     .site-header {
       background:
@@ -48,7 +63,9 @@ permalink: /articles.html
         );
 
       border-bottom: 1px solid rgba(150, 80, 130, 0.20);
+
       backdrop-filter: blur(8px);
+
       padding: 20px 30px;
     }
 
@@ -69,22 +86,16 @@ permalink: /articles.html
     .brand-row {
       display: flex;
       align-items: center;
-      gap: 11px;
-    }
-
-    .brand-logo {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 1px solid rgba(190, 150, 180, 0.25);
     }
 
     .brand {
       text-decoration: none;
+
       color: #171717;
+
       font-size: 25px;
       font-weight: bold;
+
       letter-spacing: -0.5px;
     }
 
@@ -94,8 +105,10 @@ permalink: /articles.html
 
     .tagline {
       margin-top: 4px;
-      margin-left: 53px;
+      margin-left: 0;
+
       color: #594250;
+
       font-size: 11px;
       font-style: italic;
     }
@@ -107,7 +120,9 @@ permalink: /articles.html
 
     .navigation a {
       color: #3f2838;
+
       text-decoration: none;
+
       font-size: 14px;
       font-weight: bold;
     }
@@ -116,12 +131,17 @@ permalink: /articles.html
       color: #7d1f58;
     }
 
-    /* PAGE */
+
+    /* =========================
+       ARTICLES PAGE
+       ========================= */
 
     .articles-page {
       width: 100%;
       max-width: 1100px;
+
       margin: 0 auto;
+
       padding: 75px 25px 100px;
 
       flex: 1;
@@ -129,45 +149,62 @@ permalink: /articles.html
 
     .page-heading {
       text-align: center;
+
       margin-bottom: 60px;
     }
 
     .page-label {
       color: #b02a72;
+
       font-size: 12px;
       font-weight: bold;
+
       letter-spacing: 3px;
       text-transform: uppercase;
+
       margin-bottom: 14px;
     }
 
     .page-heading h1 {
       font-size: 56px;
       line-height: 1.1;
+
       margin: 0 0 15px;
+
       color: #171717;
     }
 
     .page-heading p {
       margin: 0 auto;
+
       max-width: 600px;
+
       color: #6d6670;
+
       font-size: 18px;
       line-height: 1.7;
     }
 
-    /* ARTICLE CARDS */
+
+    /* =========================
+       ARTICLE CARDS
+       ========================= */
 
     .article-list {
       display: grid;
+
       grid-template-columns: repeat(2, 1fr);
+
       gap: 30px;
     }
 
     .article-card {
       background: rgba(255, 255, 255, 0.88);
+
       border: 1px solid rgba(190, 150, 180, 0.2);
+
       border-radius: 22px;
+
       padding: 32px;
 
       box-shadow:
@@ -190,31 +227,40 @@ permalink: /articles.html
 
     .article-date {
       color: #b02a72;
+
       font-size: 13px;
       font-weight: bold;
+
       margin-bottom: 15px;
     }
 
     .article-card h2 {
       font-size: 28px;
       line-height: 1.25;
+
       margin: 0 0 15px;
+
       color: #171717;
     }
 
     .article-card p {
       color: #635d64;
+
       font-size: 16px;
       line-height: 1.7;
+
       margin: 0;
     }
 
     .read-more {
       display: inline-block;
+
       margin-top: 25px;
 
       color: #b02a72;
+
       text-decoration: none;
+
       font-size: 15px;
       font-weight: bold;
     }
@@ -225,28 +271,41 @@ permalink: /articles.html
 
     .no-articles {
       background: rgba(255, 255, 255, 0.8);
+
       border: 1px solid rgba(190, 150, 180, 0.2);
+
       border-radius: 20px;
+
       padding: 60px 20px;
+
       text-align: center;
+
       color: #777;
     }
 
-    /* FOOTER */
+
+    /* =========================
+       FOOTER
+       ========================= */
 
     .site-footer {
       text-align: center;
+
       padding: 30px 20px 24px;
 
       border-top: 1px solid rgba(190, 150, 180, 0.2);
 
       color: #8b8389;
+
       font-size: 11px;
 
-      background: #ffffff;
+      background: #fff;
     }
 
-    /* MOBILE */
+
+    /* =========================
+       MOBILE
+       ========================= */
 
     @media (max-width: 750px) {
 
@@ -258,22 +317,13 @@ permalink: /articles.html
         align-items: flex-start;
       }
 
-      .brand-logo {
-        width: 36px;
-        height: 36px;
-      }
-
-      .brand-row {
-        gap: 9px;
-      }
-
       .brand {
         font-size: 21px;
       }
 
       .tagline {
         font-size: 10px;
-        margin-left: 45px;
+        margin-left: 0;
       }
 
       .navigation {
@@ -308,23 +358,22 @@ permalink: /articles.html
         font-size: 25px;
       }
     }
+
   </style>
 </head>
 
+
 <body>
 
+  <!-- HEADER -->
+
   <header class="site-header">
+
     <div class="header-inner">
 
       <div class="brand-block">
 
         <div class="brand-row">
-
-          <img
-            class="brand-logo"
-            src="https://dissentverse.wordpress.com/wp-content/uploads/2025/08/cropped-img-20250811-wa0002.jpg"
-            alt="DissentVerse logo"
-          >
 
           <a class="brand" href="{{ site.baseurl }}/">
             Dissent<span>Verse</span>
@@ -338,15 +387,29 @@ permalink: /articles.html
 
       </div>
 
+
       <nav class="navigation">
-        <a href="{{ site.baseurl }}/">Home</a>
-        <a href="{{ site.baseurl }}/about.html">About</a>
-        <a href="{{ site.baseurl }}/articles.html">Articles</a>
+
+        <a href="{{ site.baseurl }}/">
+          Home
+        </a>
+
+        <a href="{{ site.baseurl }}/about.html">
+          About
+        </a>
+
+        <a href="{{ site.baseurl }}/articles.html">
+          Articles
+        </a>
+
       </nav>
 
     </div>
+
   </header>
 
+
+  <!-- ARTICLES -->
 
   <main class="articles-page">
 
@@ -356,7 +419,9 @@ permalink: /articles.html
         DissentVerse
       </div>
 
-      <h1>Articles</h1>
+      <h1>
+        Articles
+      </h1>
 
       <p>
         Thoughts, questions and perspectives worth exploring.
@@ -367,51 +432,57 @@ permalink: /articles.html
 
     {% if site.posts.size > 0 %}
 
-      <section class="article-list">
+    <section class="article-list">
 
-        {% for post in site.posts %}
+      {% for post in site.posts %}
 
-          <article class="article-card">
+      <article class="article-card">
 
-            <div class="article-date">
-              {{ post.date | date: "%d %B %Y" }}
-            </div>
+        <div class="article-date">
+          {{ post.date | date: "%d %B %Y" }}
+        </div>
 
-            <h2>
-              {{ post.title }}
-            </h2>
+        <h2>
+          {{ post.title }}
+        </h2>
 
-            <p>
-              {{ post.excerpt | strip_html | truncatewords: 30 }}
-            </p>
+        <p>
+          {{ post.excerpt | strip_html | truncatewords: 30 }}
+        </p>
 
-            <a
-              class="read-more"
-              href="{{ post.url | relative_url }}"
-            >
-              Read Article →
-            </a>
+        <a
+          class="read-more"
+          href="{{ post.url | relative_url }}"
+        >
+          Read Article →
+        </a>
 
-          </article>
+      </article>
 
-        {% endfor %}
+      {% endfor %}
 
-      </section>
+    </section>
+
 
     {% else %}
 
-      <div class="no-articles">
-        No articles published yet.
-      </div>
+    <div class="no-articles">
+      No articles published yet.
+    </div>
 
     {% endif %}
 
   </main>
 
 
+  <!-- FOOTER -->
+
   <footer class="site-footer">
+
     © 2026 DissentVerse. All rights reserved.
+
   </footer>
+
 
 </body>
 </html>
