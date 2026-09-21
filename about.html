@@ -1,9 +1,5 @@
----
-permalink: /about.html
----
 <!DOCTYPE html>
 <html lang="en">
-
 
 <head>
 
@@ -15,7 +11,7 @@ permalink: /about.html
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Lora:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -249,6 +245,11 @@ permalink: /about.html
       color: #8f2860;
     }
 
+    .recent-loading {
+      font-size: 12px;
+      color: #8b8389;
+    }
+
     /* =========================
        MAIN
        ========================= */
@@ -256,6 +257,9 @@ permalink: /about.html
     .main-content {
       flex: 1;
       min-width: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     /* =========================
@@ -457,10 +461,12 @@ permalink: /about.html
 
     .statement p {
       margin: 0;
-      font-family: "Playfair Display", serif;
-      font-size: clamp(23px, 3vw, 34px);
-      line-height: 1.45;
-      font-style: italic;
+      font-family: "Lora", Georgia, serif;
+      font-size: clamp(20px, 2.4vw, 29px);
+      line-height: 1.55;
+      font-style: normal;
+      font-weight: 500;
+      letter-spacing: 0.05px;
       color: #30252d;
     }
 
@@ -538,9 +544,13 @@ permalink: /about.html
     footer {
       background: #ffffff;
       border-top: 1px solid #eee5ed;
-      padding: 40px 7%;
+      padding: 40px 7% 24px;
       text-align: center;
-      width: 100%;
+      min-height: 190px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: auto;
     }
 
     .footer-brand {
@@ -592,7 +602,10 @@ permalink: /about.html
     .footer-copy {
       font-size: 11px;
       color: #8b8389;
-      text-align: right;
+      text-align: center;
+      margin-top: auto;
+      padding-top: 22px;
+      width: 100%;
     }
 
     /* =========================
@@ -701,10 +714,6 @@ permalink: /about.html
 
       .closing-section {
         padding: 50px 22px;
-      }
-
-      .footer-copy {
-        text-align: right;
       }
 
     }
@@ -834,20 +843,8 @@ permalink: /about.html
       Recent Posts
     </div>
 
-    <ul class="recent-posts">
-
-      {% assign recent_posts = site.posts | sort: "date" | reverse %}
-
-      {% for post in recent_posts limit: 6 %}
-
-      <li>
-        <a href="{{ post.url | relative_url }}">
-          {{ post.title }}
-        </a>
-      </li>
-
-      {% endfor %}
-
+    <ul class="recent-posts" id="recentPosts">
+      <li class="recent-loading">Loading recent posts...</li>
     </ul>
 
   </aside>
@@ -885,18 +882,18 @@ permalink: /about.html
 
     <nav class="nav-bar">
 
-      <a href="{{ '/' | relative_url }}">
+      <a href="/dissentverse/">
         HOME
       </a>
 
       <a
-        href="{{ '/about.html' | relative_url }}"
+        href="/dissentverse/about.html"
         class="active"
       >
         ABOUT
       </a>
 
-      <a href="{{ '/articles.html' | relative_url }}">
+      <a href="/dissentverse/articles.html">
         ARTICLES
       </a>
 
@@ -1000,102 +997,334 @@ permalink: /about.html
     </section>
 
 
+    <!-- FOOTER -->
+
+    <footer>
+
+      <div class="footer-brand">
+        Dissent<span>Verse</span>
+      </div>
+
+      <div class="footer-tagline">
+        Where Dissent finds its Verse.
+      </div>
+
+      <div class="footer-social">
+
+        <a
+          href=""
+          aria-label="Instagram"
+        >
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+
+        <a
+          href="https://pin.it/4ZKIbFLnW"
+          target="_blank"
+          rel="noopener"
+          aria-label="Pinterest"
+        >
+          <i class="fa-brands fa-pinterest-p"></i>
+        </a>
+
+        <a
+          href="https://www.youtube.com/@DissentVerse"
+          target="_blank"
+          rel="noopener"
+          aria-label="YouTube"
+        >
+          <i class="fa-brands fa-youtube"></i>
+        </a>
+
+        <a
+          href="https://t.me/dissentverse"
+          target="_blank"
+          rel="noopener"
+          aria-label="Telegram"
+        >
+          <i class="fa-brands fa-telegram"></i>
+        </a>
+
+        <a
+          href="mailto:dissentverse@gmail.com"
+          aria-label="Email"
+        >
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+
+      </div>
+
+      <div class="footer-copy">
+        © 2026 DissentVerse. All rights reserved.
+      </div>
+
+    </footer>
+
   </main>
 
 </div>
 
 
-<!-- FOOTER -->
-
-<footer>
-
-  <div class="footer-brand">
-    Dissent<span>Verse</span>
-  </div>
-
-  <div class="footer-tagline">
-    Where Dissent finds its Verse.
-  </div>
-
-  <div class="footer-social">
-
-    <a href="" aria-label="Instagram">
-      <i class="fa-brands fa-instagram"></i>
-    </a>
-
-    <a
-      href="https://pin.it/4ZKIbFLnW"
-      target="_blank"
-      rel="noopener"
-      aria-label="Pinterest"
-    >
-      <i class="fa-brands fa-pinterest-p"></i>
-    </a>
-
-    <a
-      href="https://www.youtube.com/@DissentVerse"
-      target="_blank"
-      rel="noopener"
-      aria-label="YouTube"
-    >
-      <i class="fa-brands fa-youtube"></i>
-    </a>
-
-    <a
-      href="https://t.me/dissentverse"
-      target="_blank"
-      rel="noopener"
-      aria-label="Telegram"
-    >
-      <i class="fa-brands fa-telegram"></i>
-    </a>
-
-    <a
-      href="mailto:dissentverse@gmail.com"
-      aria-label="Email"
-    >
-      <i class="fa-solid fa-envelope"></i>
-    </a>
-
-  </div>
-
-  <div class="footer-copy">
-    © 2026 DissentVerse. All rights reserved.
-  </div>
-
-</footer>
-
-
-<!-- JOIN US SCRIPT -->
-
 <script>
 
-function joinDissentVerse(event) {
+  /* =========================
+     JOIN US
+     ========================= */
 
-  event.preventDefault();
+  function joinDissentVerse(event) {
 
-  const email =
-    document.getElementById("joinEmail").value.trim();
+    event.preventDefault();
 
-  if (!email) return;
+    const emailInput = document.getElementById("joinEmail");
 
-  const subject =
-    encodeURIComponent("Join DissentVerse");
+    if (!emailInput) {
+      return;
+    }
 
-  const body =
-    encodeURIComponent(
-      "I would like to join DissentVerse.\n\nMy email: " + email
-    );
+    const email = emailInput.value.trim();
 
-  window.location.href =
-    "mailto:dissentverse@gmail.com?subject=" +
-    subject +
-    "&body=" +
-    body;
+    if (!email) {
+      return;
+    }
 
-}
+    alert("Thank you for joining DissentVerse!");
+
+    emailInput.value = "";
+
+  }
+
+
+  /* =========================
+     RECENT POSTS
+     ========================= */
+
+  const recentPostsList = document.getElementById("recentPosts");
+
+  const repoApi =
+    "https://api.github.com/repos/dissentverse/dissentverse/contents/_posts?ref=main";
+
+
+  function parseFrontMatter(markdown) {
+
+    const result = {};
+
+    if (!markdown.startsWith("---")) {
+      return result;
+    }
+
+    const end = markdown.indexOf("\n---", 3);
+
+    if (end === -1) {
+      return result;
+    }
+
+    const frontMatter = markdown.slice(3, end);
+
+    const titleMatch =
+      frontMatter.match(/^title:\s*["']?(.*?)["']?\s*$/m);
+
+    const dateMatch =
+      frontMatter.match(/^date:\s*["']?(.*?)["']?\s*$/m);
+
+    const permalinkMatch =
+      frontMatter.match(/^permalink:\s*["']?(.*?)["']?\s*$/m);
+
+    if (titleMatch) {
+      result.title = titleMatch[1].trim();
+    }
+
+    if (dateMatch) {
+      result.date = dateMatch[1].trim();
+    }
+
+    if (permalinkMatch) {
+      result.permalink = permalinkMatch[1].trim();
+    }
+
+    return result;
+
+  }
+
+
+  function slugFromFilename(filename) {
+
+    return filename
+      .replace(/\.(md|markdown)$/i, "")
+      .replace(/^\d{4}-\d{2}-\d{2}-/, "");
+
+  }
+
+
+  function defaultPostUrl(filename, date) {
+
+    const dateMatch =
+      date && date.match(/^(\d{4})-(\d{2})-(\d{2})/);
+
+    if (dateMatch) {
+
+      const year = dateMatch[1];
+      const month = dateMatch[2];
+      const day = dateMatch[3];
+      const slug = slugFromFilename(filename);
+
+      return "/dissentverse/" +
+        year + "/" +
+        month + "/" +
+        day + "/" +
+        slug + ".html";
+
+    }
+
+    return "/dissentverse/";
+
+  }
+
+
+  async function loadRecentPosts() {
+
+    try {
+
+      const response = await fetch(repoApi);
+
+      if (!response.ok) {
+        throw new Error("Could not load posts.");
+      }
+
+      const files = await response.json();
+
+      const markdownFiles = files.filter(function(file) {
+
+        return (
+          file.type === "file" &&
+          /\.(md|markdown)$/i.test(file.name)
+        );
+
+      });
+
+
+      const posts = await Promise.all(
+
+        markdownFiles.map(async function(file) {
+
+          try {
+
+            const rawResponse =
+              await fetch(file.download_url);
+
+            if (!rawResponse.ok) {
+              return null;
+            }
+
+            const markdown =
+              await rawResponse.text();
+
+            const frontMatter =
+              parseFrontMatter(markdown);
+
+            let url =
+              defaultPostUrl(
+                file.name,
+                frontMatter.date
+              );
+
+
+            if (frontMatter.permalink) {
+
+              const permalink =
+                frontMatter.permalink.trim();
+
+              url =
+                permalink.startsWith("/")
+                  ? "/dissentverse" + permalink
+                  : "/dissentverse/" + permalink;
+
+            }
+
+
+            return {
+
+              title:
+                frontMatter.title ||
+                slugFromFilename(file.name),
+
+              date:
+                frontMatter.date || "",
+
+              url: url
+
+            };
+
+          } catch (error) {
+
+            return null;
+
+          }
+
+        })
+
+      );
+
+
+      const validPosts =
+        posts
+          .filter(function(post) {
+            return post !== null;
+          })
+          .sort(function(a, b) {
+
+            return (
+              new Date(b.date || 0) -
+              new Date(a.date || 0)
+            );
+
+          })
+          .slice(0, 6);
+
+
+      recentPostsList.innerHTML = "";
+
+
+      if (validPosts.length === 0) {
+
+        recentPostsList.innerHTML =
+          '<li class="recent-loading">Recent posts unavailable.</li>';
+
+        return;
+
+      }
+
+
+      validPosts.forEach(function(post) {
+
+        const li =
+          document.createElement("li");
+
+        const link =
+          document.createElement("a");
+
+        link.href = post.url;
+        link.textContent = post.title;
+
+        li.appendChild(link);
+        recentPostsList.appendChild(li);
+
+      });
+
+
+    } catch (error) {
+
+      recentPostsList.innerHTML =
+        '<li class="recent-loading">Recent posts unavailable.</li>';
+
+    }
+
+  }
+
+
+  loadRecentPosts();
 
 </script>
+
 
 </body>
 </html>
