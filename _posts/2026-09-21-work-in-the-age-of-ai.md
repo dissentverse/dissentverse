@@ -29,9 +29,7 @@ According to various studies, AI is expected to drive the creation of 170 millio
 To thrive in an AI-driven world, we need to focus on developing skills that are difficult to automate, such as:
 
 1. Creativity: AI may be able to perform routine tasks, but it lacks the creativity and imagination that humans take for granted.
-
 2. Empathy: As AI becomes more prevalent, the ability to understand and connect with others on a human level will become increasingly valuable.
-
 3. Complex problem-solving: AI can process vast amounts of data, but it often requires human insight and judgment to make sense of it.
 
 **Collaborating with AI Systems**
@@ -39,7 +37,6 @@ To thrive in an AI-driven world, we need to focus on developing skills that are 
 Rather than viewing AI as a threat, we should learn how to collaborate with AI systems and leverage their capabilities to augment our work. By doing so, we can:
 
 1. Unlock new levels of productivity: AI can help us automate routine tasks and free up time for more strategic and creative work.
-
 2. Drive innovation: AI can help us analyze vast amounts of data and identify patterns and trends that we might otherwise miss.
 
 **Educating Ourselves and Others**
