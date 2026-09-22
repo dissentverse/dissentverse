@@ -1,5 +1,4 @@
 ---
-permalink: /articles.html
 ---
 
 <!DOCTYPE html>
@@ -8,42 +7,27 @@ permalink: /articles.html
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Articles | DissentVerse</title>
+  <title>{{ page.title }} | DissentVerse</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Lora:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
   <style>
+
     * {
       box-sizing: border-box;
     }
 
-    html,
     body {
       margin: 0;
-      min-height: 100%;
-    }
-
-    body {
       font-family: Georgia, "Times New Roman", serif;
       color: #242024;
 
       background:
-        radial-gradient(
-          circle at 10% 10%,
-          rgba(248, 210, 230, 0.55),
-          transparent 32%
-        ),
-        radial-gradient(
-          circle at 90% 20%,
-          rgba(225, 214, 245, 0.55),
-          transparent 30%
-        ),
-        linear-gradient(
-          135deg,
-          #fff7fb,
-          #f7f2fc
-        );
+        radial-gradient(circle at 10% 10%, rgba(248,210,230,.55), transparent 32%),
+        radial-gradient(circle at 90% 20%, rgba(225,214,245,.55), transparent 30%),
+        linear-gradient(135deg,#fff7fb,#f7f2fc);
 
       min-height: 100vh;
-
       display: flex;
       flex-direction: column;
     }
@@ -51,7 +35,7 @@ permalink: /articles.html
 
     /* =========================
        HEADER
-       ========================= */
+    ========================= */
 
     .site-header {
       background:
@@ -62,344 +46,591 @@ permalink: /articles.html
           #ead8e8
         );
 
-      border-bottom: 1px solid rgba(150, 80, 130, 0.20);
-
+      border-bottom: 1px solid rgba(150,80,130,.20);
       backdrop-filter: blur(8px);
 
       padding: 20px 30px;
     }
 
     .header-inner {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
 
       display: flex;
-      justify-content: space-between;
       align-items: center;
-    }
+      justify-content: space-between;
 
-    .brand-block {
-      display: flex;
-      flex-direction: column;
+      gap: 30px;
     }
 
     .brand-row {
       display: flex;
       align-items: center;
+      gap: 14px;
+    }
+
+    .site-logo {
+      width: 52px;
+      height: 52px;
+
+      border-radius: 50%;
+      object-fit: cover;
+
+      border: 2px solid rgba(255,255,255,.75);
+      box-shadow: 0 4px 15px rgba(80,30,70,.15);
     }
 
     .brand {
-      text-decoration: none;
-
-      color: #171717;
-
-      font-size: 25px;
-      font-weight: bold;
-
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 31px;
+      font-weight: 700;
+      color: #241b24;
       letter-spacing: -0.5px;
     }
 
+    /* Verse restored to the DissentVerse pink theme */
     .brand span {
-      color: #7d1f58;
+      color: #b96b9f;
     }
 
     .tagline {
-      margin-top: 4px;
-      margin-left: 0;
+      margin-top: 2px;
 
-      color: #594250;
+      font-family: "DM Sans", sans-serif;
+      font-size: 12px;
+      color: #4d3045;
 
-      font-size: 11px;
-      font-style: italic;
+      letter-spacing: .4px;
     }
 
-    .navigation {
+    nav {
       display: flex;
       gap: 24px;
+      align-items: center;
     }
 
-    .navigation a {
-      color: #3f2838;
-
+    nav a {
       text-decoration: none;
 
-      font-size: 14px;
-      font-weight: bold;
+      font-family: "DM Sans", sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+
+      color: #3f2838;
+
+      letter-spacing: .6px;
     }
 
-    .navigation a:hover {
-      color: #7d1f58;
+    nav a:hover {
+      color: #ffffff;
     }
 
 
     /* =========================
-       ARTICLES PAGE
-       ========================= */
+       ARTICLE
+    ========================= */
 
-    .articles-page {
+    .article-wrapper {
       width: 100%;
-      max-width: 1100px;
+      max-width: 900px;
 
-      margin: 0 auto;
-
-      padding: 75px 25px 100px;
-
-      flex: 1;
+      margin: 60px auto;
+      padding: 0 24px;
     }
 
-    .page-heading {
-      text-align: center;
-
-      margin-bottom: 60px;
-    }
-
-    .page-label {
-      color: #b02a72;
+    .article-date {
+      font-family: "DM Sans", sans-serif;
 
       font-size: 12px;
-      font-weight: bold;
+      font-weight: 600;
 
-      letter-spacing: 3px;
+      color: #9a6789;
+
+      letter-spacing: .7px;
       text-transform: uppercase;
 
       margin-bottom: 14px;
     }
 
-    .page-heading h1 {
-      font-size: 56px;
-      line-height: 1.1;
+    .article-title {
+      margin: 0 0 25px;
 
-      margin: 0 0 15px;
+      font-family: "Playfair Display", Georgia, serif;
 
-      color: #171717;
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1.08;
+
+      font-weight: 700;
+
+      color: #2d2029;
+      letter-spacing: -1px;
     }
 
-    .page-heading p {
-      margin: 0 auto;
+    .featured-image {
+      width: 100%;
 
-      max-width: 600px;
+      max-height: 520px;
 
-      color: #6d6670;
+      object-fit: cover;
+
+      border-radius: 16px;
+
+      margin: 15px 0 35px;
+
+      box-shadow:
+        0 15px 40px rgba(80,45,75,.12);
+    }
+
+    .article-content {
+      font-family: "Lora", Georgia, serif;
 
       font-size: 18px;
-      line-height: 1.7;
+      line-height: 1.85;
+
+      color: #302830;
+    }
+
+    .article-content p {
+      margin: 0 0 25px;
+    }
+
+    .article-content h2 {
+      font-family: "Playfair Display", Georgia, serif;
+
+      font-size: 30px;
+
+      margin-top: 45px;
+      margin-bottom: 18px;
+
+      color: #33232e;
+    }
+
+    .article-content h3 {
+      font-family: "Playfair Display", Georgia, serif;
+
+      font-size: 24px;
+
+      margin-top: 35px;
+      margin-bottom: 15px;
+
+      color: #33232e;
+    }
+
+    .article-content a {
+      color: #a25288;
+    }
+
+    .article-content blockquote {
+      margin: 35px 0;
+
+      padding: 20px 25px;
+
+      border-left: 4px solid #b96b9f;
+
+      background: rgba(255,255,255,.65);
+
+      font-style: italic;
     }
 
 
     /* =========================
-       ARTICLE CARDS
-       ========================= */
+       ARTICLE ACTIONS
+    ========================= */
 
-    .article-list {
-      display: grid;
+    .article-actions {
+      display: flex;
+      gap: 12px;
 
-      grid-template-columns: repeat(2, 1fr);
+      margin-top: 45px;
+      padding-top: 25px;
 
-      gap: 30px;
+      border-top: 1px solid rgba(120,80,110,.18);
     }
 
-    .article-card {
-      background: rgba(255, 255, 255, 0.88);
+    .action-btn {
+      border: 1px solid rgba(150,80,130,.25);
 
-      border: 1px solid rgba(190, 150, 180, 0.2);
+      background: rgba(255,255,255,.75);
 
-      border-radius: 22px;
+      color: #59384f;
 
-      padding: 32px;
+      border-radius: 999px;
 
-      box-shadow:
-        0 12px 35px rgba(100, 60, 100, 0.07);
+      padding: 10px 18px;
 
-      transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        border-color 0.25s ease;
+      font-family: "DM Sans", sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+
+      cursor: pointer;
+
+      transition: .2s ease;
     }
 
-    .article-card:hover {
-      transform: translateY(-4px);
-
-      border-color: rgba(176, 42, 114, 0.30);
-
-      box-shadow:
-        0 18px 40px rgba(100, 60, 100, 0.11);
+    .action-btn:hover {
+      background: #b96b9f;
+      color: white;
     }
 
-    .article-date {
-      color: #b02a72;
+    .action-btn.liked {
+      background: #b96b9f;
+      color: white;
+    }
+
+
+    /* =========================
+       COMMENTS
+    ========================= */
+
+    .comments-section {
+      margin-top: 60px;
+
+      padding-top: 35px;
+
+      border-top: 1px solid rgba(120,80,110,.18);
+    }
+
+    .comments-title {
+      font-family: "Playfair Display", Georgia, serif;
+
+      font-size: 32px;
+
+      color: #30232d;
+
+      margin-bottom: 25px;
+    }
+
+    .comment-box {
+      background: rgba(255,255,255,.78);
+
+      border: 1px solid rgba(150,80,130,.16);
+
+      border-radius: 14px;
+
+      padding: 22px;
+
+      box-shadow: 0 10px 30px rgba(80,45,75,.06);
+    }
+
+    .comment-box input,
+    .comment-box textarea {
+      width: 100%;
+
+      border: 1px solid #ddd1da;
+
+      border-radius: 8px;
+
+      padding: 12px 14px;
+
+      font-family: "DM Sans", sans-serif;
+
+      font-size: 14px;
+
+      outline: none;
+
+      background: white;
+
+      color: #302830;
+    }
+
+    .comment-box input:focus,
+    .comment-box textarea:focus {
+      border-color: #b96b9f;
+    }
+
+    .comment-box textarea {
+      min-height: 130px;
+
+      resize: vertical;
+
+      margin-top: 12px;
+    }
+
+    .anonymous-row {
+      margin-top: 12px;
+
+      display: flex;
+      align-items: center;
+
+      gap: 8px;
+
+      font-family: "DM Sans", sans-serif;
 
       font-size: 13px;
-      font-weight: bold;
 
-      margin-bottom: 15px;
+      color: #66535f;
     }
 
-    .article-card h2 {
-      font-size: 28px;
-      line-height: 1.25;
-
-      margin: 0 0 15px;
-
-      color: #171717;
+    .anonymous-row input {
+      width: auto;
     }
 
-    .article-card p {
-      color: #635d64;
+    .post-comment-btn {
+      margin-top: 15px;
 
-      font-size: 16px;
-      line-height: 1.7;
+      border: none;
 
-      margin: 0;
+      background: #b96b9f;
+
+      color: white;
+
+      border-radius: 999px;
+
+      padding: 11px 20px;
+
+      font-family: "DM Sans", sans-serif;
+
+      font-size: 13px;
+
+      font-weight: 600;
+
+      cursor: pointer;
     }
 
-    .read-more {
-      display: inline-block;
-
-      margin-top: 25px;
-
-      color: #b02a72;
-
-      text-decoration: none;
-
-      font-size: 15px;
-      font-weight: bold;
+    .post-comment-btn:hover {
+      background: #9f5685;
     }
 
-    .read-more:hover {
-      text-decoration: underline;
+    .comment-note {
+      margin-top: 12px;
+
+      font-family: "DM Sans", sans-serif;
+
+      font-size: 12px;
+
+      color: #8a7b85;
     }
 
-    .no-articles {
-      background: rgba(255, 255, 255, 0.8);
 
-      border: 1px solid rgba(190, 150, 180, 0.2);
+    /* =========================
+       COMMENT CHOICE
+    ========================= */
 
-      border-radius: 20px;
+    .comment-choice {
+      display: none;
 
-      padding: 60px 20px;
+      position: fixed;
+      inset: 0;
+
+      background: rgba(35, 20, 32, .45);
+
+      z-index: 9999;
+
+      align-items: center;
+      justify-content: center;
+
+      padding: 20px;
+    }
+
+    .comment-choice.show {
+      display: flex;
+    }
+
+    .comment-choice-box {
+      width: 100%;
+      max-width: 400px;
+
+      background: #ffffff;
+
+      border-radius: 18px;
+
+      padding: 28px;
+
+      box-shadow: 0 20px 60px rgba(50, 25, 45, .25);
 
       text-align: center;
+    }
 
-      color: #777;
+    .comment-choice-box h3 {
+      margin: 0 0 8px;
+
+      font-family: "Playfair Display", Georgia, serif;
+
+      font-size: 25px;
+
+      color: #30232d;
+    }
+
+    .comment-choice-box p {
+      margin: 0 0 22px;
+
+      font-family: "DM Sans", sans-serif;
+
+      font-size: 13px;
+
+      color: #7d6c77;
+    }
+
+    .comment-choice-box button {
+      width: 100%;
+
+      border: none;
+
+      border-radius: 999px;
+
+      padding: 12px 16px;
+
+      margin-top: 10px;
+
+      background: #b96b9f;
+
+      color: white;
+
+      font-family: "DM Sans", sans-serif;
+
+      font-size: 13px;
+
+      font-weight: 600;
+
+      cursor: pointer;
+    }
+
+    .comment-choice-box button:hover {
+      background: #9f5685;
+    }
+
+    .comment-choice-box .close-choice {
+      background: transparent;
+
+      color: #7d6c77;
+
+      border: 1px solid #ddd1da;
+    }
+
+    .comment-choice-box .close-choice:hover {
+      background: #f8f1f6;
+
+      color: #59384f;
     }
 
 
     /* =========================
        FOOTER
-       ========================= */
+    ========================= */
 
     .site-footer {
+      margin-top: auto;
+
+      padding: 30px 20px;
+
       text-align: center;
 
-      padding: 30px 20px 24px;
-
-      border-top: 1px solid rgba(190, 150, 180, 0.2);
-
-      color: #8b8389;
+      font-family: "DM Sans", sans-serif;
 
       font-size: 11px;
 
-      background: #fff;
+      color: #8b8389;
+
+      border-top: 1px solid #eee5ed;
+
+      background: rgba(255,255,255,.65);
     }
 
 
     /* =========================
        MOBILE
-       ========================= */
+    ========================= */
 
-    @media (max-width: 750px) {
+    @media (max-width: 700px) {
 
       .site-header {
-        padding: 18px 20px;
+        padding: 18px 18px;
       }
 
       .header-inner {
+        flex-direction: column;
+
         align-items: flex-start;
+
+        gap: 16px;
       }
 
       .brand {
-        font-size: 21px;
+        font-size: 27px;
       }
 
-      .tagline {
-        font-size: 10px;
-        margin-left: 0;
+      .site-logo {
+        width: 46px;
+        height: 46px;
       }
 
-      .navigation {
-        gap: 12px;
+      nav {
+        width: 100%;
+
+        justify-content: flex-start;
+
+        gap: 18px;
       }
 
-      .navigation a {
-        font-size: 12px;
+      .article-wrapper {
+        margin: 40px auto;
+        padding: 0 18px;
       }
 
-      .articles-page {
-        padding: 55px 20px 70px;
+      .article-title {
+        font-size: 38px;
       }
 
-      .page-heading h1 {
-        font-size: 42px;
+      .article-content {
+        font-size: 17px;
+        line-height: 1.8;
       }
 
-      .page-heading p {
-        font-size: 16px;
+      .article-actions {
+        flex-wrap: wrap;
       }
 
-      .article-list {
-        grid-template-columns: 1fr;
-      }
-
-      .article-card {
-        padding: 27px;
-      }
-
-      .article-card h2 {
-        font-size: 25px;
-      }
     }
 
   </style>
 </head>
 
-
 <body>
 
-  <!-- HEADER -->
+
+  <!-- =========================
+       HEADER
+  ========================= -->
 
   <header class="site-header">
 
     <div class="header-inner">
 
-      <div class="brand-block">
+      <div class="brand-row">
 
-        <div class="brand-row">
+        <img
+          class="site-logo"
+          src="https://dissentverse.wordpress.com/wp-content/uploads/2025/08/cropped-img-20250811-wa0002.jpg"
+          alt="DissentVerse logo"
+        >
 
-          <a class="brand" href="{{ site.baseurl }}/">
+        <div>
+
+          <div class="brand">
             Dissent<span>Verse</span>
-          </a>
+          </div>
 
-        </div>
+          <div class="tagline">
+            Where Dissent finds its Verse.
+          </div>
 
-        <div class="tagline">
-          Where Dissent finds its Verse.
         </div>
 
       </div>
 
 
-      <nav class="navigation">
+      <nav>
 
-        <a href="{{ site.baseurl }}/">
-          Home
+        <a href="/dissentverse/">
+          HOME
         </a>
 
-        <a href="{{ site.baseurl }}/about.html">
-          About
+        <a href="/dissentverse/about.html">
+          ABOUT
         </a>
 
-        <a href="{{ site.baseurl }}/articles.html">
-          Articles
+        <a href="/dissentverse/articles.html">
+          ARTICLES
         </a>
 
       </nav>
@@ -409,79 +640,666 @@ permalink: /articles.html
   </header>
 
 
-  <!-- ARTICLES -->
 
-  <main class="articles-page">
+  <!-- =========================
+       ARTICLE
+  ========================= -->
 
-    <section class="page-heading">
+  <main class="article-wrapper">
 
-      <div class="page-label">
-        DissentVerse
-      </div>
-
-      <h1>
-        Articles
-      </h1>
-
-      <p>
-        Thoughts, questions and perspectives worth exploring.
-      </p>
-
-    </section>
-
-
-    {% if site.posts.size > 0 %}
-
-    <section class="article-list">
-
-      {% for post in site.posts %}
-
-      <article class="article-card">
-
-        <div class="article-date">
-          {{ post.date | date: "%d %B %Y" }}
-        </div>
-
-        <h2>
-          {{ post.title }}
-        </h2>
-
-        <p>
-          {{ post.excerpt | strip_html | truncatewords: 30 }}
-        </p>
-
-        <a
-          class="read-more"
-          href="{{ post.url | relative_url }}"
-        >
-          Read Article →
-        </a>
-
-      </article>
-
-      {% endfor %}
-
-    </section>
-
-
-    {% else %}
-
-    <div class="no-articles">
-      No articles published yet.
+    <div class="article-date">
+      {{ page.date | date: "%d %B %Y" }}
     </div>
 
+    <h1 class="article-title">
+      {{ page.title }}
+    </h1>
+
+
+    {% if page.image %}
+
+      <img
+        class="featured-image"
+        src="{{ page.image }}"
+        alt="{{ page.title }}"
+      >
+
     {% endif %}
+
+
+    <article class="article-content">
+
+      {{ content }}
+
+    </article>
+
+
+
+    <!-- =========================
+         ARTICLE ACTIONS
+    ========================= -->
+
+    <div class="article-actions">
+
+      <button
+        class="action-btn"
+        id="likeButton"
+        type="button"
+      >
+        ♡ Like
+      </button>
+
+
+      <button
+        class="action-btn"
+        id="commentButton"
+        type="button"
+      >
+        💬 Comment
+      </button>
+
+
+      <button
+        class="action-btn"
+        id="shareButton"
+        type="button"
+      >
+        ↗ Share
+      </button>
+
+    </div>
+
+
+
+    <!-- =========================
+         COMMENT CHOICE POPUP
+    ========================= -->
+
+    <div
+      id="commentChoice"
+      class="comment-choice"
+    >
+
+      <div class="comment-choice-box">
+
+        <h3>
+          Comment on this article
+        </h3>
+
+        <p>
+          Choose how you want to continue.
+        </p>
+
+
+        <button
+          id="anonymousCommentBtn"
+          type="button"
+        >
+          Continue as Anonymous
+        </button>
+
+
+        <button
+          id="createAccountBtn"
+          type="button"
+        >
+          Create an Account
+        </button>
+
+
+        <button
+          id="signInBtn"
+          type="button"
+        >
+          Sign In
+        </button>
+
+
+        <button
+          id="closeCommentChoice"
+          class="close-choice"
+          type="button"
+        >
+          Cancel
+        </button>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         COMMENTS
+    ========================= -->
+
+    <section
+      class="comments-section"
+      id="commentsSection"
+    >
+
+      <h2 class="comments-title">
+        Comments
+      </h2>
+
+
+      <div class="comment-box">
+
+        <input
+          type="text"
+          id="commentName"
+          placeholder="Your name"
+        >
+
+
+        <textarea
+          id="commentText"
+          placeholder="Write your comment..."
+        ></textarea>
+
+
+        <label class="anonymous-row">
+
+          <input
+            type="checkbox"
+            id="anonymousCheckbox"
+          >
+
+          Comment anonymously
+
+        </label>
+
+
+        <button
+          class="post-comment-btn"
+          id="postCommentButton"
+          type="button"
+        >
+          Post Comment
+        </button>
+
+
+        <div class="comment-note">
+          Comments will appear here once comment storage is connected.
+        </div>
+
+      </div>
+
+    </section>
 
   </main>
 
 
-  <!-- FOOTER -->
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
 
   <footer class="site-footer">
 
-    © 2026 DissentVerse. All rights reserved.
+    © {{ "now" | date: "%Y" }} DissentVerse. All rights reserved.
 
   </footer>
+
+
+
+  <!-- =========================
+       SUPABASE
+  ========================= -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+  <script>
+
+    const SUPABASE_URL =
+      "https://yplvpgigfkihgmyfsqyl.supabase.co/rest/v1/";
+
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_wnafq5zQ9Y2b9WsH-j5U9Q_WmcgYV1L";
+
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+      );
+
+
+
+    /* =========================
+       BASIC ELEMENTS
+    ========================= */
+
+    const likeButton =
+      document.getElementById("likeButton");
+
+    const commentButton =
+      document.getElementById("commentButton");
+
+    const shareButton =
+      document.getElementById("shareButton");
+
+    const anonymousCheckbox =
+      document.getElementById("anonymousCheckbox");
+
+    const commentName =
+      document.getElementById("commentName");
+
+    const postCommentButton =
+      document.getElementById("postCommentButton");
+
+
+
+    /* =========================
+       COMMENT CHOICE ELEMENTS
+    ========================= */
+
+    const commentChoice =
+      document.getElementById("commentChoice");
+
+    const anonymousCommentBtn =
+      document.getElementById("anonymousCommentBtn");
+
+    const createAccountBtn =
+      document.getElementById("createAccountBtn");
+
+    const signInBtn =
+      document.getElementById("signInBtn");
+
+    const closeCommentChoice =
+      document.getElementById("closeCommentChoice");
+
+
+
+    /* =========================
+       LIKE
+    ========================= */
+
+    let liked = false;
+
+
+    likeButton.addEventListener(
+      "click",
+      function () {
+
+        liked = !liked;
+
+
+        if (liked) {
+
+          likeButton.textContent =
+            "♥ Liked";
+
+          likeButton.classList.add(
+            "liked"
+          );
+
+        } else {
+
+          likeButton.textContent =
+            "♡ Like";
+
+          likeButton.classList.remove(
+            "liked"
+          );
+
+        }
+
+      }
+    );
+
+
+
+    /* =========================
+       COMMENT BUTTON
+    ========================= */
+
+    commentButton.addEventListener(
+      "click",
+      function () {
+
+        commentChoice.classList.add(
+          "show"
+        );
+
+      }
+    );
+
+
+
+    /* =========================
+       CLOSE COMMENT CHOICE
+    ========================= */
+
+    closeCommentChoice.addEventListener(
+      "click",
+      function () {
+
+        commentChoice.classList.remove(
+          "show"
+        );
+
+      }
+    );
+
+
+    commentChoice.addEventListener(
+      "click",
+      function (event) {
+
+        if (
+          event.target === commentChoice
+        ) {
+
+          commentChoice.classList.remove(
+            "show"
+          );
+
+        }
+
+      }
+    );
+
+
+
+    /* =========================
+       CONTINUE AS ANONYMOUS
+    ========================= */
+
+    anonymousCommentBtn.addEventListener(
+      "click",
+      async function () {
+
+        anonymousCommentBtn.disabled =
+          true;
+
+        anonymousCommentBtn.textContent =
+          "Connecting...";
+
+
+        try {
+
+          const {
+            data,
+            error
+          } =
+            await supabaseClient.auth
+              .signInAnonymously();
+
+
+          if (error) {
+
+            console.error(
+              "Anonymous sign-in error:",
+              error
+            );
+
+            alert(
+              "We could not start anonymous commenting. Please try again."
+            );
+
+            anonymousCommentBtn.disabled =
+              false;
+
+            anonymousCommentBtn.textContent =
+              "Continue as Anonymous";
+
+            return;
+
+          }
+
+
+          console.log(
+            "Anonymous user created:",
+            data.user.id
+          );
+
+
+          commentChoice.classList.remove(
+            "show"
+          );
+
+
+          document
+            .getElementById(
+              "commentsSection"
+            )
+            .scrollIntoView({
+              behavior: "smooth"
+            });
+
+
+          setTimeout(
+            function () {
+
+              commentName.value =
+                "Anonymous";
+
+              commentName.disabled =
+                true;
+
+              document
+                .getElementById(
+                  "commentText"
+                )
+                .focus();
+
+            },
+            500
+          );
+
+
+        } catch (error) {
+
+          console.error(
+            "Anonymous sign-in error:",
+            error
+          );
+
+          alert(
+            "Something went wrong. Please try again."
+          );
+
+          anonymousCommentBtn.disabled =
+            false;
+
+          anonymousCommentBtn.textContent =
+            "Continue as Anonymous";
+
+        }
+
+      }
+    );
+
+
+
+    /* =========================
+       CREATE ACCOUNT
+       ========================= */
+
+    createAccountBtn.addEventListener(
+      "click",
+      function () {
+
+        alert(
+          "Account creation will be added next."
+        );
+
+      }
+    );
+
+
+
+    /* =========================
+       SIGN IN
+       ========================= */
+
+    signInBtn.addEventListener(
+      "click",
+      function () {
+
+        alert(
+          "Sign in will be added next."
+        );
+
+      }
+    );
+
+
+
+    /* =========================
+       SHARE
+    ========================= */
+
+    shareButton.addEventListener(
+      "click",
+      async function () {
+
+        const shareData = {
+
+          title: document.title,
+
+          text:
+            "Read this article on DissentVerse.",
+
+          url:
+            window.location.href
+
+        };
+
+
+        try {
+
+          if (navigator.share) {
+
+            await navigator.share(
+              shareData
+            );
+
+          } else {
+
+            await navigator.clipboard.writeText(
+              window.location.href
+            );
+
+            alert(
+              "Article link copied."
+            );
+
+          }
+
+        } catch (error) {
+
+          console.log(
+            "Share cancelled."
+          );
+
+        }
+
+      }
+    );
+
+
+
+    /* =========================
+       ANONYMOUS CHECKBOX
+    ========================= */
+
+    anonymousCheckbox.addEventListener(
+      "change",
+      function () {
+
+        if (
+          anonymousCheckbox.checked
+        ) {
+
+          commentName.value =
+            "Anonymous";
+
+          commentName.disabled =
+            true;
+
+        } else {
+
+          commentName.value =
+            "";
+
+          commentName.disabled =
+            false;
+
+        }
+
+      }
+    );
+
+
+
+    /* =========================
+       COMMENT SUBMIT
+    ========================= */
+
+    postCommentButton.addEventListener(
+      "click",
+      function () {
+
+        alert(
+          "The comment system will be connected in the next step."
+        );
+
+      }
+    );
+
+
+
+    /* =========================
+       SUPABASE CONNECTION TEST
+    ========================= */
+
+    (async function () {
+
+      try {
+
+        const {
+          data,
+          error
+        } =
+          await supabaseClient.auth
+            .getSession();
+
+
+        if (error) {
+
+          console.error(
+            "Supabase connection error:",
+            error
+          );
+
+          return;
+
+        }
+
+
+        console.log(
+          "Supabase connected successfully.",
+          data.session
+            ? "Existing session found."
+            : "No active session."
+        );
+
+
+      } catch (error) {
+
+        console.error(
+          "Supabase initialization error:",
+          error
+        );
+
+      }
+
+    })();
+
+  </script>
 
 
 </body>
