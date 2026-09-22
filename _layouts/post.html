@@ -19,15 +19,30 @@
 
     body {
       margin: 0;
+
       font-family: Georgia, "Times New Roman", serif;
+
       color: #242024;
 
       background:
-        radial-gradient(circle at 10% 10%, rgba(248,210,230,.55), transparent 32%),
-        radial-gradient(circle at 90% 20%, rgba(225,214,245,.55), transparent 30%),
-        linear-gradient(135deg,#fff7fb,#f7f2fc);
+        radial-gradient(
+          circle at 8% 8%,
+          rgba(248, 210, 230, .70),
+          transparent 32%
+        ),
+        radial-gradient(
+          circle at 92% 18%,
+          rgba(225, 214, 245, .65),
+          transparent 30%
+        ),
+        linear-gradient(
+          135deg,
+          #fff0f7,
+          #f7effa
+        );
 
       min-height: 100vh;
+
       display: flex;
       flex-direction: column;
     }
@@ -47,6 +62,7 @@
         );
 
       border-bottom: 1px solid rgba(150,80,130,.20);
+
       backdrop-filter: blur(8px);
 
       padding: 20px 30px;
@@ -54,10 +70,13 @@
 
     .header-inner {
       max-width: 1200px;
+
       margin: 0 auto;
 
       display: flex;
+
       align-items: center;
+
       justify-content: space-between;
 
       gap: 30px;
@@ -65,7 +84,9 @@
 
     .brand-row {
       display: flex;
+
       align-items: center;
+
       gap: 14px;
     }
 
@@ -74,29 +95,38 @@
       height: 52px;
 
       border-radius: 50%;
+
       object-fit: cover;
 
       border: 2px solid rgba(255,255,255,.75);
-      box-shadow: 0 4px 15px rgba(80,30,70,.15);
+
+      box-shadow:
+        0 4px 15px rgba(80,30,70,.15);
     }
 
     .brand {
       font-family: "Playfair Display", Georgia, serif;
+
       font-size: 31px;
+
       font-weight: 700;
+
       color: #241b24;
+
       letter-spacing: -0.5px;
     }
 
     .brand span {
-      color: #b96b9f;
+      color: #8f416f;
     }
 
     .tagline {
       margin-top: 2px;
 
       font-family: "DM Sans", sans-serif;
+
       font-size: 12px;
+
       color: #4d3045;
 
       letter-spacing: .4px;
@@ -104,7 +134,9 @@
 
     nav {
       display: flex;
+
       gap: 24px;
+
       align-items: center;
     }
 
@@ -112,7 +144,9 @@
       text-decoration: none;
 
       font-family: "DM Sans", sans-serif;
+
       font-size: 12px;
+
       font-weight: 600;
 
       color: #3f2838;
@@ -126,26 +160,39 @@
 
 
     /* =========================
-       ARTICLE
+       ARTICLE CARD
     ========================= */
 
     .article-wrapper {
-      width: 100%;
-      max-width: 900px;
+      width: calc(100% - 40px);
 
-      margin: 60px auto;
-      padding: 0 24px;
+      max-width: 920px;
+
+      margin: 55px auto 70px;
+
+      padding: 48px 55px;
+
+      background: #ffffff;
+
+      border-radius: 22px;
+
+      border: 1px solid rgba(180,120,160,.12);
+
+      box-shadow:
+        0 18px 50px rgba(110,60,95,.10);
     }
 
     .article-date {
       font-family: "DM Sans", sans-serif;
 
       font-size: 12px;
+
       font-weight: 600;
 
       color: #9a6789;
 
       letter-spacing: .7px;
+
       text-transform: uppercase;
 
       margin-bottom: 14px;
@@ -157,11 +204,13 @@
       font-family: "Playfair Display", Georgia, serif;
 
       font-size: clamp(34px, 5vw, 58px);
+
       line-height: 1.08;
 
       font-weight: 700;
 
       color: #2d2029;
+
       letter-spacing: -1px;
     }
 
@@ -184,6 +233,7 @@
       font-family: "Lora", Georgia, serif;
 
       font-size: 18px;
+
       line-height: 1.85;
 
       color: #302830;
@@ -199,6 +249,7 @@
       font-size: 30px;
 
       margin-top: 45px;
+
       margin-bottom: 18px;
 
       color: #33232e;
@@ -210,6 +261,7 @@
       font-size: 24px;
 
       margin-top: 35px;
+
       margin-bottom: 15px;
 
       color: #33232e;
@@ -226,7 +278,7 @@
 
       border-left: 4px solid #b96b9f;
 
-      background: rgba(255,255,255,.65);
+      background: #fff8fc;
 
       font-style: italic;
     }
@@ -238,9 +290,11 @@
 
     .article-actions {
       display: flex;
+
       gap: 12px;
 
       margin-top: 45px;
+
       padding-top: 25px;
 
       border-top: 1px solid rgba(120,80,110,.18);
@@ -249,7 +303,7 @@
     .action-btn {
       border: 1px solid rgba(150,80,130,.25);
 
-      background: rgba(255,255,255,.75);
+      background: #ffffff;
 
       color: #59384f;
 
@@ -258,7 +312,9 @@
       padding: 10px 18px;
 
       font-family: "DM Sans", sans-serif;
+
       font-size: 13px;
+
       font-weight: 600;
 
       cursor: pointer;
@@ -268,11 +324,13 @@
 
     .action-btn:hover {
       background: #b96b9f;
+
       color: white;
     }
 
     .action-btn.liked {
       background: #b96b9f;
+
       color: white;
     }
 
@@ -300,7 +358,7 @@
     }
 
     .comment-box {
-      background: rgba(255,255,255,.78);
+      background: #ffffff;
 
       border: 1px solid rgba(150,80,130,.16);
 
@@ -308,7 +366,8 @@
 
       padding: 22px;
 
-      box-shadow: 0 10px 30px rgba(80,45,75,.06);
+      box-shadow:
+        0 10px 30px rgba(80,45,75,.06);
     }
 
     .comment-box input,
@@ -349,6 +408,7 @@
       margin-top: 12px;
 
       display: flex;
+
       align-items: center;
 
       gap: 8px;
@@ -390,6 +450,12 @@
       background: #9f5685;
     }
 
+    .post-comment-btn:disabled {
+      opacity: .65;
+
+      cursor: wait;
+    }
+
     .comment-note {
       margin-top: 12px;
 
@@ -409,13 +475,15 @@
       display: none;
 
       position: fixed;
+
       inset: 0;
 
-      background: rgba(35, 20, 32, .45);
+      background: rgba(35,20,32,.45);
 
       z-index: 9999;
 
       align-items: center;
+
       justify-content: center;
 
       padding: 20px;
@@ -427,6 +495,7 @@
 
     .comment-choice-box {
       width: 100%;
+
       max-width: 400px;
 
       background: #ffffff;
@@ -435,7 +504,8 @@
 
       padding: 28px;
 
-      box-shadow: 0 20px 60px rgba(50, 25, 45, .25);
+      box-shadow:
+        0 20px 60px rgba(50,25,45,.25);
 
       text-align: center;
     }
@@ -488,6 +558,12 @@
       background: #9f5685;
     }
 
+    .comment-choice-box button:disabled {
+      opacity: .65;
+
+      cursor: wait;
+    }
+
     .comment-choice-box .close-choice {
       background: transparent;
 
@@ -533,7 +609,7 @@
     @media (max-width: 700px) {
 
       .site-header {
-        padding: 18px 18px;
+        padding: 18px;
       }
 
       .header-inner {
@@ -550,6 +626,7 @@
 
       .site-logo {
         width: 46px;
+
         height: 46px;
       }
 
@@ -562,8 +639,13 @@
       }
 
       .article-wrapper {
-        margin: 40px auto;
-        padding: 0 18px;
+        width: calc(100% - 24px);
+
+        margin: 28px auto 45px;
+
+        padding: 30px 20px;
+
+        border-radius: 18px;
       }
 
       .article-title {
@@ -572,6 +654,7 @@
 
       .article-content {
         font-size: 17px;
+
         line-height: 1.8;
       }
 
@@ -861,8 +944,22 @@
     const supabaseClient =
       window.supabase.createClient(
         SUPABASE_URL,
-        SUPABASE_PUBLISHABLE_KEY
+        SUPABASE_PUBLISHABLE_KEY,
+        {
+          auth: {
+            persistSession: true,
+            autoRefreshToken: true,
+            detectSessionInUrl: true
+          }
+        }
       );
+
+
+    /* =========================
+       ACTIVE SESSION
+    ========================= */
+
+    let activeSession = null;
 
 
 
@@ -1022,39 +1119,110 @@
 
         try {
 
+          /*
+           * First check whether a session
+           * already exists.
+           */
+
           const {
-            data,
-            error
+            data: existingSessionData,
+            error: existingSessionError
           } =
-            await supabaseClient.auth
-              .signInAnonymously();
+            await supabaseClient.auth.getSession();
 
 
-          if (error) {
+          if (
+            existingSessionError
+          ) {
 
             console.error(
-              "Anonymous sign-in error:",
+              "Session check error:",
+              existingSessionError
+            );
+
+          }
+
+
+          if (
+            existingSessionData &&
+            existingSessionData.session
+          ) {
+
+            activeSession =
+              existingSessionData.session;
+
+          }
+
+
+          /*
+           * If there is no session,
+           * create an anonymous user.
+           */
+
+          if (!activeSession) {
+
+            const {
+              data,
               error
-            );
+            } =
+              await supabaseClient.auth
+                .signInAnonymously();
 
-            alert(
-              "We could not start anonymous commenting. Please try again."
-            );
 
-            anonymousCommentBtn.disabled =
-              false;
+            if (error) {
 
-            anonymousCommentBtn.textContent =
-              "Continue as Anonymous";
+              console.error(
+                "Anonymous sign-in error:",
+                error
+              );
 
-            return;
+              alert(
+                "We could not start anonymous commenting. Please try again."
+              );
+
+              anonymousCommentBtn.disabled =
+                false;
+
+              anonymousCommentBtn.textContent =
+                "Continue as Anonymous";
+
+              return;
+
+            }
+
+
+            /*
+             * IMPORTANT:
+             * Save the exact session returned
+             * by signInAnonymously().
+             */
+
+            activeSession =
+              data.session;
+
+
+            if (!activeSession) {
+
+              alert(
+                "Anonymous sign-in did not return a session. Please try again."
+              );
+
+              anonymousCommentBtn.disabled =
+                false;
+
+              anonymousCommentBtn.textContent =
+                "Continue as Anonymous";
+
+              return;
+
+            }
 
           }
 
 
           console.log(
-            "Anonymous user created:",
-            data.user.id
+            "Anonymous session ready:",
+            activeSession.user.id
           );
 
 
@@ -1084,11 +1252,7 @@
               anonymousCheckbox.checked =
                 true;
 
-              document
-                .getElementById(
-                  "commentText"
-                )
-                .focus();
+              commentText.focus();
 
             },
             500
@@ -1105,6 +1269,8 @@
           alert(
             "Something went wrong. Please try again."
           );
+
+        } finally {
 
           anonymousCommentBtn.disabled =
             false;
@@ -1277,17 +1443,40 @@
 
         try {
 
-          const {
-            data: sessionData,
-            error: sessionError
-          } =
-            await supabaseClient.auth.getSession();
+          /*
+           * Use the session already returned
+           * by anonymous sign-in.
+           */
+
+          if (!activeSession) {
+
+            const {
+              data,
+              error
+            } =
+              await supabaseClient.auth
+                .getSession();
 
 
-          if (
-            sessionError ||
-            !sessionData.session
-          ) {
+            if (
+              !error &&
+              data.session
+            ) {
+
+              activeSession =
+                data.session;
+
+            }
+
+          }
+
+
+          /*
+           * If there is STILL no session,
+           * don't attempt the database insert.
+           */
+
+          if (!activeSession) {
 
             alert(
               "Please choose how you want to comment first."
@@ -1299,11 +1488,13 @@
 
 
           const user =
-            sessionData.session.user;
+            activeSession.user;
 
 
           const displayName =
-            name || "Anonymous";
+            anonymousCheckbox.checked
+              ? "Anonymous"
+              : (name || "Anonymous");
 
 
           const isAnonymous =
@@ -1315,27 +1506,40 @@
             "{{ page.slug | escape }}";
 
 
+          /*
+           * Save the comment.
+           */
+
           const {
-            error
+            data: insertedComment,
+            error: insertError
           } =
             await supabaseClient
               .from("comments")
               .insert({
                 article_slug: articleSlug,
+
                 parent_id: null,
+
                 display_name: displayName,
+
                 comment_text: text,
+
                 is_anonymous: isAnonymous,
+
                 approved: false,
+
                 user_id: user.id
-              });
+              })
+              .select()
+              .single();
 
 
-          if (error) {
+          if (insertError) {
 
             console.error(
               "Comment insert error:",
-              error
+              insertError
             );
 
             alert(
@@ -1345,6 +1549,12 @@
             return;
 
           }
+
+
+          console.log(
+            "Comment submitted:",
+            insertedComment
+          );
 
 
           commentText.value =
@@ -1384,7 +1594,35 @@
 
 
     /* =========================
-       SUPABASE CONNECTION TEST
+       SUPABASE AUTH STATE
+    ========================= */
+
+    supabaseClient.auth.onAuthStateChange(
+      function (
+        event,
+        session
+      ) {
+
+        console.log(
+          "Auth event:",
+          event
+        );
+
+
+        if (session) {
+
+          activeSession =
+            session;
+
+        }
+
+      }
+    );
+
+
+
+    /* =========================
+       LOAD EXISTING SESSION
     ========================= */
 
     (async function () {
@@ -1402,7 +1640,7 @@
         if (error) {
 
           console.error(
-            "Supabase connection error:",
+            "Supabase session error:",
             error
           );
 
@@ -1411,12 +1649,25 @@
         }
 
 
-        console.log(
-          "Supabase connected successfully.",
+        if (
+          data &&
           data.session
-            ? "Existing session found."
-            : "No active session."
-        );
+        ) {
+
+          activeSession =
+            data.session;
+
+          console.log(
+            "Existing session loaded."
+          );
+
+        } else {
+
+          console.log(
+            "No existing session."
+          );
+
+        }
 
 
       } catch (error) {
