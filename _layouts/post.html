@@ -117,7 +117,7 @@
     }
 
     .brand span {
-      color: #8f416f;
+      color: #4b1738;
     }
 
     .tagline {
@@ -1119,47 +1119,44 @@
 
         try {
 
-          /*
-           * First check whether a session
-           * already exists.
-           */
-
-          const {
-            data: existingSessionData,
-            error: existingSessionError
-          } =
-            await supabaseClient.auth.getSession();
+          let session =
+            activeSession;
 
 
-          if (
-            existingSessionError
-          ) {
+          if (!session) {
 
-            console.error(
-              "Session check error:",
-              existingSessionError
-            );
+            const {
+              data,
+              error
+            } =
+              await supabaseClient.auth
+                .getSession();
+
+
+            if (error) {
+
+              console.error(
+                "Session check error:",
+                error
+              );
+
+            }
+
+
+            if (
+              data &&
+              data.session
+            ) {
+
+              session =
+                data.session;
+
+            }
 
           }
 
 
-          if (
-            existingSessionData &&
-            existingSessionData.session
-          ) {
-
-            activeSession =
-              existingSessionData.session;
-
-          }
-
-
-          /*
-           * If there is no session,
-           * create an anonymous user.
-           */
-
-          if (!activeSession) {
+          if (!session) {
 
             const {
               data,
@@ -1180,44 +1177,33 @@
                 "We could not start anonymous commenting. Please try again."
               );
 
-              anonymousCommentBtn.disabled =
-                false;
-
-              anonymousCommentBtn.textContent =
-                "Continue as Anonymous";
-
               return;
 
             }
 
 
-            /*
-             * IMPORTANT:
-             * Save the exact session returned
-             * by signInAnonymously().
-             */
-
-            activeSession =
+            session =
               data.session;
 
+          }
 
-            if (!activeSession) {
 
-              alert(
-                "Anonymous sign-in did not return a session. Please try again."
-              );
+          if (
+            !session ||
+            !session.user
+          ) {
 
-              anonymousCommentBtn.disabled =
-                false;
+            alert(
+              "Anonymous sign-in did not create a session. Please try again."
+            );
 
-              anonymousCommentBtn.textContent =
-                "Continue as Anonymous";
-
-              return;
-
-            }
+            return;
 
           }
+
+
+          activeSession =
+            session;
 
 
           console.log(
@@ -1329,7 +1315,8 @@
 
         const shareData = {
 
-          title: document.title,
+          title:
+            document.title,
 
           text:
             "Read this article on DissentVerse.",
@@ -1443,28 +1430,37 @@
 
         try {
 
-          /*
-           * Use the session already returned
-           * by anonymous sign-in.
-           */
+          let session =
+            activeSession;
 
-          if (!activeSession) {
+
+          if (!session) {
 
             const {
-              data,
-              error
+              data: sessionData,
+              error: sessionError
             } =
               await supabaseClient.auth
                 .getSession();
 
 
+            if (sessionError) {
+
+              console.error(
+                "Session error:",
+                sessionError
+              );
+
+            }
+
+
             if (
-              !error &&
-              data.session
+              sessionData &&
+              sessionData.session
             ) {
 
-              activeSession =
-                data.session;
+              session =
+                sessionData.session;
 
             }
 
@@ -1472,14 +1468,84 @@
 
 
           /*
-           * If there is STILL no session,
-           * don't attempt the database insert.
+           * Automatically create an anonymous
+           * session if none exists.
            */
 
-          if (!activeSession) {
+          if (!session) {
+
+            console.log(
+              "No session found. Creating anonymous user..."
+            );
+
+
+            const {
+              data: anonymousData,
+              error: anonymousError
+            } =
+              await supabaseClient.auth
+                .signInAnonymously();
+
+
+            if (anonymousError) {
+
+              console.error(
+                "Anonymous sign-in error:",
+                anonymousError
+              );
+
+              alert(
+                "We could not connect for commenting. Please try again."
+              );
+
+              return;
+
+            }
+
+
+            session =
+              anonymousData.session;
+
+
+            if (!session) {
+
+              const {
+                data: finalSessionData,
+                error: finalSessionError
+              } =
+                await supabaseClient.auth
+                  .getSession();
+
+
+              if (finalSessionError) {
+
+                console.error(
+                  "Final session error:",
+                  finalSessionError
+                );
+
+              }
+
+
+              session =
+                finalSessionData?.session || null;
+
+            }
+
+          }
+
+
+          if (
+            !session ||
+            !session.user
+          ) {
+
+            console.error(
+              "No authenticated user session available."
+            );
 
             alert(
-              "Please choose how you want to comment first."
+              "We could not create your commenting session. Please try again."
             );
 
             return;
@@ -1487,8 +1553,18 @@
           }
 
 
+          activeSession =
+            session;
+
+
           const user =
-            activeSession.user;
+            session.user;
+
+
+          console.log(
+            "Commenting user:",
+            user.id
+          );
 
 
           const displayName =
@@ -1498,7 +1574,7 @@
 
 
           const isAnonymous =
-            user.is_anonymous ||
+            user.is_anonymous === true ||
             anonymousCheckbox.checked;
 
 
@@ -1506,9 +1582,11 @@
             "{{ page.slug | escape }}";
 
 
-          /*
-           * Save the comment.
-           */
+          console.log(
+            "Article slug:",
+            articleSlug
+          );
+
 
           const {
             data: insertedComment,
@@ -1517,19 +1595,28 @@
             await supabaseClient
               .from("comments")
               .insert({
-                article_slug: articleSlug,
 
-                parent_id: null,
+                article_slug:
+                  articleSlug,
 
-                display_name: displayName,
+                parent_id:
+                  null,
 
-                comment_text: text,
+                display_name:
+                  displayName,
 
-                is_anonymous: isAnonymous,
+                comment_text:
+                  text,
 
-                approved: false,
+                is_anonymous:
+                  isAnonymous,
 
-                user_id: user.id
+                approved:
+                  false,
+
+                user_id:
+                  user.id
+
               })
               .select()
               .single();
@@ -1552,13 +1639,34 @@
 
 
           console.log(
-            "Comment submitted:",
+            "Comment submitted successfully:",
             insertedComment
           );
 
 
           commentText.value =
             "";
+
+
+          if (
+            anonymousCheckbox.checked
+          ) {
+
+            commentName.value =
+              "Anonymous";
+
+            commentName.disabled =
+              true;
+
+          } else {
+
+            commentName.value =
+              "";
+
+            commentName.disabled =
+              false;
+
+          }
 
 
           alert(
