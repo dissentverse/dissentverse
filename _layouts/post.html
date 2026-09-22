@@ -88,7 +88,6 @@
       letter-spacing: -0.5px;
     }
 
-    /* Verse restored to the DissentVerse pink theme */
     .brand span {
       color: #b96b9f;
     }
@@ -820,7 +819,7 @@
 
 
         <div class="comment-note">
-          Comments will appear here once comment storage is connected.
+          Comments are reviewed before they appear publicly.
         </div>
 
       </div>
@@ -853,7 +852,7 @@
   <script>
 
     const SUPABASE_URL =
-      "https://yplvpgigfkihgmyfsqyl.supabase.co/rest/v1/";
+      "https://yplvpgigfkihgmyfsqyl.supabase.co";
 
     const SUPABASE_PUBLISHABLE_KEY =
       "sb_publishable_wnafq5zQ9Y2b9WsH-j5U9Q_WmcgYV1L";
@@ -885,6 +884,9 @@
 
     const commentName =
       document.getElementById("commentName");
+
+    const commentText =
+      document.getElementById("commentText");
 
     const postCommentButton =
       document.getElementById("postCommentButton");
@@ -1079,6 +1081,9 @@
               commentName.disabled =
                 true;
 
+              anonymousCheckbox.checked =
+                true;
+
               document
                 .getElementById(
                   "commentText"
@@ -1116,7 +1121,7 @@
 
     /* =========================
        CREATE ACCOUNT
-       ========================= */
+    ========================= */
 
     createAccountBtn.addEventListener(
       "click",
@@ -1133,7 +1138,7 @@
 
     /* =========================
        SIGN IN
-       ========================= */
+    ========================= */
 
     signInBtn.addEventListener(
       "click",
@@ -1241,11 +1246,137 @@
 
     postCommentButton.addEventListener(
       "click",
-      function () {
+      async function () {
 
-        alert(
-          "The comment system will be connected in the next step."
-        );
+        const name =
+          commentName.value.trim();
+
+        const text =
+          commentText.value.trim();
+
+
+        if (!text) {
+
+          alert(
+            "Please write a comment first."
+          );
+
+          commentText.focus();
+
+          return;
+
+        }
+
+
+        postCommentButton.disabled =
+          true;
+
+        postCommentButton.textContent =
+          "Posting...";
+
+
+        try {
+
+          const {
+            data: sessionData,
+            error: sessionError
+          } =
+            await supabaseClient.auth.getSession();
+
+
+          if (
+            sessionError ||
+            !sessionData.session
+          ) {
+
+            alert(
+              "Please choose how you want to comment first."
+            );
+
+            return;
+
+          }
+
+
+          const user =
+            sessionData.session.user;
+
+
+          const displayName =
+            name || "Anonymous";
+
+
+          const isAnonymous =
+            user.is_anonymous ||
+            anonymousCheckbox.checked;
+
+
+          const articleSlug =
+            "{{ page.slug | escape }}";
+
+
+          const {
+            error
+          } =
+            await supabaseClient
+              .from("comments")
+              .insert({
+                article_slug: articleSlug,
+                parent_id: null,
+                display_name: displayName,
+                comment_text: text,
+                is_anonymous: isAnonymous,
+                approved: false,
+                user_id: user.id
+              });
+
+
+          if (error) {
+
+            console.error(
+              "Comment insert error:",
+              error
+            );
+
+            alert(
+              "We could not post your comment. Please try again."
+            );
+
+            return;
+
+          }
+
+
+          commentText.value =
+            "";
+
+
+          alert(
+            "Your comment has been submitted for review."
+          );
+
+
+        } catch (error) {
+
+          console.error(
+            "Comment submission error:",
+            error
+          );
+
+          alert(
+            "Something went wrong. Please try again."
+          );
+
+
+        } finally {
+
+          postCommentButton.disabled =
+            false;
+
+          postCommentButton.textContent =
+            "Post Comment";
+
+        }
 
       }
     );
