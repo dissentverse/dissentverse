@@ -404,6 +404,65 @@
 
 
     /* =========================
+       DISPLAYED COMMENTS
+    ========================= */
+
+    .comments-list {
+      margin-top: 25px;
+    }
+
+    .comment-item {
+      background: rgba(255,255,255,.78);
+
+      border: 1px solid rgba(150,80,130,.16);
+
+      border-radius: 14px;
+
+      padding: 18px 20px;
+
+      margin-bottom: 15px;
+
+      box-shadow: 0 8px 25px rgba(80,45,75,.05);
+    }
+
+    .comment-author {
+      font-family: "DM Sans", sans-serif;
+
+      font-size: 13px;
+
+      font-weight: 600;
+
+      color: #59384f;
+
+      margin-bottom: 7px;
+    }
+
+    .comment-text {
+      font-family: "Lora", Georgia, serif;
+
+      font-size: 15px;
+
+      line-height: 1.65;
+
+      color: #302830;
+
+      white-space: pre-wrap;
+
+      overflow-wrap: anywhere;
+    }
+
+    .comment-date {
+      margin-top: 8px;
+
+      font-family: "DM Sans", sans-serif;
+
+      font-size: 11px;
+
+      color: #8a7b85;
+    }
+
+
+    /* =========================
        COMMENT CHOICE
     ========================= */
 
@@ -843,6 +902,16 @@
 
       </div>
 
+
+      <!-- =========================
+           DISPLAYED COMMENTS
+      ========================= -->
+
+      <div
+        id="commentsList"
+        class="comments-list"
+      ></div>
+
     </section>
 
   </main>
@@ -923,6 +992,9 @@
 
     const postCommentButton =
       document.getElementById("postCommentButton");
+
+    const commentsList =
+      document.getElementById("commentsList");
 
 
 
@@ -1330,6 +1402,141 @@
 
 
     /* =========================
+       LOAD COMMENTS
+    ========================= */
+
+    async function loadComments() {
+
+      if (!commentsList) {
+        return;
+      }
+
+
+      const articleSlug =
+        "{{ page.slug | escape }}";
+
+
+      const {
+        data: comments,
+        error
+      } =
+        await supabaseClient
+          .from("comments")
+          .select("*")
+          .eq("article_slug", articleSlug)
+          .eq("approved", true)
+          .order("created_at", {
+            ascending: true
+          });
+
+
+      if (error) {
+
+        console.error(
+          "Error loading comments:",
+          error
+        );
+
+        return;
+
+      }
+
+
+      commentsList.innerHTML = "";
+
+
+      if (
+        !comments ||
+        comments.length === 0
+      ) {
+
+        return;
+
+      }
+
+
+      comments.forEach(
+        function (comment) {
+
+          const commentItem =
+            document.createElement("div");
+
+          commentItem.className =
+            "comment-item";
+
+
+          const author =
+            document.createElement("div");
+
+          author.className =
+            "comment-author";
+
+          author.textContent =
+            comment.display_name ||
+            "Anonymous";
+
+
+          const text =
+            document.createElement("div");
+
+          text.className =
+            "comment-text";
+
+          text.textContent =
+            comment.comment_text;
+
+
+          const date =
+            document.createElement("div");
+
+          date.className =
+            "comment-date";
+
+
+          if (
+            comment.created_at
+          ) {
+
+            date.textContent =
+              new Date(
+                comment.created_at
+              ).toLocaleDateString(
+                undefined,
+                {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric"
+                }
+              );
+
+          }
+
+
+          commentItem.appendChild(
+            author
+          );
+
+          commentItem.appendChild(
+            text
+          );
+
+          commentItem.appendChild(
+            date
+          );
+
+
+          commentsList.appendChild(
+            commentItem
+          );
+
+        }
+      );
+
+    }
+
+
+
+    /* =========================
        COMMENT SUBMIT
     ========================= */
 
@@ -1459,7 +1666,8 @@
 
 
               session =
-                finalSessionData?.session || null;
+                finalSessionData?.session ||
+                null;
 
             }
 
@@ -1600,6 +1808,14 @@
           }
 
 
+          /*
+             Reload comments so the newly
+             posted comment appears immediately.
+          */
+
+          await loadComments();
+
+
           alert(
             "Your comment has been posted."
           );
@@ -1719,6 +1935,13 @@
       }
 
     })();
+
+
+    /* =========================
+       LOAD COMMENTS ON PAGE LOAD
+    ========================= */
+
+    loadComments();
 
   </script>
 
