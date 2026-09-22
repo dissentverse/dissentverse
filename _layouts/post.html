@@ -32,6 +32,7 @@
       flex-direction: column;
     }
 
+
     /* =========================
        HEADER
     ========================= */
@@ -87,8 +88,9 @@
       letter-spacing: -0.5px;
     }
 
+    /* Verse restored to the DissentVerse pink theme */
     .brand span {
-      color: #ffffff;
+      color: #b96b9f;
     }
 
     .tagline {
@@ -401,6 +403,108 @@
 
 
     /* =========================
+       COMMENT CHOICE
+    ========================= */
+
+    .comment-choice {
+      display: none;
+
+      position: fixed;
+      inset: 0;
+
+      background: rgba(35, 20, 32, .45);
+
+      z-index: 9999;
+
+      align-items: center;
+      justify-content: center;
+
+      padding: 20px;
+    }
+
+    .comment-choice.show {
+      display: flex;
+    }
+
+    .comment-choice-box {
+      width: 100%;
+      max-width: 400px;
+
+      background: #ffffff;
+
+      border-radius: 18px;
+
+      padding: 28px;
+
+      box-shadow: 0 20px 60px rgba(50, 25, 45, .25);
+
+      text-align: center;
+    }
+
+    .comment-choice-box h3 {
+      margin: 0 0 8px;
+
+      font-family: "Playfair Display", Georgia, serif;
+
+      font-size: 25px;
+
+      color: #30232d;
+    }
+
+    .comment-choice-box p {
+      margin: 0 0 22px;
+
+      font-family: "DM Sans", sans-serif;
+
+      font-size: 13px;
+
+      color: #7d6c77;
+    }
+
+    .comment-choice-box button {
+      width: 100%;
+
+      border: none;
+
+      border-radius: 999px;
+
+      padding: 12px 16px;
+
+      margin-top: 10px;
+
+      background: #b96b9f;
+
+      color: white;
+
+      font-family: "DM Sans", sans-serif;
+
+      font-size: 13px;
+
+      font-weight: 600;
+
+      cursor: pointer;
+    }
+
+    .comment-choice-box button:hover {
+      background: #9f5685;
+    }
+
+    .comment-choice-box .close-choice {
+      background: transparent;
+
+      color: #7d6c77;
+
+      border: 1px solid #ddd1da;
+    }
+
+    .comment-choice-box .close-choice:hover {
+      background: #f8f1f6;
+
+      color: #59384f;
+    }
+
+
+    /* =========================
        FOOTER
     ========================= */
 
@@ -608,6 +712,64 @@
 
 
     <!-- =========================
+         COMMENT CHOICE POPUP
+    ========================= -->
+
+    <div
+      id="commentChoice"
+      class="comment-choice"
+    >
+
+      <div class="comment-choice-box">
+
+        <h3>
+          Comment on this article
+        </h3>
+
+        <p>
+          Choose how you want to continue.
+        </p>
+
+
+        <button
+          id="anonymousCommentBtn"
+          type="button"
+        >
+          Continue as Anonymous
+        </button>
+
+
+        <button
+          id="createAccountBtn"
+          type="button"
+        >
+          Create an Account
+        </button>
+
+
+        <button
+          id="signInBtn"
+          type="button"
+        >
+          Sign In
+        </button>
+
+
+        <button
+          id="closeCommentChoice"
+          class="close-choice"
+          type="button"
+        >
+          Cancel
+        </button>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- =========================
          COMMENTS
     ========================= -->
 
@@ -690,22 +852,8 @@
 
   <script>
 
-    /*
-      IMPORTANT:
-
-      Replace only these two values.
-
-      1. SUPABASE_URL
-         → Your Supabase Project URL
-
-      2. SUPABASE_PUBLISHABLE_KEY
-         → Your Supabase Publishable Key
-
-      NEVER put your Supabase Secret Key here.
-    */
-
-
-    const SUPABASE_URL = "https://yplvpgigfkihgmyfsqyl.supabase.co/rest/v1/";
+    const SUPABASE_URL =
+      "https://yplvpgigfkihgmyfsqyl.supabase.co/rest/v1/";
 
     const SUPABASE_PUBLISHABLE_KEY =
       "sb_publishable_wnafq5zQ9Y2b9WsH-j5U9Q_WmcgYV1L";
@@ -720,32 +868,47 @@
 
 
     /* =========================
-       BASIC BUTTON INTERACTIONS
+       BASIC ELEMENTS
     ========================= */
-
 
     const likeButton =
       document.getElementById("likeButton");
 
-
     const commentButton =
       document.getElementById("commentButton");
-
 
     const shareButton =
       document.getElementById("shareButton");
 
-
     const anonymousCheckbox =
       document.getElementById("anonymousCheckbox");
-
 
     const commentName =
       document.getElementById("commentName");
 
-
     const postCommentButton =
       document.getElementById("postCommentButton");
+
+
+
+    /* =========================
+       COMMENT CHOICE ELEMENTS
+    ========================= */
+
+    const commentChoice =
+      document.getElementById("commentChoice");
+
+    const anonymousCommentBtn =
+      document.getElementById("anonymousCommentBtn");
+
+    const createAccountBtn =
+      document.getElementById("createAccountBtn");
+
+    const signInBtn =
+      document.getElementById("signInBtn");
+
+    const closeCommentChoice =
+      document.getElementById("closeCommentChoice");
 
 
 
@@ -756,26 +919,35 @@
     let liked = false;
 
 
-    likeButton.addEventListener("click", function () {
+    likeButton.addEventListener(
+      "click",
+      function () {
 
-      liked = !liked;
+        liked = !liked;
 
 
-      if (liked) {
+        if (liked) {
 
-        likeButton.textContent = "♥ Liked";
+          likeButton.textContent =
+            "♥ Liked";
 
-        likeButton.classList.add("liked");
+          likeButton.classList.add(
+            "liked"
+          );
 
-      } else {
+        } else {
 
-        likeButton.textContent = "♡ Like";
+          likeButton.textContent =
+            "♡ Like";
 
-        likeButton.classList.remove("liked");
+          likeButton.classList.remove(
+            "liked"
+          );
+
+        }
 
       }
-
-    });
+    );
 
 
 
@@ -783,23 +955,196 @@
        COMMENT BUTTON
     ========================= */
 
-    commentButton.addEventListener("click", function () {
+    commentButton.addEventListener(
+      "click",
+      function () {
 
-      document
-        .getElementById("commentsSection")
-        .scrollIntoView({
-          behavior: "smooth"
-        });
+        commentChoice.classList.add(
+          "show"
+        );
 
-      setTimeout(function () {
+      }
+    );
 
-        document
-          .getElementById("commentText")
-          .focus();
 
-      }, 500);
 
-    });
+    /* =========================
+       CLOSE COMMENT CHOICE
+    ========================= */
+
+    closeCommentChoice.addEventListener(
+      "click",
+      function () {
+
+        commentChoice.classList.remove(
+          "show"
+        );
+
+      }
+    );
+
+
+    commentChoice.addEventListener(
+      "click",
+      function (event) {
+
+        if (
+          event.target === commentChoice
+        ) {
+
+          commentChoice.classList.remove(
+            "show"
+          );
+
+        }
+
+      }
+    );
+
+
+
+    /* =========================
+       CONTINUE AS ANONYMOUS
+    ========================= */
+
+    anonymousCommentBtn.addEventListener(
+      "click",
+      async function () {
+
+        anonymousCommentBtn.disabled =
+          true;
+
+        anonymousCommentBtn.textContent =
+          "Connecting...";
+
+
+        try {
+
+          const {
+            data,
+            error
+          } =
+            await supabaseClient.auth
+              .signInAnonymously();
+
+
+          if (error) {
+
+            console.error(
+              "Anonymous sign-in error:",
+              error
+            );
+
+            alert(
+              "We could not start anonymous commenting. Please try again."
+            );
+
+            anonymousCommentBtn.disabled =
+              false;
+
+            anonymousCommentBtn.textContent =
+              "Continue as Anonymous";
+
+            return;
+
+          }
+
+
+          console.log(
+            "Anonymous user created:",
+            data.user.id
+          );
+
+
+          commentChoice.classList.remove(
+            "show"
+          );
+
+
+          document
+            .getElementById(
+              "commentsSection"
+            )
+            .scrollIntoView({
+              behavior: "smooth"
+            });
+
+
+          setTimeout(
+            function () {
+
+              commentName.value =
+                "Anonymous";
+
+              commentName.disabled =
+                true;
+
+              document
+                .getElementById(
+                  "commentText"
+                )
+                .focus();
+
+            },
+            500
+          );
+
+
+        } catch (error) {
+
+          console.error(
+            "Anonymous sign-in error:",
+            error
+          );
+
+          alert(
+            "Something went wrong. Please try again."
+          );
+
+          anonymousCommentBtn.disabled =
+            false;
+
+          anonymousCommentBtn.textContent =
+            "Continue as Anonymous";
+
+        }
+
+      }
+    );
+
+
+
+    /* =========================
+       CREATE ACCOUNT
+       ========================= */
+
+    createAccountBtn.addEventListener(
+      "click",
+      function () {
+
+        alert(
+          "Account creation will be added next."
+        );
+
+      }
+    );
+
+
+
+    /* =========================
+       SIGN IN
+       ========================= */
+
+    signInBtn.addEventListener(
+      "click",
+      function () {
+
+        alert(
+          "Sign in will be added next."
+        );
+
+      }
+    );
 
 
 
@@ -807,64 +1152,81 @@
        SHARE
     ========================= */
 
-    shareButton.addEventListener("click", async function () {
+    shareButton.addEventListener(
+      "click",
+      async function () {
 
-      const shareData = {
+        const shareData = {
 
-        title: document.title,
+          title: document.title,
 
-        text: "Read this article on DissentVerse.",
+          text:
+            "Read this article on DissentVerse.",
 
-        url: window.location.href
-
-      };
-
-
-      try {
-
-        if (navigator.share) {
-
-          await navigator.share(shareData);
-
-        } else {
-
-          await navigator.clipboard.writeText(
+          url:
             window.location.href
-          );
 
-          alert("Article link copied.");
+        };
+
+
+        try {
+
+          if (navigator.share) {
+
+            await navigator.share(
+              shareData
+            );
+
+          } else {
+
+            await navigator.clipboard.writeText(
+              window.location.href
+            );
+
+            alert(
+              "Article link copied."
+            );
+
+          }
+
+        } catch (error) {
+
+          console.log(
+            "Share cancelled."
+          );
 
         }
 
-      } catch (error) {
-
-        console.log("Share cancelled.");
-
       }
-
-    });
+    );
 
 
 
     /* =========================
-       ANONYMOUS COMMENT
+       ANONYMOUS CHECKBOX
     ========================= */
 
     anonymousCheckbox.addEventListener(
       "change",
       function () {
 
-        if (anonymousCheckbox.checked) {
+        if (
+          anonymousCheckbox.checked
+        ) {
 
-          commentName.value = "Anonymous";
+          commentName.value =
+            "Anonymous";
 
-          commentName.disabled = true;
+          commentName.disabled =
+            true;
 
         } else {
 
-          commentName.value = "";
+          commentName.value =
+            "";
 
-          commentName.disabled = false;
+          commentName.disabled =
+            false;
 
         }
 
@@ -901,7 +1263,9 @@
         const {
           data,
           error
-        } = await supabaseClient.auth.getSession();
+        } =
+          await supabaseClient.auth
+            .getSession();
 
 
         if (error) {
@@ -922,6 +1286,7 @@
             ? "Existing session found."
             : "No active session."
         );
+
 
       } catch (error) {
 
