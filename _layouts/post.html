@@ -19,30 +19,15 @@
 
     body {
       margin: 0;
-
       font-family: Georgia, "Times New Roman", serif;
-
       color: #242024;
 
       background:
-        radial-gradient(
-          circle at 8% 8%,
-          rgba(248, 210, 230, .70),
-          transparent 32%
-        ),
-        radial-gradient(
-          circle at 92% 18%,
-          rgba(225, 214, 245, .65),
-          transparent 30%
-        ),
-        linear-gradient(
-          135deg,
-          #fff0f7,
-          #f7effa
-        );
+        radial-gradient(circle at 10% 10%, rgba(248,210,230,.55), transparent 32%),
+        radial-gradient(circle at 90% 20%, rgba(225,214,245,.55), transparent 30%),
+        linear-gradient(135deg,#fff7fb,#f7f2fc);
 
       min-height: 100vh;
-
       display: flex;
       flex-direction: column;
     }
@@ -62,7 +47,6 @@
         );
 
       border-bottom: 1px solid rgba(150,80,130,.20);
-
       backdrop-filter: blur(8px);
 
       padding: 20px 30px;
@@ -70,13 +54,10 @@
 
     .header-inner {
       max-width: 1200px;
-
       margin: 0 auto;
 
       display: flex;
-
       align-items: center;
-
       justify-content: space-between;
 
       gap: 30px;
@@ -84,9 +65,7 @@
 
     .brand-row {
       display: flex;
-
       align-items: center;
-
       gap: 14px;
     }
 
@@ -95,24 +74,17 @@
       height: 52px;
 
       border-radius: 50%;
-
       object-fit: cover;
 
       border: 2px solid rgba(255,255,255,.75);
-
-      box-shadow:
-        0 4px 15px rgba(80,30,70,.15);
+      box-shadow: 0 4px 15px rgba(80,30,70,.15);
     }
 
     .brand {
       font-family: "Playfair Display", Georgia, serif;
-
       font-size: 31px;
-
       font-weight: 700;
-
       color: #241b24;
-
       letter-spacing: -0.5px;
     }
 
@@ -124,9 +96,7 @@
       margin-top: 2px;
 
       font-family: "DM Sans", sans-serif;
-
       font-size: 12px;
-
       color: #4d3045;
 
       letter-spacing: .4px;
@@ -134,9 +104,7 @@
 
     nav {
       display: flex;
-
       gap: 24px;
-
       align-items: center;
     }
 
@@ -144,9 +112,7 @@
       text-decoration: none;
 
       font-family: "DM Sans", sans-serif;
-
       font-size: 12px;
-
       font-weight: 600;
 
       color: #3f2838;
@@ -160,39 +126,26 @@
 
 
     /* =========================
-       ARTICLE CARD
+       ARTICLE
     ========================= */
 
     .article-wrapper {
-      width: calc(100% - 40px);
+      width: 100%;
+      max-width: 900px;
 
-      max-width: 920px;
-
-      margin: 55px auto 70px;
-
-      padding: 48px 55px;
-
-      background: #ffffff;
-
-      border-radius: 22px;
-
-      border: 1px solid rgba(180,120,160,.12);
-
-      box-shadow:
-        0 18px 50px rgba(110,60,95,.10);
+      margin: 60px auto;
+      padding: 0 24px;
     }
 
     .article-date {
       font-family: "DM Sans", sans-serif;
 
       font-size: 12px;
-
       font-weight: 600;
 
       color: #9a6789;
 
       letter-spacing: .7px;
-
       text-transform: uppercase;
 
       margin-bottom: 14px;
@@ -204,17 +157,17 @@
       font-family: "Playfair Display", Georgia, serif;
 
       font-size: clamp(34px, 5vw, 58px);
-
       line-height: 1.08;
 
       font-weight: 700;
 
       color: #2d2029;
-
       letter-spacing: -1px;
     }
 
     .featured-image {
+      display: block;
+
       width: 100%;
 
       max-height: 520px;
@@ -233,7 +186,6 @@
       font-family: "Lora", Georgia, serif;
 
       font-size: 18px;
-
       line-height: 1.85;
 
       color: #302830;
@@ -249,7 +201,6 @@
       font-size: 30px;
 
       margin-top: 45px;
-
       margin-bottom: 18px;
 
       color: #33232e;
@@ -261,7 +212,6 @@
       font-size: 24px;
 
       margin-top: 35px;
-
       margin-bottom: 15px;
 
       color: #33232e;
@@ -278,7 +228,7 @@
 
       border-left: 4px solid #b96b9f;
 
-      background: #fff8fc;
+      background: rgba(255,255,255,.65);
 
       font-style: italic;
     }
@@ -290,11 +240,9 @@
 
     .article-actions {
       display: flex;
-
       gap: 12px;
 
       margin-top: 45px;
-
       padding-top: 25px;
 
       border-top: 1px solid rgba(120,80,110,.18);
@@ -303,7 +251,7 @@
     .action-btn {
       border: 1px solid rgba(150,80,130,.25);
 
-      background: #ffffff;
+      background: rgba(255,255,255,.75);
 
       color: #59384f;
 
@@ -312,9 +260,7 @@
       padding: 10px 18px;
 
       font-family: "DM Sans", sans-serif;
-
       font-size: 13px;
-
       font-weight: 600;
 
       cursor: pointer;
@@ -324,13 +270,11 @@
 
     .action-btn:hover {
       background: #b96b9f;
-
       color: white;
     }
 
     .action-btn.liked {
       background: #b96b9f;
-
       color: white;
     }
 
@@ -358,7 +302,7 @@
     }
 
     .comment-box {
-      background: #ffffff;
+      background: rgba(255,255,255,.78);
 
       border: 1px solid rgba(150,80,130,.16);
 
@@ -366,8 +310,7 @@
 
       padding: 22px;
 
-      box-shadow:
-        0 10px 30px rgba(80,45,75,.06);
+      box-shadow: 0 10px 30px rgba(80,45,75,.06);
     }
 
     .comment-box input,
@@ -408,7 +351,6 @@
       margin-top: 12px;
 
       display: flex;
-
       align-items: center;
 
       gap: 8px;
@@ -450,12 +392,6 @@
       background: #9f5685;
     }
 
-    .post-comment-btn:disabled {
-      opacity: .65;
-
-      cursor: wait;
-    }
-
     .comment-note {
       margin-top: 12px;
 
@@ -475,15 +411,13 @@
       display: none;
 
       position: fixed;
-
       inset: 0;
 
-      background: rgba(35,20,32,.45);
+      background: rgba(35, 20, 32, .45);
 
       z-index: 9999;
 
       align-items: center;
-
       justify-content: center;
 
       padding: 20px;
@@ -495,7 +429,6 @@
 
     .comment-choice-box {
       width: 100%;
-
       max-width: 400px;
 
       background: #ffffff;
@@ -504,8 +437,7 @@
 
       padding: 28px;
 
-      box-shadow:
-        0 20px 60px rgba(50,25,45,.25);
+      box-shadow: 0 20px 60px rgba(50, 25, 45, .25);
 
       text-align: center;
     }
@@ -558,12 +490,6 @@
       background: #9f5685;
     }
 
-    .comment-choice-box button:disabled {
-      opacity: .65;
-
-      cursor: wait;
-    }
-
     .comment-choice-box .close-choice {
       background: transparent;
 
@@ -609,7 +535,7 @@
     @media (max-width: 700px) {
 
       .site-header {
-        padding: 18px;
+        padding: 18px 18px;
       }
 
       .header-inner {
@@ -626,7 +552,6 @@
 
       .site-logo {
         width: 46px;
-
         height: 46px;
       }
 
@@ -639,13 +564,8 @@
       }
 
       .article-wrapper {
-        width: calc(100% - 24px);
-
-        margin: 28px auto 45px;
-
-        padding: 30px 20px;
-
-        border-radius: 18px;
+        margin: 40px auto;
+        padding: 0 18px;
       }
 
       .article-title {
@@ -654,7 +574,6 @@
 
       .article-content {
         font-size: 17px;
-
         line-height: 1.8;
       }
 
@@ -738,12 +657,29 @@
     </h1>
 
 
-    {% if page.image %}
+    <!-- =========================
+         FEATURED IMAGE
+    ========================= -->
+
+    {% assign featured_image = page.image | default: page.featured_image | default: page.thumbnail %}
+
+    {% if featured_image %}
+
+      {% if featured_image contains '://' %}
+
+        {% assign featured_image_src = featured_image %}
+
+      {% else %}
+
+        {% assign featured_image_src = featured_image | relative_url %}
+
+      {% endif %}
 
       <img
         class="featured-image"
-        src="{{ page.image }}"
-        alt="{{ page.title }}"
+        src="{{ featured_image_src | escape }}"
+        alt="{{ page.title | escape }}"
+        loading="eager"
       >
 
     {% endif %}
@@ -1466,11 +1402,6 @@
 
           }
 
-
-          /*
-           * Automatically create an anonymous
-           * session if none exists.
-           */
 
           if (!session) {
 
