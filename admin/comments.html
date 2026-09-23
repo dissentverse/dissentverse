@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>DissentVerse — Comment Manager</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f7f7f9;
+      color: #222;
+    }
+
+    .header {
+      background: #ffffff;
+      border-bottom: 1px solid #ddd;
+      padding: 20px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .brand span {
+      color: #B02A72;
+    }
+
+    .logout-btn {
+      display: none;
+      border: 1px solid #ccc;
+      background: white;
+      padding: 9px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h1 {
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: #666;
+      margin-bottom: 30px;
+    }
+
+    .login-box,
+    .comments-box {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 25px;
+    }
+
+    .login-box {
+      max-width: 450px;
+      margin: 50px auto;
+    }
+
+    .field {
+      margin-bottom: 16px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .field input {
+      width: 100%;
+      padding: 11px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+
+    .primary-btn {
+      width: 100%;
+      padding: 11px;
+      border: none;
+      border-radius: 6px;
+      background: #222;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .primary-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .message {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .error {
+      color: #b00020;
+    }
+
+    .success {
+      color: #287a3e;
+    }
+
+    .comment-card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 18px;
+      margin-bottom: 15px;
+      background: #fff;
+    }
+
+    .comment-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+
+    .comment-author {
+      font-weight: 700;
+    }
+
+    .comment-date {
+      font-size: 13px;
+      color: #777;
+      white-space: nowrap;
+    }
+
+    .comment-article {
+      font-size: 13px;
+      color: #B02A72;
+      margin-bottom: 10px;
+      word-break: break-word;
+    }
+
+    .comment-text {
+      line-height: 1.6;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      margin-bottom: 15px;
+    }
+
+    .delete-btn {
+      border: 1px solid #c33;
+      background: white;
+      color: #b00020;
+      padding: 7px 13px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .delete-btn:hover {
+      background: #fff1f1;
+    }
+
+    .empty {
+      text-align: center;
+      color: #777;
+      padding: 30px;
+    }
+
+    #adminArea {
+      display: none;
+    }
+
+    #loginArea {
+      display: block;
+    }
+
+    @media (max-width: 600px) {
+      .header {
+        padding: 16px;
+      }
+
+      .container {
+        margin: 25px auto;
+        padding: 0 15px;
+      }
+
+      .comment-top {
+        flex-direction: column;
+      }
+
+      .comment-date {
+        white-space: normal;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="brand">
+      Dissent<span>Verse</span>
+    </div>
+
+    <button
+      id="logoutButton"
+      class="logout-btn"
+      type="button"
+    >
+      Log Out
+    </button>
+  </header>
+
+
+  <main class="container">
+
+    <!-- =========================
+         LOGIN
+    ========================== -->
+
+    <section id="loginArea" class="login-box">
+
+      <h1>Admin Login</h1>
+
+      <p class="subtitle">
+        Sign in to manage DissentVerse comments.
+      </p>
+
+      <form id="loginForm">
+
+        <div class="field">
+          <label for="email">
+            Email
+          </label>
+
+          <input
+            type="email"
+            id="email"
+            required
+            autocomplete="email"
+          >
+        </div>
+
+
+        <div class="field">
+          <label for="password">
+            Password
+          </label>
+
+          <input
+            type="password"
+            id="password"
+            required
+            autocomplete="current-password"
+          >
+        </div>
+
+
+        <button
+          id="loginButton"
+          class="primary-btn"
+          type="submit"
+        >
+          Sign In
+        </button>
+
+      </form>
+
+
+      <div
+        id="loginMessage"
+        class="message"
+      ></div>
+
+    </section>
+
+
+    <!-- =========================
+         ADMIN AREA
+    ========================== -->
+
+    <section id="adminArea">
+
+      <h1>Comments</h1>
+
+      <p class="subtitle">
+        Manage comments posted on DissentVerse.
+      </p>
+
+
+      <div class="comments-box">
+
+        <div id="commentsList"></div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <script>
+
+    /* =========================
+       SUPABASE
+    ========================== */
+
+    const SUPABASE_URL =
+      "https://yplvpgigfkihgmyfsqyl.supabase.co";
+
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_wnafq5zQ9Y2b9WsH-j5U9Q_WmcgV1L";
+
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY,
+        {
+          auth: {
+            persistSession: true,
+            autoRefreshToken: true,
+            detectSessionInUrl: true
+          }
+        }
+      );
+
+
+    /* =========================
+       ELEMENTS
+    ========================== */
+
+    const loginArea =
+      document.getElementById("loginArea");
+
+    const adminArea =
+      document.getElementById("adminArea");
+
+    const loginForm =
+      document.getElementById("loginForm");
+
+    const loginButton =
+      document.getElementById("loginButton");
+
+    const loginMessage =
+      document.getElementById("loginMessage");
+
+    const logoutButton =
+      document.getElementById("logoutButton");
+
+    const commentsList =
+      document.getElementById("commentsList");
+
+
+    /* =========================
+       LOGIN
+    ========================== */
+
+    loginForm.addEventListener(
+      "submit",
+      async function (event) {
+
+        event.preventDefault();
+
+        loginButton.disabled = true;
+        loginButton.textContent = "Signing in...";
+
+        loginMessage.textContent = "";
+        loginMessage.className = "message";
+
+
+        const email =
+          document
+            .getElementById("email")
+            .value
+            .trim();
+
+        const password =
+          document
+            .getElementById("password")
+            .value;
+
+
+        try {
+
+          const {
+            data,
+            error
+          } =
+            await supabaseClient.auth.signInWithPassword({
+              email: email,
+              password: password
+            });
+
+
+          if (error) {
+            throw error;
+          }
+
+
+          await checkAdmin(data.user);
+
+
+        } catch (error) {
+
+          console.error(
+            "Login error:",
+            error
+          );
+
+          loginMessage.textContent =
+            error.message ||
+            "Unable to sign in.";
+
+          loginMessage.className =
+            "message error";
+
+          loginButton.disabled = false;
+          loginButton.textContent = "Sign In";
+
+        }
+
+      }
+    );
+
+
+    /* =========================
+       CHECK ADMIN
+    ========================== */
+
+    async function checkAdmin(user) {
+
+      if (!user) {
+
+        showLogin();
+
+        return;
+
+      }
+
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+          .from("admin_users")
+          .select("user_id")
+          .eq("user_id", user.id)
+          .maybeSingle();
+
+
+      if (error) {
+
+        console.error(
+          "Admin check error:",
+          error
+        );
+
+        await supabaseClient.auth.signOut();
+
+        showLogin();
+
+        loginMessage.textContent =
+          "Unable to verify admin access.";
+
+        loginMessage.className =
+          "message error";
+
+        return;
+
+      }
+
+
+      if (!data) {
+
+        await supabaseClient.auth.signOut();
+
+        showLogin();
+
+        loginMessage.textContent =
+          "This account does not have admin access.";
+
+        loginMessage.className =
+          "message error";
+
+        return;
+
+      }
+
+
+      showAdminArea();
+
+      await loadComments();
+
+    }
+
+
+    /* =========================
+       SHOW ADMIN AREA
+    ========================== */
+
+    function showAdminArea() {
+
+      loginArea.style.display =
+        "none";
+
+      adminArea.style.display =
+        "block";
+
+      logoutButton.style.display =
+        "block";
+
+    }
+
+
+    /* =========================
+       SHOW LOGIN
+    ========================== */
+
+    function showLogin() {
+
+      loginArea.style.display =
+        "block";
+
+      adminArea.style.display =
+        "none";
+
+      logoutButton.style.display =
+        "none";
+
+    }
+
+
+    /* =========================
+       LOAD COMMENTS
+    ========================== */
+
+    async function loadComments() {
+
+      commentsList.innerHTML =
+        "<div class='empty'>Loading comments...</div>";
+
+
+      const {
+        data: comments,
+        error
+      } =
+        await supabaseClient
+          .from("comments")
+          .select("*")
+          .order("created_at", {
+            ascending: false
+          });
+
+
+      if (error) {
+
+        console.error(
+          "Comments loading error:",
+          error
+        );
+
+        commentsList.innerHTML =
+          "<div class='empty error'>Unable to load comments.</div>";
+
+        return;
+
+      }
+
+
+      if (
+        !comments ||
+        comments.length === 0
+      ) {
+
+        commentsList.innerHTML =
+          "<div class='empty'>No comments yet.</div>";
+
+        return;
+
+      }
+
+
+      commentsList.innerHTML = "";
+
+
+      comments.forEach(
+        function (comment) {
+
+          const card =
+            document.createElement("div");
+
+          card.className =
+            "comment-card";
+
+
+          const top =
+            document.createElement("div");
+
+          top.className =
+            "comment-top";
+
+
+          const author =
+            document.createElement("div");
+
+          author.className =
+            "comment-author";
+
+          author.textContent =
+            comment.display_name ||
+            "Anonymous";
+
+
+          const date =
+            document.createElement("div");
+
+          date.className =
+            "comment-date";
+
+
+          if (comment.created_at) {
+
+            date.textContent =
+              new Date(
+                comment.created_at
+              ).toLocaleString(
+                undefined,
+                {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                  hour: "numeric",
+                  minute: "2-digit"
+                }
+              );
+
+          }
+
+
+          top.appendChild(author);
+          top.appendChild(date);
+
+
+          const article =
+            document.createElement("div");
+
+          article.className =
+            "comment-article";
+
+          article.textContent =
+            "Article: " +
+            (
+              comment.article_slug ||
+              "Unknown"
+            );
+
+
+          const text =
+            document.createElement("div");
+
+          text.className =
+            "comment-text";
+
+          text.textContent =
+            comment.comment_text ||
+            "";
+
+
+          const deleteButton =
+            document.createElement("button");
+
+          deleteButton.className =
+            "delete-btn";
+
+          deleteButton.type =
+            "button";
+
+          deleteButton.textContent =
+            "Delete";
+
+
+          deleteButton.addEventListener(
+            "click",
+            function () {
+
+              deleteComment(
+                comment.id,
+                deleteButton
+              );
+
+            }
+          );
+
+
+          card.appendChild(top);
+          card.appendChild(article);
+          card.appendChild(text);
+          card.appendChild(deleteButton);
+
+          commentsList.appendChild(card);
+
+        }
+      );
+
+    }
+
+
+    /* =========================
+       DELETE COMMENT
+    ========================== */
+
+    async function deleteComment(
+      commentId,
+      button
+    ) {
+
+      const confirmed =
+        confirm(
+          "Are you sure you want to delete this comment?"
+        );
+
+
+      if (!confirmed) {
+        return;
+      }
+
+
+      button.disabled = true;
+      button.textContent = "Deleting...";
+
+
+      const {
+        error
+      } =
+        await supabaseClient
+          .from("comments")
+          .delete()
+          .eq("id", commentId);
+
+
+      if (error) {
+
+        console.error(
+          "Delete error:",
+          error
+        );
+
+        alert(
+          "Unable to delete this comment."
+        );
+
+        button.disabled = false;
+        button.textContent = "Delete";
+
+        return;
+
+      }
+
+
+      await loadComments();
+
+    }
+
+
+    /* =========================
+       LOG OUT
+    ========================== */
+
+    logoutButton.addEventListener(
+      "click",
+      async function () {
+
+        await supabaseClient.auth.signOut();
+
+        showLogin();
+
+        loginForm.reset();
+
+      }
+    );
+
+
+    /* =========================
+       CHECK EXISTING SESSION
+    ========================== */
+
+    async function initialize() {
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient.auth.getSession();
+
+
+      if (error) {
+
+        console.error(
+          "Session error:",
+          error
+        );
+
+        showLogin();
+
+        return;
+
+      }
+
+
+      if (data.session) {
+
+        await checkAdmin(
+          data.session.user
+        );
+
+      } else {
+
+        showLogin();
+
+      }
+
+    }
+
+
+    initialize();
+
+  </script>
+
+</body>
+</html>
