@@ -1028,9 +1028,39 @@
 </footer>
 
 
-<!-- JOIN US -->
+<!-- SUPABASE -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<!-- JOIN US + SEARCH + PASSWORD RECOVERY -->
 
 <script>
+
+const supabaseClient = window.supabase.createClient(
+  "https://yplvpgigfkihgmyfsqyl.supabase.co",
+  "sb_publishable_wnafq5zQ9Y2b9WsH-j5U9Q_WmcgV1L",
+  {
+    auth: {
+      persistSession: true,
+      autoRefreshToken: true,
+      detectSessionInUrl: true
+    }
+  }
+);
+
+
+supabaseClient.auth.onAuthStateChange(function (event) {
+
+  if (event === "PASSWORD_RECOVERY") {
+
+    window.location.href =
+      "/dissentverse/admin/reset-password.html";
+
+  }
+
+});
+
 
 function joinDissentVerse(event) {
 
@@ -1058,7 +1088,9 @@ function joinDissentVerse(event) {
 }
 
 
-<!-- SEARCH -->
+/* =========================
+   SEARCH
+   ========================= */
 
 const searchInput =
   document.getElementById("searchInput");
