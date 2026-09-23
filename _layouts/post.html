@@ -463,163 +463,6 @@
 
 
     /* =========================
-       COMMENT ACTIONS
-    ========================= */
-
-    .comment-actions {
-      display: flex;
-
-      align-items: center;
-
-      gap: 16px;
-
-      margin-top: 12px;
-    }
-
-    .comment-action-btn {
-      border: none;
-
-      background: transparent;
-
-      padding: 4px 0;
-
-      font-family: "DM Sans", sans-serif;
-
-      font-size: 12px;
-
-      color: #765d6e;
-
-      cursor: pointer;
-
-      transition: .2s ease;
-    }
-
-    .comment-action-btn:hover {
-      color: #9f5685;
-    }
-
-    .comment-action-btn.liked {
-      color: #b02a72;
-
-      font-weight: 600;
-    }
-
-    .comment-action-btn:disabled {
-      opacity: .6;
-
-      cursor: default;
-    }
-
-
-    /* =========================
-       REPLIES
-    ========================= */
-
-    .comment-replies {
-      margin-top: 14px;
-
-      margin-left: 25px;
-
-      padding-left: 18px;
-
-      border-left: 2px solid rgba(185,107,159,.18);
-    }
-
-    .comment-replies .comment-item {
-      margin-bottom: 12px;
-
-      background: rgba(255,255,255,.62);
-    }
-
-    .reply-box {
-      margin-top: 12px;
-
-      padding: 14px;
-
-      background: rgba(248,241,246,.72);
-
-      border-radius: 10px;
-
-      border: 1px solid rgba(150,80,130,.10);
-    }
-
-    .reply-box textarea {
-      width: 100%;
-
-      min-height: 80px;
-
-      resize: vertical;
-
-      border: 1px solid #ddd1da;
-
-      border-radius: 8px;
-
-      padding: 10px 12px;
-
-      font-family: "DM Sans", sans-serif;
-
-      font-size: 13px;
-
-      outline: none;
-
-      background: white;
-
-      color: #302830;
-    }
-
-    .reply-box textarea:focus {
-      border-color: #b96b9f;
-    }
-
-    .reply-box-actions {
-      display: flex;
-
-      gap: 8px;
-
-      margin-top: 9px;
-    }
-
-    .reply-submit-btn,
-    .reply-cancel-btn {
-      border-radius: 999px;
-
-      padding: 8px 14px;
-
-      font-family: "DM Sans", sans-serif;
-
-      font-size: 12px;
-
-      font-weight: 600;
-
-      cursor: pointer;
-    }
-
-    .reply-submit-btn {
-      border: none;
-
-      background: #b96b9f;
-
-      color: white;
-    }
-
-    .reply-submit-btn:hover {
-      background: #9f5685;
-    }
-
-    .reply-cancel-btn {
-      border: 1px solid #ddd1da;
-
-      background: white;
-
-      color: #765d6e;
-    }
-
-    .reply-cancel-btn:hover {
-      background: #f8f1f6;
-    }
-
-
-    /* =========================
        COMMENT CHOICE
     ========================= */
 
@@ -795,12 +638,6 @@
 
       .article-actions {
         flex-wrap: wrap;
-      }
-
-      .comment-replies {
-        margin-left: 10px;
-
-        padding-left: 12px;
       }
 
     }
@@ -1106,7 +943,7 @@
       "https://yplvpgigfkihgmyfsqyl.supabase.co";
 
     const SUPABASE_PUBLISHABLE_KEY =
-      "sb_publishable_wnafq5zQ9Y2b9WsH-j5U9Q_WmcgV1L";
+      "sb_publishable_wnafq5zQ9Y2b9WsH-j5U9Q_WmcgYV1L";
 
 
     const supabaseClient =
@@ -1135,4 +972,979 @@
        BASIC ELEMENTS
     ========================= */
 
-   
+    const likeButton =
+      document.getElementById("likeButton");
+
+    const commentButton =
+      document.getElementById("commentButton");
+
+    const shareButton =
+      document.getElementById("shareButton");
+
+    const anonymousCheckbox =
+      document.getElementById("anonymousCheckbox");
+
+    const commentName =
+      document.getElementById("commentName");
+
+    const commentText =
+      document.getElementById("commentText");
+
+    const postCommentButton =
+      document.getElementById("postCommentButton");
+
+    const commentsList =
+      document.getElementById("commentsList");
+
+
+
+    /* =========================
+       COMMENT CHOICE ELEMENTS
+    ========================= */
+
+    const commentChoice =
+      document.getElementById("commentChoice");
+
+    const anonymousCommentBtn =
+      document.getElementById("anonymousCommentBtn");
+
+    const createAccountBtn =
+      document.getElementById("createAccountBtn");
+
+    const signInBtn =
+      document.getElementById("signInBtn");
+
+    const closeCommentChoice =
+      document.getElementById("closeCommentChoice");
+
+
+
+    /* =========================
+       LIKE
+    ========================= */
+
+    let liked = false;
+
+
+    likeButton.addEventListener(
+      "click",
+      function () {
+
+        liked = !liked;
+
+
+        if (liked) {
+
+          likeButton.textContent =
+            "♥ Liked";
+
+          likeButton.classList.add(
+            "liked"
+          );
+
+        } else {
+
+          likeButton.textContent =
+            "♡ Like";
+
+          likeButton.classList.remove(
+            "liked"
+          );
+
+        }
+
+      }
+    );
+
+
+
+    /* =========================
+       COMMENT BUTTON
+    ========================= */
+
+    commentButton.addEventListener(
+      "click",
+      function () {
+
+        commentChoice.classList.add(
+          "show"
+        );
+
+      }
+    );
+
+
+
+    /* =========================
+       CLOSE COMMENT CHOICE
+    ========================= */
+
+    closeCommentChoice.addEventListener(
+      "click",
+      function () {
+
+        commentChoice.classList.remove(
+          "show"
+        );
+
+      }
+    );
+
+
+    commentChoice.addEventListener(
+      "click",
+      function (event) {
+
+        if (
+          event.target === commentChoice
+        ) {
+
+          commentChoice.classList.remove(
+            "show"
+          );
+
+        }
+
+      }
+    );
+
+
+
+    /* =========================
+       CONTINUE AS ANONYMOUS
+    ========================= */
+
+    anonymousCommentBtn.addEventListener(
+      "click",
+      async function () {
+
+        anonymousCommentBtn.disabled =
+          true;
+
+        anonymousCommentBtn.textContent =
+          "Connecting...";
+
+
+        try {
+
+          let session =
+            activeSession;
+
+
+          if (!session) {
+
+            const {
+              data,
+              error
+            } =
+              await supabaseClient.auth
+                .getSession();
+
+
+            if (error) {
+
+              console.error(
+                "Session check error:",
+                error
+              );
+
+            }
+
+
+            if (
+              data &&
+              data.session
+            ) {
+
+              session =
+                data.session;
+
+            }
+
+          }
+
+
+          if (!session) {
+
+            const {
+              data,
+              error
+            } =
+              await supabaseClient.auth
+                .signInAnonymously();
+
+
+            if (error) {
+
+              console.error(
+                "Anonymous sign-in error:",
+                error
+              );
+
+              alert(
+                "We could not start anonymous commenting. Please try again."
+              );
+
+              return;
+
+            }
+
+
+            session =
+              data.session;
+
+          }
+
+
+          if (
+            !session ||
+            !session.user
+          ) {
+
+            alert(
+              "Anonymous sign-in did not create a session. Please try again."
+            );
+
+            return;
+
+          }
+
+
+          activeSession =
+            session;
+
+
+          console.log(
+            "Anonymous session ready:",
+            activeSession.user.id
+          );
+
+
+          commentChoice.classList.remove(
+            "show"
+          );
+
+
+          document
+            .getElementById(
+              "commentsSection"
+            )
+            .scrollIntoView({
+              behavior: "smooth"
+            });
+
+
+          setTimeout(
+            function () {
+
+              commentName.value =
+                "Anonymous";
+
+              commentName.disabled =
+                true;
+
+              anonymousCheckbox.checked =
+                true;
+
+              commentText.focus();
+
+            },
+            500
+          );
+
+
+        } catch (error) {
+
+          console.error(
+            "Anonymous sign-in error:",
+            error
+          );
+
+          alert(
+            "Something went wrong. Please try again."
+          );
+
+        } finally {
+
+          anonymousCommentBtn.disabled =
+            false;
+
+          anonymousCommentBtn.textContent =
+            "Continue as Anonymous";
+
+        }
+
+      }
+    );
+
+
+
+    /* =========================
+       CREATE ACCOUNT
+    ========================= */
+
+    createAccountBtn.addEventListener(
+      "click",
+      function () {
+
+        alert(
+          "Account creation will be added next."
+        );
+
+      }
+    );
+
+
+
+    /* =========================
+       SIGN IN
+    ========================= */
+
+    signInBtn.addEventListener(
+      "click",
+      function () {
+
+        alert(
+          "Sign in will be added next."
+        );
+
+      }
+    );
+
+
+
+    /* =========================
+       SHARE
+    ========================= */
+
+    shareButton.addEventListener(
+      "click",
+      async function () {
+
+        const shareData = {
+
+          title:
+            document.title,
+
+          text:
+            "Read this article on DissentVerse.",
+
+          url:
+            window.location.href
+
+        };
+
+
+        try {
+
+          if (navigator.share) {
+
+            await navigator.share(
+              shareData
+            );
+
+          } else {
+
+            await navigator.clipboard.writeText(
+              window.location.href
+            );
+
+            alert(
+              "Article link copied."
+            );
+
+          }
+
+        } catch (error) {
+
+          console.log(
+            "Share cancelled."
+          );
+
+        }
+
+      }
+    );
+
+
+
+    /* =========================
+       ANONYMOUS CHECKBOX
+    ========================= */
+
+    anonymousCheckbox.addEventListener(
+      "change",
+      function () {
+
+        if (
+          anonymousCheckbox.checked
+        ) {
+
+          commentName.value =
+            "Anonymous";
+
+          commentName.disabled =
+            true;
+
+        } else {
+
+          commentName.value =
+            "";
+
+          commentName.disabled =
+            false;
+
+        }
+
+      }
+    );
+
+
+
+    /* =========================
+       LOAD COMMENTS
+    ========================= */
+
+    async function loadComments() {
+
+      if (!commentsList) {
+        return;
+      }
+
+
+      const articleSlug =
+        "{{ page.slug | escape }}";
+
+
+      const {
+        data: comments,
+        error
+      } =
+        await supabaseClient
+          .from("comments")
+          .select("*")
+          .eq("article_slug", articleSlug)
+          .eq("approved", true)
+          .order("created_at", {
+            ascending: true
+          });
+
+
+      if (error) {
+
+        console.error(
+          "Error loading comments:",
+          error
+        );
+
+        return;
+
+      }
+
+
+      commentsList.innerHTML = "";
+
+
+      if (
+        !comments ||
+        comments.length === 0
+      ) {
+
+        return;
+
+      }
+
+
+      comments.forEach(
+        function (comment) {
+
+          const commentItem =
+            document.createElement("div");
+
+          commentItem.className =
+            "comment-item";
+
+
+          const author =
+            document.createElement("div");
+
+          author.className =
+            "comment-author";
+
+          author.textContent =
+            comment.display_name ||
+            "Anonymous";
+
+
+          const text =
+            document.createElement("div");
+
+          text.className =
+            "comment-text";
+
+          text.textContent =
+            comment.comment_text;
+
+
+          const date =
+            document.createElement("div");
+
+          date.className =
+            "comment-date";
+
+
+          if (
+            comment.created_at
+          ) {
+
+            date.textContent =
+              new Date(
+                comment.created_at
+              ).toLocaleDateString(
+                undefined,
+                {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric"
+                }
+              );
+
+          }
+
+
+          commentItem.appendChild(
+            author
+          );
+
+          commentItem.appendChild(
+            text
+          );
+
+          commentItem.appendChild(
+            date
+          );
+
+
+          commentsList.appendChild(
+            commentItem
+          );
+
+        }
+      );
+
+    }
+
+
+
+    /* =========================
+       COMMENT SUBMIT
+    ========================= */
+
+    postCommentButton.addEventListener(
+      "click",
+      async function () {
+
+        const name =
+          commentName.value.trim();
+
+        const text =
+          commentText.value.trim();
+
+
+        if (!text) {
+
+          alert(
+            "Please write a comment first."
+          );
+
+          commentText.focus();
+
+          return;
+
+        }
+
+
+        postCommentButton.disabled =
+          true;
+
+        postCommentButton.textContent =
+          "Posting...";
+
+
+        try {
+
+          let session =
+            activeSession;
+
+
+          if (!session) {
+
+            const {
+              data: sessionData,
+              error: sessionError
+            } =
+              await supabaseClient.auth
+                .getSession();
+
+
+            if (sessionError) {
+
+              console.error(
+                "Session error:",
+                sessionError
+              );
+
+            }
+
+
+            if (
+              sessionData &&
+              sessionData.session
+            ) {
+
+              session =
+                sessionData.session;
+
+            }
+
+          }
+
+
+          if (!session) {
+
+            console.log(
+              "No session found. Creating anonymous user..."
+            );
+
+
+            const {
+              data: anonymousData,
+              error: anonymousError
+            } =
+              await supabaseClient.auth
+                .signInAnonymously();
+
+
+            if (anonymousError) {
+
+              console.error(
+                "Anonymous sign-in error:",
+                anonymousError
+              );
+
+              alert(
+                "We could not connect for commenting. Please try again."
+              );
+
+              return;
+
+            }
+
+
+            session =
+              anonymousData.session;
+
+
+            if (!session) {
+
+              const {
+                data: finalSessionData,
+                error: finalSessionError
+              } =
+                await supabaseClient.auth
+                  .getSession();
+
+
+              if (finalSessionError) {
+
+                console.error(
+                  "Final session error:",
+                  finalSessionError
+                );
+
+              }
+
+
+              session =
+                finalSessionData?.session ||
+                null;
+
+            }
+
+          }
+
+
+          if (
+            !session ||
+            !session.user
+          ) {
+
+            console.error(
+              "No authenticated user session available."
+            );
+
+            alert(
+              "We could not create your commenting session. Please try again."
+            );
+
+            return;
+
+          }
+
+
+          activeSession =
+            session;
+
+
+          const user =
+            session.user;
+
+
+          console.log(
+            "Commenting user:",
+            user.id
+          );
+
+
+          const displayName =
+            anonymousCheckbox.checked
+              ? "Anonymous"
+              : (name || "Anonymous");
+
+
+          const isAnonymous =
+            user.is_anonymous === true ||
+            anonymousCheckbox.checked;
+
+
+          const articleSlug =
+            "{{ page.slug | escape }}";
+
+
+          console.log(
+            "Article slug:",
+            articleSlug
+          );
+
+
+          const {
+            data: insertedComment,
+            error: insertError
+          } =
+            await supabaseClient
+              .from("comments")
+              .insert({
+
+                article_slug:
+                  articleSlug,
+
+                parent_id:
+                  null,
+
+                display_name:
+                  displayName,
+
+                comment_text:
+                  text,
+
+                is_anonymous:
+                  isAnonymous,
+
+                approved:
+                  true,
+
+                user_id:
+                  user.id
+
+              })
+              .select()
+              .single();
+
+
+          if (insertError) {
+
+            console.error(
+              "Comment insert error:",
+              insertError
+            );
+
+            alert(
+              "We could not post your comment. Please try again."
+            );
+
+            return;
+
+          }
+
+
+          console.log(
+            "Comment submitted successfully:",
+            insertedComment
+          );
+
+
+          commentText.value =
+            "";
+
+
+          if (
+            anonymousCheckbox.checked
+          ) {
+
+            commentName.value =
+              "Anonymous";
+
+            commentName.disabled =
+              true;
+
+          } else {
+
+            commentName.value =
+              "";
+
+            commentName.disabled =
+              false;
+
+          }
+
+
+          /*
+             Reload comments so the newly
+             posted comment appears immediately.
+          */
+
+          await loadComments();
+
+
+          alert(
+            "Your comment has been posted."
+          );
+
+
+        } catch (error) {
+
+          console.error(
+            "Comment submission error:",
+            error
+          );
+
+          alert(
+            "Something went wrong. Please try again."
+          );
+
+
+        } finally {
+
+          postCommentButton.disabled =
+            false;
+
+          postCommentButton.textContent =
+            "Post Comment";
+
+        }
+
+      }
+    );
+
+
+
+    /* =========================
+       SUPABASE AUTH STATE
+    ========================= */
+
+    supabaseClient.auth.onAuthStateChange(
+      function (
+        event,
+        session
+      ) {
+
+        console.log(
+          "Auth event:",
+          event
+        );
+
+
+        if (session) {
+
+          activeSession =
+            session;
+
+        }
+
+      }
+    );
+
+
+
+    /* =========================
+       LOAD EXISTING SESSION
+    ========================= */
+
+    (async function () {
+
+      try {
+
+        const {
+          data,
+          error
+        } =
+          await supabaseClient.auth
+            .getSession();
+
+
+        if (error) {
+
+          console.error(
+            "Supabase session error:",
+            error
+          );
+
+          return;
+
+        }
+
+
+        if (
+          data &&
+          data.session
+        ) {
+
+          activeSession =
+            data.session;
+
+          console.log(
+            "Existing session loaded."
+          );
+
+        } else {
+
+          console.log(
+            "No existing session."
+          );
+
+        }
+
+
+      } catch (error) {
+
+        console.error(
+          "Supabase initialization error:",
+          error
+        );
+
+      }
+
+    })();
+
+
+    /* =========================
+       LOAD COMMENTS ON PAGE LOAD
+    ========================= */
+
+    loadComments();
+
+  </script>
+
+
+</body>
+</html>
