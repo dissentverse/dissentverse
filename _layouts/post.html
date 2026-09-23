@@ -1675,17 +1675,20 @@
 
 
       const {
-        data: comments,
-        error
-      } =
-        await supabaseClient
-          .from("comments")
-          .select("*")
-          .eq("article_slug", articleSlug)
-          .eq("approved", true)
-          .order("created_at", {
-            ascending: true
-          });
+  data: comments,
+  error
+} =
+  await supabaseClient
+    .from("comments")
+    .select("*")
+    .eq("article_slug", articleSlug)
+    .eq("approved", true)
+    .order("created_at", {
+      ascending: true
+    });
+
+console.log("Comments loaded:", comments);
+console.log("Comments load error:", error);
 
 
       if (error) {
