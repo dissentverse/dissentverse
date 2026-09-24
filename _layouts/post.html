@@ -9,9 +9,12 @@
 
   <title>{{ page.title }} | DissentVerse</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Lora:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
+    /* =========================
+       RESET
+    ========================= */
 
     * {
       box-sizing: border-box;
@@ -19,581 +22,160 @@
 
     body {
       margin: 0;
-      font-family: Georgia, "Times New Roman", serif;
-      color: #242024;
-
-      background:
-        radial-gradient(circle at 10% 10%, rgba(248,210,230,.55), transparent 32%),
-        radial-gradient(circle at 90% 20%, rgba(225,214,245,.55), transparent 30%),
-        linear-gradient(135deg,#fff7fb,#f7f2fc);
-
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-
-    /* =========================
-       HEADER
-    ========================= */
-
-    .site-header {
-      background:
-        linear-gradient(
-          135deg,
-          #b96b9f,
-          #c98ab6 55%,
-          #ead8e8
-        );
-
-      border-bottom: 1px solid rgba(150,80,130,.20);
-      backdrop-filter: blur(8px);
-
-      padding: 20px 30px;
-    }
-
-    .header-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      gap: 30px;
-    }
-
-    .brand-row {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .site-logo {
-      width: 52px;
-      height: 52px;
-
-      border-radius: 50%;
-      object-fit: cover;
-
-      border: 2px solid rgba(255,255,255,.75);
-      box-shadow: 0 4px 15px rgba(80,30,70,.15);
-    }
-
-    .brand {
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: 31px;
-      font-weight: 700;
-      color: #241b24;
-      letter-spacing: -0.5px;
-    }
-
-    .brand span {
-      color: #B02A72;
-    }
-
-    .tagline {
-      margin-top: 2px;
-
+      background: #fff;
+      color: #222;
       font-family: "DM Sans", sans-serif;
-      font-size: 12px;
-      color: #4d3045;
-
-      letter-spacing: .4px;
     }
 
-    nav {
-      display: flex;
-      gap: 24px;
-      align-items: center;
-    }
-
-    nav a {
+    a {
       text-decoration: none;
-
-      font-family: "DM Sans", sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-
-      color: #3f2838;
-
-      letter-spacing: .6px;
-    }
-
-    nav a:hover {
-      color: #ffffff;
     }
 
 
     /* =========================
-       ARTICLE
-    ========================= */
-
-    .article-wrapper {
-      width: 100%;
-      max-width: 900px;
-
-      margin: 60px auto;
-      padding: 0 24px;
-    }
-
-    .article-date {
-      font-family: "DM Sans", sans-serif;
-
-      font-size: 12px;
-      font-weight: 600;
-
-      color: #9a6789;
-
-      letter-spacing: .7px;
-      text-transform: uppercase;
-
-      margin-bottom: 14px;
-    }
-
-    .article-title {
-      margin: 0 0 25px;
-
-      font-family: "Playfair Display", Georgia, serif;
-
-      font-size: clamp(34px, 5vw, 58px);
-      line-height: 1.08;
-
-      font-weight: 700;
-
-      color: #2d2029;
-      letter-spacing: -1px;
-    }
-
-    .featured-image {
-      display: block;
-
-      width: 100%;
-
-      max-height: 520px;
-
-      object-fit: cover;
-
-      border-radius: 16px;
-
-      margin: 15px 0 35px;
-
-      box-shadow:
-        0 15px 40px rgba(80,45,75,.12);
-    }
-
-    .article-content {
-      font-family: "Lora", Georgia, serif;
-
-      font-size: 18px;
-      line-height: 1.85;
-
-      color: #302830;
-    }
-
-    .article-content p {
-      margin: 0 0 25px;
-    }
-
-    .article-content h2 {
-      font-family: "Playfair Display", Georgia, serif;
-
-      font-size: 30px;
-
-      margin-top: 45px;
-      margin-bottom: 18px;
-
-      color: #33232e;
-    }
-
-    .article-content h3 {
-      font-family: "Playfair Display", Georgia, serif;
-
-      font-size: 24px;
-
-      margin-top: 35px;
-      margin-bottom: 15px;
-
-      color: #33232e;
-    }
-
-    .article-content a {
-      color: #a25288;
-    }
-
-    .article-content blockquote {
-      margin: 35px 0;
-
-      padding: 20px 25px;
-
-      border-left: 4px solid #b96b9f;
-
-      background: rgba(255,255,255,.65);
-
-      font-style: italic;
-    }
-
-
-    /* =========================
-       ARTICLE ACTIONS
-    ========================= */
-
-    .article-actions {
-      display: flex;
-      gap: 12px;
-
-      margin-top: 45px;
-      padding-top: 25px;
-
-      border-top: 1px solid rgba(120,80,110,.18);
-    }
-
-    .action-btn {
-      border: 1px solid rgba(150,80,130,.25);
-
-      background: rgba(255,255,255,.75);
-
-      color: #59384f;
-
-      border-radius: 999px;
-
-      padding: 10px 18px;
-
-      font-family: "DM Sans", sans-serif;
-      font-size: 13px;
-      font-weight: 600;
-
-      cursor: pointer;
-
-      transition: .2s ease;
-    }
-
-    .action-btn:hover {
-      background: #b96b9f;
-      color: white;
-    }
-
-    .action-btn.liked {
-      background: #b96b9f;
-      color: white;
-    }
-
-
-    /* =========================
-       COMMENTS
+       COMMENT SECTION
     ========================= */
 
     .comments-section {
-      margin-top: 60px;
-
-      padding-top: 35px;
-
-      border-top: 1px solid rgba(120,80,110,.18);
+      max-width: 850px;
+      margin: 70px auto;
+      padding: 0 20px;
     }
 
     .comments-title {
-      font-family: "Playfair Display", Georgia, serif;
-
-      font-size: 32px;
-
-      color: #30232d;
-
+      font-family: "Lora", serif;
+      font-size: 30px;
       margin-bottom: 25px;
     }
 
-    .comment-box {
-      background: rgba(255,255,255,.78);
-
-      border: 1px solid rgba(150,80,130,.16);
-
-      border-radius: 14px;
-
-      padding: 22px;
-
-      box-shadow: 0 10px 30px rgba(80,45,75,.06);
-    }
-
-    .comment-box input,
-    .comment-box textarea {
-      width: 100%;
-
-      border: 1px solid #ddd1da;
-
-      border-radius: 8px;
-
-      padding: 12px 14px;
-
-      font-family: "DM Sans", sans-serif;
-
-      font-size: 14px;
-
-      outline: none;
-
-      background: white;
-
-      color: #302830;
-    }
-
-    .comment-box input:focus,
-    .comment-box textarea:focus {
-      border-color: #b96b9f;
-    }
-
-    .comment-box textarea {
-      min-height: 130px;
-
-      resize: vertical;
-
-      margin-top: 12px;
-    }
-
-    .anonymous-row {
-      margin-top: 12px;
-
-      display: flex;
-      align-items: center;
-
-      gap: 8px;
-
-      font-family: "DM Sans", sans-serif;
-
-      font-size: 13px;
-
-      color: #66535f;
-    }
-
-    .anonymous-row input {
-      width: auto;
-    }
-
-    .post-comment-btn {
-      margin-top: 15px;
-
-      border: none;
-
-      background: #b96b9f;
-
-      color: white;
-
-      border-radius: 999px;
-
-      padding: 11px 20px;
-
-      font-family: "DM Sans", sans-serif;
-
-      font-size: 13px;
-
-      font-weight: 600;
-
-      cursor: pointer;
-    }
-
-    .post-comment-btn:hover {
-      background: #9f5685;
-    }
-
-    .comment-note {
-      margin-top: 12px;
-
-      font-family: "DM Sans", sans-serif;
-
-      font-size: 12px;
-
-      color: #8a7b85;
-    }
-
-
-    /* =========================
-       DISPLAYED COMMENTS
-    ========================= */
-
-    .comments-list {
-      margin-top: 25px;
-    }
-
     .comment-item {
-      background: rgba(255,255,255,.78);
-
-      border: 1px solid rgba(150,80,130,.16);
-
-      border-radius: 14px;
-
-      padding: 18px 20px;
-
-      margin-bottom: 15px;
-
-      box-shadow: 0 8px 25px rgba(80,45,75,.05);
+      padding: 20px 0;
+      border-bottom: 1px solid #eee;
     }
 
     .comment-author {
-      font-family: "DM Sans", sans-serif;
-
-      font-size: 13px;
-
-      font-weight: 600;
-
-      color: #59384f;
-
+      font-weight: 700;
+      color: #3f174f;
       margin-bottom: 7px;
     }
 
     .comment-text {
-      font-family: "Lora", Georgia, serif;
-
       font-size: 15px;
-
-      line-height: 1.65;
-
-      color: #302830;
-
+      line-height: 1.6;
       white-space: pre-wrap;
-
-      overflow-wrap: anywhere;
     }
 
     .comment-date {
       margin-top: 8px;
-
-      font-family: "DM Sans", sans-serif;
-
-      font-size: 11px;
-
-      color: #8a7b85;
+      font-size: 12px;
+      color: #888;
     }
-
-
-    /* =========================
-       REPLY
-    ========================= */
 
     .comment-reply-btn {
       margin-top: 12px;
-
+      padding: 6px 12px;
       border: none;
-
-      background: transparent;
-
-      color: #9f5685;
-
-      font-family: "DM Sans", sans-serif;
-
-      font-size: 12px;
-
-      font-weight: 600;
-
+      border-radius: 6px;
+      background: #f3e8f7;
+      color: #5b1b70;
       cursor: pointer;
-
-      padding: 0;
+      font-size: 13px;
     }
 
     .comment-reply-btn:hover {
-      color: #59384f;
+      background: #e8d7ee;
+    }
+
+    .comment-replies {
+      margin-top: 15px;
+      margin-left: 25px;
+      padding-left: 18px;
+      border-left: 2px solid #eee;
+    }
+
+    .reply-item {
+      padding: 15px 0;
     }
 
     .reply-box {
-      margin-top: 12px;
-
-      padding-top: 12px;
-
-      border-top: 1px solid rgba(150,80,130,.12);
+      margin-top: 15px;
+      padding: 15px;
+      background: #faf7fb;
+      border-radius: 8px;
     }
 
     .reply-box textarea {
       width: 100%;
-
-      border: 1px solid #ddd1da;
-
-      border-radius: 8px;
-
-      padding: 10px 12px;
-
-      font-family: "DM Sans", sans-serif;
-
-      font-size: 13px;
-
-      resize: vertical;
-
       min-height: 80px;
-
-      outline: none;
-
-      background: white;
-
-      color: #302830;
+      resize: vertical;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-family: inherit;
+      margin-bottom: 10px;
     }
 
-    .reply-box textarea:focus {
-      border-color: #b96b9f;
+    .reply-submit-btn,
+    .reply-cancel-btn {
+      padding: 8px 14px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-right: 7px;
     }
 
     .reply-submit-btn {
-      margin-top: 8px;
-
-      border: none;
-
-      background: #b96b9f;
-
+      background: #5b1b70;
       color: white;
-
-      border-radius: 999px;
-
-      padding: 8px 15px;
-
-      font-family: "DM Sans", sans-serif;
-
-      font-size: 12px;
-
-      font-weight: 600;
-
-      cursor: pointer;
-    }
-
-    .reply-submit-btn:hover {
-      background: #9f5685;
     }
 
     .reply-cancel-btn {
-      margin-top: 8px;
+      background: #eee;
+      color: #333;
+    }
 
-      margin-left: 6px;
 
-      border: 1px solid #ddd1da;
+    /* =========================
+       COMMENT FORM
+    ========================= */
 
-      background: white;
+    .comment-form {
+      margin-top: 35px;
+      padding: 25px;
+      background: #faf7fb;
+      border-radius: 10px;
+    }
 
-      color: #7d6c77;
+    .comment-form input,
+    .comment-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-family: inherit;
+    }
 
-      border-radius: 999px;
+    .comment-form textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
 
-      padding: 7px 14px;
-
-      font-family: "DM Sans", sans-serif;
-
-      font-size: 12px;
-
+    .comment-form button {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 6px;
+      background: #5b1b70;
+      color: white;
       cursor: pointer;
     }
 
-    .comment-replies {
-      margin-top: 12px;
-
-      margin-left: 25px;
-
-      padding-left: 15px;
-
-      border-left: 2px solid rgba(185,107,159,.25);
-    }
-
-    .reply-item {
-      background: rgba(255,255,255,.65);
-
-      border: 1px solid rgba(150,80,130,.12);
-
-      border-radius: 12px;
-
-      padding: 14px 16px;
-
-      margin-bottom: 10px;
+    .anonymous-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      font-size: 14px;
     }
 
 
@@ -602,19 +184,13 @@
     ========================= */
 
     .comment-choice {
-      display: none;
-
       position: fixed;
       inset: 0;
-
-      background: rgba(35, 20, 32, .45);
-
-      z-index: 9999;
-
+      background: rgba(0,0,0,.45);
+      display: none;
       align-items: center;
       justify-content: center;
-
-      padding: 20px;
+      z-index: 9999;
     }
 
     .comment-choice.show {
@@ -622,452 +198,144 @@
     }
 
     .comment-choice-box {
-      width: 100%;
-      max-width: 400px;
-
-      background: #ffffff;
-
-      border-radius: 18px;
-
-      padding: 28px;
-
-      box-shadow: 0 20px 60px rgba(50, 25, 45, .25);
-
+      width: min(420px, 90%);
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
       text-align: center;
     }
 
     .comment-choice-box h3 {
-      margin: 0 0 8px;
-
-      font-family: "Playfair Display", Georgia, serif;
-
-      font-size: 25px;
-
-      color: #30232d;
-    }
-
-    .comment-choice-box p {
-      margin: 0 0 22px;
-
-      font-family: "DM Sans", sans-serif;
-
-      font-size: 13px;
-
-      color: #7d6c77;
+      margin-top: 0;
+      font-family: "Lora", serif;
     }
 
     .comment-choice-box button {
       width: 100%;
-
-      border: none;
-
-      border-radius: 999px;
-
-      padding: 12px 16px;
-
+      padding: 12px;
       margin-top: 10px;
-
-      background: #b96b9f;
-
-      color: white;
-
-      font-family: "DM Sans", sans-serif;
-
-      font-size: 13px;
-
-      font-weight: 600;
-
+      border: none;
+      border-radius: 7px;
       cursor: pointer;
     }
 
-    .comment-choice-box button:hover {
-      background: #9f5685;
+    #anonymousCommentBtn {
+      background: #5b1b70;
+      color: white;
     }
 
-    .comment-choice-box .close-choice {
-      background: transparent;
-
-      color: #7d6c77;
-
-      border: 1px solid #ddd1da;
+    #createAccountBtn,
+    #signInBtn {
+      background: #f3e8f7;
+      color: #5b1b70;
     }
 
-    .comment-choice-box .close-choice:hover {
-      background: #f8f1f6;
-
-      color: #59384f;
+    #closeCommentChoice {
+      margin-top: 15px;
+      background: #eee;
+      color: #333;
     }
-
-
-    /* =========================
-       FOOTER
-    ========================= */
-
-    .site-footer {
-      margin-top: auto;
-
-      padding: 30px 20px;
-
-      text-align: center;
-
-      font-family: "DM Sans", sans-serif;
-
-      font-size: 11px;
-
-      color: #8b8389;
-
-      border-top: 1px solid #eee5ed;
-
-      background: rgba(255,255,255,.65);
-    }
-
-
-    /* =========================
-       MOBILE
-    ========================= */
-
-    @media (max-width: 700px) {
-
-      .site-header {
-        padding: 18px 18px;
-      }
-
-      .header-inner {
-        flex-direction: column;
-
-        align-items: flex-start;
-
-        gap: 16px;
-      }
-
-      .brand {
-        font-size: 27px;
-      }
-
-      .site-logo {
-        width: 46px;
-        height: 46px;
-      }
-
-      nav {
-        width: 100%;
-
-        justify-content: flex-start;
-
-        gap: 18px;
-      }
-
-      .article-wrapper {
-        margin: 40px auto;
-        padding: 0 18px;
-      }
-
-      .article-title {
-        font-size: 38px;
-      }
-
-      .article-content {
-        font-size: 17px;
-        line-height: 1.8;
-      }
-
-      .article-actions {
-        flex-wrap: wrap;
-      }
-
-      .comment-replies {
-        margin-left: 10px;
-        padding-left: 10px;
-      }
-
-    }
-
   </style>
 </head>
 
+
 <body>
 
-
   <!-- =========================
-       HEADER
+       COMMENT CHOICE
   ========================= -->
 
-  <header class="site-header">
+  <div
+    id="commentChoice"
+    class="comment-choice"
+  >
 
-    <div class="header-inner">
+    <div class="comment-choice-box">
 
-      <div class="brand-row">
+      <h3>Join the conversation</h3>
 
-        <img
-          class="site-logo"
-          src="https://dissentverse.wordpress.com/wp-content/uploads/2025/08/cropped-img-20250811-wa0002.jpg"
-          alt="DissentVerse logo"
-        >
+      <p>
+        Choose how you would like to comment.
+      </p>
 
-        <div>
+      <button id="anonymousCommentBtn">
+        Continue as Anonymous
+      </button>
 
-          <div class="brand">
-            Dissent<span>Verse</span>
-          </div>
+      <button id="createAccountBtn">
+        Create an Account
+      </button>
 
-          <div class="tagline">
-            Where Dissent finds its Verse.
-          </div>
+      <button id="signInBtn">
+        Sign In
+      </button>
 
-        </div>
-
-      </div>
-
-
-      <nav>
-
-        <a href="/dissentverse/">
-          HOME
-        </a>
-
-        <a href="/dissentverse/about.html">
-          ABOUT
-        </a>
-
-        <a href="/dissentverse/articles.html">
-          ARTICLES
-        </a>
-
-      </nav>
+      <button id="closeCommentChoice">
+        Cancel
+      </button>
 
     </div>
 
-  </header>
-
+  </div>
 
 
   <!-- =========================
-       ARTICLE
+       COMMENTS
   ========================= -->
 
-  <main class="article-wrapper">
+  <section
+    id="commentsSection"
+    class="comments-section"
+  >
 
-    <div class="article-date">
-      {{ page.date | date: "%d %B %Y" }}
-    </div>
-
-    <h1 class="article-title">
-      {{ page.title }}
-    </h1>
+    <h2 class="comments-title">
+      Comments
+    </h2>
 
 
-    <!-- =========================
-         FEATURED IMAGE
-    ========================= -->
+    <!-- COMMENT FORM -->
 
-    {% assign featured_image = page.image | default: page.featured_image | default: page.thumbnail %}
+    <div class="comment-form">
 
-    {% if featured_image %}
-
-      {% if featured_image contains '://' %}
-
-        {% assign featured_image_src = featured_image %}
-
-      {% else %}
-
-        {% assign featured_image_src = featured_image | relative_url %}
-
-      {% endif %}
-
-      <img
-        class="featured-image"
-        src="{{ featured_image_src | escape }}"
-        alt="{{ page.title | escape }}"
-        loading="eager"
+      <input
+        id="commentName"
+        type="text"
+        placeholder="Your name"
       >
 
-    {% endif %}
-
-
-    <article class="article-content">
-
-      {{ content }}
-
-    </article>
-
-
-
-    <!-- =========================
-         ARTICLE ACTIONS
-    ========================= -->
-
-    <div class="article-actions">
-
-      <button
-        class="action-btn"
-        id="likeButton"
-        type="button"
-      >
-        ♡ Like
-      </button>
-
-
-      <button
-        class="action-btn"
-        id="commentButton"
-        type="button"
-      >
-        💬 Comment
-      </button>
-
-
-      <button
-        class="action-btn"
-        id="shareButton"
-        type="button"
-      >
-        ↗ Share
-      </button>
-
-    </div>
-
-
-
-    <!-- =========================
-         COMMENT CHOICE POPUP
-    ========================= -->
-
-    <div
-      id="commentChoice"
-      class="comment-choice"
-    >
-
-      <div class="comment-choice-box">
-
-        <h3>
-          Comment on this article
-        </h3>
-
-        <p>
-          Choose how you want to continue.
-        </p>
-
-
-        <button
-          id="anonymousCommentBtn"
-          type="button"
-        >
-          Continue as Anonymous
-        </button>
-
-
-        <button
-          id="createAccountBtn"
-          type="button"
-        >
-          Create an Account
-        </button>
-
-
-        <button
-          id="signInBtn"
-          type="button"
-        >
-          Sign In
-        </button>
-
-
-        <button
-          id="closeCommentChoice"
-          class="close-choice"
-          type="button"
-        >
-          Cancel
-        </button>
-
-      </div>
-
-    </div>
-
-
-
-    <!-- =========================
-         COMMENTS
-    ========================= -->
-
-    <section
-      class="comments-section"
-      id="commentsSection"
-    >
-
-      <h2 class="comments-title">
-        Comments
-      </h2>
-
-
-      <div class="comment-box">
+      <label class="anonymous-option">
 
         <input
-          type="text"
-          id="commentName"
-          placeholder="Your name"
+          id="anonymousCheckbox"
+          type="checkbox"
         >
 
+        Comment anonymously
 
-        <textarea
-          id="commentText"
-          placeholder="Write your comment..."
-        ></textarea>
+      </label>
 
 
-        <label class="anonymous-row">
-
-          <input
-            type="checkbox"
-            id="anonymousCheckbox"
-          >
-
-          Comment anonymously
-
-        </label>
+      <textarea
+        id="commentText"
+        placeholder="Write a comment..."
+      ></textarea>
 
 
-        <button
-          class="post-comment-btn"
-          id="postCommentButton"
-          type="button"
-        >
-          Post Comment
-        </button>
+      <button
+        id="postCommentButton"
+        type="button"
+      >
+        Post Comment
+      </button>
+
+    </div>
 
 
-        <div class="comment-note">
-          Comments appear immediately after posting.
-        </div>
+    <!-- COMMENTS LIST -->
 
-      </div>
+    <div id="commentsList"></div>
 
-
-      <!-- =========================
-           DISPLAYED COMMENTS
-      ========================= -->
-
-      <div
-        id="commentsList"
-        class="comments-list"
-      ></div>
-
-    </section>
-
-  </main>
-
-
-
-  <!-- =========================
-       FOOTER
-  ========================= -->
-
-  <footer class="site-footer">
-
-    © {{ "now" | date: "%Y" }} DissentVerse. All rights reserved.
-
-  </footer>
-
+  </section>
 
 
   <!-- =========================
@@ -1079,15 +347,15 @@
   <script>
 
   const SUPABASE_URL =
-  "https://yplvpgigfkihgmyfsqyl.supabase.co";
+    "https://yplvpgigfkihgmyfsqyl.supabase.co";
 
-const SUPABASE_ANON_KEY =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlwbHZwZ2lnZmtpaGdteWZzcXlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAwMzkyNzksImV4cCI6MjEwNTYxNTI3OX0.9nHT9NIDBH3ndJyZPJF2-uvy40Kz0aF7oimyDEJuPPg";
+  const SUPABASE_ANON_KEY =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlwbHZwZ2lnZmtpaGdteWZzcXlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAwMzkyNzksImV4cCI6MjEwNTYxNTI3OX0.9nHT9NIDBH3ndJyZPJF2-uvy40Kz0aF7oimyDEJuPPg";
 
-const supabaseClient =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY,
+  const supabaseClient =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_ANON_KEY,
       {
         auth: {
           persistSession: true,
@@ -1103,6 +371,17 @@ const supabaseClient =
   ========================= */
 
   let activeSession = null;
+
+  /*
+     Stores the name selected by the user
+     for their comment.
+
+     Replies will use this same name.
+  */
+
+  let activeDisplayName = null;
+
+  let activeIsAnonymous = false;
 
 
   /* =========================
@@ -1160,54 +439,80 @@ const supabaseClient =
 
   let liked = false;
 
-  likeButton.addEventListener(
-    "click",
-    function () {
+  if (likeButton) {
 
-      liked = !liked;
+    likeButton.addEventListener(
+      "click",
+      function () {
 
-      if (liked) {
-        likeButton.textContent = "♥ Liked";
-        likeButton.classList.add("liked");
-      } else {
-        likeButton.textContent = "♡ Like";
-        likeButton.classList.remove("liked");
+        liked = !liked;
+
+        if (liked) {
+          likeButton.textContent = "♥ Liked";
+          likeButton.classList.add("liked");
+        } else {
+          likeButton.textContent = "♡ Like";
+          likeButton.classList.remove("liked");
+        }
+
       }
-    }
-  );
+    );
+
+  }
 
 
   /* =========================
      COMMENT BUTTON
   ========================= */
 
-  commentButton.addEventListener(
-    "click",
-    function () {
-      commentChoice.classList.add("show");
-    }
-  );
+  if (commentButton) {
+
+    commentButton.addEventListener(
+      "click",
+      function () {
+
+        commentChoice.classList.add("show");
+
+      }
+    );
+
+  }
 
 
   /* =========================
      CLOSE COMMENT CHOICE
   ========================= */
 
-  closeCommentChoice.addEventListener(
-    "click",
-    function () {
-      commentChoice.classList.remove("show");
-    }
-  );
+  if (closeCommentChoice) {
 
-  commentChoice.addEventListener(
-    "click",
-    function (event) {
-      if (event.target === commentChoice) {
+    closeCommentChoice.addEventListener(
+      "click",
+      function () {
+
         commentChoice.classList.remove("show");
+
       }
-    }
-  );
+    );
+
+  }
+
+
+  if (commentChoice) {
+
+    commentChoice.addEventListener(
+      "click",
+      function (event) {
+
+        if (event.target === commentChoice) {
+
+          commentChoice.classList.remove("show");
+
+        }
+
+      }
+    );
+
+  }
 
 
   /* =========================
@@ -1220,38 +525,73 @@ const supabaseClient =
       return activeSession;
     }
 
+
     const {
       data: sessionData,
       error: sessionError
-    } = await supabaseClient.auth.getSession();
+    } =
+      await supabaseClient.auth.getSession();
+
 
     if (sessionError) {
-      console.error("Session check error:", sessionError);
+
+      console.error(
+        "Session check error:",
+        sessionError
+      );
+
     }
 
-    if (sessionData && sessionData.session) {
-      activeSession = sessionData.session;
+
+    if (
+      sessionData &&
+      sessionData.session
+    ) {
+
+      activeSession =
+        sessionData.session;
+
       return activeSession;
+
     }
+
 
     const {
       data: anonymousData,
       error: anonymousError
-    } = await supabaseClient.auth.signInAnonymously();
+    } =
+      await supabaseClient.auth.signInAnonymously();
+
 
     if (anonymousError) {
-      console.error("Anonymous sign-in error:", anonymousError);
+
+      console.error(
+        "Anonymous sign-in error:",
+        anonymousError
+      );
+
       throw anonymousError;
+
     }
 
-    if (!anonymousData || !anonymousData.session) {
+
+    if (
+      !anonymousData ||
+      !anonymousData.session
+    ) {
+
       throw new Error(
         "Anonymous sign-in succeeded but no session was returned."
       );
+
     }
 
-    activeSession = anonymousData.session;
+
+    activeSession =
+      anonymousData.session;
+
     return activeSession;
+
   }
 
 
@@ -1259,104 +599,207 @@ const supabaseClient =
      CONTINUE AS ANONYMOUS
   ========================= */
 
-  anonymousCommentBtn.addEventListener(
-    "click",
-    async function () {
+  if (anonymousCommentBtn) {
 
-      anonymousCommentBtn.disabled = true;
-      anonymousCommentBtn.textContent = "Connecting...";
+    anonymousCommentBtn.addEventListener(
+      "click",
+      async function () {
 
-      try {
+        anonymousCommentBtn.disabled = true;
 
-        const session = await getActiveSession();
+        anonymousCommentBtn.textContent =
+          "Connecting...";
 
-        if (!session || !session.user) {
-          throw new Error("No authenticated user session was created.");
+
+        try {
+
+          const session =
+            await getActiveSession();
+
+
+          if (
+            !session ||
+            !session.user
+          ) {
+
+            throw new Error(
+              "No authenticated user session was created."
+            );
+
+          }
+
+
+          activeDisplayName = "Anonymous";
+          activeIsAnonymous = true;
+
+          sessionStorage.setItem(
+            "dissentverse_comment_name",
+            "Anonymous"
+          );
+
+          sessionStorage.setItem(
+            "dissentverse_comment_anonymous",
+            "true"
+          );
+
+
+          commentChoice.classList.remove("show");
+
+
+          document
+            .getElementById("commentsSection")
+            .scrollIntoView({
+              behavior: "smooth"
+            });
+
+
+          setTimeout(
+            function () {
+
+              commentName.value =
+                "Anonymous";
+
+              commentName.disabled =
+                true;
+
+              anonymousCheckbox.checked =
+                true;
+
+              commentText.focus();
+
+            },
+            500
+          );
+
+
+        } catch (error) {
+
+          console.error(
+            "Anonymous sign-in error:",
+            error
+          );
+
+
+          alert(
+            "Anonymous sign-in error: " +
+            (
+              error.message ||
+              JSON.stringify(error)
+            )
+          );
+
+
+        } finally {
+
+          anonymousCommentBtn.disabled =
+            false;
+
+          anonymousCommentBtn.textContent =
+            "Continue as Anonymous";
+
         }
 
-        commentChoice.classList.remove("show");
-
-        document
-          .getElementById("commentsSection")
-          .scrollIntoView({ behavior: "smooth" });
-
-        setTimeout(function () {
-          commentName.value = "Anonymous";
-          commentName.disabled = true;
-          anonymousCheckbox.checked = true;
-          commentText.focus();
-        }, 500);
-
-      } catch (error) {
-
-        console.error("Anonymous sign-in error:", error);
-
-        alert(
-          "Anonymous sign-in error: " +
-          (error.message || JSON.stringify(error))
-        );
-
-      } finally {
-
-        anonymousCommentBtn.disabled = false;
-        anonymousCommentBtn.textContent = "Continue as Anonymous";
       }
-    }
-  );
+    );
+
+  }
 
 
   /* =========================
      CREATE ACCOUNT
   ========================= */
 
-  createAccountBtn.addEventListener(
-    "click",
-    function () {
-      alert("Account creation will be added next.");
-    }
-  );
+  if (createAccountBtn) {
+
+    createAccountBtn.addEventListener(
+      "click",
+      function () {
+
+        alert(
+          "Account creation will be added next."
+        );
+
+      }
+    );
+
+  }
 
 
   /* =========================
      SIGN IN
   ========================= */
 
-  signInBtn.addEventListener(
-    "click",
-    function () {
-      alert("Sign in will be added next.");
-    }
-  );
+  if (signInBtn) {
+
+    signInBtn.addEventListener(
+      "click",
+      function () {
+
+        alert(
+          "Sign in will be added next."
+        );
+
+      }
+    );
+
+  }
 
 
   /* =========================
      SHARE
   ========================= */
 
-  shareButton.addEventListener(
-    "click",
-    async function () {
+  if (shareButton) {
 
-      const shareData = {
-        title: document.title,
-        text: "Read this article on DissentVerse.",
-        url: window.location.href
-      };
+    shareButton.addEventListener(
+      "click",
+      async function () {
 
-      try {
+        const shareData = {
 
-        if (navigator.share) {
-          await navigator.share(shareData);
-        } else {
-          await navigator.clipboard.writeText(window.location.href);
-          alert("Article link copied.");
+          title: document.title,
+
+          text:
+            "Read this article on DissentVerse.",
+
+          url:
+            window.location.href
+
+        };
+
+
+        try {
+
+          if (navigator.share) {
+
+            await navigator.share(
+              shareData
+            );
+
+          } else {
+
+            await navigator.clipboard.writeText(
+              window.location.href
+            );
+
+            alert(
+              "Article link copied."
+            );
+
+          }
+
+        } catch (error) {
+
+          console.log(
+            "Share cancelled."
+          );
+
         }
 
-      } catch (error) {
-        console.log("Share cancelled.");
       }
-    }
-  );
+    );
+
+  }
 
 
   /* =========================
@@ -1367,13 +810,26 @@ const supabaseClient =
     "change",
     function () {
 
-      if (anonymousCheckbox.checked) {
-        commentName.value = "Anonymous";
-        commentName.disabled = true;
+      if (
+        anonymousCheckbox.checked
+      ) {
+
+        commentName.value =
+          "Anonymous";
+
+        commentName.disabled =
+          true;
+
       } else {
-        commentName.value = "";
-        commentName.disabled = false;
+
+        commentName.value =
+          "";
+
+        commentName.disabled =
+          false;
+
       }
+
     }
   );
 
@@ -1388,128 +844,289 @@ const supabaseClient =
       return;
     }
 
+
     const articleSlug =
       "{{ page.slug | escape }}";
+
 
     const {
       data: comments,
       error
-    } = await supabaseClient
-      .from("comments")
-      .select("*")
-      .eq("article_slug", articleSlug)
-      .order("created_at", { ascending: true });
+    } =
+      await supabaseClient
+        .from("comments")
+        .select("*")
+        .eq(
+          "article_slug",
+          articleSlug
+        )
+        .order(
+          "created_at",
+          {
+            ascending: true
+          }
+        );
 
-    console.log("Comments loaded:", comments);
-    console.log("Comments load error:", error);
+
+    console.log(
+      "Comments loaded:",
+      comments
+    );
+
+    console.log(
+      "Comments load error:",
+      error
+    );
+
 
     if (error) {
-      console.error("Error loading comments:", error);
+
+      console.error(
+        "Error loading comments:",
+        error
+      );
+
       return;
+
     }
+
 
     commentsList.innerHTML = "";
 
-    if (!comments || comments.length === 0) {
+
+    if (
+      !comments ||
+      comments.length === 0
+    ) {
+
       return;
+
     }
 
-    const topLevelComments = comments.filter(
+
+    const commentMap =
+      new Map();
+
+    comments.forEach(
       function (comment) {
-        return !comment.parent_id;
+
+        commentMap.set(
+          comment.id,
+          comment
+        );
+
       }
     );
 
-    const replies = comments.filter(
+
+    const childrenMap =
+      new Map();
+
+
+    comments.forEach(
       function (comment) {
-        return !!comment.parent_id;
+
+        if (!comment.parent_id) {
+          return;
+        }
+
+
+        if (
+          !childrenMap.has(
+            comment.parent_id
+          )
+        ) {
+
+          childrenMap.set(
+            comment.parent_id,
+            []
+          );
+
+        }
+
+
+        childrenMap
+          .get(comment.parent_id)
+          .push(comment);
+
       }
     );
 
 
-    function createCommentElement(comment, isReply) {
+    function createCommentElement(
+      comment
+    ) {
 
       const commentItem =
         document.createElement("div");
 
+
       commentItem.className =
-        isReply ? "reply-item" : "comment-item";
+        comment.parent_id
+          ? "reply-item"
+          : "comment-item";
+
 
       const author =
         document.createElement("div");
 
-      author.className = "comment-author";
+
+      author.className =
+        "comment-author";
+
+
       author.textContent =
-        comment.display_name || "Anonymous";
+        comment.display_name ||
+        "Anonymous";
+
 
       const text =
         document.createElement("div");
 
-      text.className = "comment-text";
-      text.textContent = comment.comment_text;
+
+      text.className =
+        "comment-text";
+
+
+      text.textContent =
+        comment.comment_text;
+
 
       const date =
         document.createElement("div");
 
-      date.className = "comment-date";
+
+      date.className =
+        "comment-date";
+
 
       if (comment.created_at) {
-        date.textContent = new Date(
-          comment.created_at
-        ).toLocaleDateString(
-          undefined,
-          {
-            day: "numeric",
-            month: "long",
-            year: "numeric"
-          }
-        );
+
+        date.textContent =
+          new Date(
+            comment.created_at
+          ).toLocaleDateString(
+            undefined,
+            {
+              day: "numeric",
+              month: "long",
+              year: "numeric"
+            }
+          );
+
       }
 
-      commentItem.appendChild(author);
-      commentItem.appendChild(text);
-      commentItem.appendChild(date);
+
+      commentItem.appendChild(
+        author
+      );
+
+      commentItem.appendChild(
+        text
+      );
+
+      commentItem.appendChild(
+        date
+      );
+
 
       return commentItem;
+
     }
 
 
-    function createReplyBox(parentComment, parentElement) {
+    /*
+       Creates the reply box.
+
+       IMPORTANT:
+       There is NO name field here.
+
+       The reply automatically uses
+       the name selected for the user's
+       original comment.
+    */
+
+    function createReplyBox(
+      parentComment,
+      parentElement
+    ) {
 
       const replyBox =
         document.createElement("div");
 
-      replyBox.className = "reply-box";
+
+      replyBox.className =
+        "reply-box";
+
 
       const replyTextarea =
-        document.createElement("textarea");
+        document.createElement(
+          "textarea"
+        );
 
-      replyTextarea.placeholder = "Write a reply...";
+
+      replyTextarea.placeholder =
+        "Write a reply...";
+
 
       const submitButton =
-        document.createElement("button");
+        document.createElement(
+          "button"
+        );
 
-      submitButton.className = "reply-submit-btn";
-      submitButton.type = "button";
-      submitButton.textContent = "Post Reply";
+
+      submitButton.className =
+        "reply-submit-btn";
+
+
+      submitButton.type =
+        "button";
+
+
+      submitButton.textContent =
+        "Post Reply";
+
 
       const cancelButton =
-        document.createElement("button");
+        document.createElement(
+          "button"
+        );
 
-      cancelButton.className = "reply-cancel-btn";
-      cancelButton.type = "button";
-      cancelButton.textContent = "Cancel";
 
-      replyBox.appendChild(replyTextarea);
-      replyBox.appendChild(submitButton);
-      replyBox.appendChild(cancelButton);
+      cancelButton.className =
+        "reply-cancel-btn";
+
+
+      cancelButton.type =
+        "button";
+
+
+      cancelButton.textContent =
+        "Cancel";
+
+
+      replyBox.appendChild(
+        replyTextarea
+      );
+
+      replyBox.appendChild(
+        submitButton
+      );
+
+      replyBox.appendChild(
+        cancelButton
+      );
+
 
       cancelButton.addEventListener(
         "click",
         function () {
+
           replyBox.remove();
+
         }
       );
+
 
       submitButton.addEventListener(
         "click",
@@ -1518,158 +1135,367 @@ const supabaseClient =
           const replyText =
             replyTextarea.value.trim();
 
+
           if (!replyText) {
-            alert("Please write a reply first.");
+
+            alert(
+              "Please write a reply first."
+            );
+
             replyTextarea.focus();
+
             return;
+
           }
 
-          submitButton.disabled = true;
-          submitButton.textContent = "Posting...";
+
+          submitButton.disabled =
+            true;
+
+          submitButton.textContent =
+            "Posting...";
+
 
           try {
 
-            const session = await getActiveSession();
+            const session =
+              await getActiveSession();
 
-            if (!session || !session.user) {
+
+            if (
+              !session ||
+              !session.user
+            ) {
+
               throw new Error(
                 "No authenticated user session was created."
               );
+
             }
+
+
+            /*
+               Recover the identity selected
+               for the original comment.
+            */
+
+            let replyDisplayName =
+              activeDisplayName;
+
+
+            let replyIsAnonymous =
+              activeIsAnonymous;
+
+
+            if (!replyDisplayName) {
+
+              replyDisplayName =
+                sessionStorage.getItem(
+                  "dissentverse_comment_name"
+                );
+
+            }
+
+
+            if (
+              !replyDisplayName
+            ) {
+
+              replyDisplayName =
+                "Anonymous";
+
+            }
+
+
+            const storedAnonymous =
+              sessionStorage.getItem(
+                "dissentverse_comment_anonymous"
+              );
+
+
+            if (
+              storedAnonymous !== null
+            ) {
+
+              replyIsAnonymous =
+                storedAnonymous === "true";
+
+            }
+
 
             const articleSlug =
               "{{ page.slug | escape }}";
 
+
             const {
               error: replyError
-            } = await supabaseClient
-              .from("comments")
-              .insert({
-                article_slug: articleSlug,
-                parent_id: parentComment.id,
-                display_name: "Anonymous",
-                comment_text: replyText,
-                is_anonymous: true,
-                approved: true,
-                user_id: session.user.id
-              });
+            } =
+              await supabaseClient
+                .from("comments")
+                .insert({
+
+                  article_slug:
+                    articleSlug,
+
+                  parent_id:
+                    parentComment.id,
+
+                  display_name:
+                    replyDisplayName,
+
+                  comment_text:
+                    replyText,
+
+                  is_anonymous:
+                    replyIsAnonymous,
+
+                  approved:
+                    true,
+
+                  user_id:
+                    session.user.id
+
+                });
+
 
             if (replyError) {
-              console.error("Reply insert error:", replyError);
+
+              console.error(
+                "Reply insert error:",
+                replyError
+              );
+
+
               alert(
                 "We could not post your reply: " +
-                (replyError.message || JSON.stringify(replyError))
+                (
+                  replyError.message ||
+                  JSON.stringify(replyError)
+                )
               );
+
               return;
+
             }
 
+
             replyBox.remove();
+
             await loadComments();
+
 
           } catch (error) {
 
-            console.error("Reply submission error:", error);
+            console.error(
+              "Reply submission error:",
+              error
+            );
+
 
             alert(
               "Reply error: " +
-              (error.message || JSON.stringify(error))
+              (
+                error.message ||
+                JSON.stringify(error)
+              )
             );
+
 
           } finally {
 
-            submitButton.disabled = false;
-            submitButton.textContent = "Post Reply";
+            submitButton.disabled =
+              false;
+
+            submitButton.textContent =
+              "Post Reply";
+
           }
+
         }
       );
 
-      parentElement.appendChild(replyBox);
+
+      parentElement.appendChild(
+        replyBox
+      );
+
+
       replyTextarea.focus();
+
     }
 
 
-    const displayedReplyIds = new Set();
+    /*
+       Recursively renders comments.
+
+       This is what allows:
+
+       Comment
+         └─ Reply
+              └─ Reply
+                   └─ Reply
+                        └─ ...
+    */
+
+    function renderCommentTree(
+      comment,
+      container
+    ) {
+
+      const commentItem =
+        createCommentElement(
+          comment
+        );
+
+
+      const replyButton =
+        document.createElement(
+          "button"
+        );
+
+
+      replyButton.className =
+        "comment-reply-btn";
+
+
+      replyButton.type =
+        "button";
+
+
+      replyButton.textContent =
+        "Reply";
+
+
+      replyButton.addEventListener(
+        "click",
+        function () {
+
+          const existingReplyBox =
+            commentItem.querySelector(
+              ":scope > .reply-box"
+            );
+
+
+          if (existingReplyBox) {
+
+            existingReplyBox.remove();
+
+            return;
+
+          }
+
+
+          createReplyBox(
+            comment,
+            commentItem
+          );
+
+        }
+      );
+
+
+      commentItem.appendChild(
+        replyButton
+      );
+
+
+      const childComments =
+        childrenMap.get(
+          comment.id
+        ) || [];
+
+
+      if (
+        childComments.length > 0
+      ) {
+
+        const repliesContainer =
+          document.createElement(
+            "div"
+          );
+
+
+        repliesContainer.className =
+          "comment-replies";
+
+
+        childComments.forEach(
+          function (child) {
+
+            renderCommentTree(
+              child,
+              repliesContainer
+            );
+
+          }
+        );
+
+
+        commentItem.appendChild(
+          repliesContainer
+        );
+
+      }
+
+
+      container.appendChild(
+        commentItem
+      );
+
+    }
+
+
+    /*
+       Start with top-level comments.
+    */
+
+    const topLevelComments =
+      comments.filter(
+        function (comment) {
+
+          return !comment.parent_id;
+
+        }
+      );
+
 
     topLevelComments.forEach(
       function (comment) {
 
-        const commentItem =
-          createCommentElement(comment, false);
-
-        const replyButton =
-          document.createElement("button");
-
-        replyButton.className = "comment-reply-btn";
-        replyButton.type = "button";
-        replyButton.textContent = "Reply";
-
-        replyButton.addEventListener(
-          "click",
-          function () {
-
-            const existingReplyBox =
-              commentItem.querySelector(".reply-box");
-
-            if (existingReplyBox) {
-              existingReplyBox.remove();
-              return;
-            }
-
-            createReplyBox(comment, commentItem);
-          }
+        renderCommentTree(
+          comment,
+          commentsList
         );
 
-        commentItem.appendChild(replyButton);
-
-        const commentReplies =
-          document.createElement("div");
-
-        commentReplies.className = "comment-replies";
-
-        const childReplies = replies.filter(
-          function (reply) {
-            return reply.parent_id === comment.id;
-          }
-        );
-
-        childReplies.forEach(
-          function (reply) {
-
-            const replyItem =
-              createCommentElement(reply, true);
-
-            commentReplies.appendChild(replyItem);
-            displayedReplyIds.add(reply.id);
-          }
-        );
-
-        if (childReplies.length > 0) {
-          commentItem.appendChild(commentReplies);
-        }
-
-        commentsList.appendChild(commentItem);
       }
     );
 
 
     /*
-       If a reply exists whose parent
-       cannot be found, display it instead
-       of silently hiding it.
+       Show orphan replies instead
+       of silently hiding them.
     */
 
-    replies.forEach(
-      function (reply) {
+    comments.forEach(
+      function (comment) {
 
-        if (!displayedReplyIds.has(reply.id)) {
+        if (
+          comment.parent_id &&
+          !commentMap.has(
+            comment.parent_id
+          )
+        ) {
 
-          const orphanReply =
-            createCommentElement(reply, true);
+          renderCommentTree(
+            comment,
+            commentsList
+          );
 
-          commentsList.appendChild(orphanReply);
         }
+
       }
     );
+
   }
 
 
@@ -1681,98 +1507,230 @@ const supabaseClient =
     "click",
     async function () {
 
-      const name = commentName.value.trim();
-      const text = commentText.value.trim();
+      const name =
+        commentName.value.trim();
+
+      const text =
+        commentText.value.trim();
+
 
       if (!text) {
-        alert("Please write a comment first.");
+
+        alert(
+          "Please write a comment first."
+        );
+
         commentText.focus();
+
         return;
+
       }
 
-      postCommentButton.disabled = true;
-      postCommentButton.textContent = "Posting...";
+
+      postCommentButton.disabled =
+        true;
+
+      postCommentButton.textContent =
+        "Posting...";
+
 
       try {
 
-        const session = await getActiveSession();
+        const session =
+          await getActiveSession();
 
-        if (!session || !session.user) {
+
+        if (
+          !session ||
+          !session.user
+        ) {
+
           throw new Error(
             "No authenticated user session was created."
           );
+
         }
 
-        activeSession = session;
 
-        const user = session.user;
+        activeSession =
+          session;
+
+
+        const user =
+          session.user;
+
 
         const displayName =
           anonymousCheckbox.checked
             ? "Anonymous"
-            : (name || "Anonymous");
+            : (
+                name ||
+                "Anonymous"
+              );
+
 
         const isAnonymous =
-          user.is_anonymous === true ||
-          anonymousCheckbox.checked;
+          anonymousCheckbox.checked ||
+          user.is_anonymous === true;
+
+
+        /*
+           SAVE THE NAME FOR FUTURE REPLIES
+        */
+
+        activeDisplayName =
+          displayName;
+
+        activeIsAnonymous =
+          isAnonymous;
+
+
+        sessionStorage.setItem(
+          "dissentverse_comment_name",
+          displayName
+        );
+
+
+        sessionStorage.setItem(
+          "dissentverse_comment_anonymous",
+          String(isAnonymous)
+        );
+
 
         const articleSlug =
           "{{ page.slug | escape }}";
 
-        console.log("Commenting user:", user.id);
-        console.log("Article slug:", articleSlug);
+
+        console.log(
+          "Commenting user:",
+          user.id
+        );
+
+
+        console.log(
+          "Article slug:",
+          articleSlug
+        );
+
 
         const {
           error: insertError
-        } = await supabaseClient
-          .from("comments")
-          .insert({
-            article_slug: articleSlug,
-            parent_id: null,
-            display_name: displayName,
-            comment_text: text,
-            is_anonymous: isAnonymous,
-            approved: true,
-            user_id: user.id
-          });
+        } =
+          await supabaseClient
+            .from("comments")
+            .insert({
+
+              article_slug:
+                articleSlug,
+
+              parent_id:
+                null,
+
+              display_name:
+                displayName,
+
+              comment_text:
+                text,
+
+              is_anonymous:
+                isAnonymous,
+
+              approved:
+                true,
+
+              user_id:
+                user.id
+
+            });
+
 
         if (insertError) {
-          console.error("Comment insert error:", insertError);
+
+          console.error(
+            "Comment insert error:",
+            insertError
+          );
+
+
           alert(
             "We could not post your comment: " +
-            (insertError.message || JSON.stringify(insertError))
+            (
+              insertError.message ||
+              JSON.stringify(insertError)
+            )
           );
+
+
           return;
+
         }
 
-        commentText.value = "";
 
-        if (anonymousCheckbox.checked) {
-          commentName.value = "Anonymous";
-          commentName.disabled = true;
+        commentText.value =
+          "";
+
+
+        /*
+           Keep the selected identity
+           available for replies.
+        */
+
+        if (
+          anonymousCheckbox.checked
+        ) {
+
+          commentName.value =
+            "Anonymous";
+
+          commentName.disabled =
+            true;
+
         } else {
-          commentName.value = "";
-          commentName.disabled = false;
+
+          commentName.value =
+            displayName;
+
+          commentName.disabled =
+            false;
+
         }
+
 
         await loadComments();
 
-        alert("Your comment has been posted.");
+
+        alert(
+          "Your comment has been posted."
+        );
+
 
       } catch (error) {
 
-        console.error("Comment submission error:", error);
+        console.error(
+          "Comment submission error:",
+          error
+        );
+
 
         alert(
           "Comment error: " +
-          (error.message || JSON.stringify(error))
+          (
+            error.message ||
+            JSON.stringify(error)
+          )
         );
+
 
       } finally {
 
-        postCommentButton.disabled = false;
-        postCommentButton.textContent = "Post Comment";
+        postCommentButton.disabled =
+          false;
+
+        postCommentButton.textContent =
+          "Post Comment";
+
       }
+
     }
   );
 
@@ -1782,13 +1740,24 @@ const supabaseClient =
   ========================= */
 
   supabaseClient.auth.onAuthStateChange(
-    function (event, session) {
+    function (
+      event,
+      session
+    ) {
 
-      console.log("Auth event:", event);
+      console.log(
+        "Auth event:",
+        event
+      );
+
 
       if (session) {
-        activeSession = session;
+
+        activeSession =
+          session;
+
       }
+
     }
   );
 
@@ -1804,22 +1773,78 @@ const supabaseClient =
       const {
         data,
         error
-      } = await supabaseClient.auth.getSession();
+      } =
+        await supabaseClient.auth.getSession();
+
 
       if (error) {
-        console.error("Supabase session error:", error);
+
+        console.error(
+          "Supabase session error:",
+          error
+        );
+
         return;
+
       }
 
-      if (data && data.session) {
-        activeSession = data.session;
-        console.log("Existing session loaded.");
+
+      if (
+        data &&
+        data.session
+      ) {
+
+        activeSession =
+          data.session;
+
+        console.log(
+          "Existing session loaded."
+        );
+
       } else {
-        console.log("No existing session.");
+
+        console.log(
+          "No existing session."
+        );
+
       }
+
+
+      /*
+         Restore the user's selected
+         commenting identity after reload.
+      */
+
+      const storedName =
+        sessionStorage.getItem(
+          "dissentverse_comment_name"
+        );
+
+
+      const storedAnonymous =
+        sessionStorage.getItem(
+          "dissentverse_comment_anonymous"
+        );
+
+
+      if (storedName) {
+
+        activeDisplayName =
+          storedName;
+
+        activeIsAnonymous =
+          storedAnonymous === "true";
+
+      }
+
 
     } catch (error) {
-      console.error("Supabase initialization error:", error);
+
+      console.error(
+        "Supabase initialization error:",
+        error
+      );
+
     }
 
   })();
@@ -1832,7 +1857,6 @@ const supabaseClient =
   loadComments();
 
 </script>
-
 
 </body>
 </html>
