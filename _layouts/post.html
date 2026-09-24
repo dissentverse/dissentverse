@@ -2344,8 +2344,9 @@ console.log("Comments load error:", error);
               );
 
               alert(
-                "We could not connect for commenting. Please try again."
-              );
+  "Anonymous sign-in error: " +
+  (anonymousError.message || JSON.stringify(anonymousError))
+);
 
               return;
 
