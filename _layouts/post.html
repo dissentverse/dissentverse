@@ -1322,8 +1322,9 @@
               );
 
               alert(
-                "We could not start anonymous commenting. Please try again."
-              );
+  "Anonymous sign-in error: " +
+  (error.message || JSON.stringify(error))
+);
 
               return;
 
