@@ -348,9 +348,10 @@
     }
 
     .anonymous-row {
+      display: none;
+
       margin-top: 12px;
 
-      display: flex;
       align-items: center;
 
       gap: 8px;
@@ -605,6 +606,7 @@
       display: none;
 
       position: fixed;
+
       inset: 0;
 
       background: rgba(35, 20, 32, .45);
@@ -612,6 +614,7 @@
       z-index: 9999;
 
       align-items: center;
+
       justify-content: center;
 
       padding: 20px;
@@ -623,7 +626,12 @@
 
     .comment-choice-box {
       width: 100%;
+
       max-width: 400px;
+
+      max-height: 90vh;
+
+      overflow-y: auto;
 
       background: #ffffff;
 
@@ -700,6 +708,198 @@
 
 
     /* =========================
+       ACCOUNT / PROFILE / EDIT
+    ========================= */
+
+    .comment-form-screen {
+      display: none;
+
+      text-align: left;
+    }
+
+    .comment-form-screen h3 {
+      margin: 0 0 8px;
+
+      font-family: "Playfair Display", Georgia, serif;
+
+      font-size: 25px;
+
+      color: #30232d;
+
+      text-align: center;
+    }
+
+    .comment-form-screen p {
+      margin: 0 0 18px;
+
+      font-family: "DM Sans", sans-serif;
+
+      font-size: 13px;
+
+      line-height: 1.5;
+
+      color: #7d6c77;
+
+      text-align: center;
+    }
+
+    .comment-form-screen input {
+      width: 100%;
+
+      border: 1px solid #ddd1da;
+
+      border-radius: 8px;
+
+      padding: 11px 13px;
+
+      margin-top: 9px;
+
+      font-family: "DM Sans", sans-serif;
+
+      font-size: 13px;
+
+      outline: none;
+
+      background: white;
+
+      color: #302830;
+    }
+
+    .comment-form-screen input:focus {
+      border-color: #b96b9f;
+    }
+
+    .comment-form-screen input[readonly] {
+      background: #f8f4f7;
+    }
+
+    .form-message {
+      min-height: 18px;
+
+      margin-top: 12px;
+
+      font-family: "DM Sans", sans-serif;
+
+      font-size: 12px;
+
+      line-height: 1.5;
+
+      color: #8f4d76;
+    }
+
+    .form-secondary-btn {
+      background: white !important;
+
+      color: #7d6c77 !important;
+
+      border: 1px solid #ddd1da !important;
+    }
+
+    .form-secondary-btn:hover {
+      background: #f8f1f6 !important;
+
+      color: #59384f !important;
+    }
+
+    .comment-actions {
+      display: flex;
+
+      align-items: center;
+
+      flex-wrap: wrap;
+
+      gap: 10px;
+
+      margin-top: 10px;
+    }
+
+    .comment-actions button {
+      border: none;
+
+      background: transparent;
+
+      padding: 0;
+
+      font-family: "DM Sans", sans-serif;
+
+      font-size: 12px;
+
+      font-weight: 600;
+
+      cursor: pointer;
+    }
+
+    .comment-edit-btn,
+    .comment-delete-btn {
+      color: #8a7b85;
+    }
+
+    .comment-edit-btn:hover,
+    .comment-delete-btn:hover {
+      color: #59384f;
+    }
+
+    .comment-edit-box {
+      margin-top: 12px;
+    }
+
+    .comment-edit-box textarea {
+      width: 100%;
+
+      min-height: 100px;
+
+      resize: vertical;
+
+      border: 1px solid #ddd1da;
+
+      border-radius: 8px;
+
+      padding: 10px 12px;
+
+      font-family: "DM Sans", sans-serif;
+
+      font-size: 13px;
+
+      outline: none;
+
+      color: #302830;
+
+      background: white;
+    }
+
+    .comment-edit-box textarea:focus {
+      border-color: #b96b9f;
+    }
+
+    .comment-edit-save,
+    .comment-edit-cancel {
+      margin-top: 8px;
+
+      border-radius: 999px !important;
+
+      padding: 8px 14px !important;
+    }
+
+    .comment-edit-save {
+      background: #b96b9f !important;
+
+      color: white !important;
+
+      border: none !important;
+    }
+
+    .comment-edit-cancel {
+      margin-left: 5px;
+
+      background: white !important;
+
+      color: #7d6c77 !important;
+
+      border: 1px solid #ddd1da !important;
+    }
+
+
+    /* =========================
        FOOTER
     ========================= */
 
@@ -746,6 +946,7 @@
 
       .site-logo {
         width: 46px;
+
         height: 46px;
       }
 
@@ -759,6 +960,7 @@
 
       .article-wrapper {
         margin: 40px auto;
+
         padding: 0 18px;
       }
 
@@ -768,6 +970,7 @@
 
       .article-content {
         font-size: 17px;
+
         line-height: 1.8;
       }
 
@@ -777,6 +980,7 @@
 
       .comment-replies {
         margin-left: 10px;
+
         padding-left: 10px;
       }
 
@@ -838,7 +1042,6 @@
     </div>
 
   </header>
-
 
 
   <!-- =========================
@@ -939,46 +1142,364 @@
 
       <div class="comment-choice-box">
 
-        <h3>
-          Comment on this article
-        </h3>
 
-        <p>
-          Choose how you want to continue.
-        </p>
+        <!-- COMMENT CHOICE -->
+
+        <div id="commentChoiceScreen">
+
+          <h3>
+            Comment on this article
+          </h3>
+
+          <p>
+            Choose how you want to continue.
+          </p>
 
 
-        <button
-          id="anonymousCommentBtn"
-          type="button"
+          <button
+            id="anonymousCommentBtn"
+            type="button"
+          >
+            Continue as Anonymous
+          </button>
+
+
+          <button
+            id="createAccountBtn"
+            type="button"
+          >
+            Create an Account
+          </button>
+
+
+          <button
+            id="signInBtn"
+            type="button"
+          >
+            Sign In
+          </button>
+
+
+          <button
+            id="profileBtn"
+            type="button"
+            style="display:none;"
+          >
+            Profile
+          </button>
+
+
+          <button
+            id="signOutBtn"
+            type="button"
+            style="display:none;"
+          >
+            Sign Out
+          </button>
+
+
+          <button
+            id="closeCommentChoice"
+            class="close-choice"
+            type="button"
+          >
+            Cancel
+          </button>
+
+        </div>
+
+
+
+        <!-- CREATE ACCOUNT -->
+
+        <div
+          id="accountFormScreen"
+          class="comment-form-screen"
         >
-          Continue as Anonymous
-        </button>
+
+          <h3>
+            Create an Account
+          </h3>
+
+          <p>
+            Create a permanent profile for commenting.
+          </p>
 
 
-        <button
-          id="createAccountBtn"
-          type="button"
+          <input
+            type="text"
+            id="accountName"
+            placeholder="Name"
+            maxlength="60"
+            autocomplete="name"
+          >
+
+
+          <input
+            type="text"
+            id="accountUsername"
+            placeholder="Unique username"
+            maxlength="20"
+            autocomplete="username"
+          >
+
+
+          <input
+            type="email"
+            id="accountEmail"
+            placeholder="Email"
+            autocomplete="email"
+          >
+
+
+          <input
+            type="password"
+            id="accountPassword"
+            placeholder="Password"
+            autocomplete="new-password"
+          >
+
+
+          <input
+            type="password"
+            id="accountConfirmPassword"
+            placeholder="Confirm password"
+            autocomplete="new-password"
+          >
+
+
+          <div
+            id="accountMessage"
+            class="form-message"
+          ></div>
+
+
+          <button
+            id="submitCreateAccount"
+            type="button"
+          >
+            Create Account
+          </button>
+
+
+          <button
+            id="backFromAccount"
+            class="form-secondary-btn"
+            type="button"
+          >
+            Back
+          </button>
+
+        </div>
+
+
+
+        <!-- SIGN IN -->
+
+        <div
+          id="signInFormScreen"
+          class="comment-form-screen"
         >
-          Create an Account
-        </button>
+
+          <h3>
+            Sign In
+          </h3>
+
+          <p>
+            Sign in to use your profile when commenting.
+          </p>
 
 
-        <button
-          id="signInBtn"
-          type="button"
+          <input
+            type="email"
+            id="signInEmail"
+            placeholder="Email"
+            autocomplete="email"
+          >
+
+
+          <input
+            type="password"
+            id="signInPassword"
+            placeholder="Password"
+            autocomplete="current-password"
+          >
+
+
+          <div
+            id="signInMessage"
+            class="form-message"
+          ></div>
+
+
+          <button
+            id="submitSignIn"
+            type="button"
+          >
+            Sign In
+          </button>
+
+
+          <button
+            id="forgotPasswordBtn"
+            class="form-secondary-btn"
+            type="button"
+          >
+            Forgot password?
+          </button>
+
+
+          <button
+            id="backFromSignIn"
+            class="form-secondary-btn"
+            type="button"
+          >
+            Back
+          </button>
+
+        </div>
+
+
+
+        <!-- PROFILE -->
+
+        <div
+          id="profileFormScreen"
+          class="comment-form-screen"
         >
-          Sign In
-        </button>
+
+          <h3>
+            Your Profile
+          </h3>
+
+          <p>
+            Change your name or username. Your email is used for your account.
+          </p>
 
 
-        <button
-          id="closeCommentChoice"
-          class="close-choice"
-          type="button"
+          <input
+            type="text"
+            id="profileName"
+            placeholder="Name"
+            maxlength="60"
+            autocomplete="name"
+          >
+
+
+          <input
+            type="text"
+            id="profileUsername"
+            placeholder="Unique username"
+            maxlength="20"
+            autocomplete="username"
+          >
+
+
+          <input
+            type="email"
+            id="profileEmail"
+            placeholder="Email"
+            readonly
+          >
+
+
+          <input
+            type="password"
+            id="profileNewPassword"
+            placeholder="New password (optional)"
+            autocomplete="new-password"
+          >
+
+
+          <input
+            type="password"
+            id="profileConfirmPassword"
+            placeholder="Confirm new password"
+            autocomplete="new-password"
+          >
+
+
+          <div
+            id="profileMessage"
+            class="form-message"
+          ></div>
+
+
+          <button
+            id="saveProfileBtn"
+            type="button"
+          >
+            Save Changes
+          </button>
+
+
+          <button
+            id="backFromProfile"
+            class="form-secondary-btn"
+            type="button"
+          >
+            Back
+          </button>
+
+        </div>
+
+
+
+        <!-- PASSWORD RECOVERY -->
+
+        <div
+          id="recoveryFormScreen"
+          class="comment-form-screen"
         >
-          Cancel
-        </button>
+
+          <h3>
+            Set a New Password
+          </h3>
+
+          <p>
+            Choose a new password for your DissentVerse account.
+          </p>
+
+
+          <input
+            type="password"
+            id="recoveryPassword"
+            placeholder="New password"
+            autocomplete="new-password"
+          >
+
+
+          <input
+            type="password"
+            id="recoveryConfirmPassword"
+            placeholder="Confirm new password"
+            autocomplete="new-password"
+          >
+
+
+          <div
+            id="recoveryMessage"
+            class="form-message"
+          ></div>
+
+
+          <button
+            id="submitRecovery"
+            type="button"
+          >
+            Update Password
+          </button>
+
+
+          <button
+            id="backFromRecovery"
+            class="form-secondary-btn"
+            type="button"
+          >
+            Back
+          </button>
+
+        </div>
 
       </div>
 
@@ -1005,7 +1526,8 @@
         <input
           type="text"
           id="commentName"
-          placeholder="Your name"
+          placeholder="Choose how to comment"
+          readonly
         >
 
 
@@ -1014,6 +1536,10 @@
           placeholder="Write your comment..."
         ></textarea>
 
+
+        <!-- Kept for compatibility with the existing
+             system, but hidden because Anonymous/
+             Account selection is handled by the popup. -->
 
         <label class="anonymous-row">
 
@@ -1041,6 +1567,7 @@
         </div>
 
       </div>
+
 
 
       <!-- =========================
@@ -1078,1053 +1605,3464 @@
 
   <script>
 
-  const SUPABASE_URL =
-  "https://yplvpgigfkihgmyfsqyl.supabase.co";
+    /* =========================
+       SUPABASE
+    ========================= */
 
-const SUPABASE_ANON_KEY =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlwbHZwZ2lnZmtpaGdteWZzcXlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAwMzkyNzksImV4cCI6MjEwNTYxNTI3OX0.9nHT9NIDBH3ndJyZPJF2-uvy40Kz0aF7oimyDEJuPPg";
+    const SUPABASE_URL =
+      "https://yplvpgigfkihgmyfsqyl.supabase.co";
 
-const supabaseClient =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY,
-      {
-        auth: {
-          persistSession: true,
-          autoRefreshToken: true,
-          detectSessionInUrl: true
+    const SUPABASE_ANON_KEY =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlwbHZwZ2lnZmtpaGdteWZzcXlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAwMzkyNzksImV4cCI6MjEwNTYxNTI3OX0.9nHT9NIDBH3ndJyZPJF2-uvy40Kz0aF7oimyDEJuPPg";
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY,
+        {
+          auth: {
+            persistSession: true,
+            autoRefreshToken: true,
+            detectSessionInUrl: true
+          }
+        }
+      );
+
+
+    /* =========================
+       STATE
+    ========================= */
+
+    let activeSession = null;
+
+    let activeDisplayName = null;
+
+    let activeIsAnonymous = false;
+
+
+    /* =========================
+       ELEMENTS
+    ========================= */
+
+    const likeButton =
+      document.getElementById("likeButton");
+
+    const commentButton =
+      document.getElementById("commentButton");
+
+    const shareButton =
+      document.getElementById("shareButton");
+
+    const anonymousCheckbox =
+      document.getElementById("anonymousCheckbox");
+
+    const commentName =
+      document.getElementById("commentName");
+
+    const commentText =
+      document.getElementById("commentText");
+
+    const postCommentButton =
+      document.getElementById("postCommentButton");
+
+    const commentsList =
+      document.getElementById("commentsList");
+
+    const commentsSection =
+      document.getElementById("commentsSection");
+
+
+    /* =========================
+       POPUP ELEMENTS
+    ========================= */
+
+    const commentChoice =
+      document.getElementById("commentChoice");
+
+    const commentChoiceScreen =
+      document.getElementById("commentChoiceScreen");
+
+    const accountFormScreen =
+      document.getElementById("accountFormScreen");
+
+    const signInFormScreen =
+      document.getElementById("signInFormScreen");
+
+    const profileFormScreen =
+      document.getElementById("profileFormScreen");
+
+    const recoveryFormScreen =
+      document.getElementById("recoveryFormScreen");
+
+
+    const anonymousCommentBtn =
+      document.getElementById("anonymousCommentBtn");
+
+    const createAccountBtn =
+      document.getElementById("createAccountBtn");
+
+    const signInBtn =
+      document.getElementById("signInBtn");
+
+    const profileBtn =
+      document.getElementById("profileBtn");
+
+    const signOutBtn =
+      document.getElementById("signOutBtn");
+
+
+    const closeCommentChoice =
+      document.getElementById("closeCommentChoice");
+
+    const backFromAccount =
+      document.getElementById("backFromAccount");
+
+    const backFromSignIn =
+      document.getElementById("backFromSignIn");
+
+    const backFromProfile =
+      document.getElementById("backFromProfile");
+
+    const backFromRecovery =
+      document.getElementById("backFromRecovery");
+
+
+    const submitCreateAccount =
+      document.getElementById("submitCreateAccount");
+
+    const submitSignIn =
+      document.getElementById("submitSignIn");
+
+    const forgotPasswordBtn =
+      document.getElementById("forgotPasswordBtn");
+
+    const submitRecovery =
+      document.getElementById("submitRecovery");
+
+    const saveProfileBtn =
+      document.getElementById("saveProfileBtn");
+
+
+    const accountMessage =
+      document.getElementById("accountMessage");
+
+    const signInMessage =
+      document.getElementById("signInMessage");
+
+    const profileMessage =
+      document.getElementById("profileMessage");
+
+    const recoveryMessage =
+      document.getElementById("recoveryMessage");
+
+
+    const accountName =
+      document.getElementById("accountName");
+
+    const accountUsername =
+      document.getElementById("accountUsername");
+
+    const accountEmail =
+      document.getElementById("accountEmail");
+
+    const accountPassword =
+      document.getElementById("accountPassword");
+
+    const accountConfirmPassword =
+      document.getElementById("accountConfirmPassword");
+
+
+    const signInEmail =
+      document.getElementById("signInEmail");
+
+    const signInPassword =
+      document.getElementById("signInPassword");
+
+
+    const profileName =
+      document.getElementById("profileName");
+
+    const profileUsername =
+      document.getElementById("profileUsername");
+
+    const profileEmail =
+      document.getElementById("profileEmail");
+
+    const profileNewPassword =
+      document.getElementById("profileNewPassword");
+
+    const profileConfirmPassword =
+      document.getElementById("profileConfirmPassword");
+
+
+    const recoveryPassword =
+      document.getElementById("recoveryPassword");
+
+    const recoveryConfirmPassword =
+      document.getElementById("recoveryConfirmPassword");
+
+
+    /* =========================
+       HELPERS
+    ========================= */
+
+    function articleSlug() {
+      return "{{ page.slug | escape }}";
+    }
+
+
+    function showScreen(screen) {
+
+      commentChoiceScreen.style.display =
+        "none";
+
+      accountFormScreen.style.display =
+        "none";
+
+      signInFormScreen.style.display =
+        "none";
+
+      profileFormScreen.style.display =
+        "none";
+
+      recoveryFormScreen.style.display =
+        "none";
+
+
+      screen.style.display =
+        "block";
+    }
+
+
+    function updateAccountButtons() {
+
+      const permanentUser =
+        activeSession &&
+        activeSession.user &&
+        activeSession.user.is_anonymous !== true;
+
+
+      profileBtn.style.display =
+        permanentUser
+          ? "block"
+          : "none";
+
+
+      signOutBtn.style.display =
+        permanentUser
+          ? "block"
+          : "none";
+    }
+
+
+    function showCommentChoiceScreen() {
+
+      showScreen(
+        commentChoiceScreen
+      );
+
+      updateAccountButtons();
+
+      accountMessage.textContent =
+        "";
+
+      signInMessage.textContent =
+        "";
+
+      profileMessage.textContent =
+        "";
+
+      recoveryMessage.textContent =
+        "";
+    }
+
+
+    function showAccountScreen() {
+
+      showScreen(
+        accountFormScreen
+      );
+
+      accountMessage.textContent =
+        "";
+    }
+
+
+    function showSignInScreen() {
+
+      showScreen(
+        signInFormScreen
+      );
+
+      signInMessage.textContent =
+        "";
+    }
+
+
+    function showProfileScreen() {
+
+      showScreen(
+        profileFormScreen
+      );
+
+      profileMessage.textContent =
+        "";
+    }
+
+
+    function showRecoveryScreen() {
+
+      showScreen(
+        recoveryFormScreen
+      );
+
+      recoveryMessage.textContent =
+        "";
+
+      commentChoice.classList.add(
+        "show"
+      );
+    }
+
+
+    function closeCommentPopup() {
+
+      commentChoice.classList.remove(
+        "show"
+      );
+
+      showCommentChoiceScreen();
+    }
+
+
+    function scrollToComments() {
+
+      commentsSection.scrollIntoView({
+        behavior: "smooth"
+      });
+
+      setTimeout(
+        function () {
+
+          commentText.focus();
+
+        },
+        500
+      );
+    }
+
+
+    function saveIdentity(
+      name,
+      anonymous
+    ) {
+
+      activeDisplayName =
+        name;
+
+      activeIsAnonymous =
+        anonymous;
+
+
+      sessionStorage.setItem(
+        "dissentverse_comment_name",
+        name
+      );
+
+
+      sessionStorage.setItem(
+        "dissentverse_comment_anonymous",
+        String(anonymous)
+      );
+    }
+
+
+    function clearIdentity() {
+
+      activeDisplayName =
+        null;
+
+      activeIsAnonymous =
+        false;
+
+
+      sessionStorage.removeItem(
+        "dissentverse_comment_name"
+      );
+
+
+      sessionStorage.removeItem(
+        "dissentverse_comment_anonymous"
+      );
+    }
+
+
+    function applyIdentityToCommentBox(
+      name,
+      anonymous
+    ) {
+
+      commentName.value =
+        name || "Anonymous";
+
+      commentName.readOnly =
+        true;
+
+      commentName.disabled =
+        false;
+
+      anonymousCheckbox.checked =
+        anonymous;
+    }
+
+
+    async function getCurrentSession() {
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient.auth.getSession();
+
+
+      if (error) {
+        throw error;
+      }
+
+
+      activeSession =
+        data.session || null;
+
+
+      updateAccountButtons();
+
+
+      return activeSession;
+    }
+
+
+    async function getAnonymousSession() {
+
+      const current =
+        await getCurrentSession();
+
+
+      if (
+        current &&
+        current.user &&
+        current.user.is_anonymous === true
+      ) {
+
+        return current;
+      }
+
+
+      if (current) {
+
+        await supabaseClient.auth.signOut();
+
+        activeSession =
+          null;
+      }
+
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient.auth.signInAnonymously();
+
+
+      if (error) {
+        throw error;
+      }
+
+
+      if (
+        !data ||
+        !data.session
+      ) {
+
+        throw new Error(
+          "Anonymous sign-in succeeded but no session was returned."
+        );
+      }
+
+
+      activeSession =
+        data.session;
+
+
+      updateAccountButtons();
+
+
+      return activeSession;
+    }
+
+
+    async function ensureProfile(
+      session
+    ) {
+
+      if (
+        !session ||
+        !session.user ||
+        session.user.is_anonymous === true
+      ) {
+
+        return null;
+      }
+
+
+      const {
+        data: profile,
+        error: profileError
+      } =
+        await supabaseClient
+          .from("profiles")
+          .select(
+            "id, display_name, username, is_anonymous"
+          )
+          .eq(
+            "id",
+            session.user.id
+          )
+          .maybeSingle();
+
+
+      if (profileError) {
+        throw profileError;
+      }
+
+
+      if (profile) {
+        return profile;
+      }
+
+
+      const metadata =
+        session.user.user_metadata || {};
+
+
+      const name =
+        String(
+          metadata.display_name ||
+          "User"
+        ).trim();
+
+
+      const username =
+        String(
+          metadata.username ||
+          ""
+        ).trim();
+
+
+      if (!username) {
+
+        throw new Error(
+          "Your profile is incomplete. Please contact the site administrator."
+        );
+      }
+
+
+      const {
+        data: newProfile,
+        error: insertProfileError
+      } =
+        await supabaseClient
+          .from("profiles")
+          .insert({
+            id:
+              session.user.id,
+
+            display_name:
+              name,
+
+            username:
+              username,
+
+            is_anonymous:
+              false
+          })
+          .select(
+            "id, display_name, username, is_anonymous"
+          )
+          .single();
+
+
+      if (insertProfileError) {
+
+        if (
+          insertProfileError.code ===
+          "23505"
+        ) {
+
+          throw new Error(
+            "That username is already taken."
+          );
+        }
+
+
+        throw insertProfileError;
+      }
+
+
+      return newProfile;
+    }
+
+
+    async function loadRegisteredIdentity(
+      session
+    ) {
+
+      const profile =
+        await ensureProfile(
+          session
+        );
+
+
+      if (!profile) {
+        return false;
+      }
+
+
+      const name =
+        profile.display_name ||
+        "User";
+
+
+      saveIdentity(
+        name,
+        false
+      );
+
+
+      applyIdentityToCommentBox(
+        name,
+        false
+      );
+
+
+      return true;
+    }
+
+
+    async function ensureCommentingIdentity() {
+
+      const session =
+        await getCurrentSession();
+
+
+      if (!session) {
+
+        showCommentChoiceScreen();
+
+        commentChoice.classList.add(
+          "show"
+        );
+
+        return false;
+      }
+
+
+      if (
+        session.user.is_anonymous === true
+      ) {
+
+        saveIdentity(
+          "Anonymous",
+          true
+        );
+
+
+        applyIdentityToCommentBox(
+          "Anonymous",
+          true
+        );
+
+
+        return true;
+      }
+
+
+      await loadRegisteredIdentity(
+        session
+      );
+
+
+      return true;
+    }
+
+
+    /* =========================
+       LIKE
+    ========================= */
+
+    let liked =
+      false;
+
+
+    likeButton.addEventListener(
+      "click",
+      function () {
+
+        liked =
+          !liked;
+
+
+        if (liked) {
+
+          likeButton.textContent =
+            "♥ Liked";
+
+          likeButton.classList.add(
+            "liked"
+          );
+
+        } else {
+
+          likeButton.textContent =
+            "♡ Like";
+
+          likeButton.classList.remove(
+            "liked"
+          );
         }
       }
     );
 
 
-  /* =========================
-     ACTIVE SESSION
-  ========================= */
+    /* =========================
+       COMMENT BUTTON
+    ========================= */
 
-  let activeSession = null;
+    commentButton.addEventListener(
+      "click",
+      function () {
 
-  // Identity selected for the current commenting session.
-  let activeDisplayName = null;
-  let activeIsAnonymous = false;
+        showCommentChoiceScreen();
 
-
-  /* =========================
-     BASIC ELEMENTS
-  ========================= */
-
-  const likeButton =
-    document.getElementById("likeButton");
-
-  const commentButton =
-    document.getElementById("commentButton");
-
-  const shareButton =
-    document.getElementById("shareButton");
-
-  const anonymousCheckbox =
-    document.getElementById("anonymousCheckbox");
-
-  const commentName =
-    document.getElementById("commentName");
-
-  const commentText =
-    document.getElementById("commentText");
-
-  const postCommentButton =
-    document.getElementById("postCommentButton");
-
-  const commentsList =
-    document.getElementById("commentsList");
-
-
-  /* =========================
-     COMMENT CHOICE ELEMENTS
-  ========================= */
-
-  const commentChoice =
-    document.getElementById("commentChoice");
-
-  const anonymousCommentBtn =
-    document.getElementById("anonymousCommentBtn");
-
-  const createAccountBtn =
-    document.getElementById("createAccountBtn");
-
-  const signInBtn =
-    document.getElementById("signInBtn");
-
-  const closeCommentChoice =
-    document.getElementById("closeCommentChoice");
-
-
-  /* =========================
-     LIKE
-  ========================= */
-
-  let liked = false;
-
-  likeButton.addEventListener(
-    "click",
-    function () {
-
-      liked = !liked;
-
-      if (liked) {
-        likeButton.textContent = "♥ Liked";
-        likeButton.classList.add("liked");
-      } else {
-        likeButton.textContent = "♡ Like";
-        likeButton.classList.remove("liked");
+        commentChoice.classList.add(
+          "show"
+        );
       }
-    }
-  );
+    );
 
 
-  /* =========================
-     COMMENT BUTTON
-  ========================= */
+    /* =========================
+       CLOSE POPUP
+    ========================= */
 
-  commentButton.addEventListener(
-    "click",
-    function () {
-      commentChoice.classList.add("show");
-    }
-  );
+    closeCommentChoice.addEventListener(
+      "click",
+      closeCommentPopup
+    );
 
 
-  /* =========================
-     CLOSE COMMENT CHOICE
-  ========================= */
+    commentChoice.addEventListener(
+      "click",
+      function (event) {
 
-  closeCommentChoice.addEventListener(
-    "click",
-    function () {
-      commentChoice.classList.remove("show");
-    }
-  );
+        if (
+          event.target ===
+          commentChoice
+        ) {
 
-  commentChoice.addEventListener(
-    "click",
-    function (event) {
-      if (event.target === commentChoice) {
-        commentChoice.classList.remove("show");
-      }
-    }
-  );
-
-
-  /* =========================
-     GET ACTIVE SESSION
-  ========================= */
-
-  async function getActiveSession() {
-
-    if (activeSession && activeSession.user) {
-      return activeSession;
-    }
-
-    const {
-      data: sessionData,
-      error: sessionError
-    } = await supabaseClient.auth.getSession();
-
-    if (sessionError) {
-      console.error("Session check error:", sessionError);
-    }
-
-    if (sessionData && sessionData.session) {
-      activeSession = sessionData.session;
-      return activeSession;
-    }
-
-    const {
-      data: anonymousData,
-      error: anonymousError
-    } = await supabaseClient.auth.signInAnonymously();
-
-    if (anonymousError) {
-      console.error("Anonymous sign-in error:", anonymousError);
-      throw anonymousError;
-    }
-
-    if (!anonymousData || !anonymousData.session) {
-      throw new Error(
-        "Anonymous sign-in succeeded but no session was returned."
-      );
-    }
-
-    activeSession = anonymousData.session;
-    return activeSession;
-  }
-
-
-  /* =========================
-     CONTINUE AS ANONYMOUS
-  ========================= */
-
-  anonymousCommentBtn.addEventListener(
-    "click",
-    async function () {
-
-      anonymousCommentBtn.disabled = true;
-      anonymousCommentBtn.textContent = "Connecting...";
-
-      try {
-
-        const session = await getActiveSession();
-
-        if (!session || !session.user) {
-          throw new Error("No authenticated user session was created.");
+          closeCommentPopup();
         }
-
-        activeDisplayName = "Anonymous";
-        activeIsAnonymous = true;
-
-        sessionStorage.setItem(
-          "dissentverse_comment_name",
-          "Anonymous"
-        );
-
-        sessionStorage.setItem(
-          "dissentverse_comment_anonymous",
-          "true"
-        );
-
-        commentChoice.classList.remove("show");
-
-        document
-          .getElementById("commentsSection")
-          .scrollIntoView({ behavior: "smooth" });
-
-        setTimeout(function () {
-          commentName.value = "Anonymous";
-          commentName.disabled = true;
-          anonymousCheckbox.checked = true;
-          commentText.focus();
-        }, 500);
-
-      } catch (error) {
-
-        console.error("Anonymous sign-in error:", error);
-
-        alert(
-          "Anonymous sign-in error: " +
-          (error.message || JSON.stringify(error))
-        );
-
-      } finally {
-
-        anonymousCommentBtn.disabled = false;
-        anonymousCommentBtn.textContent = "Continue as Anonymous";
       }
-    }
-  );
+    );
 
 
-  /* =========================
-     CREATE ACCOUNT
-  ========================= */
+    /* =========================
+       ANONYMOUS
+    ========================= */
 
-  createAccountBtn.addEventListener(
-    "click",
-    function () {
-      alert("Account creation will be added next.");
-    }
-  );
+    anonymousCommentBtn.addEventListener(
+      "click",
+      async function () {
 
+        anonymousCommentBtn.disabled =
+          true;
 
-  /* =========================
-     SIGN IN
-  ========================= */
-
-  signInBtn.addEventListener(
-    "click",
-    function () {
-      alert("Sign in will be added next.");
-    }
-  );
+        anonymousCommentBtn.textContent =
+          "Connecting...";
 
 
-  /* =========================
-     SHARE
-  ========================= */
+        try {
 
-  shareButton.addEventListener(
-    "click",
-    async function () {
-
-      const shareData = {
-        title: document.title,
-        text: "Read this article on DissentVerse.",
-        url: window.location.href
-      };
-
-      try {
-
-        if (navigator.share) {
-          await navigator.share(shareData);
-        } else {
-          await navigator.clipboard.writeText(window.location.href);
-          alert("Article link copied.");
-        }
-
-      } catch (error) {
-        console.log("Share cancelled.");
-      }
-    }
-  );
+          const session =
+            await getAnonymousSession();
 
 
-  /* =========================
-     ANONYMOUS CHECKBOX
-  ========================= */
+          if (
+            !session ||
+            !session.user
+          ) {
 
-  anonymousCheckbox.addEventListener(
-    "change",
-    function () {
-
-      if (anonymousCheckbox.checked) {
-        commentName.value = "Anonymous";
-        commentName.disabled = true;
-      } else {
-        commentName.value = "";
-        commentName.disabled = false;
-      }
-    }
-  );
-
-
-  /* =========================
-     LOAD COMMENTS
-  ========================= */
-
-  async function loadComments() {
-
-    if (!commentsList) {
-      return;
-    }
-
-    const articleSlug =
-      "{{ page.slug | escape }}";
-
-    const {
-      data: comments,
-      error
-    } = await supabaseClient
-      .from("comments")
-      .select("*")
-      .eq("article_slug", articleSlug)
-      .order("created_at", { ascending: true });
-
-    console.log("Comments loaded:", comments);
-    console.log("Comments load error:", error);
-
-    if (error) {
-      console.error("Error loading comments:", error);
-      return;
-    }
-
-    commentsList.innerHTML = "";
-
-    if (!comments || comments.length === 0) {
-      return;
-    }
-
-
-    /*
-       Create a map of each comment's children.
-       This allows replies to replies to be
-       rendered recursively at any depth.
-    */
-
-    const commentMap = new Map();
-    const childrenMap = new Map();
-
-    comments.forEach(function (comment) {
-      commentMap.set(comment.id, comment);
-    });
-
-    comments.forEach(function (comment) {
-
-      if (!comment.parent_id) {
-        return;
-      }
-
-      if (!childrenMap.has(comment.parent_id)) {
-        childrenMap.set(comment.parent_id, []);
-      }
-
-      childrenMap
-        .get(comment.parent_id)
-        .push(comment);
-    });
-
-
-    function createCommentElement(comment) {
-
-      const commentItem =
-        document.createElement("div");
-
-      commentItem.className =
-        comment.parent_id
-          ? "reply-item"
-          : "comment-item";
-
-      const author =
-        document.createElement("div");
-
-      author.className = "comment-author";
-
-      author.textContent =
-        comment.display_name || "Anonymous";
-
-      const text =
-        document.createElement("div");
-
-      text.className = "comment-text";
-
-      text.textContent =
-        comment.comment_text;
-
-      const date =
-        document.createElement("div");
-
-      date.className = "comment-date";
-
-      if (comment.created_at) {
-
-        date.textContent = new Date(
-          comment.created_at
-        ).toLocaleDateString(
-          undefined,
-          {
-            day: "numeric",
-            month: "long",
-            year: "numeric"
+            throw new Error(
+              "No anonymous session was created."
+            );
           }
-        );
-      }
-
-      commentItem.appendChild(author);
-      commentItem.appendChild(text);
-      commentItem.appendChild(date);
-
-      return commentItem;
-    }
 
 
-    function createReplyBox(parentComment, parentElement) {
-
-      const replyBox =
-        document.createElement("div");
-
-      replyBox.className = "reply-box";
-
-      const replyTextarea =
-        document.createElement("textarea");
-
-      replyTextarea.placeholder =
-        "Write a reply...";
-
-      const submitButton =
-        document.createElement("button");
-
-      submitButton.className =
-        "reply-submit-btn";
-
-      submitButton.type = "button";
-
-      submitButton.textContent =
-        "Post Reply";
-
-      const cancelButton =
-        document.createElement("button");
-
-      cancelButton.className =
-        "reply-cancel-btn";
-
-      cancelButton.type = "button";
-
-      cancelButton.textContent =
-        "Cancel";
-
-      replyBox.appendChild(replyTextarea);
-      replyBox.appendChild(submitButton);
-      replyBox.appendChild(cancelButton);
+          saveIdentity(
+            "Anonymous",
+            true
+          );
 
 
-      cancelButton.addEventListener(
-        "click",
-        function () {
-          replyBox.remove();
+          applyIdentityToCommentBox(
+            "Anonymous",
+            true
+          );
+
+
+          closeCommentPopup();
+
+          scrollToComments();
+
+
+        } catch (error) {
+
+          console.error(
+            "Anonymous sign-in error:",
+            error
+          );
+
+
+          alert(
+            "Anonymous sign-in error: " +
+            (
+              error.message ||
+              JSON.stringify(error)
+            )
+          );
+
+
+        } finally {
+
+          anonymousCommentBtn.disabled =
+            false;
+
+          anonymousCommentBtn.textContent =
+            "Continue as Anonymous";
         }
-      );
+      }
+    );
 
 
-      submitButton.addEventListener(
-        "click",
-        async function () {
+    /* =========================
+       CREATE ACCOUNT
+    ========================= */
 
-          const replyText =
-            replyTextarea.value.trim();
+    createAccountBtn.addEventListener(
+      "click",
+      function () {
 
-          if (!replyText) {
-            alert("Please write a reply first.");
-            replyTextarea.focus();
+        showAccountScreen();
+
+        accountName.focus();
+      }
+    );
+
+
+    backFromAccount.addEventListener(
+      "click",
+      showCommentChoiceScreen
+    );
+
+
+    submitCreateAccount.addEventListener(
+      "click",
+      async function () {
+
+        const name =
+          accountName.value.trim();
+
+        const username =
+          accountUsername.value.trim();
+
+        const email =
+          accountEmail.value.trim();
+
+        const password =
+          accountPassword.value;
+
+        const confirmPassword =
+          accountConfirmPassword.value;
+
+
+        accountMessage.textContent =
+          "";
+
+
+        if (!name) {
+
+          accountMessage.textContent =
+            "Please enter your name.";
+
+          accountName.focus();
+
+          return;
+        }
+
+
+        if (
+          !/^[a-zA-Z0-9_]{3,20}$/.test(
+            username
+          )
+        ) {
+
+          accountMessage.textContent =
+            "Username must be 3–20 characters and use only letters, numbers, or _.";
+
+          accountUsername.focus();
+
+          return;
+        }
+
+
+        if (
+          !email ||
+          !accountEmail.checkValidity()
+        ) {
+
+          accountMessage.textContent =
+            "Please enter a valid email address.";
+
+          accountEmail.focus();
+
+          return;
+        }
+
+
+        if (
+          password.length < 6
+        ) {
+
+          accountMessage.textContent =
+            "Password must contain at least 6 characters.";
+
+          accountPassword.focus();
+
+          return;
+        }
+
+
+        if (
+          password !==
+          confirmPassword
+        ) {
+
+          accountMessage.textContent =
+            "Passwords do not match.";
+
+          accountConfirmPassword.focus();
+
+          return;
+        }
+
+
+        submitCreateAccount.disabled =
+          true;
+
+        submitCreateAccount.textContent =
+          "Checking...";
+
+
+        try {
+
+          const {
+            data: usernameAvailable,
+            error: usernameCheckError
+          } =
+            await supabaseClient.rpc(
+              "is_username_available",
+              {
+                candidate:
+                  username
+              }
+            );
+
+
+          if (usernameCheckError) {
+            throw usernameCheckError;
+          }
+
+
+          if (
+            usernameAvailable !== true
+          ) {
+
+            accountMessage.textContent =
+              "That username is already taken. Please choose another.";
+
+            accountUsername.focus();
+
             return;
           }
 
-          submitButton.disabled = true;
-          submitButton.textContent = "Posting...";
+
+          const currentSession =
+            await getCurrentSession();
+
+
+          if (currentSession) {
+
+            await supabaseClient.auth.signOut();
+
+            activeSession =
+              null;
+
+            clearIdentity();
+          }
+
+
+          submitCreateAccount.textContent =
+            "Creating account...";
+
+
+          const {
+            data,
+            error
+          } =
+            await supabaseClient.auth.signUp({
+              email:
+                email,
+
+              password:
+                password,
+
+              options: {
+
+                data: {
+
+                  display_name:
+                    name,
+
+                  username:
+                    username
+                },
+
+                emailRedirectTo:
+                  window.location.origin +
+                  window.location.pathname
+              }
+            });
+
+
+          if (error) {
+            throw error;
+          }
+
+
+          accountName.value =
+            "";
+
+          accountUsername.value =
+            "";
+
+          accountEmail.value =
+            "";
+
+          accountPassword.value =
+            "";
+
+          accountConfirmPassword.value =
+            "";
+
+
+          if (
+            data &&
+            data.session &&
+            data.user
+          ) {
+
+            activeSession =
+              data.session;
+
+
+            await loadRegisteredIdentity(
+              data.session
+            );
+
+
+            closeCommentPopup();
+
+            scrollToComments();
+
+          } else {
+
+            accountMessage.textContent =
+              "Account created. Please check your email, verify it, and then use Sign In.";
+          }
+
+
+        } catch (error) {
+
+          console.error(
+            "Account creation error:",
+            error
+          );
+
+
+          accountMessage.textContent =
+            error.message ||
+            "We could not create your account. Please try again.";
+
+
+        } finally {
+
+          submitCreateAccount.disabled =
+            false;
+
+          submitCreateAccount.textContent =
+            "Create Account";
+        }
+      }
+    );
+
+
+    /* =========================
+       SIGN IN
+    ========================= */
+
+    signInBtn.addEventListener(
+      "click",
+      function () {
+
+        showSignInScreen();
+
+        signInEmail.focus();
+      }
+    );
+
+
+    backFromSignIn.addEventListener(
+      "click",
+      showCommentChoiceScreen
+    );
+
+
+    submitSignIn.addEventListener(
+      "click",
+      async function () {
+
+        const email =
+          signInEmail.value.trim();
+
+        const password =
+          signInPassword.value;
+
+
+        signInMessage.textContent =
+          "";
+
+
+        if (
+          !email ||
+          !signInEmail.checkValidity()
+        ) {
+
+          signInMessage.textContent =
+            "Please enter a valid email address.";
+
+          signInEmail.focus();
+
+          return;
+        }
+
+
+        if (!password) {
+
+          signInMessage.textContent =
+            "Please enter your password.";
+
+          signInPassword.focus();
+
+          return;
+        }
+
+
+        submitSignIn.disabled =
+          true;
+
+        submitSignIn.textContent =
+          "Signing in...";
+
+
+        try {
+
+          const currentSession =
+            await getCurrentSession();
+
+
+          if (currentSession) {
+
+            await supabaseClient.auth.signOut();
+
+            activeSession =
+              null;
+
+            clearIdentity();
+          }
+
+
+          const {
+            data,
+            error
+          } =
+            await supabaseClient.auth.signInWithPassword({
+              email:
+                email,
+
+              password:
+                password
+            });
+
+
+          if (error) {
+            throw error;
+          }
+
+
+          if (
+            !data ||
+            !data.session
+          ) {
+
+            throw new Error(
+              "Sign in did not create a session."
+            );
+          }
+
+
+          activeSession =
+            data.session;
+
+
+          await loadRegisteredIdentity(
+            data.session
+          );
+
+
+          signInEmail.value =
+            "";
+
+          signInPassword.value =
+            "";
+
+
+          closeCommentPopup();
+
+          scrollToComments();
+
+
+        } catch (error) {
+
+          console.error(
+            "Sign in error:",
+            error
+          );
+
+
+          signInMessage.textContent =
+            error.message ||
+            "We could not sign you in. Please check your details.";
+
+
+        } finally {
+
+          submitSignIn.disabled =
+            false;
+
+          submitSignIn.textContent =
+            "Sign In";
+        }
+      }
+    );
+
+
+    /* =========================
+       PASSWORD RESET EMAIL
+    ========================= */
+
+    forgotPasswordBtn.addEventListener(
+      "click",
+      async function () {
+
+        const email =
+          signInEmail.value.trim();
+
+
+        signInMessage.textContent =
+          "";
+
+
+        if (
+          !email ||
+          !signInEmail.checkValidity()
+        ) {
+
+          signInMessage.textContent =
+            "Enter your account email first.";
+
+          signInEmail.focus();
+
+          return;
+        }
+
+
+        forgotPasswordBtn.disabled =
+          true;
+
+        forgotPasswordBtn.textContent =
+          "Sending...";
+
+
+        try {
+
+          const {
+            error
+          } =
+            await supabaseClient.auth.resetPasswordForEmail(
+              email,
+              {
+                redirectTo:
+                  window.location.origin +
+                  window.location.pathname
+              }
+            );
+
+
+          if (error) {
+            throw error;
+          }
+
+
+          signInMessage.textContent =
+            "Password reset email sent. Check your inbox for the reset link.";
+
+
+        } catch (error) {
+
+          console.error(
+            "Password reset error:",
+            error
+          );
+
+
+          signInMessage.textContent =
+            error.message ||
+            "We could not send the password reset email.";
+
+
+        } finally {
+
+          forgotPasswordBtn.disabled =
+            false;
+
+          forgotPasswordBtn.textContent =
+            "Forgot password?";
+        }
+      }
+    );
+
+
+    /* =========================
+       PROFILE
+    ========================= */
+
+    profileBtn.addEventListener(
+      "click",
+      async function () {
+
+        try {
+
+          const session =
+            await getCurrentSession();
+
+
+          if (
+            !session ||
+            !session.user ||
+            session.user.is_anonymous === true
+          ) {
+
+            showCommentChoiceScreen();
+
+            return;
+          }
+
+
+          const profile =
+            await ensureProfile(
+              session
+            );
+
+
+          if (!profile) {
+
+            throw new Error(
+              "Your profile could not be loaded."
+            );
+          }
+
+
+          profileName.value =
+            profile.display_name ||
+            "";
+
+          profileUsername.value =
+            profile.username ||
+            "";
+
+          profileEmail.value =
+            session.user.email ||
+            "";
+
+
+          profileNewPassword.value =
+            "";
+
+          profileConfirmPassword.value =
+            "";
+
+
+          showProfileScreen();
+
+          profileName.focus();
+
+
+        } catch (error) {
+
+          console.error(
+            "Profile load error:",
+            error
+          );
+
+
+          alert(
+            "We could not load your profile: " +
+            (
+              error.message ||
+              JSON.stringify(error)
+            )
+          );
+        }
+      }
+    );
+
+
+    backFromProfile.addEventListener(
+      "click",
+      showCommentChoiceScreen
+    );
+
+
+    saveProfileBtn.addEventListener(
+      "click",
+      async function () {
+
+        const name =
+          profileName.value.trim();
+
+        const username =
+          profileUsername.value.trim();
+
+        const newPassword =
+          profileNewPassword.value;
+
+        const confirmPassword =
+          profileConfirmPassword.value;
+
+
+        profileMessage.textContent =
+          "";
+
+
+        if (!name) {
+
+          profileMessage.textContent =
+            "Name cannot be empty.";
+
+          profileName.focus();
+
+          return;
+        }
+
+
+        if (
+          !/^[a-zA-Z0-9_]{3,20}$/.test(
+            username
+          )
+        ) {
+
+          profileMessage.textContent =
+            "Username must be 3–20 characters and use only letters, numbers, or _.";
+
+          profileUsername.focus();
+
+          return;
+        }
+
+
+        if (
+          newPassword &&
+          newPassword.length < 6
+        ) {
+
+          profileMessage.textContent =
+            "New password must contain at least 6 characters.";
+
+          profileNewPassword.focus();
+
+          return;
+        }
+
+
+        if (
+          newPassword !==
+          confirmPassword
+        ) {
+
+          profileMessage.textContent =
+            "Passwords do not match.";
+
+          profileConfirmPassword.focus();
+
+          return;
+        }
+
+
+        saveProfileBtn.disabled =
+          true;
+
+        saveProfileBtn.textContent =
+          "Saving...";
+
+
+        try {
+
+          const session =
+            await getCurrentSession();
+
+
+          if (
+            !session ||
+            !session.user ||
+            session.user.is_anonymous === true
+          ) {
+
+            throw new Error(
+              "Please sign in again to edit your profile."
+            );
+          }
+
+
+          const currentProfile =
+            await ensureProfile(
+              session
+            );
+
+
+          if (!currentProfile) {
+
+            throw new Error(
+              "Your profile could not be loaded."
+            );
+          }
+
+
+          const usernameChanged =
+            username.toLowerCase() !==
+            String(
+              currentProfile.username ||
+              ""
+            ).toLowerCase();
+
+
+          if (usernameChanged) {
+
+            const {
+              data: usernameAvailable,
+              error: usernameCheckError
+            } =
+              await supabaseClient.rpc(
+                "is_username_available",
+                {
+                  candidate:
+                    username
+                }
+              );
+
+
+            if (usernameCheckError) {
+              throw usernameCheckError;
+            }
+
+
+            if (
+              usernameAvailable !== true
+            ) {
+
+              throw new Error(
+                "That username is already taken. Please choose another."
+              );
+            }
+          }
+
+
+          const {
+            error: updateError
+          } =
+            await supabaseClient
+              .from("profiles")
+              .update({
+                display_name:
+                  name,
+
+                username:
+                  username,
+
+                is_anonymous:
+                  false,
+
+                updated_at:
+                  new Date().toISOString()
+              })
+              .eq(
+                "id",
+                session.user.id
+              );
+
+
+          if (updateError) {
+
+            if (
+              updateError.code ===
+              "23505"
+            ) {
+
+              throw new Error(
+                "That username is already taken. Please choose another."
+              );
+            }
+
+            throw updateError;
+          }
+
+
+          const {
+            error: metadataError
+          } =
+            await supabaseClient.auth.updateUser({
+              data: {
+
+                display_name:
+                  name,
+
+                username:
+                  username
+              }
+            });
+
+
+          if (metadataError) {
+
+            console.error(
+              "User metadata update error:",
+              metadataError
+            );
+          }
+
+
+          if (newPassword) {
+
+            const {
+              error: passwordError
+            } =
+              await supabaseClient.auth.updateUser({
+                password:
+                  newPassword
+              });
+
+
+            if (passwordError) {
+              throw passwordError;
+            }
+          }
+
+
+          saveIdentity(
+            name,
+            false
+          );
+
+
+          applyIdentityToCommentBox(
+            name,
+            false
+          );
+
+
+          profileMessage.textContent =
+            "Profile updated successfully.";
+
+
+          profileNewPassword.value =
+            "";
+
+          profileConfirmPassword.value =
+            "";
+
+
+          await loadComments();
+
+
+        } catch (error) {
+
+          console.error(
+            "Profile update error:",
+            error
+          );
+
+
+          profileMessage.textContent =
+            error.message ||
+            "We could not update your profile.";
+
+
+        } finally {
+
+          saveProfileBtn.disabled =
+            false;
+
+          saveProfileBtn.textContent =
+            "Save Changes";
+        }
+      }
+    );
+
+
+    /* =========================
+       SIGN OUT
+    ========================= */
+
+    signOutBtn.addEventListener(
+      "click",
+      async function () {
+
+        signOutBtn.disabled =
+          true;
+
+        signOutBtn.textContent =
+          "Signing out...";
+
+
+        try {
+
+          await supabaseClient.auth.signOut();
+
+
+          activeSession =
+            null;
+
+
+          clearIdentity();
+
+
+          commentName.value =
+            "";
+
+          commentName.readOnly =
+            true;
+
+          anonymousCheckbox.checked =
+            false;
+
+
+          closeCommentPopup();
+
+          await loadComments();
+
+
+        } catch (error) {
+
+          console.error(
+            "Sign out error:",
+            error
+          );
+
+
+          alert(
+            "We could not sign you out: " +
+            (
+              error.message ||
+              JSON.stringify(error)
+            )
+          );
+
+
+        } finally {
+
+          signOutBtn.disabled =
+            false;
+
+          signOutBtn.textContent =
+            "Sign Out";
+        }
+      }
+    );
+
+
+    /* =========================
+       PASSWORD RECOVERY
+    ========================= */
+
+    backFromRecovery.addEventListener(
+      "click",
+      showSignInScreen
+    );
+
+
+    submitRecovery.addEventListener(
+      "click",
+      async function () {
+
+        const password =
+          recoveryPassword.value;
+
+        const confirmPassword =
+          recoveryConfirmPassword.value;
+
+
+        recoveryMessage.textContent =
+          "";
+
+
+        if (
+          password.length < 6
+        ) {
+
+          recoveryMessage.textContent =
+            "Password must contain at least 6 characters.";
+
+          recoveryPassword.focus();
+
+          return;
+        }
+
+
+        if (
+          password !==
+          confirmPassword
+        ) {
+
+          recoveryMessage.textContent =
+            "Passwords do not match.";
+
+          recoveryConfirmPassword.focus();
+
+          return;
+        }
+
+
+        submitRecovery.disabled =
+          true;
+
+        submitRecovery.textContent =
+          "Updating...";
+
+
+        try {
+
+          const {
+            error
+          } =
+            await supabaseClient.auth.updateUser({
+              password:
+                password
+            });
+
+
+          if (error) {
+            throw error;
+          }
+
+
+          recoveryPassword.value =
+            "";
+
+          recoveryConfirmPassword.value =
+            "";
+
+
+          recoveryMessage.textContent =
+            "Password updated successfully.";
+
+
+          const session =
+            await getCurrentSession();
+
+
+          if (
+            session &&
+            session.user &&
+            session.user.is_anonymous !== true
+          ) {
+
+            await loadRegisteredIdentity(
+              session
+            );
+          }
+
+
+          setTimeout(
+            function () {
+
+              closeCommentPopup();
+
+              scrollToComments();
+
+            },
+            900
+          );
+
+
+        } catch (error) {
+
+          console.error(
+            "Password recovery update error:",
+            error
+          );
+
+
+          recoveryMessage.textContent =
+            error.message ||
+            "We could not update your password.";
+
+
+        } finally {
+
+          submitRecovery.disabled =
+            false;
+
+          submitRecovery.textContent =
+            "Update Password";
+        }
+      }
+    );
+
+
+    /* =========================
+       SHARE
+    ========================= */
+
+    shareButton.addEventListener(
+      "click",
+      async function () {
+
+        const shareData = {
+
+          title:
+            document.title,
+
+          text:
+            "Read this article on DissentVerse.",
+
+          url:
+            window.location.href
+        };
+
+
+        try {
+
+          if (
+            navigator.share
+          ) {
+
+            await navigator.share(
+              shareData
+            );
+
+          } else {
+
+            await navigator.clipboard.writeText(
+              window.location.href
+            );
+
+            alert(
+              "Article link copied."
+            );
+          }
+
+
+        } catch (error) {
+
+          console.log(
+            "Share cancelled."
+          );
+        }
+      }
+    );
+
+
+    /* =========================
+       HIDDEN LEGACY CHECKBOX
+    ========================= */
+
+    anonymousCheckbox.addEventListener(
+      "change",
+      async function () {
+
+        if (
+          anonymousCheckbox.checked
+        ) {
 
           try {
 
             const session =
-              await getActiveSession();
-
-            if (!session || !session.user) {
-              throw new Error(
-                "No authenticated user session was created."
-              );
-            }
+              await getAnonymousSession();
 
 
-            /*
-               Use the same identity selected for
-               the user's original comment.
-
-               If the page was refreshed, restore
-               it from sessionStorage.
-            */
-
-            let replyDisplayName =
-              activeDisplayName ||
-              sessionStorage.getItem(
-                "dissentverse_comment_name"
-              ) ||
-              "Anonymous";
-
-            let replyIsAnonymous =
-              activeIsAnonymous;
-
-            const storedAnonymous =
-              sessionStorage.getItem(
-                "dissentverse_comment_anonymous"
-              );
-
-            if (storedAnonymous !== null) {
-              replyIsAnonymous =
-                storedAnonymous === "true";
-            }
-
-            if (replyDisplayName === "Anonymous") {
-              replyIsAnonymous = true;
-            }
+            saveIdentity(
+              "Anonymous",
+              true
+            );
 
 
-            const articleSlug =
-              "{{ page.slug | escape }}";
+            applyIdentityToCommentBox(
+              "Anonymous",
+              true
+            );
 
-            const {
-              error: replyError
-            } = await supabaseClient
-              .from("comments")
-              .insert({
-                article_slug: articleSlug,
-                parent_id: parentComment.id,
-                display_name: replyDisplayName,
-                comment_text: replyText,
-                is_anonymous: replyIsAnonymous,
-                approved: true,
-                user_id: session.user.id
-              });
-
-            if (replyError) {
-              console.error(
-                "Reply insert error:",
-                replyError
-              );
-
-              alert(
-                "We could not post your reply: " +
-                (
-                  replyError.message ||
-                  JSON.stringify(replyError)
-                )
-              );
-
-              return;
-            }
-
-            replyBox.remove();
-
-            await loadComments();
 
           } catch (error) {
 
-            console.error(
-              "Reply submission error:",
-              error
-            );
+            anonymousCheckbox.checked =
+              false;
+
 
             alert(
-              "Reply error: " +
+              "Anonymous sign-in error: " +
               (
                 error.message ||
                 JSON.stringify(error)
               )
             );
-
-          } finally {
-
-            submitButton.disabled = false;
-            submitButton.textContent = "Post Reply";
-          }
-        }
-      );
-
-      parentElement.appendChild(replyBox);
-
-      replyTextarea.focus();
-    }
-
-
-    /*
-       Every comment gets its own Reply button.
-       The function calls itself for child replies,
-       so replies can be nested indefinitely.
-    */
-
-    function renderCommentTree(comment, container) {
-
-      const commentItem =
-        createCommentElement(comment);
-
-
-      const replyButton =
-        document.createElement("button");
-
-      replyButton.className =
-        "comment-reply-btn";
-
-      replyButton.type = "button";
-
-      replyButton.textContent = "Reply";
-
-      replyButton.addEventListener(
-        "click",
-        function () {
-
-          const existingReplyBox =
-            commentItem.querySelector(
-              ":scope > .reply-box"
-            );
-
-          if (existingReplyBox) {
-            existingReplyBox.remove();
-            return;
           }
 
-          createReplyBox(
-            comment,
-            commentItem
-          );
-        }
-      );
 
-      commentItem.appendChild(replyButton);
+        } else {
+
+          const session =
+            await getCurrentSession();
 
 
-      const childComments =
-        childrenMap.get(comment.id) || [];
+          if (
+            session &&
+            session.user &&
+            session.user.is_anonymous !== true
+          ) {
 
-      if (childComments.length > 0) {
+            try {
 
-        const repliesContainer =
-          document.createElement("div");
+              await loadRegisteredIdentity(
+                session
+              );
 
-        repliesContainer.className =
-          "comment-replies";
+            } catch (error) {
 
-        childComments.forEach(
-          function (child) {
-            renderCommentTree(
-              child,
-              repliesContainer
-            );
+              console.error(
+                "Profile load error:",
+                error
+              );
+            }
+
+
+          } else {
+
+            commentName.value =
+              "";
+
+            commentName.readOnly =
+              true;
           }
-        );
-
-        commentItem.appendChild(
-          repliesContainer
-        );
-      }
-
-      container.appendChild(commentItem);
-    }
-
-
-    /*
-       Render top-level comments first.
-    */
-
-    const topLevelComments =
-      comments.filter(
-        function (comment) {
-          return !comment.parent_id;
         }
-      );
-
-    topLevelComments.forEach(
-      function (comment) {
-        renderCommentTree(
-          comment,
-          commentsList
-        );
       }
     );
 
 
-    /*
-       If a reply refers to a parent that
-       no longer exists, display it rather
-       than silently hiding it.
-    */
+    /* =========================
+       LOAD COMMENTS
+    ========================= */
 
-    comments.forEach(
-      function (comment) {
+    async function loadComments() {
+
+      if (!commentsList) {
+        return;
+      }
+
+
+      const {
+        data: comments,
+        error
+      } =
+        await supabaseClient
+          .from("comments")
+          .select("*")
+          .eq(
+            "article_slug",
+            articleSlug()
+          )
+          .order(
+            "created_at",
+            {
+              ascending:
+                true
+            }
+          );
+
+
+      if (error) {
+
+        console.error(
+          "Error loading comments:",
+          error
+        );
+
+        return;
+      }
+
+
+      commentsList.innerHTML =
+        "";
+
+
+      if (
+        !comments ||
+        comments.length === 0
+      ) {
+
+        return;
+      }
+
+
+      const commentMap =
+        new Map();
+
+
+      const childrenMap =
+        new Map();
+
+
+      comments.forEach(
+        function (comment) {
+
+          commentMap.set(
+            comment.id,
+            comment
+          );
+        }
+      );
+
+
+      comments.forEach(
+        function (comment) {
+
+          if (!comment.parent_id) {
+            return;
+          }
+
+
+          if (
+            !childrenMap.has(
+              comment.parent_id
+            )
+          ) {
+
+            childrenMap.set(
+              comment.parent_id,
+              []
+            );
+          }
+
+
+          childrenMap
+            .get(
+              comment.parent_id
+            )
+            .push(comment);
+        }
+      );
+
+
+      /* =========================
+         DELETE COMMENT
+      ========================= */
+
+      async function deleteComment(
+        comment
+      ) {
+
+        const confirmed =
+          window.confirm(
+            "Delete this comment? This cannot be undone."
+          );
+
+
+        if (!confirmed) {
+          return;
+        }
+
+
+        try {
+
+          const session =
+            await getCurrentSession();
+
+
+          if (
+            !session ||
+            !session.user ||
+            session.user.is_anonymous === true ||
+            session.user.id !== comment.user_id
+          ) {
+
+            throw new Error(
+              "You can only delete your own comments from a registered account."
+            );
+          }
+
+
+          const {
+            error: deleteError
+          } =
+            await supabaseClient
+              .from("comments")
+              .delete()
+              .eq(
+                "id",
+                comment.id
+              );
+
+
+          if (deleteError) {
+            throw deleteError;
+          }
+
+
+          await loadComments();
+
+
+        } catch (error) {
+
+          console.error(
+            "Delete comment error:",
+            error
+          );
+
+
+          alert(
+            "We could not delete your comment: " +
+            (
+              error.message ||
+              JSON.stringify(error)
+            )
+          );
+        }
+      }
+
+
+      /* =========================
+         EDIT COMMENT
+      ========================= */
+
+      function startEditing(
+        comment,
+        textElement,
+        actions
+      ) {
 
         if (
-          comment.parent_id &&
-          !commentMap.has(comment.parent_id)
+          document.querySelector(
+            ".comment-edit-box"
+          )
         ) {
+
+          return;
+        }
+
+
+        const editBox =
+          document.createElement(
+            "div"
+          );
+
+
+        editBox.className =
+          "comment-edit-box";
+
+
+        const textarea =
+          document.createElement(
+            "textarea"
+          );
+
+
+        textarea.value =
+          comment.comment_text ||
+          "";
+
+
+        textarea.maxLength =
+          5000;
+
+
+        const saveButton =
+          document.createElement(
+            "button"
+          );
+
+
+        saveButton.className =
+          "comment-edit-save";
+
+
+        saveButton.type =
+          "button";
+
+
+        saveButton.textContent =
+          "Save";
+
+
+        const cancelButton =
+          document.createElement(
+            "button"
+          );
+
+
+        cancelButton.className =
+          "comment-edit-cancel";
+
+
+        cancelButton.type =
+          "button";
+
+
+        cancelButton.textContent =
+          "Cancel";
+
+
+        editBox.appendChild(
+          textarea
+        );
+
+
+        editBox.appendChild(
+          saveButton
+        );
+
+
+        editBox.appendChild(
+          cancelButton
+        );
+
+
+        textElement.style.display =
+          "none";
+
+
+        actions.style.display =
+          "none";
+
+
+        textElement.parentElement.insertBefore(
+          editBox,
+          textElement.nextSibling
+        );
+
+
+        cancelButton.addEventListener(
+          "click",
+          function () {
+
+            editBox.remove();
+
+            textElement.style.display =
+              "";
+
+            actions.style.display =
+              "";
+          }
+        );
+
+
+        saveButton.addEventListener(
+          "click",
+          async function () {
+
+            const newText =
+              textarea.value.trim();
+
+
+            if (!newText) {
+
+              alert(
+                "Comment cannot be empty."
+              );
+
+              textarea.focus();
+
+              return;
+            }
+
+
+            saveButton.disabled =
+              true;
+
+            saveButton.textContent =
+              "Saving...";
+
+
+            try {
+
+              const session =
+                await getCurrentSession();
+
+
+              if (
+                !session ||
+                !session.user ||
+                session.user.is_anonymous === true ||
+                session.user.id !== comment.user_id
+              ) {
+
+                throw new Error(
+                  "You can only edit your own comments from a registered account."
+                );
+              }
+
+
+              const {
+                error: updateError
+              } =
+                await supabaseClient
+                  .from("comments")
+                  .update({
+                    comment_text:
+                      newText
+                  })
+                  .eq(
+                    "id",
+                    comment.id
+                  );
+
+
+              if (updateError) {
+                throw updateError;
+              }
+
+
+              await loadComments();
+
+
+            } catch (error) {
+
+              console.error(
+                "Edit comment error:",
+                error
+              );
+
+
+              alert(
+                "We could not edit your comment: " +
+                (
+                  error.message ||
+                  JSON.stringify(error)
+                )
+              );
+
+
+              saveButton.disabled =
+                false;
+
+              saveButton.textContent =
+                "Save";
+            }
+          }
+        );
+
+
+        textarea.focus();
+      }
+
+
+      /* =========================
+         REPLY BOX
+      ========================= */
+
+      function createReplyBox(
+        parentComment,
+        parentElement
+      ) {
+
+        const replyBox =
+          document.createElement(
+            "div"
+          );
+
+
+        replyBox.className =
+          "reply-box";
+
+
+        const textarea =
+          document.createElement(
+            "textarea"
+          );
+
+
+        textarea.placeholder =
+          "Write a reply...";
+
+
+        textarea.maxLength =
+          5000;
+
+
+        const submitButton =
+          document.createElement(
+            "button"
+          );
+
+
+        submitButton.className =
+          "reply-submit-btn";
+
+
+        submitButton.type =
+          "button";
+
+
+        submitButton.textContent =
+          "Post Reply";
+
+
+        const cancelButton =
+          document.createElement(
+            "button"
+          );
+
+
+        cancelButton.className =
+          "reply-cancel-btn";
+
+
+        cancelButton.type =
+          "button";
+
+
+        cancelButton.textContent =
+          "Cancel";
+
+
+        replyBox.appendChild(
+          textarea
+        );
+
+
+        replyBox.appendChild(
+          submitButton
+        );
+
+
+        replyBox.appendChild(
+          cancelButton
+        );
+
+
+        cancelButton.addEventListener(
+          "click",
+          function () {
+
+            replyBox.remove();
+          }
+        );
+
+
+        submitButton.addEventListener(
+          "click",
+          async function () {
+
+            const replyText =
+              textarea.value.trim();
+
+
+            if (!replyText) {
+
+              alert(
+                "Please write a reply first."
+              );
+
+              textarea.focus();
+
+              return;
+            }
+
+
+            submitButton.disabled =
+              true;
+
+            submitButton.textContent =
+              "Posting...";
+
+
+            try {
+
+              const session =
+                await getCurrentSession();
+
+
+              if (
+                !session ||
+                !session.user
+              ) {
+
+                throw new Error(
+                  "Please choose Anonymous or Sign In before replying."
+                );
+              }
+
+
+              let displayName;
+
+              let isAnonymous;
+
+
+              if (
+                session.user.is_anonymous === true
+              ) {
+
+                displayName =
+                  "Anonymous";
+
+                isAnonymous =
+                  true;
+
+
+              } else {
+
+                const profile =
+                  await ensureProfile(
+                    session
+                  );
+
+
+                if (!profile) {
+
+                  throw new Error(
+                    "Your profile could not be loaded."
+                  );
+                }
+
+
+                displayName =
+                  profile.display_name ||
+                  "User";
+
+
+                isAnonymous =
+                  false;
+
+
+                saveIdentity(
+                  displayName,
+                  false
+                );
+              }
+
+
+              const {
+                error: replyError
+              } =
+                await supabaseClient
+                  .from("comments")
+                  .insert({
+
+                    article_slug:
+                      articleSlug(),
+
+                    parent_id:
+                      parentComment.id,
+
+                    display_name:
+                      displayName,
+
+                    comment_text:
+                      replyText,
+
+                    is_anonymous:
+                      isAnonymous,
+
+                    approved:
+                      true,
+
+                    user_id:
+                      session.user.id
+                  });
+
+
+              if (replyError) {
+                throw replyError;
+              }
+
+
+              replyBox.remove();
+
+
+              await loadComments();
+
+
+            } catch (error) {
+
+              console.error(
+                "Reply submission error:",
+                error
+              );
+
+
+              alert(
+                "We could not post your reply: " +
+                (
+                  error.message ||
+                  JSON.stringify(error)
+                )
+              );
+
+
+            } finally {
+
+              submitButton.disabled =
+                false;
+
+              submitButton.textContent =
+                "Post Reply";
+            }
+          }
+        );
+
+
+        parentElement.appendChild(
+          replyBox
+        );
+
+
+        textarea.focus();
+      }
+
+
+      /* =========================
+         COMMENT ELEMENT
+      ========================= */
+
+      function createCommentElement(
+        comment
+      ) {
+
+        const commentItem =
+          document.createElement(
+            "div"
+          );
+
+
+        commentItem.className =
+          comment.parent_id
+            ? "reply-item"
+            : "comment-item";
+
+
+        const author =
+          document.createElement(
+            "div"
+          );
+
+
+        author.className =
+          "comment-author";
+
+
+        author.textContent =
+          comment.display_name ||
+          "Anonymous";
+
+
+        const text =
+          document.createElement(
+            "div"
+          );
+
+
+        text.className =
+          "comment-text";
+
+
+        text.textContent =
+          comment.comment_text ||
+          "";
+
+
+        const date =
+          document.createElement(
+            "div"
+          );
+
+
+        date.className =
+          "comment-date";
+
+
+        if (
+          comment.created_at
+        ) {
+
+          date.textContent =
+            new Date(
+              comment.created_at
+            ).toLocaleDateString(
+              undefined,
+              {
+                day:
+                  "numeric",
+
+                month:
+                  "long",
+
+                year:
+                  "numeric"
+              }
+            );
+        }
+
+
+        commentItem.appendChild(
+          author
+        );
+
+
+        commentItem.appendChild(
+          text
+        );
+
+
+        commentItem.appendChild(
+          date
+        );
+
+
+        const actions =
+          document.createElement(
+            "div"
+          );
+
+
+        actions.className =
+          "comment-actions";
+
+
+        const replyButton =
+          document.createElement(
+            "button"
+          );
+
+
+        replyButton.className =
+          "comment-reply-btn";
+
+
+        replyButton.type =
+          "button";
+
+
+        replyButton.textContent =
+          "Reply";
+
+
+        actions.appendChild(
+          replyButton
+        );
+
+
+        const currentUser =
+          activeSession &&
+          activeSession.user
+            ? activeSession.user
+            : null;
+
+
+        const canModify =
+          currentUser &&
+          currentUser.is_anonymous !== true &&
+          currentUser.id ===
+            comment.user_id;
+
+
+        if (canModify) {
+
+          const editButton =
+            document.createElement(
+              "button"
+            );
+
+
+          editButton.className =
+            "comment-edit-btn";
+
+
+          editButton.type =
+            "button";
+
+
+          editButton.textContent =
+            "Edit";
+
+
+          editButton.addEventListener(
+            "click",
+            function () {
+
+              startEditing(
+                comment,
+                text,
+                actions
+              );
+            }
+          );
+
+
+          const deleteButton =
+            document.createElement(
+              "button"
+            );
+
+
+          deleteButton.className =
+            "comment-delete-btn";
+
+
+          deleteButton.type =
+            "button";
+
+
+          deleteButton.textContent =
+            "Delete";
+
+
+          deleteButton.addEventListener(
+            "click",
+            function () {
+
+              deleteComment(
+                comment
+              );
+            }
+          );
+
+
+          actions.appendChild(
+            editButton
+          );
+
+
+          actions.appendChild(
+            deleteButton
+          );
+        }
+
+
+        commentItem.appendChild(
+          actions
+        );
+
+
+        replyButton.addEventListener(
+          "click",
+          async function () {
+
+            const ready =
+              await ensureCommentingIdentity();
+
+
+            if (!ready) {
+              return;
+            }
+
+
+            const existingReplyBox =
+              commentItem.querySelector(
+                ":scope > .reply-box"
+              );
+
+
+            if (existingReplyBox) {
+
+              existingReplyBox.remove();
+
+              return;
+            }
+
+
+            createReplyBox(
+              comment,
+              commentItem
+            );
+          }
+        );
+
+
+        return commentItem;
+      }
+
+
+      /* =========================
+         RECURSIVE TREE
+      ========================= */
+
+      function renderCommentTree(
+        comment,
+        container
+      ) {
+
+        const commentItem =
+          createCommentElement(
+            comment
+          );
+
+
+        const children =
+          childrenMap.get(
+            comment.id
+          ) || [];
+
+
+        if (
+          children.length > 0
+        ) {
+
+          const repliesContainer =
+            document.createElement(
+              "div"
+            );
+
+
+          repliesContainer.className =
+            "comment-replies";
+
+
+          children.forEach(
+            function (child) {
+
+              renderCommentTree(
+                child,
+                repliesContainer
+              );
+            }
+          );
+
+
+          commentItem.appendChild(
+            repliesContainer
+          );
+        }
+
+
+        container.appendChild(
+          commentItem
+        );
+      }
+
+
+      const topLevelComments =
+        comments.filter(
+          function (comment) {
+
+            return !comment.parent_id;
+          }
+        );
+
+
+      const displayedIds =
+        new Set();
+
+
+      function markTreeDisplayed(
+        comment
+      ) {
+
+        displayedIds.add(
+          comment.id
+        );
+
+
+        const children =
+          childrenMap.get(
+            comment.id
+          ) || [];
+
+
+        children.forEach(
+          markTreeDisplayed
+        );
+      }
+
+
+      topLevelComments.forEach(
+        function (comment) {
+
+          markTreeDisplayed(
+            comment
+          );
+
 
           renderCommentTree(
             comment,
             commentsList
           );
         }
-      }
-    );
-  }
+      );
 
 
-  /* =========================
-     COMMENT SUBMIT
-  ========================= */
+      /*
+         Display orphaned replies rather
+         than silently hiding them.
+      */
 
-  postCommentButton.addEventListener(
-    "click",
-    async function () {
+      comments.forEach(
+        function (comment) {
 
-      const name =
-        commentName.value.trim();
+          if (
+            !displayedIds.has(
+              comment.id
+            )
+          ) {
 
-      const text =
-        commentText.value.trim();
+            markTreeDisplayed(
+              comment
+            );
 
-      if (!text) {
-        alert("Please write a comment first.");
-        commentText.focus();
-        return;
-      }
 
-      postCommentButton.disabled = true;
-      postCommentButton.textContent = "Posting...";
-
-      try {
-
-        const session =
-          await getActiveSession();
-
-        if (!session || !session.user) {
-          throw new Error(
-            "No authenticated user session was created."
-          );
+            renderCommentTree(
+              comment,
+              commentsList
+            );
+          }
         }
+      );
 
-        activeSession =
-          session;
-
-        const user =
-          session.user;
-
-        const displayName =
-          anonymousCheckbox.checked
-            ? "Anonymous"
-            : (name || "Anonymous");
-
-        const isAnonymous =
-          user.is_anonymous === true ||
-          anonymousCheckbox.checked;
+    }
 
 
-        /*
-           Remember the identity selected for
-           this comment so replies use the same name.
-        */
+    /* =========================
+       POST COMMENT
+    ========================= */
 
-        activeDisplayName =
-          displayName;
+    postCommentButton.addEventListener(
+      "click",
+      async function () {
 
-        activeIsAnonymous =
-          isAnonymous;
-
-        sessionStorage.setItem(
-          "dissentverse_comment_name",
-          displayName
-        );
-
-        sessionStorage.setItem(
-          "dissentverse_comment_anonymous",
-          String(isAnonymous)
-        );
+        const text =
+          commentText.value.trim();
 
 
-        const articleSlug =
-          "{{ page.slug | escape }}";
-
-        console.log(
-          "Commenting user:",
-          user.id
-        );
-
-        console.log(
-          "Article slug:",
-          articleSlug
-        );
-
-
-        const {
-          error: insertError
-        } = await supabaseClient
-          .from("comments")
-          .insert({
-
-            article_slug:
-              articleSlug,
-
-            parent_id:
-              null,
-
-            display_name:
-              displayName,
-
-            comment_text:
-              text,
-
-            is_anonymous:
-              isAnonymous,
-
-            approved:
-              true,
-
-            user_id:
-              user.id
-
-          });
-
-
-        if (insertError) {
-
-          console.error(
-            "Comment insert error:",
-            insertError
-          );
+        if (!text) {
 
           alert(
-            "We could not post your comment: " +
-            (
-              insertError.message ||
-              JSON.stringify(insertError)
-            )
+            "Please write a comment first."
           );
+
+          commentText.focus();
 
           return;
         }
 
 
-        commentText.value = "";
+        const ready =
+          await ensureCommentingIdentity();
 
 
-        if (
-          anonymousCheckbox.checked
-        ) {
-
-          commentName.value =
-            "Anonymous";
-
-          commentName.disabled =
-            true;
-
-        } else {
-
-          /*
-             Keep the selected name visible so
-             the user knows which identity replies
-             will use.
-          */
-
-          commentName.value =
-            displayName;
-
-          commentName.disabled =
-            false;
-
+        if (!ready) {
+          return;
         }
 
 
-        await loadComments();
+        postCommentButton.disabled =
+          true;
 
-        alert(
-          "Your comment has been posted."
-        );
+        postCommentButton.textContent =
+          "Posting...";
+
+
+        try {
+
+          const session =
+            await getCurrentSession();
+
+
+          if (
+            !session ||
+            !session.user
+          ) {
+
+            throw new Error(
+              "Please choose Anonymous or Sign In first."
+            );
+          }
+
+
+          let displayName;
+
+          let isAnonymous;
+
+
+          if (
+            session.user.is_anonymous === true
+          ) {
+
+            displayName =
+              "Anonymous";
+
+            isAnonymous =
+              true;
+
+
+          } else {
+
+            const profile =
+              await ensureProfile(
+                session
+              );
+
+
+            if (!profile) {
+
+              throw new Error(
+                "Your profile could not be loaded."
+              );
+            }
+
+
+            displayName =
+              profile.display_name ||
+              "User";
+
+
+            isAnonymous =
+              false;
+
+
+            saveIdentity(
+              displayName,
+              false
+            );
+          }
+
+
+          const {
+            error: insertError
+          } =
+            await supabaseClient
+              .from("comments")
+              .insert({
+
+                article_slug:
+                  articleSlug(),
+
+                parent_id:
+                  null,
+
+                display_name:
+                  displayName,
+
+                comment_text:
+                  text,
+
+                is_anonymous:
+                  isAnonymous,
+
+                approved:
+                  true,
+
+                user_id:
+                  session.user.id
+              });
+
+
+          if (insertError) {
+            throw insertError;
+          }
+
+
+          commentText.value =
+            "";
+
+
+          applyIdentityToCommentBox(
+            displayName,
+            isAnonymous
+          );
+
+
+          await loadComments();
+
+
+          alert(
+            "Your comment has been posted."
+          );
+
+
+        } catch (error) {
+
+          console.error(
+            "Comment submission error:",
+            error
+          );
+
+
+          alert(
+            "We could not post your comment: " +
+            (
+              error.message ||
+              JSON.stringify(error)
+            )
+          );
+
+
+        } finally {
+
+          postCommentButton.disabled =
+            false;
+
+          postCommentButton.textContent =
+            "Post Comment";
+        }
+      }
+    );
+
+
+    /* =========================
+       AUTH STATE
+    ========================= */
+
+    supabaseClient.auth.onAuthStateChange(
+      function (
+        event,
+        session
+      ) {
+
+        activeSession =
+          session || null;
+
+
+        updateAccountButtons();
+
+
+        if (
+          event ===
+          "PASSWORD_RECOVERY"
+        ) {
+
+          showRecoveryScreen();
+        }
+      }
+    );
+
+
+    /* =========================
+       INITIALIZATION
+    ========================= */
+
+    (async function initialize() {
+
+      try {
+
+        const session =
+          await getCurrentSession();
+
+
+        if (
+          session &&
+          session.user
+        ) {
+
+          if (
+            session.user.is_anonymous === true
+          ) {
+
+            saveIdentity(
+              "Anonymous",
+              true
+            );
+
+
+            applyIdentityToCommentBox(
+              "Anonymous",
+              true
+            );
+
+
+          } else {
+
+            try {
+
+              await loadRegisteredIdentity(
+                session
+              );
+
+            } catch (error) {
+
+              console.error(
+                "Registered profile load error:",
+                error
+              );
+            }
+          }
+
+
+        } else {
+
+          commentName.value =
+            "";
+
+          commentName.readOnly =
+            true;
+
+          anonymousCheckbox.checked =
+            false;
+        }
 
 
       } catch (error) {
 
         console.error(
-          "Comment submission error:",
+          "Supabase initialization error:",
           error
-        );
-
-        alert(
-          "Comment error: " +
-          (
-            error.message ||
-            JSON.stringify(error)
-          )
         );
 
 
       } finally {
 
-        postCommentButton.disabled =
-          false;
+        updateAccountButtons();
 
-        postCommentButton.textContent =
-          "Post Comment";
-      }
-    }
-  );
-
-
-  /* =========================
-     SUPABASE AUTH STATE
-  ========================= */
-
-  supabaseClient.auth.onAuthStateChange(
-    function (
-      event,
-      session
-    ) {
-
-      console.log(
-        "Auth event:",
-        event
-      );
-
-      if (session) {
-        activeSession =
-          session;
-      }
-    }
-  );
-
-
-  /* =========================
-     LOAD EXISTING SESSION
-  ========================= */
-
-  (async function () {
-
-    try {
-
-      const {
-        data,
-        error
-      } = await supabaseClient.auth.getSession();
-
-
-      if (error) {
-
-        console.error(
-          "Supabase session error:",
-          error
-        );
-
-        return;
+        await loadComments();
       }
 
+    })();
 
-      if (
-        data &&
-        data.session
-      ) {
-
-        activeSession =
-          data.session;
-
-        console.log(
-          "Existing session loaded."
-        );
-
-      } else {
-
-        console.log(
-          "No existing session."
-        );
-
-      }
-
-
-      /*
-         Restore the commenting identity
-         after a page refresh in the same tab.
-      */
-
-      const storedName =
-        sessionStorage.getItem(
-          "dissentverse_comment_name"
-        );
-
-      const storedAnonymous =
-        sessionStorage.getItem(
-          "dissentverse_comment_anonymous"
-        );
-
-
-      if (storedName) {
-
-        activeDisplayName =
-          storedName;
-
-        activeIsAnonymous =
-          storedAnonymous === "true";
-
-      }
-
-
-    } catch (error) {
-
-      console.error(
-        "Supabase initialization error:",
-        error
-      );
-
-    }
-
-  })();
-
-
-  /* =========================
-     LOAD COMMENTS ON PAGE LOAD
-  ========================= */
-
-  loadComments();
-
-</script>
+  </script>
 
 
 </body>
