@@ -1346,8 +1346,9 @@
           <input
             type="text"
             id="accountUsername"
-            placeholder="Username (lowercase letters and numbers)"
+            placeholder="Username (5–20 lowercase letters and numbers)"
             maxlength="20"
+            minlength="5"
             autocomplete="username"
           >
 
@@ -1363,7 +1364,8 @@
           <input
             type="password"
             id="accountPassword"
-            placeholder="Password"
+            placeholder="Password (8+ characters, any 2 character types)"
+            minlength="8"
             autocomplete="new-password"
           >
 
@@ -1372,6 +1374,7 @@
             type="password"
             id="accountConfirmPassword"
             placeholder="Confirm password"
+            minlength="8"
             autocomplete="new-password"
           >
 
@@ -1497,8 +1500,9 @@
           <input
             type="text"
             id="profileUsername"
-            placeholder="Username"
+            placeholder="Username (5–20 lowercase letters and numbers)"
             maxlength="20"
+            minlength="5"
             autocomplete="username"
           >
 
@@ -1515,6 +1519,7 @@
             type="password"
             id="profileNewPassword"
             placeholder="New password (optional)"
+            minlength="8"
             autocomplete="new-password"
           >
 
@@ -1523,6 +1528,7 @@
             type="password"
             id="profileConfirmPassword"
             placeholder="Confirm new password"
+            minlength="8"
             autocomplete="new-password"
           >
 
@@ -1572,7 +1578,8 @@
           <input
             type="password"
             id="recoveryPassword"
-            placeholder="New password"
+            placeholder="New password (8+ characters, any 2 character types)"
+            minlength="8"
             autocomplete="new-password"
           >
 
@@ -1581,6 +1588,7 @@
             type="password"
             id="recoveryConfirmPassword"
             placeholder="Confirm new password"
+            minlength="8"
             autocomplete="new-password"
           >
 
@@ -1779,7 +1787,8 @@
 
 
     /*
-       EXACT KEY FROM YOUR RESTORED CODE
+       EXACT KEY FROM YOUR CURRENT
+       WORKING CODE
     */
 
     const SUPABASE_ANON_KEY =
@@ -2040,6 +2049,95 @@
         session.user.id
       );
 
+    }
+
+
+    /*
+       Password rule:
+       Minimum 8 characters and at least
+       2 of these 4 character categories:
+       lowercase, uppercase, number, symbol.
+    */
+
+    function getPasswordTypeCount(
+      password
+    ) {
+
+      let count =
+        0;
+
+
+      if (
+        /[a-z]/.test(
+          password
+        )
+      ) {
+
+        count += 1;
+      }
+
+
+      if (
+        /[A-Z]/.test(
+          password
+        )
+      ) {
+
+        count += 1;
+      }
+
+
+      if (
+        /[0-9]/.test(
+          password
+        )
+      ) {
+
+        count += 1;
+      }
+
+
+      if (
+        /[^A-Za-z0-9\s]/.test(
+          password
+        )
+      ) {
+
+        count += 1;
+      }
+
+
+      return count;
+    }
+
+
+    function validatePassword(
+      password
+    ) {
+
+      if (
+        password.length < 8
+      ) {
+
+        return (
+          "Password must be at least 8 characters long and contain at least two of: lowercase, uppercase, number, or symbol."
+        );
+      }
+
+
+      if (
+        getPasswordTypeCount(
+          password
+        ) < 2
+      ) {
+
+        return (
+          "Password must contain at least two of: lowercase, uppercase, number, or symbol."
+        );
+      }
+
+
+      return "";
     }
 
 
@@ -3352,13 +3450,13 @@
 
 
         if (
-          !/^[a-z0-9]{3,20}$/.test(
+          !/^[a-z0-9]{5,20}$/.test(
             username
           )
         ) {
 
           accountMessage.textContent =
-            "Username must be 3–20 characters and contain only lowercase letters and numbers.";
+            "Username must be 5–20 characters and contain only lowercase letters and numbers.";
 
 
           accountUsername.focus();
@@ -3384,12 +3482,18 @@
         }
 
 
+        const passwordError =
+          validatePassword(
+            password
+          );
+
+
         if (
-          password.length < 6
+          passwordError
         ) {
 
           accountMessage.textContent =
-            "Password must contain at least 6 characters.";
+            passwordError;
 
 
           accountPassword.focus();
@@ -3583,7 +3687,7 @@
           ) {
 
             accountMessage.textContent =
-              "That username is already taken. Please choose another.";
+              "That username is already taken.";
 
           } else {
 
@@ -4038,13 +4142,13 @@
 
 
         if (
-          !/^[a-z0-9]{3,20}$/.test(
+          !/^[a-z0-9]{5,20}$/.test(
             username
           )
         ) {
 
           profileMessage.textContent =
-            "Username must be 3–20 characters and contain only lowercase letters and numbers.";
+            "Username must be 5–20 characters and contain only lowercase letters and numbers.";
 
 
           profileUsername.focus();
@@ -4055,18 +4159,28 @@
 
 
         if (
-          newPassword &&
-          newPassword.length < 6
+          newPassword
         ) {
 
-          profileMessage.textContent =
-            "New password must contain at least 6 characters.";
+          const passwordError =
+            validatePassword(
+              newPassword
+            );
 
 
-          profileNewPassword.focus();
+          if (
+            passwordError
+          ) {
+
+            profileMessage.textContent =
+              passwordError;
 
 
-          return;
+            profileNewPassword.focus();
+
+
+            return;
+          }
         }
 
 
@@ -4440,12 +4554,18 @@
           "";
 
 
+        const passwordError =
+          validatePassword(
+            password
+          );
+
+
         if (
-          password.length < 6
+          passwordError
         ) {
 
           recoveryMessage.textContent =
-            "Password must contain at least 6 characters.";
+            passwordError;
 
 
           recoveryPassword.focus();
