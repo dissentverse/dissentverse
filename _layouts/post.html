@@ -4008,7 +4008,7 @@ async function loadComments() {
         try {
 
           const session =
-            await ensureIdentity();
+            await ensureCommentingIdentity()
 
 
           let displayName =
