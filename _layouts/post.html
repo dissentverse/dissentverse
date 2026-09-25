@@ -278,6 +278,11 @@
       color: white;
     }
 
+    .action-btn:disabled {
+      opacity: .65;
+      cursor: wait;
+    }
+
 
     /* =========================
        COMMENTS
@@ -532,6 +537,29 @@
       font-size: 11px;
 
       color: #8a7b85;
+    }
+
+
+    /* =========================
+       COMMENT LIKE
+    ========================= */
+
+    .comment-like-btn {
+      color: #9f5685 !important;
+    }
+
+    .comment-like-btn:hover {
+      color: #59384f !important;
+    }
+
+    .comment-like-btn.liked {
+      color: #b02a72 !important;
+    }
+
+    .comment-like-btn:disabled {
+      opacity: .65;
+
+      cursor: wait;
     }
 
 
@@ -1024,6 +1052,7 @@
 
       .site-logo {
         width: 46px;
+
         height: 46px;
       }
 
@@ -1144,10 +1173,6 @@
     </h1>
 
 
-    <!-- =========================
-         FEATURED IMAGE
-    ========================= -->
-
     {% assign featured_image = page.image | default: page.featured_image | default: page.thumbnail %}
 
     {% if featured_image %}
@@ -1191,7 +1216,7 @@
         id="likeButton"
         type="button"
       >
-        ♡ Like
+        ♡ Like (0)
       </button>
 
 
@@ -1227,9 +1252,6 @@
 
       <div class="comment-choice-box">
 
-
-        <!-- OLD POPUP CHOICE - kept for
-             account/profile/recovery compatibility -->
 
         <div id="commentChoiceScreen">
 
@@ -1610,9 +1632,7 @@
       <div class="comment-box">
 
 
-        <!-- =========================
-             COMMENT IDENTITY
-        ========================= -->
+        <!-- COMMENT IDENTITY -->
 
         <div class="comment-identity">
 
@@ -1673,8 +1693,6 @@
         </div>
 
 
-        <!-- Hidden compatibility field -->
-
         <input
           type="text"
           id="commentName"
@@ -1690,8 +1708,6 @@
           maxlength="5000"
         ></textarea>
 
-
-        <!-- Hidden compatibility checkbox -->
 
         <label class="anonymous-row">
 
@@ -1722,10 +1738,6 @@
       </div>
 
 
-
-      <!-- =========================
-           DISPLAYED COMMENTS
-      ========================= -->
 
       <div
         id="commentsList"
@@ -1766,8 +1778,9 @@
       "https://yplvpgigfkihgmyfsqyl.supabase.co";
 
 
-    /* THIS IS THE EXACT KEY FROM
-       YOUR RESTORED CODE */
+    /*
+       EXACT KEY FROM YOUR RESTORED CODE
+    */
 
     const SUPABASE_ANON_KEY =
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlwbHZwZ2lnZmtpaGdteWZzcXlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAwMzkyNzksImV4cCI6MjEwNTYxNTI3OX0.9nHT9NIDBH3ndJyZPJF2-uvy40Kz0aF7oimyDEJuPPg";
@@ -1794,13 +1807,18 @@
     let activeSession =
       null;
 
-
     let activeDisplayName =
       "Anonymous";
 
-
     let activeIsAnonymous =
       true;
+
+
+    let articleLiked =
+      false;
+
+    let articleLikeCount =
+      0;
 
 
     /* =========================
@@ -2609,15 +2627,9 @@
     }
 
 
-    /*
-       SINGLE IDENTITY FUNCTION
-
-       Every normal comment and every reply
-       goes through this function.
-
-       If there is no active session,
-       Anonymous is created automatically.
-    */
+    /* =========================
+       COMMENTING IDENTITY
+    ========================= */
 
     async function ensureCommentingIdentity() {
 
@@ -2736,42 +2748,264 @@
 
 
     /* =========================
-       LIKE
+       ARTICLE LIKES
     ========================= */
 
-    let liked =
-      false;
+    function updateArticleLikeButton() {
+
+      likeButton.textContent =
+        articleLiked
+          ? "♥ Liked (" + articleLikeCount + ")"
+          : "♡ Like (" + articleLikeCount + ")";
+
+
+      likeButton.classList.toggle(
+        "liked",
+        articleLiked
+      );
+    }
+
+
+    async function loadArticleLikeState() {
+
+      try {
+
+        const {
+          count,
+          error: countError
+        } =
+          await supabaseClient
+            .from("article_likes")
+            .select(
+              "id",
+              {
+                count:
+                  "exact",
+
+                head:
+                  true
+              }
+            )
+            .eq(
+              "article_slug",
+              articleSlug()
+            );
+
+
+        if (
+          countError
+        ) {
+
+          throw countError;
+        }
+
+
+        articleLikeCount =
+          count || 0;
+
+
+        const session =
+          await getCurrentSession();
+
+
+        articleLiked =
+          false;
+
+
+        if (
+          hasValidUser(
+            session
+          )
+        ) {
+
+          const {
+            data: existingLike,
+            error: likeCheckError
+          } =
+            await supabaseClient
+              .from("article_likes")
+              .select("id")
+              .eq(
+                "article_slug",
+                articleSlug()
+              )
+              .eq(
+                "user_id",
+                session.user.id
+              )
+              .maybeSingle();
+
+
+          if (
+            likeCheckError
+          ) {
+
+            throw likeCheckError;
+          }
+
+
+          articleLiked =
+            !!existingLike;
+        }
+
+
+        updateArticleLikeButton();
+
+
+      } catch (error) {
+
+        console.error(
+          "Article like loading error:",
+          error
+        );
+
+
+        updateArticleLikeButton();
+      }
+    }
+
+
+    async function toggleArticleLike() {
+
+      const identity =
+        await ensureCommentingIdentity();
+
+
+      if (
+        !identity ||
+        !identity.user ||
+        !identity.user.id
+      ) {
+
+        throw new Error(
+          "Could not create a valid session for liking."
+        );
+      }
+
+
+      if (
+        articleLiked
+      ) {
+
+        const {
+          error
+        } =
+          await supabaseClient
+            .from("article_likes")
+            .delete()
+            .eq(
+              "article_slug",
+              articleSlug()
+            )
+            .eq(
+              "user_id",
+              identity.user.id
+            );
+
+
+        if (
+          error
+        ) {
+
+          throw error;
+        }
+
+
+        articleLiked =
+          false;
+
+
+        articleLikeCount =
+          Math.max(
+            0,
+            articleLikeCount - 1
+          );
+
+
+      } else {
+
+        const {
+          error
+        } =
+          await supabaseClient
+            .from("article_likes")
+            .insert({
+
+              article_slug:
+                articleSlug(),
+
+              user_id:
+                identity.user.id
+
+            });
+
+
+        if (
+          error
+        ) {
+
+          if (
+            error.code ===
+            "23505"
+          ) {
+
+            await loadArticleLikeState();
+
+            return;
+          }
+
+
+          throw error;
+        }
+
+
+        articleLiked =
+          true;
+
+
+        articleLikeCount +=
+          1;
+      }
+
+
+      updateArticleLikeButton();
+    }
 
 
     likeButton.addEventListener(
       "click",
-      function () {
+      async function () {
 
-        liked =
-          !liked;
-
-
-        if (
-          liked
-        ) {
-
-          likeButton.textContent =
-            "♥ Liked";
+        likeButton.disabled =
+          true;
 
 
-          likeButton.classList.add(
-            "liked"
+        try {
+
+          await toggleArticleLike();
+
+
+        } catch (error) {
+
+          console.error(
+            "Article like error:",
+            error
           );
 
-        } else {
 
-          likeButton.textContent =
-            "♡ Like";
-
-
-          likeButton.classList.remove(
-            "liked"
+          alert(
+            "We could not update the like: " +
+            (
+              error.message ||
+              JSON.stringify(error)
+            )
           );
+
+
+        } finally {
+
+          likeButton.disabled =
+            false;
         }
       }
     );
@@ -2786,6 +3020,7 @@
       function () {
 
         scrollToComments();
+
       }
     );
 
@@ -2864,12 +3099,7 @@
           }
 
 
-          activeDisplayName =
-            "Anonymous";
-
-
-          activeIsAnonymous =
-            true;
+          await getAnonymousSession();
 
 
           saveIdentity(
@@ -3531,6 +3761,12 @@
           scrollToComments();
 
 
+          await loadArticleLikeState();
+
+
+          await loadComments();
+
+
         } catch (error) {
 
           console.error(
@@ -4060,6 +4296,9 @@
             "";
 
 
+          await loadArticleLikeState();
+
+
           await loadComments();
 
 
@@ -4133,6 +4372,13 @@
 
 
           closeCommentPopup();
+
+
+          articleLiked =
+            false;
+
+
+          await loadArticleLikeState();
 
 
           await loadComments();
@@ -4557,6 +4803,14 @@
         new Map();
 
 
+      const commentLikeCounts =
+        {};
+
+
+      const likedCommentIds =
+        new Set();
+
+
       comments.forEach(
         function (comment) {
 
@@ -4601,6 +4855,103 @@
             );
         }
       );
+
+
+      /* =========================
+         LOAD COMMENT LIKES
+      ========================= */
+
+      const commentIds =
+        comments.map(
+          function (comment) {
+
+            return comment.id;
+
+          }
+        );
+
+
+      if (
+        commentIds.length > 0
+      ) {
+
+        const {
+          data: likeRows,
+          error: likeRowsError
+        } =
+          await supabaseClient
+            .from("comment_likes")
+            .select(
+              "comment_id, user_id"
+            )
+            .in(
+              "comment_id",
+              commentIds
+            );
+
+
+        if (
+          likeRowsError
+        ) {
+
+          console.error(
+            "Error loading comment likes:",
+            likeRowsError
+          );
+
+        } else {
+
+          likeRows.forEach(
+            function (row) {
+
+              if (
+                !commentLikeCounts[
+                  row.comment_id
+                ]
+              ) {
+
+                commentLikeCounts[
+                  row.comment_id
+                ] = 0;
+              }
+
+
+              commentLikeCounts[
+                row.comment_id
+              ] += 1;
+
+            }
+          );
+
+
+          const currentSession =
+            await getCurrentSession();
+
+
+          if (
+            currentSession &&
+            currentSession.user &&
+            currentSession.user.id
+          ) {
+
+            likeRows.forEach(
+              function (row) {
+
+                if (
+                  row.user_id ===
+                  currentSession.user.id
+                ) {
+
+                  likedCommentIds.add(
+                    row.comment_id
+                  );
+
+                }
+              }
+            );
+          }
+        }
+      }
 
 
       /* =========================
@@ -5054,11 +5405,6 @@
 
             try {
 
-              /*
-                 Get identity through the same
-                 function used by normal comments.
-              */
-
               const identity =
                 await ensureCommentingIdentity();
 
@@ -5267,6 +5613,240 @@
           "comment-actions";
 
 
+        /* =========================
+           COMMENT LIKE BUTTON
+        ========================= */
+
+        const commentLikeButton =
+          document.createElement(
+            "button"
+          );
+
+
+        commentLikeButton.className =
+          "comment-like-btn";
+
+
+        commentLikeButton.type =
+          "button";
+
+
+        const initialLikeCount =
+          commentLikeCounts[
+            comment.id
+          ] || 0;
+
+
+        const initialLiked =
+          likedCommentIds.has(
+            comment.id
+          );
+
+
+        commentLikeButton.textContent =
+          initialLiked
+            ? "♥ " + initialLikeCount
+            : "♡ " + initialLikeCount;
+
+
+        commentLikeButton.classList.toggle(
+          "liked",
+          initialLiked
+        );
+
+
+        actions.appendChild(
+          commentLikeButton
+        );
+
+
+        commentLikeButton.addEventListener(
+          "click",
+          async function () {
+
+            commentLikeButton.disabled =
+              true;
+
+
+            try {
+
+              const identity =
+                await ensureCommentingIdentity();
+
+
+              if (
+                !identity ||
+                !identity.user ||
+                !identity.user.id
+              ) {
+
+                throw new Error(
+                  "Could not create a valid session for liking this comment."
+                );
+              }
+
+
+              const alreadyLiked =
+                likedCommentIds.has(
+                  comment.id
+                );
+
+
+              if (
+                alreadyLiked
+              ) {
+
+                const {
+                  error
+                } =
+                  await supabaseClient
+                    .from("comment_likes")
+                    .delete()
+                    .eq(
+                      "comment_id",
+                      comment.id
+                    )
+                    .eq(
+                      "user_id",
+                      identity.user.id
+                    );
+
+
+                if (
+                  error
+                ) {
+
+                  throw error;
+                }
+
+
+                likedCommentIds.delete(
+                  comment.id
+                );
+
+
+                commentLikeCounts[
+                  comment.id
+                ] =
+                  Math.max(
+                    0,
+                    (
+                      commentLikeCounts[
+                        comment.id
+                      ] || 0
+                    ) - 1
+                  );
+
+
+              } else {
+
+                const {
+                  error
+                } =
+                  await supabaseClient
+                    .from("comment_likes")
+                    .insert({
+
+                      comment_id:
+                        comment.id,
+
+                      user_id:
+                        identity.user.id
+
+                    });
+
+
+                if (
+                  error
+                ) {
+
+                  if (
+                    error.code ===
+                    "23505"
+                  ) {
+
+                    likedCommentIds.add(
+                      comment.id
+                    );
+
+                  } else {
+
+                    throw error;
+                  }
+
+                } else {
+
+                  likedCommentIds.add(
+                    comment.id
+                  );
+
+
+                  commentLikeCounts[
+                    comment.id
+                  ] =
+                    (
+                      commentLikeCounts[
+                        comment.id
+                      ] || 0
+                    ) + 1;
+                }
+              }
+
+
+              const newLiked =
+                likedCommentIds.has(
+                  comment.id
+                );
+
+
+              const newCount =
+                commentLikeCounts[
+                  comment.id
+                ] || 0;
+
+
+              commentLikeButton.textContent =
+                newLiked
+                  ? "♥ " + newCount
+                  : "♡ " + newCount;
+
+
+              commentLikeButton.classList.toggle(
+                "liked",
+                newLiked
+              );
+
+
+            } catch (error) {
+
+              console.error(
+                "Comment like error:",
+                error
+              );
+
+
+              alert(
+                "We could not update the comment like: " +
+                (
+                  error.message ||
+                  JSON.stringify(error)
+                )
+              );
+
+
+            } finally {
+
+              commentLikeButton.disabled =
+                false;
+            }
+          }
+        );
+
+
+        /* =========================
+           REPLY BUTTON
+        ========================= */
+
         const replyButton =
           document.createElement(
             "button"
@@ -5289,6 +5869,10 @@
           replyButton
         );
 
+
+        /* =========================
+           EDIT / DELETE
+        ========================= */
 
         const currentUser =
           activeSession &&
@@ -5385,6 +5969,10 @@
           actions
         );
 
+
+        /* =========================
+           REPLY HANDLER
+        ========================= */
 
         replyButton.addEventListener(
           "click",
@@ -5558,13 +6146,14 @@
             comment,
             commentsList
           );
+
         }
       );
 
 
       /*
-         Display orphaned replies instead of
-         silently hiding them.
+         Display orphaned replies instead
+         of silently hiding them.
       */
 
       comments.forEach(
@@ -5630,19 +6219,12 @@
 
         try {
 
-          /*
-             No assumption that a session already
-             exists. Anonymous is created when
-             necessary.
-          */
-
           const identity =
             await ensureCommentingIdentity();
 
 
           if (
             !identity ||
-            !identity.session ||
             !identity.user ||
             !identity.user.id
           ) {
@@ -5791,9 +6373,11 @@
     (async function initialize() {
 
       /*
-         Default comment UI is Anonymous.
-         Anonymous auth session is created only
-         when necessary.
+         Default UI:
+         Anonymous.
+
+         No anonymous account is created
+         merely by opening the page.
       */
 
       activeDisplayName =
@@ -5876,6 +6460,9 @@
       } finally {
 
         updateAccountButtons();
+
+
+        await loadArticleLikeState();
 
 
         await loadComments();
