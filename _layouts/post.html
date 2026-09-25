@@ -347,6 +347,72 @@
       margin-top: 12px;
     }
 
+
+    /* =========================
+       COMMENT IDENTITY
+    ========================= */
+
+    .comment-identity {
+      margin-bottom: 12px;
+    }
+
+    .comment-identity-label {
+      font-family: "DM Sans", sans-serif;
+
+      font-size: 13px;
+
+      font-weight: 600;
+
+      color: #59384f;
+
+      margin-bottom: 9px;
+    }
+
+    .comment-identity-actions {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 8px;
+    }
+
+    .comment-identity-actions button {
+      border: 1px solid #ddd1da;
+
+      background: #ffffff;
+
+      color: #7d6c77;
+
+      border-radius: 999px;
+
+      padding: 7px 12px;
+
+      font-family: "DM Sans", sans-serif;
+
+      font-size: 11px;
+
+      font-weight: 600;
+
+      cursor: pointer;
+
+      transition: .2s ease;
+    }
+
+    .comment-identity-actions button:hover {
+      background: #f8f1f6;
+
+      color: #59384f;
+    }
+
+    .comment-identity-actions button.active {
+      background: #b96b9f;
+
+      border-color: #b96b9f;
+
+      color: white;
+    }
+
+
     .anonymous-row {
       display: none;
 
@@ -391,6 +457,12 @@
 
     .post-comment-btn:hover {
       background: #9f5685;
+    }
+
+    .post-comment-btn:disabled {
+      opacity: .65;
+
+      cursor: wait;
     }
 
     .comment-note {
@@ -551,6 +623,12 @@
 
     .reply-submit-btn:hover {
       background: #9f5685;
+    }
+
+    .reply-submit-btn:disabled {
+      opacity: .65;
+
+      cursor: wait;
     }
 
     .reply-cancel-btn {
@@ -946,7 +1024,6 @@
 
       .site-logo {
         width: 46px;
-
         height: 46px;
       }
 
@@ -982,6 +1059,14 @@
         margin-left: 10px;
 
         padding-left: 10px;
+      }
+
+      .comment-identity-actions {
+        gap: 6px;
+      }
+
+      .comment-identity-actions button {
+        padding: 6px 10px;
       }
 
     }
@@ -1132,7 +1217,7 @@
 
 
     <!-- =========================
-         COMMENT CHOICE POPUP
+         ACCOUNT / PROFILE POPUP
     ========================= -->
 
     <div
@@ -1143,7 +1228,8 @@
       <div class="comment-choice-box">
 
 
-        <!-- COMMENT CHOICE -->
+        <!-- OLD POPUP CHOICE - kept for
+             account/profile/recovery compatibility -->
 
         <div id="commentChoiceScreen">
 
@@ -1238,7 +1324,7 @@
           <input
             type="text"
             id="accountUsername"
-            placeholder="Unique username"
+            placeholder="Username (lowercase letters and numbers)"
             maxlength="20"
             autocomplete="username"
           >
@@ -1389,7 +1475,7 @@
           <input
             type="text"
             id="profileUsername"
-            placeholder="Unique username"
+            placeholder="Username"
             maxlength="20"
             autocomplete="username"
           >
@@ -1523,29 +1609,96 @@
 
       <div class="comment-box">
 
+
+        <!-- =========================
+             COMMENT IDENTITY
+        ========================= -->
+
+        <div class="comment-identity">
+
+          <div
+            id="commentIdentityLabel"
+            class="comment-identity-label"
+          >
+            Commenting as Anonymous
+          </div>
+
+
+          <div class="comment-identity-actions">
+
+            <button
+              type="button"
+              id="inlineAnonymousBtn"
+              class="active"
+            >
+              Anonymous
+            </button>
+
+
+            <button
+              type="button"
+              id="inlineCreateAccountBtn"
+            >
+              Create Account
+            </button>
+
+
+            <button
+              type="button"
+              id="inlineSignInBtn"
+            >
+              Sign In
+            </button>
+
+
+            <button
+              type="button"
+              id="inlineProfileBtn"
+              style="display:none;"
+            >
+              Profile
+            </button>
+
+
+            <button
+              type="button"
+              id="inlineSignOutBtn"
+              style="display:none;"
+            >
+              Sign Out
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- Hidden compatibility field -->
+
         <input
           type="text"
           id="commentName"
-          placeholder="Choose how to comment"
+          value="Anonymous"
           readonly
+          style="display:none;"
         >
 
 
         <textarea
           id="commentText"
           placeholder="Write your comment..."
+          maxlength="5000"
         ></textarea>
 
 
-        <!-- Kept for compatibility with the existing
-             system, but hidden because Anonymous/
-             Account selection is handled by the popup. -->
+        <!-- Hidden compatibility checkbox -->
 
         <label class="anonymous-row">
 
           <input
             type="checkbox"
             id="anonymousCheckbox"
+            checked
           >
 
           Comment anonymously
@@ -1612,8 +1765,13 @@
     const SUPABASE_URL =
       "https://yplvpgigfkihgmyfsqyl.supabase.co";
 
+
+    /* THIS IS THE EXACT KEY FROM
+       YOUR RESTORED CODE */
+
     const SUPABASE_ANON_KEY =
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlwbHZwZ2lnZmtpaGdteWZzcXlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAwMzkyNzksImV4cCI6MjEwNTYxNTI3OX0.9nHT9NIDBH3ndJyZPJF2-uvy40Kz0aF7oimyDEJuPPg";
+
 
     const supabaseClient =
       window.supabase.createClient(
@@ -1633,11 +1791,16 @@
        STATE
     ========================= */
 
-    let activeSession = null;
+    let activeSession =
+      null;
 
-    let activeDisplayName = null;
 
-    let activeIsAnonymous = false;
+    let activeDisplayName =
+      "Anonymous";
+
+
+    let activeIsAnonymous =
+      true;
 
 
     /* =========================
@@ -1670,6 +1833,29 @@
 
     const commentsSection =
       document.getElementById("commentsSection");
+
+
+    /* =========================
+       INLINE IDENTITY
+    ========================= */
+
+    const commentIdentityLabel =
+      document.getElementById("commentIdentityLabel");
+
+    const inlineAnonymousBtn =
+      document.getElementById("inlineAnonymousBtn");
+
+    const inlineCreateAccountBtn =
+      document.getElementById("inlineCreateAccountBtn");
+
+    const inlineSignInBtn =
+      document.getElementById("inlineSignInBtn");
+
+    const inlineProfileBtn =
+      document.getElementById("inlineProfileBtn");
+
+    const inlineSignOutBtn =
+      document.getElementById("inlineSignOutBtn");
 
 
     /* =========================
@@ -1807,11 +1993,129 @@
     ========================= */
 
     function articleSlug() {
+
       return "{{ page.slug | escape }}";
+
     }
 
 
-    function showScreen(screen) {
+    function isAnonymousSession(
+      session
+    ) {
+
+      return !!(
+        session &&
+        session.user &&
+        session.user.is_anonymous === true
+      );
+
+    }
+
+
+    function hasValidUser(
+      session
+    ) {
+
+      return !!(
+        session &&
+        session.user &&
+        session.user.id
+      );
+
+    }
+
+
+    function updateAccountButtons() {
+
+      const registered =
+        hasValidUser(
+          activeSession
+        ) &&
+        !isAnonymousSession(
+          activeSession
+        );
+
+
+      profileBtn.style.display =
+        registered
+          ? "block"
+          : "none";
+
+
+      signOutBtn.style.display =
+        registered
+          ? "block"
+          : "none";
+
+
+      if (
+        registered
+      ) {
+
+        inlineAnonymousBtn.style.display =
+          "none";
+
+        inlineCreateAccountBtn.style.display =
+          "none";
+
+        inlineSignInBtn.style.display =
+          "none";
+
+        inlineProfileBtn.style.display =
+          "inline-block";
+
+        inlineSignOutBtn.style.display =
+          "inline-block";
+
+      } else {
+
+        inlineAnonymousBtn.style.display =
+          "inline-block";
+
+        inlineCreateAccountBtn.style.display =
+          "inline-block";
+
+        inlineSignInBtn.style.display =
+          "inline-block";
+
+        inlineProfileBtn.style.display =
+          "none";
+
+        inlineSignOutBtn.style.display =
+          "none";
+      }
+
+
+      if (
+        commentIdentityLabel
+      ) {
+
+        commentIdentityLabel.textContent =
+          registered
+            ? "Commenting as " +
+              (
+                activeDisplayName ||
+                "User"
+              )
+            : "Commenting as Anonymous";
+      }
+
+
+      if (
+        inlineAnonymousBtn
+      ) {
+
+        inlineAnonymousBtn.classList.toggle(
+          "active",
+          !registered
+        );
+      }
+    }
+
+
+    function showScreen(
+      screen
+    ) {
 
       commentChoiceScreen.style.display =
         "none";
@@ -1831,27 +2135,6 @@
 
       screen.style.display =
         "block";
-    }
-
-
-    function updateAccountButtons() {
-
-      const permanentUser =
-        activeSession &&
-        activeSession.user &&
-        activeSession.user.is_anonymous !== true;
-
-
-      profileBtn.style.display =
-        permanentUser
-          ? "block"
-          : "none";
-
-
-      signOutBtn.style.display =
-        permanentUser
-          ? "block"
-          : "none";
     }
 
 
@@ -1938,8 +2221,10 @@
     function scrollToComments() {
 
       commentsSection.scrollIntoView({
-        behavior: "smooth"
+        behavior: "smooth",
+        block: "start"
       });
+
 
       setTimeout(
         function () {
@@ -1974,16 +2259,19 @@
         "dissentverse_comment_anonymous",
         String(anonymous)
       );
+
+
+      updateAccountButtons();
     }
 
 
     function clearIdentity() {
 
       activeDisplayName =
-        null;
+        "Anonymous";
 
       activeIsAnonymous =
-        false;
+        true;
 
 
       sessionStorage.removeItem(
@@ -1994,6 +2282,17 @@
       sessionStorage.removeItem(
         "dissentverse_comment_anonymous"
       );
+
+
+      commentName.value =
+        "Anonymous";
+
+
+      anonymousCheckbox.checked =
+        true;
+
+
+      updateAccountButtons();
     }
 
 
@@ -2002,17 +2301,32 @@
       anonymous
     ) {
 
+      const safeName =
+        name ||
+        "Anonymous";
+
+
       commentName.value =
-        name || "Anonymous";
+        safeName;
+
 
       commentName.readOnly =
         true;
 
-      commentName.disabled =
-        false;
 
       anonymousCheckbox.checked =
         anonymous;
+
+
+      activeDisplayName =
+        safeName;
+
+
+      activeIsAnonymous =
+        anonymous;
+
+
+      updateAccountButtons();
     }
 
 
@@ -2025,13 +2339,21 @@
         await supabaseClient.auth.getSession();
 
 
-      if (error) {
+      if (
+        error
+      ) {
+
         throw error;
       }
 
 
       activeSession =
-        data.session || null;
+        (
+          data &&
+          data.session
+        )
+          ? data.session
+          : null;
 
 
       updateAccountButtons();
@@ -2048,21 +2370,27 @@
 
 
       if (
-        current &&
-        current.user &&
-        current.user.is_anonymous === true
+        isAnonymousSession(
+          current
+        )
       ) {
 
         return current;
       }
 
 
-      if (current) {
+      if (
+        current
+      ) {
 
         await supabaseClient.auth.signOut();
 
+
         activeSession =
           null;
+
+
+        clearIdentity();
       }
 
 
@@ -2073,18 +2401,23 @@
         await supabaseClient.auth.signInAnonymously();
 
 
-      if (error) {
+      if (
+        error
+      ) {
+
         throw error;
       }
 
 
       if (
         !data ||
-        !data.session
+        !data.session ||
+        !data.session.user ||
+        !data.session.user.id
       ) {
 
         throw new Error(
-          "Anonymous sign-in succeeded but no session was returned."
+          "Anonymous sign-in did not create a valid session."
         );
       }
 
@@ -2093,10 +2426,19 @@
         data.session;
 
 
-      updateAccountButtons();
+      saveIdentity(
+        "Anonymous",
+        true
+      );
 
 
-      return activeSession;
+      applyIdentityToCommentBox(
+        "Anonymous",
+        true
+      );
+
+
+      return data.session;
     }
 
 
@@ -2105,9 +2447,12 @@
     ) {
 
       if (
-        !session ||
-        !session.user ||
-        session.user.is_anonymous === true
+        !hasValidUser(
+          session
+        ) ||
+        isAnonymousSession(
+          session
+        )
       ) {
 
         return null;
@@ -2130,12 +2475,18 @@
           .maybeSingle();
 
 
-      if (profileError) {
+      if (
+        profileError
+      ) {
+
         throw profileError;
       }
 
 
-      if (profile) {
+      if (
+        profile
+      ) {
+
         return profile;
       }
 
@@ -2155,10 +2506,13 @@
         String(
           metadata.username ||
           ""
-        ).trim();
+        ).trim()
+        .toLowerCase();
 
 
-      if (!username) {
+      if (
+        !username
+      ) {
 
         throw new Error(
           "Your profile is incomplete. Please contact the site administrator."
@@ -2173,6 +2527,7 @@
         await supabaseClient
           .from("profiles")
           .insert({
+
             id:
               session.user.id,
 
@@ -2184,6 +2539,7 @@
 
             is_anonymous:
               false
+
           })
           .select(
             "id, display_name, username, is_anonymous"
@@ -2191,7 +2547,9 @@
           .single();
 
 
-      if (insertProfileError) {
+      if (
+        insertProfileError
+      ) {
 
         if (
           insertProfileError.code ===
@@ -2222,7 +2580,10 @@
         );
 
 
-      if (!profile) {
+      if (
+        !profile
+      ) {
+
         return false;
       }
 
@@ -2248,26 +2609,49 @@
     }
 
 
+    /*
+       SINGLE IDENTITY FUNCTION
+
+       Every normal comment and every reply
+       goes through this function.
+
+       If there is no active session,
+       Anonymous is created automatically.
+    */
+
     async function ensureCommentingIdentity() {
 
-      const session =
+      let session =
         await getCurrentSession();
 
 
-      if (!session) {
+      if (
+        !hasValidUser(
+          session
+        )
+      ) {
 
-        showCommentChoiceScreen();
-
-        commentChoice.classList.add(
-          "show"
-        );
-
-        return false;
+        session =
+          await getAnonymousSession();
       }
 
 
       if (
-        session.user.is_anonymous === true
+        !hasValidUser(
+          session
+        )
+      ) {
+
+        throw new Error(
+          "Could not create a valid commenting session."
+        );
+      }
+
+
+      if (
+        isAnonymousSession(
+          session
+        )
       ) {
 
         saveIdentity(
@@ -2282,16 +2666,72 @@
         );
 
 
-        return true;
+        return {
+
+          session:
+            session,
+
+          user:
+            session.user,
+
+          displayName:
+            "Anonymous",
+
+          isAnonymous:
+            true
+
+        };
       }
 
 
-      await loadRegisteredIdentity(
-        session
+      const profile =
+        await ensureProfile(
+          session
+        );
+
+
+      if (
+        !profile
+      ) {
+
+        throw new Error(
+          "Your account profile could not be loaded."
+        );
+      }
+
+
+      const name =
+        profile.display_name ||
+        "User";
+
+
+      saveIdentity(
+        name,
+        false
       );
 
 
-      return true;
+      applyIdentityToCommentBox(
+        name,
+        false
+      );
+
+
+      return {
+
+        session:
+          session,
+
+        user:
+          session.user,
+
+        displayName:
+          name,
+
+        isAnonymous:
+          false
+
+      };
     }
 
 
@@ -2311,10 +2751,13 @@
           !liked;
 
 
-        if (liked) {
+        if (
+          liked
+        ) {
 
           likeButton.textContent =
             "♥ Liked";
+
 
           likeButton.classList.add(
             "liked"
@@ -2324,6 +2767,7 @@
 
           likeButton.textContent =
             "♡ Like";
+
 
           likeButton.classList.remove(
             "liked"
@@ -2341,11 +2785,7 @@
       "click",
       function () {
 
-        showCommentChoiceScreen();
-
-        commentChoice.classList.add(
-          "show"
-        );
+        scrollToComments();
       }
     );
 
@@ -2376,7 +2816,173 @@
 
 
     /* =========================
-       ANONYMOUS
+       INLINE ANONYMOUS
+    ========================= */
+
+    inlineAnonymousBtn.addEventListener(
+      "click",
+      async function () {
+
+        inlineAnonymousBtn.disabled =
+          true;
+
+
+        try {
+
+          const current =
+            await getCurrentSession();
+
+
+          if (
+            current &&
+            current.user &&
+            current.user.is_anonymous !== true
+          ) {
+
+            const confirmed =
+              window.confirm(
+                "Switch to Anonymous commenting? You will be signed out of your account."
+              );
+
+
+            if (
+              !confirmed
+            ) {
+
+              return;
+            }
+
+
+            await supabaseClient.auth.signOut();
+
+
+            activeSession =
+              null;
+
+
+            clearIdentity();
+          }
+
+
+          activeDisplayName =
+            "Anonymous";
+
+
+          activeIsAnonymous =
+            true;
+
+
+          saveIdentity(
+            "Anonymous",
+            true
+          );
+
+
+          applyIdentityToCommentBox(
+            "Anonymous",
+            true
+          );
+
+
+          updateAccountButtons();
+
+
+        } catch (error) {
+
+          console.error(
+            "Anonymous mode error:",
+            error
+          );
+
+
+          alert(
+            "Anonymous mode error: " +
+            (
+              error.message ||
+              JSON.stringify(error)
+            )
+          );
+
+
+        } finally {
+
+          inlineAnonymousBtn.disabled =
+            false;
+        }
+      }
+    );
+
+
+    /* =========================
+       INLINE CREATE ACCOUNT
+    ========================= */
+
+    inlineCreateAccountBtn.addEventListener(
+      "click",
+      function () {
+
+        showAccountScreen();
+
+
+        commentChoice.classList.add(
+          "show"
+        );
+
+
+        accountName.focus();
+      }
+    );
+
+
+    /* =========================
+       INLINE SIGN IN
+    ========================= */
+
+    inlineSignInBtn.addEventListener(
+      "click",
+      function () {
+
+        showSignInScreen();
+
+
+        commentChoice.classList.add(
+          "show"
+        );
+
+
+        signInEmail.focus();
+      }
+    );
+
+
+    /* =========================
+       INLINE PROFILE
+    ========================= */
+
+    inlineProfileBtn.addEventListener(
+      "click",
+      function () {
+
+        profileBtn.click();
+      }
+    );
+
+
+    /* =========================
+       INLINE SIGN OUT
+    ========================= */
+
+    inlineSignOutBtn.addEventListener(
+      "click",
+      function () {
+
+        signOutBtn.click();
+      }
+    );
+
+
+    /* =========================
+       OLD POPUP ANONYMOUS
     ========================= */
 
     anonymousCommentBtn.addEventListener(
@@ -2386,25 +2992,14 @@
         anonymousCommentBtn.disabled =
           true;
 
+
         anonymousCommentBtn.textContent =
           "Connecting...";
 
 
         try {
 
-          const session =
-            await getAnonymousSession();
-
-
-          if (
-            !session ||
-            !session.user
-          ) {
-
-            throw new Error(
-              "No anonymous session was created."
-            );
-          }
+          await getAnonymousSession();
 
 
           saveIdentity(
@@ -2420,6 +3015,7 @@
 
 
           closeCommentPopup();
+
 
           scrollToComments();
 
@@ -2446,6 +3042,7 @@
           anonymousCommentBtn.disabled =
             false;
 
+
           anonymousCommentBtn.textContent =
             "Continue as Anonymous";
         }
@@ -2462,6 +3059,7 @@
       function () {
 
         showAccountScreen();
+
 
         accountName.focus();
       }
@@ -2481,14 +3079,20 @@
         const name =
           accountName.value.trim();
 
+
         const username =
-          accountUsername.value.trim();
+          accountUsername.value
+            .trim()
+            .toLowerCase();
+
 
         const email =
           accountEmail.value.trim();
 
+
         const password =
           accountPassword.value;
+
 
         const confirmPassword =
           accountConfirmPassword.value;
@@ -2498,27 +3102,37 @@
           "";
 
 
-        if (!name) {
+        accountUsername.value =
+          username;
+
+
+        if (
+          !name
+        ) {
 
           accountMessage.textContent =
             "Please enter your name.";
 
+
           accountName.focus();
+
 
           return;
         }
 
 
         if (
-          !/^[a-zA-Z0-9_]{3,20}$/.test(
+          !/^[a-z0-9]{3,20}$/.test(
             username
           )
         ) {
 
           accountMessage.textContent =
-            "Username must be 3–20 characters and use only letters, numbers, or _.";
+            "Username must be 3–20 characters and contain only lowercase letters and numbers.";
+
 
           accountUsername.focus();
+
 
           return;
         }
@@ -2532,7 +3146,9 @@
           accountMessage.textContent =
             "Please enter a valid email address.";
 
+
           accountEmail.focus();
+
 
           return;
         }
@@ -2545,7 +3161,9 @@
           accountMessage.textContent =
             "Password must contain at least 6 characters.";
 
+
           accountPassword.focus();
+
 
           return;
         }
@@ -2559,7 +3177,9 @@
           accountMessage.textContent =
             "Passwords do not match.";
 
+
           accountConfirmPassword.focus();
+
 
           return;
         }
@@ -2567,6 +3187,7 @@
 
         submitCreateAccount.disabled =
           true;
+
 
         submitCreateAccount.textContent =
           "Checking...";
@@ -2587,7 +3208,10 @@
             );
 
 
-          if (usernameCheckError) {
+          if (
+            usernameCheckError
+          ) {
+
             throw usernameCheckError;
           }
 
@@ -2599,7 +3223,9 @@
             accountMessage.textContent =
               "That username is already taken. Please choose another.";
 
+
             accountUsername.focus();
+
 
             return;
           }
@@ -2609,12 +3235,16 @@
             await getCurrentSession();
 
 
-          if (currentSession) {
+          if (
+            currentSession
+          ) {
 
             await supabaseClient.auth.signOut();
 
+
             activeSession =
               null;
+
 
             clearIdentity();
           }
@@ -2629,6 +3259,7 @@
             error
           } =
             await supabaseClient.auth.signUp({
+
               email:
                 email,
 
@@ -2644,16 +3275,22 @@
 
                   username:
                     username
+
                 },
 
                 emailRedirectTo:
                   window.location.origin +
                   window.location.pathname
+
               }
+
             });
 
 
-          if (error) {
+          if (
+            error
+          ) {
+
             throw error;
           }
 
@@ -2691,7 +3328,9 @@
 
             closeCommentPopup();
 
+
             scrollToComments();
+
 
           } else {
 
@@ -2708,15 +3347,27 @@
           );
 
 
-          accountMessage.textContent =
-            error.message ||
-            "We could not create your account. Please try again.";
+          if (
+            error.code ===
+            "23505"
+          ) {
+
+            accountMessage.textContent =
+              "That username is already taken. Please choose another.";
+
+          } else {
+
+            accountMessage.textContent =
+              error.message ||
+              "We could not create your account. Please try again.";
+          }
 
 
         } finally {
 
           submitCreateAccount.disabled =
             false;
+
 
           submitCreateAccount.textContent =
             "Create Account";
@@ -2734,6 +3385,7 @@
       function () {
 
         showSignInScreen();
+
 
         signInEmail.focus();
       }
@@ -2753,6 +3405,7 @@
         const email =
           signInEmail.value.trim();
 
+
         const password =
           signInPassword.value;
 
@@ -2769,18 +3422,24 @@
           signInMessage.textContent =
             "Please enter a valid email address.";
 
+
           signInEmail.focus();
+
 
           return;
         }
 
 
-        if (!password) {
+        if (
+          !password
+        ) {
 
           signInMessage.textContent =
             "Please enter your password.";
 
+
           signInPassword.focus();
+
 
           return;
         }
@@ -2788,6 +3447,7 @@
 
         submitSignIn.disabled =
           true;
+
 
         submitSignIn.textContent =
           "Signing in...";
@@ -2799,12 +3459,16 @@
             await getCurrentSession();
 
 
-          if (currentSession) {
+          if (
+            currentSession
+          ) {
 
             await supabaseClient.auth.signOut();
 
+
             activeSession =
               null;
+
 
             clearIdentity();
           }
@@ -2815,26 +3479,32 @@
             error
           } =
             await supabaseClient.auth.signInWithPassword({
+
               email:
                 email,
 
               password:
                 password
+
             });
 
 
-          if (error) {
+          if (
+            error
+          ) {
+
             throw error;
           }
 
 
           if (
             !data ||
-            !data.session
+            !data.session ||
+            !data.session.user
           ) {
 
             throw new Error(
-              "Sign in did not create a session."
+              "Sign in did not create a valid session."
             );
           }
 
@@ -2857,6 +3527,7 @@
 
           closeCommentPopup();
 
+
           scrollToComments();
 
 
@@ -2877,6 +3548,7 @@
 
           submitSignIn.disabled =
             false;
+
 
           submitSignIn.textContent =
             "Sign In";
@@ -2909,7 +3581,9 @@
           signInMessage.textContent =
             "Enter your account email first.";
 
+
           signInEmail.focus();
+
 
           return;
         }
@@ -2917,6 +3591,7 @@
 
         forgotPasswordBtn.disabled =
           true;
+
 
         forgotPasswordBtn.textContent =
           "Sending...";
@@ -2937,13 +3612,16 @@
             );
 
 
-          if (error) {
+          if (
+            error
+          ) {
+
             throw error;
           }
 
 
           signInMessage.textContent =
-            "Password reset email sent. Check your inbox for the reset link.";
+            "Password reset email sent. Check your inbox.";
 
 
         } catch (error) {
@@ -2963,6 +3641,7 @@
 
           forgotPasswordBtn.disabled =
             false;
+
 
           forgotPasswordBtn.textContent =
             "Forgot password?";
@@ -2986,12 +3665,16 @@
 
 
           if (
-            !session ||
-            !session.user ||
-            session.user.is_anonymous === true
+            !hasValidUser(
+              session
+            ) ||
+            isAnonymousSession(
+              session
+            )
           ) {
 
             showCommentChoiceScreen();
+
 
             return;
           }
@@ -3003,7 +3686,9 @@
             );
 
 
-          if (!profile) {
+          if (
+            !profile
+          ) {
 
             throw new Error(
               "Your profile could not be loaded."
@@ -3015,9 +3700,11 @@
             profile.display_name ||
             "";
 
+
           profileUsername.value =
             profile.username ||
             "";
+
 
           profileEmail.value =
             session.user.email ||
@@ -3027,11 +3714,18 @@
           profileNewPassword.value =
             "";
 
+
           profileConfirmPassword.value =
             "";
 
 
           showProfileScreen();
+
+
+          commentChoice.classList.add(
+            "show"
+          );
+
 
           profileName.focus();
 
@@ -3069,11 +3763,16 @@
         const name =
           profileName.value.trim();
 
+
         const username =
-          profileUsername.value.trim();
+          profileUsername.value
+            .trim()
+            .toLowerCase();
+
 
         const newPassword =
           profileNewPassword.value;
+
 
         const confirmPassword =
           profileConfirmPassword.value;
@@ -3083,27 +3782,37 @@
           "";
 
 
-        if (!name) {
+        profileUsername.value =
+          username;
+
+
+        if (
+          !name
+        ) {
 
           profileMessage.textContent =
             "Name cannot be empty.";
 
+
           profileName.focus();
+
 
           return;
         }
 
 
         if (
-          !/^[a-zA-Z0-9_]{3,20}$/.test(
+          !/^[a-z0-9]{3,20}$/.test(
             username
           )
         ) {
 
           profileMessage.textContent =
-            "Username must be 3–20 characters and use only letters, numbers, or _.";
+            "Username must be 3–20 characters and contain only lowercase letters and numbers.";
+
 
           profileUsername.focus();
+
 
           return;
         }
@@ -3117,7 +3826,9 @@
           profileMessage.textContent =
             "New password must contain at least 6 characters.";
 
+
           profileNewPassword.focus();
+
 
           return;
         }
@@ -3131,7 +3842,9 @@
           profileMessage.textContent =
             "Passwords do not match.";
 
+
           profileConfirmPassword.focus();
+
 
           return;
         }
@@ -3139,6 +3852,7 @@
 
         saveProfileBtn.disabled =
           true;
+
 
         saveProfileBtn.textContent =
           "Saving...";
@@ -3151,9 +3865,12 @@
 
 
           if (
-            !session ||
-            !session.user ||
-            session.user.is_anonymous === true
+            !hasValidUser(
+              session
+            ) ||
+            isAnonymousSession(
+              session
+            )
           ) {
 
             throw new Error(
@@ -3168,7 +3885,9 @@
             );
 
 
-          if (!currentProfile) {
+          if (
+            !currentProfile
+          ) {
 
             throw new Error(
               "Your profile could not be loaded."
@@ -3177,14 +3896,16 @@
 
 
           const usernameChanged =
-            username.toLowerCase() !==
+            username !==
             String(
               currentProfile.username ||
               ""
             ).toLowerCase();
 
 
-          if (usernameChanged) {
+          if (
+            usernameChanged
+          ) {
 
             const {
               data: usernameAvailable,
@@ -3199,7 +3920,10 @@
               );
 
 
-            if (usernameCheckError) {
+            if (
+              usernameCheckError
+            ) {
+
               throw usernameCheckError;
             }
 
@@ -3221,6 +3945,7 @@
             await supabaseClient
               .from("profiles")
               .update({
+
                 display_name:
                   name,
 
@@ -3232,6 +3957,7 @@
 
                 updated_at:
                   new Date().toISOString()
+
               })
               .eq(
                 "id",
@@ -3239,7 +3965,9 @@
               );
 
 
-          if (updateError) {
+          if (
+            updateError
+          ) {
 
             if (
               updateError.code ===
@@ -3251,6 +3979,7 @@
               );
             }
 
+
             throw updateError;
           }
 
@@ -3259,6 +3988,7 @@
             error: metadataError
           } =
             await supabaseClient.auth.updateUser({
+
               data: {
 
                 display_name:
@@ -3266,11 +3996,15 @@
 
                 username:
                   username
+
               }
+
             });
 
 
-          if (metadataError) {
+          if (
+            metadataError
+          ) {
 
             console.error(
               "User metadata update error:",
@@ -3279,18 +4013,25 @@
           }
 
 
-          if (newPassword) {
+          if (
+            newPassword
+          ) {
 
             const {
               error: passwordError
             } =
               await supabaseClient.auth.updateUser({
+
                 password:
                   newPassword
+
               });
 
 
-            if (passwordError) {
+            if (
+              passwordError
+            ) {
+
               throw passwordError;
             }
           }
@@ -3340,6 +4081,7 @@
           saveProfileBtn.disabled =
             false;
 
+
           saveProfileBtn.textContent =
             "Save Changes";
         }
@@ -3358,6 +4100,7 @@
         signOutBtn.disabled =
           true;
 
+
         signOutBtn.textContent =
           "Signing out...";
 
@@ -3374,17 +4117,23 @@
           clearIdentity();
 
 
-          commentName.value =
-            "";
+          saveIdentity(
+            "Anonymous",
+            true
+          );
 
-          commentName.readOnly =
-            true;
 
-          anonymousCheckbox.checked =
-            false;
+          applyIdentityToCommentBox(
+            "Anonymous",
+            true
+          );
+
+
+          updateAccountButtons();
 
 
           closeCommentPopup();
+
 
           await loadComments();
 
@@ -3411,6 +4160,7 @@
           signOutBtn.disabled =
             false;
 
+
           signOutBtn.textContent =
             "Sign Out";
         }
@@ -3435,6 +4185,7 @@
         const password =
           recoveryPassword.value;
 
+
         const confirmPassword =
           recoveryConfirmPassword.value;
 
@@ -3450,7 +4201,9 @@
           recoveryMessage.textContent =
             "Password must contain at least 6 characters.";
 
+
           recoveryPassword.focus();
+
 
           return;
         }
@@ -3464,7 +4217,9 @@
           recoveryMessage.textContent =
             "Passwords do not match.";
 
+
           recoveryConfirmPassword.focus();
+
 
           return;
         }
@@ -3472,6 +4227,7 @@
 
         submitRecovery.disabled =
           true;
+
 
         submitRecovery.textContent =
           "Updating...";
@@ -3483,12 +4239,17 @@
             error
           } =
             await supabaseClient.auth.updateUser({
+
               password:
                 password
+
             });
 
 
-          if (error) {
+          if (
+            error
+          ) {
+
             throw error;
           }
 
@@ -3525,6 +4286,7 @@
 
               closeCommentPopup();
 
+
               scrollToComments();
 
             },
@@ -3549,6 +4311,7 @@
 
           submitRecovery.disabled =
             false;
+
 
           submitRecovery.textContent =
             "Update Password";
@@ -3575,6 +4338,7 @@
 
           url:
             window.location.href
+
         };
 
 
@@ -3594,6 +4358,7 @@
               window.location.href
             );
 
+
             alert(
               "Article link copied."
             );
@@ -3611,7 +4376,7 @@
 
 
     /* =========================
-       HIDDEN LEGACY CHECKBOX
+       LEGACY ANONYMOUS CHECKBOX
     ========================= */
 
     anonymousCheckbox.addEventListener(
@@ -3625,7 +4390,29 @@
           try {
 
             const session =
-              await getAnonymousSession();
+              await getCurrentSession();
+
+
+            if (
+              session &&
+              session.user &&
+              session.user.is_anonymous !== true
+            ) {
+
+              anonymousCheckbox.checked =
+                false;
+
+
+              alert(
+                "You are signed in. Use the Anonymous button if you want to switch to Anonymous commenting."
+              );
+
+
+              return;
+            }
+
+
+            await getAnonymousSession();
 
 
             saveIdentity(
@@ -3646,12 +4433,9 @@
               false;
 
 
-            alert(
-              "Anonymous sign-in error: " +
-              (
-                error.message ||
-                JSON.stringify(error)
-              )
+            console.error(
+              "Anonymous checkbox error:",
+              error
             );
           }
 
@@ -3682,14 +4466,22 @@
               );
             }
 
-
           } else {
 
-            commentName.value =
-              "";
-
-            commentName.readOnly =
+            anonymousCheckbox.checked =
               true;
+
+
+            saveIdentity(
+              "Anonymous",
+              true
+            );
+
+
+            applyIdentityToCommentBox(
+              "Anonymous",
+              true
+            );
           }
         }
       }
@@ -3702,7 +4494,10 @@
 
     async function loadComments() {
 
-      if (!commentsList) {
+      if (
+        !commentsList
+      ) {
+
         return;
       }
 
@@ -3727,12 +4522,15 @@
           );
 
 
-      if (error) {
+      if (
+        error
+      ) {
 
         console.error(
           "Error loading comments:",
           error
         );
+
 
         return;
       }
@@ -3773,7 +4571,10 @@
       comments.forEach(
         function (comment) {
 
-          if (!comment.parent_id) {
+          if (
+            !comment.parent_id
+          ) {
+
             return;
           }
 
@@ -3795,7 +4596,9 @@
             .get(
               comment.parent_id
             )
-            .push(comment);
+            .push(
+              comment
+            );
         }
       );
 
@@ -3814,7 +4617,10 @@
           );
 
 
-        if (!confirmed) {
+        if (
+          !confirmed
+        ) {
+
           return;
         }
 
@@ -3829,7 +4635,8 @@
             !session ||
             !session.user ||
             session.user.is_anonymous === true ||
-            session.user.id !== comment.user_id
+            session.user.id !==
+              comment.user_id
           ) {
 
             throw new Error(
@@ -3850,7 +4657,10 @@
               );
 
 
-          if (deleteError) {
+          if (
+            deleteError
+          ) {
+
             throw deleteError;
           }
 
@@ -3993,8 +4803,10 @@
 
             editBox.remove();
 
+
             textElement.style.display =
               "";
+
 
             actions.style.display =
               "";
@@ -4010,13 +4822,17 @@
               textarea.value.trim();
 
 
-            if (!newText) {
+            if (
+              !newText
+            ) {
 
               alert(
                 "Comment cannot be empty."
               );
 
+
               textarea.focus();
+
 
               return;
             }
@@ -4024,6 +4840,7 @@
 
             saveButton.disabled =
               true;
+
 
             saveButton.textContent =
               "Saving...";
@@ -4039,7 +4856,8 @@
                 !session ||
                 !session.user ||
                 session.user.is_anonymous === true ||
-                session.user.id !== comment.user_id
+                session.user.id !==
+                  comment.user_id
               ) {
 
                 throw new Error(
@@ -4054,8 +4872,10 @@
                 await supabaseClient
                   .from("comments")
                   .update({
+
                     comment_text:
                       newText
+
                   })
                   .eq(
                     "id",
@@ -4063,7 +4883,10 @@
                   );
 
 
-              if (updateError) {
+              if (
+                updateError
+              ) {
+
                 throw updateError;
               }
 
@@ -4090,6 +4913,7 @@
 
               saveButton.disabled =
                 false;
+
 
               saveButton.textContent =
                 "Save";
@@ -4191,6 +5015,7 @@
           function () {
 
             replyBox.remove();
+
           }
         );
 
@@ -4203,13 +5028,17 @@
               textarea.value.trim();
 
 
-            if (!replyText) {
+            if (
+              !replyText
+            ) {
 
               alert(
                 "Please write a reply first."
               );
 
+
               textarea.focus();
+
 
               return;
             }
@@ -4218,71 +5047,30 @@
             submitButton.disabled =
               true;
 
+
             submitButton.textContent =
               "Posting...";
 
 
             try {
 
-              const session =
-                await getCurrentSession();
+              /*
+                 Get identity through the same
+                 function used by normal comments.
+              */
+
+              const identity =
+                await ensureCommentingIdentity();
 
 
               if (
-                !session ||
-                !session.user
+                !identity ||
+                !identity.user ||
+                !identity.user.id
               ) {
 
                 throw new Error(
-                  "Please choose Anonymous or Sign In before replying."
-                );
-              }
-
-
-              let displayName;
-
-              let isAnonymous;
-
-
-              if (
-                session.user.is_anonymous === true
-              ) {
-
-                displayName =
-                  "Anonymous";
-
-                isAnonymous =
-                  true;
-
-
-              } else {
-
-                const profile =
-                  await ensureProfile(
-                    session
-                  );
-
-
-                if (!profile) {
-
-                  throw new Error(
-                    "Your profile could not be loaded."
-                  );
-                }
-
-
-                displayName =
-                  profile.display_name ||
-                  "User";
-
-
-                isAnonymous =
-                  false;
-
-
-                saveIdentity(
-                  displayName,
-                  false
+                  "No valid commenting session is available."
                 );
               }
 
@@ -4301,23 +5089,27 @@
                       parentComment.id,
 
                     display_name:
-                      displayName,
+                      identity.displayName,
 
                     comment_text:
                       replyText,
 
                     is_anonymous:
-                      isAnonymous,
+                      identity.isAnonymous,
 
                     approved:
                       true,
 
                     user_id:
-                      session.user.id
+                      identity.user.id
+
                   });
 
 
-              if (replyError) {
+              if (
+                replyError
+              ) {
+
                 throw replyError;
               }
 
@@ -4349,6 +5141,7 @@
 
               submitButton.disabled =
                 false;
+
 
               submitButton.textContent =
                 "Post Reply";
@@ -4511,7 +5304,9 @@
             comment.user_id;
 
 
-        if (canModify) {
+        if (
+          canModify
+        ) {
 
           const editButton =
             document.createElement(
@@ -4540,6 +5335,7 @@
                 text,
                 actions
               );
+
             }
           );
 
@@ -4569,6 +5365,7 @@
               deleteComment(
                 comment
               );
+
             }
           );
 
@@ -4593,33 +5390,50 @@
           "click",
           async function () {
 
-            const ready =
+            try {
+
               await ensureCommentingIdentity();
 
 
-            if (!ready) {
-              return;
-            }
+              const existingReplyBox =
+                commentItem.querySelector(
+                  ":scope > .reply-box"
+                );
 
 
-            const existingReplyBox =
-              commentItem.querySelector(
-                ":scope > .reply-box"
+              if (
+                existingReplyBox
+              ) {
+
+                existingReplyBox.remove();
+
+
+                return;
+              }
+
+
+              createReplyBox(
+                comment,
+                commentItem
               );
 
 
-            if (existingReplyBox) {
+            } catch (error) {
 
-              existingReplyBox.remove();
+              console.error(
+                "Reply identity error:",
+                error
+              );
 
-              return;
+
+              alert(
+                "We could not open the reply box: " +
+                (
+                  error.message ||
+                  JSON.stringify(error)
+                )
+              );
             }
-
-
-            createReplyBox(
-              comment,
-              commentItem
-            );
           }
         );
 
@@ -4629,7 +5443,7 @@
 
 
       /* =========================
-         RECURSIVE TREE
+         RECURSIVE COMMENT TREE
       ========================= */
 
       function renderCommentTree(
@@ -4670,6 +5484,7 @@
                 child,
                 repliesContainer
               );
+
             }
           );
 
@@ -4691,6 +5506,7 @@
           function (comment) {
 
             return !comment.parent_id;
+
           }
         );
 
@@ -4702,6 +5518,16 @@
       function markTreeDisplayed(
         comment
       ) {
+
+        if (
+          displayedIds.has(
+            comment.id
+          )
+        ) {
+
+          return;
+        }
+
 
         displayedIds.add(
           comment.id
@@ -4737,8 +5563,8 @@
 
 
       /*
-         Display orphaned replies rather
-         than silently hiding them.
+         Display orphaned replies instead of
+         silently hiding them.
       */
 
       comments.forEach(
@@ -4778,23 +5604,18 @@
           commentText.value.trim();
 
 
-        if (!text) {
+        if (
+          !text
+        ) {
 
           alert(
             "Please write a comment first."
           );
 
+
           commentText.focus();
 
-          return;
-        }
 
-
-        const ready =
-          await ensureCommentingIdentity();
-
-
-        if (!ready) {
           return;
         }
 
@@ -4802,71 +5623,32 @@
         postCommentButton.disabled =
           true;
 
+
         postCommentButton.textContent =
           "Posting...";
 
 
         try {
 
-          const session =
-            await getCurrentSession();
+          /*
+             No assumption that a session already
+             exists. Anonymous is created when
+             necessary.
+          */
+
+          const identity =
+            await ensureCommentingIdentity();
 
 
           if (
-            !session ||
-            !session.user
+            !identity ||
+            !identity.session ||
+            !identity.user ||
+            !identity.user.id
           ) {
 
             throw new Error(
-              "Please choose Anonymous or Sign In first."
-            );
-          }
-
-
-          let displayName;
-
-          let isAnonymous;
-
-
-          if (
-            session.user.is_anonymous === true
-          ) {
-
-            displayName =
-              "Anonymous";
-
-            isAnonymous =
-              true;
-
-
-          } else {
-
-            const profile =
-              await ensureProfile(
-                session
-              );
-
-
-            if (!profile) {
-
-              throw new Error(
-                "Your profile could not be loaded."
-              );
-            }
-
-
-            displayName =
-              profile.display_name ||
-              "User";
-
-
-            isAnonymous =
-              false;
-
-
-            saveIdentity(
-              displayName,
-              false
+              "No valid commenting session is available."
             );
           }
 
@@ -4885,23 +5667,27 @@
                   null,
 
                 display_name:
-                  displayName,
+                  identity.displayName,
 
                 comment_text:
                   text,
 
                 is_anonymous:
-                  isAnonymous,
+                  identity.isAnonymous,
 
                 approved:
                   true,
 
                 user_id:
-                  session.user.id
+                  identity.user.id
+
               });
 
 
-          if (insertError) {
+          if (
+            insertError
+          ) {
+
             throw insertError;
           }
 
@@ -4911,17 +5697,12 @@
 
 
           applyIdentityToCommentBox(
-            displayName,
-            isAnonymous
+            identity.displayName,
+            identity.isAnonymous
           );
 
 
           await loadComments();
-
-
-          alert(
-            "Your comment has been posted."
-          );
 
 
         } catch (error) {
@@ -4946,6 +5727,7 @@
           postCommentButton.disabled =
             false;
 
+
           postCommentButton.textContent =
             "Post Comment";
         }
@@ -4964,7 +5746,28 @@
       ) {
 
         activeSession =
-          session || null;
+          session ||
+          null;
+
+
+        if (
+          session &&
+          session.user
+        ) {
+
+          if (
+            session.user.is_anonymous === true
+          ) {
+
+            activeDisplayName =
+              "Anonymous";
+
+
+            activeIsAnonymous =
+              true;
+
+          }
+        }
 
 
         updateAccountButtons();
@@ -4982,10 +5785,35 @@
 
 
     /* =========================
-       INITIALIZATION
+       INITIALIZE
     ========================= */
 
     (async function initialize() {
+
+      /*
+         Default comment UI is Anonymous.
+         Anonymous auth session is created only
+         when necessary.
+      */
+
+      activeDisplayName =
+        "Anonymous";
+
+
+      activeIsAnonymous =
+        true;
+
+
+      commentName.value =
+        "Anonymous";
+
+
+      anonymousCheckbox.checked =
+        true;
+
+
+      updateAccountButtons();
+
 
       try {
 
@@ -4997,6 +5825,10 @@
           session &&
           session.user
         ) {
+
+          activeSession =
+            session;
+
 
           if (
             session.user.is_anonymous === true
@@ -5030,18 +5862,6 @@
               );
             }
           }
-
-
-        } else {
-
-          commentName.value =
-            "";
-
-          commentName.readOnly =
-            true;
-
-          anonymousCheckbox.checked =
-            false;
         }
 
 
@@ -5057,6 +5877,7 @@
 
         updateAccountButtons();
 
+
         await loadComments();
       }
 
@@ -5066,4 +5887,4 @@
 
 
 </body>
-</html>         
+</html>
