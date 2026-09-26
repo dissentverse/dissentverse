@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -8,7 +10,7 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>DissentVerse — Dashboard</title>
+  <title>DissentVerse — Admin Dashboard</title>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.111.0"></script>
 
@@ -20,211 +22,648 @@
 
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f7f7f9;
-      color: #222;
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      background:
+        linear-gradient(
+          135deg,
+          #fff7fb,
+          #f7f1fa
+        );
+
+      color: #282129;
     }
+
+
+    /* =========================
+       HEADER
+    ========================== */
 
     .header {
-      background: #ffffff;
-      border-bottom: 1px solid #ddd;
-      padding: 20px 30px;
+      background:
+        linear-gradient(
+          135deg,
+          #b96b9d,
+          #d495bd,
+          #ead8e8
+        );
 
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
+      border-bottom:
+        1px solid
+        rgba(100,50,90,.15);
+
+      padding:
+        20px 30px;
+
+      display:
+        flex;
+
+      justify-content:
+        space-between;
+
+      align-items:
+        center;
+
+      gap:
+        20px;
     }
+
 
     .brand {
-      font-size: 25px;
-      font-weight: 700;
+      font-family:
+        Georgia,
+        serif;
+
+      font-size:
+        27px;
+
+      font-weight:
+        700;
+
+      color:
+        #171217;
     }
+
 
     .brand span {
-      color: #B02A72;
+      color:
+        #7b2457;
     }
 
+
     .header-actions {
-      display: none;
-      gap: 10px;
-      align-items: center;
+      display:
+        none;
+
+      gap:
+        8px;
+
+      align-items:
+        center;
+
+      flex-wrap:
+        wrap;
     }
+
 
     .header-actions a,
     .header-actions button {
-      border: 1px solid #ddd;
-      background: white;
-      color: #555;
-      padding: 8px 13px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-size: 12px;
-      cursor: pointer;
+      border:
+        1px solid
+        rgba(80,40,70,.18);
+
+      background:
+        rgba(255,255,255,.75);
+
+      color:
+        #503548;
+
+      padding:
+        9px 14px;
+
+      border-radius:
+        999px;
+
+      font-size:
+        12px;
+
+      font-weight:
+        600;
+
+      text-decoration:
+        none;
+
+      cursor:
+        pointer;
     }
+
+
+    /* =========================
+       CONTAINER
+    ========================== */
 
     .container {
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 0 20px;
+      max-width:
+        1050px;
+
+      margin:
+        45px auto;
+
+      padding:
+        0 20px;
     }
 
-    .login-box {
-      max-width: 430px;
-      margin: 70px auto;
 
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 12px;
-      padding: 30px;
+    /* =========================
+       LOGIN
+    ========================== */
+
+    #loginArea {
+      display:
+        block;
+
+      max-width:
+        430px;
+
+      margin:
+        70px auto;
+
+      background:
+        white;
+
+      border:
+        1px solid
+        #eadfea;
+
+      border-radius:
+        15px;
+
+      padding:
+        30px;
+
+      box-shadow:
+        0 15px 45px
+        rgba(80,45,75,.08);
     }
 
-    .login-box h1 {
-      margin-top: 0;
-      margin-bottom: 8px;
+
+    #loginArea h1 {
+      margin:
+        0 0 8px;
+
+      font-family:
+        Georgia,
+        serif;
+
+      font-size:
+        32px;
     }
+
 
     .subtitle {
-      color: #666;
-      line-height: 1.5;
-      margin-bottom: 25px;
+      color:
+        #716872;
+
+      font-size:
+        14px;
+
+      line-height:
+        1.5;
+
+      margin:
+        0 0 24px;
     }
+
 
     .field {
-      margin-bottom: 17px;
+      margin-bottom:
+        16px;
     }
+
 
     .field label {
-      display: block;
-      margin-bottom: 7px;
-      font-weight: 600;
+      display:
+        block;
+
+      margin-bottom:
+        7px;
+
+      font-size:
+        13px;
+
+      font-weight:
+        700;
     }
+
 
     .field input {
-      width: 100%;
-      padding: 11px 12px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 15px;
+      width:
+        100%;
+
+      padding:
+        12px;
+
+      border:
+        1px solid
+        #d7cbd5;
+
+      border-radius:
+        8px;
+
+      outline:
+        none;
+
+      font-size:
+        14px;
     }
 
-    .button {
-      width: 100%;
-      padding: 11px;
-      border: none;
-      border-radius: 6px;
-      background: #222;
-      color: white;
-      font-size: 15px;
-      cursor: pointer;
+
+    .field input:focus {
+      border-color:
+        #b96b9d;
     }
 
-    .button:disabled {
-      opacity: .6;
-      cursor: wait;
+
+    .primary-btn {
+      width:
+        100%;
+
+      padding:
+        12px;
+
+      border:
+        none;
+
+      border-radius:
+        999px;
+
+      background:
+        #8f2860;
+
+      color:
+        white;
+
+      font-size:
+        14px;
+
+      font-weight:
+        700;
+
+      cursor:
+        pointer;
     }
+
+
+    .primary-btn:disabled {
+      opacity:
+        .65;
+
+      cursor:
+        wait;
+    }
+
+
+    .forgot-link {
+      display:
+        block;
+
+      margin-top:
+        14px;
+
+      text-align:
+        center;
+
+      color:
+        #8f2860;
+
+      font-size:
+        13px;
+
+      text-decoration:
+        none;
+    }
+
+
+    .forgot-link:hover {
+      text-decoration:
+        underline;
+    }
+
 
     .message {
-      margin-top: 15px;
-      font-size: 14px;
-      line-height: 1.5;
+      margin-top:
+        14px;
+
+      font-size:
+        13px;
+
+      line-height:
+        1.5;
     }
+
 
     .error {
-      color: #b00020;
+      color:
+        #b00020;
     }
 
-    .success {
-      color: #287a3e;
-    }
+
+    /* =========================
+       ADMIN AREA
+    ========================== */
 
     #adminArea {
-      display: none;
+      display:
+        none;
     }
+
 
     .heading {
-      margin-bottom: 25px;
+      display:
+        flex;
+
+      justify-content:
+        space-between;
+
+      align-items:
+        flex-start;
+
+      gap:
+        20px;
+
+      margin-bottom:
+        30px;
     }
+
 
     .heading h1 {
-      margin: 0 0 6px;
+      margin:
+        0 0 5px;
+
+      font-family:
+        Georgia,
+        serif;
+
+      font-size:
+        40px;
     }
+
 
     .heading p {
-      margin: 0;
-      color: #666;
+      margin:
+        0;
+
+      color:
+        #766e76;
+
+      font-size:
+        14px;
     }
+
+
+    /* =========================
+       ANALYTICS
+    ========================== */
 
     .section-title {
-      margin: 35px 0 15px;
-      font-size: 22px;
+      margin:
+        35px 0 16px;
+
+      font-family:
+        Georgia,
+        serif;
+
+      font-size:
+        25px;
+
+      color:
+        #352732;
     }
 
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
+
+    .analytics-card {
+      background:
+        white;
+
+      border:
+        1px solid
+        #eadfea;
+
+      border-radius:
+        16px;
+
+      padding:
+        25px;
+
+      box-shadow:
+        0 10px 30px
+        rgba(80,45,75,.05);
     }
 
-    .stat-card {
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      padding: 20px;
+
+    .analytics-intro {
+      margin:
+        0 0 20px;
+
+      color:
+        #716872;
+
+      font-size:
+        13px;
+
+      line-height:
+        1.6;
     }
 
-    .stat-label {
-      color: #777;
-      font-size: 13px;
-      margin-bottom: 8px;
+
+    .counter-frame {
+      width:
+        100%;
+
+      min-height:
+        105px;
+
+      border:
+        none;
+
+      display:
+        block;
     }
 
-    .stat-number {
-      font-size: 30px;
-      font-weight: 700;
-      color: #8f2860;
+
+    .analytics-link {
+      display:
+        inline-block;
+
+      margin-top:
+        15px;
+
+      color:
+        #8f2860;
+
+      font-size:
+        12px;
+
+      font-weight:
+        700;
+
+      text-decoration:
+        none;
     }
 
-    .loading {
-      color: #777;
+
+    .analytics-link:hover {
+      text-decoration:
+        underline;
     }
 
-    .error-box {
-      margin-top: 20px;
-      padding: 15px;
-      border-radius: 8px;
-      background: #fff2f2;
-      color: #a00020;
-      display: none;
-      line-height: 1.5;
-      font-size: 13px;
+
+    /* =========================
+       ADMIN LINKS
+    ========================== */
+
+    .tools-grid {
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap:
+        16px;
     }
 
-    @media (max-width: 800px) {
-      .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+
+    .tool-card {
+      display:
+        block;
+
+      background:
+        white;
+
+      border:
+        1px solid
+        #eadfea;
+
+      border-radius:
+        15px;
+
+      padding:
+        20px;
+
+      text-decoration:
+        none;
+
+      color:
+        #382934;
+
+      box-shadow:
+        0 8px 25px
+        rgba(80,45,75,.04);
+
+      transition:
+        transform .2s ease;
     }
 
-    @media (max-width: 500px) {
+
+    .tool-card:hover {
+      transform:
+        translateY(-2px);
+    }
+
+
+    .tool-card h3 {
+      margin:
+        0 0 7px;
+
+      font-family:
+        Georgia,
+        serif;
+
+      font-size:
+        20px;
+    }
+
+
+    .tool-card p {
+      margin:
+        0;
+
+      color:
+        #756d74;
+
+      font-size:
+        12px;
+
+      line-height:
+        1.5;
+    }
+
+
+    /* =========================
+       NOTE
+    ========================== */
+
+    .note {
+      margin-top:
+        25px;
+
+      padding:
+        15px 17px;
+
+      background:
+        #faf4f8;
+
+      border:
+        1px solid
+        #eee0ea;
+
+      border-radius:
+        10px;
+
+      color:
+        #786d76;
+
+      font-size:
+        11px;
+
+      line-height:
+        1.6;
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================== */
+
+    @media (
+      max-width: 650px
+    ) {
+
       .header {
-        padding: 16px;
+        padding:
+          16px;
       }
+
 
       .container {
-        margin: 25px auto;
-        padding: 0 15px;
+        padding:
+          0 15px;
+
+        margin:
+          25px auto 45px;
       }
 
-      .stats-grid {
-        grid-template-columns: 1fr;
+
+      .heading {
+        flex-direction:
+          column;
       }
+
+
+      .heading h1 {
+        font-size:
+          34px;
+      }
+
+
+      .tools-grid {
+        grid-template-columns:
+          1fr;
+      }
+
     }
 
   </style>
+
 </head>
 
+
 <body>
+
 
 <header class="header">
 
@@ -232,18 +671,34 @@
     Dissent<span>Verse</span> Admin
   </div>
 
+
   <div
     class="header-actions"
     id="headerActions"
   >
 
-    <a href="/dissentverse/admin/comments.html">
+    <a
+      href="/dissentverse/admin/comments.html"
+    >
       Comments
     </a>
 
-    <a href="/dissentverse/admin/">
+
+    <a
+      href="/dissentverse/admin/"
+    >
       Article CMS
     </a>
+
+
+    <a
+      href="https://dissentverse.goatcounter.com/"
+      target="_blank"
+      rel="noopener"
+    >
+      Full Analytics
+    </a>
+
 
     <button
       type="button"
@@ -259,18 +714,22 @@
 
 <main class="container">
 
-  <!-- LOGIN -->
 
-  <section
-    id="loginArea"
-    class="login-box"
-  >
+  <!-- =========================
+       LOGIN
+  ========================== -->
 
-    <h1>Admin Dashboard</h1>
+  <section id="loginArea">
+
+    <h1>
+      Admin Login
+    </h1>
+
 
     <p class="subtitle">
-      Sign in to view DissentVerse statistics.
+      Sign in to access the DissentVerse admin dashboard.
     </p>
+
 
     <form id="loginForm">
 
@@ -308,13 +767,21 @@
 
       <button
         type="submit"
-        class="button"
+        class="primary-btn"
         id="loginButton"
       >
         Sign In
       </button>
 
     </form>
+
+
+    <a
+      class="forgot-link"
+      href="/dissentverse/admin/forgot-password.html"
+    >
+      Forgot password?
+    </a>
 
 
     <div
@@ -325,192 +792,141 @@
   </section>
 
 
-  <!-- ADMIN -->
+  <!-- =========================
+       ADMIN
+  ========================== -->
 
   <section id="adminArea">
 
+
     <div class="heading">
 
-      <h1>
-        Dashboard
-      </h1>
+      <div>
 
-      <p>
-        DissentVerse website overview
-      </p>
+        <h1>
+          Dashboard
+        </h1>
+
+        <p>
+          DissentVerse website overview.
+        </p>
+
+      </div>
 
     </div>
 
+
+    <!-- =========================
+         ANALYTICS
+    ========================== -->
 
     <h2 class="section-title">
       Website Analytics
     </h2>
 
 
-    <div class="stats-grid">
+    <div class="analytics-card">
 
-      <div class="stat-card">
-
-        <div class="stat-label">
-          Last 24 Hours
-        </div>
-
-        <div
-          class="stat-number"
-          id="visits24"
-        >
-          —
-        </div>
-
-      </div>
+      <p class="analytics-intro">
+        This counter shows the total number of recorded views for the DissentVerse site.
+        GoatCounter may cache counter results for a period of time, so very recent activity
+        may not appear immediately.
+      </p>
 
 
-      <div class="stat-card">
-
-        <div class="stat-label">
-          Last 7 Days
-        </div>
-
-        <div
-          class="stat-number"
-          id="visits7"
-        >
-          —
-        </div>
-
-      </div>
+      <iframe
+        class="counter-frame"
+        title="DissentVerse total visitor count"
+        src="https://dissentverse.goatcounter.com/counter/TOTAL.html"
+      ></iframe>
 
 
-      <div class="stat-card">
-
-        <div class="stat-label">
-          Last 30 Days
-        </div>
-
-        <div
-          class="stat-number"
-          id="visits30"
-        >
-          —
-        </div>
-
-      </div>
-
-
-      <div class="stat-card">
-
-        <div class="stat-label">
-          All Time
-        </div>
-
-        <div
-          class="stat-number"
-          id="visitsAll"
-        >
-          —
-        </div>
-
-      </div>
+      <a
+        class="analytics-link"
+        href="https://dissentverse.goatcounter.com/"
+        target="_blank"
+        rel="noopener"
+      >
+        Open complete GoatCounter analytics →
+      </a>
 
     </div>
 
 
+    <!-- =========================
+         ADMIN TOOLS
+    ========================== -->
+
     <h2 class="section-title">
-      Community
+      Admin Tools
     </h2>
 
 
-    <div class="stats-grid">
-
-      <div class="stat-card">
-
-        <div class="stat-label">
-          Registered Users
-        </div>
-
-        <div
-          class="stat-number"
-          id="registeredUsers"
-        >
-          —
-        </div>
-
-      </div>
+    <div class="tools-grid">
 
 
-      <div class="stat-card">
+      <a
+        class="tool-card"
+        href="/dissentverse/admin/comments.html"
+      >
 
-        <div class="stat-label">
-          Comments
-        </div>
+        <h3>
+          Comment Manager
+        </h3>
 
-        <div
-          class="stat-number"
-          id="commentsCount"
-        >
-          —
-        </div>
+        <p>
+          View and manage comments and replies posted on DissentVerse.
+        </p>
 
-      </div>
-
-
-      <div class="stat-card">
-
-        <div class="stat-label">
-          Replies
-        </div>
-
-        <div
-          class="stat-number"
-          id="repliesCount"
-        >
-          —
-        </div>
-
-      </div>
+      </a>
 
 
-      <div class="stat-card">
+      <a
+        class="tool-card"
+        href="/dissentverse/admin/"
+      >
 
-        <div class="stat-label">
-          Article Likes
-        </div>
+        <h3>
+          Article CMS
+        </h3>
 
-        <div
-          class="stat-number"
-          id="articleLikes"
-        >
-          —
-        </div>
+        <p>
+          Create, edit and publish DissentVerse articles.
+        </p>
 
-      </div>
+      </a>
 
     </div>
 
 
-    <div
-      id="errorBox"
-      class="error-box"
-    ></div>
+    <div class="note">
+      Visitor statistics are provided by GoatCounter. The built-in counter is separate from your
+      DissentVerse account system and does not require exposing an API token in your website code.
+    </div>
 
   </section>
+
 
 </main>
 
 
 <script>
 
+  /* =========================
+     SUPABASE
+  ========================== */
+
   const SUPABASE_URL =
     "https://yplvpgigfkihgmyfsqyl.supabase.co";
 
 
   /*
-    Use the same working key already used
-    by your DissentVerse public site.
+    EXACT SAME WORKING KEY
+    USED BY YOUR DISSENTVERSE SITE
   */
 
   const SUPABASE_ANON_KEY =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlwbHZwZ2lnZmtpaGdteWZzcXlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAwMzkyNzksImV4cCI6MjEwNTYxNTI3OX0.9nHT9NIDBH3ndJyZPJF2-uvy40Kz0aF7oimyDEJuPPg";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzIiwicmVmIjoieXBsdnBnaWdna2loZ215ZnNxeWwiLCJyb2xlIjoiYW5vbiIsImlhdCI6MTc5MDAzOTI3OSwiZXhwIjoyMTA1NjE1Mjc5fQ.9nHT9NIDBH3ndJyZPJF2-uvy40Kz0aF7oimyDEJuPPg";
 
 
   const supabaseClient =
@@ -519,49 +935,72 @@
       SUPABASE_ANON_KEY,
       {
         auth: {
-          persistSession: true,
-          autoRefreshToken: true,
-          detectSessionInUrl: true
+          persistSession:
+            true,
+
+          autoRefreshToken:
+            true,
+
+          detectSessionInUrl:
+            true
         }
       }
     );
 
 
+  /* =========================
+     ELEMENTS
+  ========================== */
+
   const loginArea =
-    document.getElementById("loginArea");
+    document.getElementById(
+      "loginArea"
+    );
+
 
   const adminArea =
-    document.getElementById("adminArea");
+    document.getElementById(
+      "adminArea"
+    );
+
 
   const headerActions =
-    document.getElementById("headerActions");
+    document.getElementById(
+      "headerActions"
+    );
+
 
   const loginForm =
-    document.getElementById("loginForm");
+    document.getElementById(
+      "loginForm"
+    );
+
 
   const loginButton =
-    document.getElementById("loginButton");
+    document.getElementById(
+      "loginButton"
+    );
+
 
   const loginMessage =
-    document.getElementById("loginMessage");
+    document.getElementById(
+      "loginMessage"
+    );
+
 
   const logoutButton =
-    document.getElementById("logoutButton");
-
-  const errorBox =
-    document.getElementById("errorBox");
-
-
-  function formatNumber(value) {
-
-    return Number(
-      value || 0
-    ).toLocaleString();
-
-  }
+    document.getElementById(
+      "logoutButton"
+    );
 
 
-  function showLogin(message = "") {
+  /* =========================
+     SHOW LOGIN
+  ========================== */
+
+  function showLogin(
+    message = ""
+  ) {
 
     loginArea.style.display =
       "block";
@@ -575,8 +1014,15 @@
     loginMessage.textContent =
       message;
 
+    loginMessage.className =
+      "message error";
+
   }
 
+
+  /* =========================
+     SHOW ADMIN
+  ========================== */
 
   function showAdmin() {
 
@@ -592,10 +1038,20 @@
   }
 
 
-  async function checkAdmin(user) {
+  /* =========================
+     CHECK ADMIN
+  ========================== */
 
-    if (!user) {
+  async function checkAdmin(
+    user
+  ) {
+
+    if (
+      !user
+    ) {
+
       return false;
+
     }
 
 
@@ -613,8 +1069,17 @@
         .maybeSingle();
 
 
-    if (error) {
+    if (
+      error
+    ) {
+
+      console.error(
+        "Admin check error:",
+        error
+      );
+
       throw error;
+
     }
 
 
@@ -623,194 +1088,15 @@
   }
 
 
-  async function loadDashboard() {
-
-  errorBox.style.display = "none";
-  errorBox.textContent = "";
-
-  try {
-
-    /* =========================
-       GOATCOUNTER TOTAL VISITS
-    ========================== */
-
-    const response =
-      await fetch(
-        "https://dissentverse.goatcounter.com/counter/TOTAL.json"
-      );
-
-    if (!response.ok) {
-      throw new Error(
-        "Unable to load visitor statistics."
-      );
-    }
-
-    const visitorData =
-      await response.json();
-
-    document.getElementById(
-      "visitsAll"
-    ).textContent =
-      visitorData.count || "0";
-
-
-    /* =========================
-       OTHER DASHBOARD DATA
-    ========================== */
-
-    /*
-      We will add the Supabase
-      community statistics separately.
-    */
-
-    document.getElementById(
-      "visits24"
-    ).textContent = "—";
-
-    document.getElementById(
-      "visits7"
-    ).textContent = "—";
-
-    document.getElementById(
-      "visits30"
-    ).textContent = "—";
-
-    document.getElementById(
-      "registeredUsers"
-    ).textContent = "—";
-
-    document.getElementById(
-      "commentsCount"
-    ).textContent = "—";
-
-    document.getElementById(
-      "repliesCount"
-    ).textContent = "—";
-
-    document.getElementById(
-      "articleLikes"
-    ).textContent = "—";
-
-  } catch (error) {
-
-    console.error(
-      "Dashboard loading error:",
-      error
-    );
-
-    errorBox.textContent =
-      error.message ||
-      "Unable to load dashboard data.";
-
-    errorBox.style.display =
-      "block";
-  }
-
-}
-
-    errorBox.style.display =
-      "none";
-
-
-    const {
-      data,
-      error
-    } =
-      await supabaseClient
-        .functions
-        .invoke(
-          "dissentverse-analytics",
-          {
-            body: {}
-          }
-        );
-
-
-    if (error) {
-      throw error;
-    }
-
-
-    if (
-      !data ||
-      data.success !== true
-    ) {
-      throw new Error(
-        data?.error ||
-        "Analytics data was not returned."
-      );
-    }
-
-
-    document.getElementById(
-      "visits24"
-    ).textContent =
-      formatNumber(
-        data.visitors?.last24Hours
-      );
-
-
-    document.getElementById(
-      "visits7"
-    ).textContent =
-      formatNumber(
-        data.visitors?.last7Days
-      );
-
-
-    document.getElementById(
-      "visits30"
-    ).textContent =
-      formatNumber(
-        data.visitors?.last30Days
-      );
-
-
-    document.getElementById(
-      "visitsAll"
-    ).textContent =
-      formatNumber(
-        data.visitors?.allTime
-      );
-
-
-    document.getElementById(
-      "registeredUsers"
-    ).textContent =
-      formatNumber(
-        data.community?.registeredUsers
-      );
-
-
-    document.getElementById(
-      "commentsCount"
-    ).textContent =
-      formatNumber(
-        data.community?.comments
-      );
-
-
-    document.getElementById(
-      "repliesCount"
-    ).textContent =
-      formatNumber(
-        data.community?.replies
-      );
-
-
-    document.getElementById(
-      "articleLikes"
-    ).textContent =
-      formatNumber(
-        data.community?.articleLikes
-      );
-
-  }
-
+  /* =========================
+     LOGIN
+  ========================== */
 
   loginForm.addEventListener(
     "submit",
-    async function(event) {
+    async function(
+      event
+    ) {
 
       event.preventDefault();
 
@@ -824,17 +1110,24 @@
       loginMessage.textContent =
         "";
 
+      loginMessage.className =
+        "message";
+
 
       const email =
         document
-          .getElementById("email")
+          .getElementById(
+            "email"
+          )
           .value
           .trim();
 
 
       const password =
         document
-          .getElementById("password")
+          .getElementById(
+            "password"
+          )
           .value;
 
 
@@ -856,8 +1149,12 @@
             });
 
 
-        if (error) {
+        if (
+          error
+        ) {
+
           throw error;
+
         }
 
 
@@ -867,35 +1164,35 @@
           );
 
 
-        if (!isAdmin) {
+        if (
+          !isAdmin
+        ) {
 
           await supabaseClient.auth.signOut();
 
           throw new Error(
             "This account does not have admin access."
           );
+
         }
 
 
         showAdmin();
 
-        await loadDashboard();
-
-
-      } catch (error) {
+      } catch (
+        error
+      ) {
 
         console.error(
-          "Dashboard error:",
+          "Admin login error:",
           error
         );
 
 
-        loginMessage.textContent =
+        showLogin(
           error.message ||
-          "Unable to sign in.";
-
-        loginMessage.className =
-          "message error";
+          "Unable to sign in."
+        );
 
       } finally {
 
@@ -911,6 +1208,10 @@
   );
 
 
+  /* =========================
+     LOG OUT
+  ========================== */
+
   logoutButton.addEventListener(
     "click",
     async function() {
@@ -925,6 +1226,10 @@
   );
 
 
+  /* =========================
+     INITIALIZE
+  ========================== */
+
   async function initialize() {
 
     try {
@@ -937,8 +1242,12 @@
           .getSession();
 
 
-      if (error) {
+      if (
+        error
+      ) {
+
         throw error;
+
       }
 
 
@@ -953,11 +1262,11 @@
           );
 
 
-        if (isAdmin) {
+        if (
+          isAdmin
+        ) {
 
           showAdmin();
-
-          await loadDashboard();
 
         } else {
 
@@ -975,8 +1284,9 @@
 
       }
 
-
-    } catch (error) {
+    } catch (
+      error
+    ) {
 
       console.error(
         "Initialization error:",
@@ -986,7 +1296,7 @@
 
       showLogin(
         error.message ||
-        "Unable to load the dashboard."
+        "Unable to load the admin page."
       );
 
     }
@@ -998,5 +1308,7 @@
 
 </script>
 
+
 </body>
+
 </html>
