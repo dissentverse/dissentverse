@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>DissentVerse — Dashboard</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.111.0"></script>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f7f7f9;
+      color: #222;
+    }
+
+    .header {
+      background: #ffffff;
+      border-bottom: 1px solid #ddd;
+      padding: 20px 30px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .brand {
+      font-size: 25px;
+      font-weight: 700;
+    }
+
+    .brand span {
+      color: #B02A72;
+    }
+
+    .header-actions {
+      display: none;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .header-actions a,
+    .header-actions button {
+      border: 1px solid #ddd;
+      background: white;
+      color: #555;
+      padding: 8px 13px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .login-box {
+      max-width: 430px;
+      margin: 70px auto;
+
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 30px;
+    }
+
+    .login-box h1 {
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: #666;
+      line-height: 1.5;
+      margin-bottom: 25px;
+    }
+
+    .field {
+      margin-bottom: 17px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: 600;
+    }
+
+    .field input {
+      width: 100%;
+      padding: 11px 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+
+    .button {
+      width: 100%;
+      padding: 11px;
+      border: none;
+      border-radius: 6px;
+      background: #222;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .button:disabled {
+      opacity: .6;
+      cursor: wait;
+    }
+
+    .message {
+      margin-top: 15px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .error {
+      color: #b00020;
+    }
+
+    .success {
+      color: #287a3e;
+    }
+
+    #adminArea {
+      display: none;
+    }
+
+    .heading {
+      margin-bottom: 25px;
+    }
+
+    .heading h1 {
+      margin: 0 0 6px;
+    }
+
+    .heading p {
+      margin: 0;
+      color: #666;
+    }
+
+    .section-title {
+      margin: 35px 0 15px;
+      font-size: 22px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .stat-card {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .stat-label {
+      color: #777;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .stat-number {
+      font-size: 30px;
+      font-weight: 700;
+      color: #8f2860;
+    }
+
+    .loading {
+      color: #777;
+    }
+
+    .error-box {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      background: #fff2f2;
+      color: #a00020;
+      display: none;
+      line-height: 1.5;
+      font-size: 13px;
+    }
+
+    @media (max-width: 800px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 500px) {
+      .header {
+        padding: 16px;
+      }
+
+      .container {
+        margin: 25px auto;
+        padding: 0 15px;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header class="header">
+
+  <div class="brand">
+    Dissent<span>Verse</span> Admin
+  </div>
+
+  <div
+    class="header-actions"
+    id="headerActions"
+  >
+
+    <a href="/dissentverse/admin/comments.html">
+      Comments
+    </a>
+
+    <a href="/dissentverse/admin/">
+      Article CMS
+    </a>
+
+    <button
+      type="button"
+      id="logoutButton"
+    >
+      Log Out
+    </button>
+
+  </div>
+
+</header>
+
+
+<main class="container">
+
+  <!-- LOGIN -->
+
+  <section
+    id="loginArea"
+    class="login-box"
+  >
+
+    <h1>Admin Dashboard</h1>
+
+    <p class="subtitle">
+      Sign in to view DissentVerse statistics.
+    </p>
+
+    <form id="loginForm">
+
+      <div class="field">
+
+        <label for="email">
+          Email
+        </label>
+
+        <input
+          type="email"
+          id="email"
+          required
+          autocomplete="email"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="password">
+          Password
+        </label>
+
+        <input
+          type="password"
+          id="password"
+          required
+          autocomplete="current-password"
+        >
+
+      </div>
+
+
+      <button
+        type="submit"
+        class="button"
+        id="loginButton"
+      >
+        Sign In
+      </button>
+
+    </form>
+
+
+    <div
+      id="loginMessage"
+      class="message"
+    ></div>
+
+  </section>
+
+
+  <!-- ADMIN -->
+
+  <section id="adminArea">
+
+    <div class="heading">
+
+      <h1>
+        Dashboard
+      </h1>
+
+      <p>
+        DissentVerse website overview
+      </p>
+
+    </div>
+
+
+    <h2 class="section-title">
+      Website Analytics
+    </h2>
+
+
+    <div class="stats-grid">
+
+      <div class="stat-card">
+
+        <div class="stat-label">
+          Last 24 Hours
+        </div>
+
+        <div
+          class="stat-number"
+          id="visits24"
+        >
+          —
+        </div>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <div class="stat-label">
+          Last 7 Days
+        </div>
+
+        <div
+          class="stat-number"
+          id="visits7"
+        >
+          —
+        </div>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <div class="stat-label">
+          Last 30 Days
+        </div>
+
+        <div
+          class="stat-number"
+          id="visits30"
+        >
+          —
+        </div>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <div class="stat-label">
+          All Time
+        </div>
+
+        <div
+          class="stat-number"
+          id="visitsAll"
+        >
+          —
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <h2 class="section-title">
+      Community
+    </h2>
+
+
+    <div class="stats-grid">
+
+      <div class="stat-card">
+
+        <div class="stat-label">
+          Registered Users
+        </div>
+
+        <div
+          class="stat-number"
+          id="registeredUsers"
+        >
+          —
+        </div>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <div class="stat-label">
+          Comments
+        </div>
+
+        <div
+          class="stat-number"
+          id="commentsCount"
+        >
+          —
+        </div>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <div class="stat-label">
+          Replies
+        </div>
+
+        <div
+          class="stat-number"
+          id="repliesCount"
+        >
+          —
+        </div>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <div class="stat-label">
+          Article Likes
+        </div>
+
+        <div
+          class="stat-number"
+          id="articleLikes"
+        >
+          —
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div
+      id="errorBox"
+      class="error-box"
+    ></div>
+
+  </section>
+
+</main>
+
+
+<script>
+
+  const SUPABASE_URL =
+    "https://yplvpgigfkihgmyfsqyl.supabase.co";
+
+
+  /*
+    Use the same working key already used
+    by your DissentVerse public site.
+  */
+
+  const SUPABASE_ANON_KEY =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlwbHZwZ2lnZmtpaGdteWZzcXlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAwMzkyNzksImV4cCI6MjEwNTYxNTI3OX0.9nHT9NIDBH3ndJyZPJF2-uvy40Kz0aF7oimyDEJuPPg";
+
+
+  const supabaseClient =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_ANON_KEY,
+      {
+        auth: {
+          persistSession: true,
+          autoRefreshToken: true,
+          detectSessionInUrl: true
+        }
+      }
+    );
+
+
+  const loginArea =
+    document.getElementById("loginArea");
+
+  const adminArea =
+    document.getElementById("adminArea");
+
+  const headerActions =
+    document.getElementById("headerActions");
+
+  const loginForm =
+    document.getElementById("loginForm");
+
+  const loginButton =
+    document.getElementById("loginButton");
+
+  const loginMessage =
+    document.getElementById("loginMessage");
+
+  const logoutButton =
+    document.getElementById("logoutButton");
+
+  const errorBox =
+    document.getElementById("errorBox");
+
+
+  function formatNumber(value) {
+
+    return Number(
+      value || 0
+    ).toLocaleString();
+
+  }
+
+
+  function showLogin(message = "") {
+
+    loginArea.style.display =
+      "block";
+
+    adminArea.style.display =
+      "none";
+
+    headerActions.style.display =
+      "none";
+
+    loginMessage.textContent =
+      message;
+
+  }
+
+
+  function showAdmin() {
+
+    loginArea.style.display =
+      "none";
+
+    adminArea.style.display =
+      "block";
+
+    headerActions.style.display =
+      "flex";
+
+  }
+
+
+  async function checkAdmin(user) {
+
+    if (!user) {
+      return false;
+    }
+
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .from("admin_users")
+        .select("user_id")
+        .eq(
+          "user_id",
+          user.id
+        )
+        .maybeSingle();
+
+
+    if (error) {
+      throw error;
+    }
+
+
+    return !!data;
+
+  }
+
+
+  async function loadDashboard() {
+
+    errorBox.style.display =
+      "none";
+
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .functions
+        .invoke(
+          "dissentverse-analytics",
+          {
+            body: {}
+          }
+        );
+
+
+    if (error) {
+      throw error;
+    }
+
+
+    if (
+      !data ||
+      data.success !== true
+    ) {
+      throw new Error(
+        data?.error ||
+        "Analytics data was not returned."
+      );
+    }
+
+
+    document.getElementById(
+      "visits24"
+    ).textContent =
+      formatNumber(
+        data.visitors?.last24Hours
+      );
+
+
+    document.getElementById(
+      "visits7"
+    ).textContent =
+      formatNumber(
+        data.visitors?.last7Days
+      );
+
+
+    document.getElementById(
+      "visits30"
+    ).textContent =
+      formatNumber(
+        data.visitors?.last30Days
+      );
+
+
+    document.getElementById(
+      "visitsAll"
+    ).textContent =
+      formatNumber(
+        data.visitors?.allTime
+      );
+
+
+    document.getElementById(
+      "registeredUsers"
+    ).textContent =
+      formatNumber(
+        data.community?.registeredUsers
+      );
+
+
+    document.getElementById(
+      "commentsCount"
+    ).textContent =
+      formatNumber(
+        data.community?.comments
+      );
+
+
+    document.getElementById(
+      "repliesCount"
+    ).textContent =
+      formatNumber(
+        data.community?.replies
+      );
+
+
+    document.getElementById(
+      "articleLikes"
+    ).textContent =
+      formatNumber(
+        data.community?.articleLikes
+      );
+
+  }
+
+
+  loginForm.addEventListener(
+    "submit",
+    async function(event) {
+
+      event.preventDefault();
+
+
+      loginButton.disabled =
+        true;
+
+      loginButton.textContent =
+        "Signing in...";
+
+      loginMessage.textContent =
+        "";
+
+
+      const email =
+        document
+          .getElementById("email")
+          .value
+          .trim();
+
+
+      const password =
+        document
+          .getElementById("password")
+          .value;
+
+
+      try {
+
+        const {
+          data,
+          error
+        } =
+          await supabaseClient.auth
+            .signInWithPassword({
+
+              email:
+                email,
+
+              password:
+                password
+
+            });
+
+
+        if (error) {
+          throw error;
+        }
+
+
+        const isAdmin =
+          await checkAdmin(
+            data.user
+          );
+
+
+        if (!isAdmin) {
+
+          await supabaseClient.auth.signOut();
+
+          throw new Error(
+            "This account does not have admin access."
+          );
+        }
+
+
+        showAdmin();
+
+        await loadDashboard();
+
+
+      } catch (error) {
+
+        console.error(
+          "Dashboard error:",
+          error
+        );
+
+
+        loginMessage.textContent =
+          error.message ||
+          "Unable to sign in.";
+
+        loginMessage.className =
+          "message error";
+
+      } finally {
+
+        loginButton.disabled =
+          false;
+
+        loginButton.textContent =
+          "Sign In";
+
+      }
+
+    }
+  );
+
+
+  logoutButton.addEventListener(
+    "click",
+    async function() {
+
+      await supabaseClient.auth.signOut();
+
+      loginForm.reset();
+
+      showLogin();
+
+    }
+  );
+
+
+  async function initialize() {
+
+    try {
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient.auth
+          .getSession();
+
+
+      if (error) {
+        throw error;
+      }
+
+
+      if (
+        data.session &&
+        data.session.user
+      ) {
+
+        const isAdmin =
+          await checkAdmin(
+            data.session.user
+          );
+
+
+        if (isAdmin) {
+
+          showAdmin();
+
+          await loadDashboard();
+
+        } else {
+
+          await supabaseClient.auth.signOut();
+
+          showLogin(
+            "This account does not have admin access."
+          );
+
+        }
+
+      } else {
+
+        showLogin();
+
+      }
+
+
+    } catch (error) {
+
+      console.error(
+        "Initialization error:",
+        error
+      );
+
+
+      showLogin(
+        error.message ||
+        "Unable to load the dashboard."
+      );
+
+    }
+
+  }
+
+
+  initialize();
+
+</script>
+
+</body>
+</html>
