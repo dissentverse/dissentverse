@@ -625,6 +625,89 @@
 
   async function loadDashboard() {
 
+  errorBox.style.display = "none";
+  errorBox.textContent = "";
+
+  try {
+
+    /* =========================
+       GOATCOUNTER TOTAL VISITS
+    ========================== */
+
+    const response =
+      await fetch(
+        "https://dissentverse.goatcounter.com/counter/TOTAL.json"
+      );
+
+    if (!response.ok) {
+      throw new Error(
+        "Unable to load visitor statistics."
+      );
+    }
+
+    const visitorData =
+      await response.json();
+
+    document.getElementById(
+      "visitsAll"
+    ).textContent =
+      visitorData.count || "0";
+
+
+    /* =========================
+       OTHER DASHBOARD DATA
+    ========================== */
+
+    /*
+      We will add the Supabase
+      community statistics separately.
+    */
+
+    document.getElementById(
+      "visits24"
+    ).textContent = "—";
+
+    document.getElementById(
+      "visits7"
+    ).textContent = "—";
+
+    document.getElementById(
+      "visits30"
+    ).textContent = "—";
+
+    document.getElementById(
+      "registeredUsers"
+    ).textContent = "—";
+
+    document.getElementById(
+      "commentsCount"
+    ).textContent = "—";
+
+    document.getElementById(
+      "repliesCount"
+    ).textContent = "—";
+
+    document.getElementById(
+      "articleLikes"
+    ).textContent = "—";
+
+  } catch (error) {
+
+    console.error(
+      "Dashboard loading error:",
+      error
+    );
+
+    errorBox.textContent =
+      error.message ||
+      "Unable to load dashboard data.";
+
+    errorBox.style.display =
+      "block";
+  }
+
+}
+
     errorBox.style.display =
       "none";
 
