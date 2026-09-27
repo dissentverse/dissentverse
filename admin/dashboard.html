@@ -405,7 +405,7 @@
 
 
     /* =========================
-       ANALYTICS
+       SECTION TITLES
     ========================== */
 
     .section-title {
@@ -423,6 +423,10 @@
         #352732;
     }
 
+
+    /* =========================
+       WEBSITE ANALYTICS
+    ========================== */
 
     .analytics-card {
       background:
@@ -498,6 +502,149 @@
     .analytics-link:hover {
       text-decoration:
         underline;
+    }
+
+
+    /* =========================
+       ARTICLE ANALYTICS
+    ========================== */
+
+    .article-analytics-card {
+      background:
+        white;
+
+      border:
+        1px solid
+        #eadfea;
+
+      border-radius:
+        16px;
+
+      padding:
+        20px;
+
+      box-shadow:
+        0 10px 30px
+        rgba(80,45,75,.05);
+
+      overflow-x:
+        auto;
+    }
+
+
+    .article-analytics-intro {
+      margin:
+        0 0 18px;
+
+      color:
+        #716872;
+
+      font-size:
+        13px;
+
+      line-height:
+        1.6;
+    }
+
+
+    .article-table {
+      width:
+        100%;
+
+      border-collapse:
+        collapse;
+
+      min-width:
+        650px;
+    }
+
+
+    .article-table th,
+    .article-table td {
+      padding:
+        13px 12px;
+
+      text-align:
+        left;
+
+      border-bottom:
+        1px solid
+        #eee5ed;
+
+      font-size:
+        12px;
+
+      vertical-align:
+        middle;
+    }
+
+
+    .article-table th {
+      color:
+        #5c4c58;
+
+      font-weight:
+        700;
+
+      background:
+        #faf4f8;
+    }
+
+
+    .article-table td {
+      color:
+        #4b4149;
+    }
+
+
+    .article-table tr:last-child td {
+      border-bottom:
+        none;
+    }
+
+
+    .article-title-cell {
+      font-weight:
+        700;
+
+      color:
+        #352732 !important;
+    }
+
+
+    .article-number {
+      font-family:
+        Georgia,
+        serif;
+
+      font-size:
+        18px;
+
+      font-weight:
+        700;
+
+      color:
+        #7b2457;
+    }
+
+
+    .article-loading,
+    .article-empty,
+    .article-error {
+      color:
+        #756d74;
+
+      font-size:
+        13px;
+
+      padding:
+        10px 0;
+    }
+
+
+    .article-error {
+      color:
+        #b00020;
     }
 
 
@@ -999,7 +1146,7 @@
 
 
     <!-- =========================
-         ANALYTICS
+         WEBSITE ANALYTICS
     ========================== -->
 
     <h2 class="section-title">
@@ -1031,6 +1178,93 @@
       >
         Open complete GoatCounter analytics →
       </a>
+
+    </div>
+
+
+    <!-- =========================
+         ARTICLE ANALYTICS
+    ========================== -->
+
+    <h2 class="section-title">
+      Article Analytics
+    </h2>
+
+
+    <div class="article-analytics-card">
+
+      <p class="article-analytics-intro">
+        Article-level activity from GoatCounter and the DissentVerse community system.
+      </p>
+
+
+      <div
+        id="articleAnalyticsLoading"
+        class="article-loading"
+      >
+        Loading article analytics...
+      </div>
+
+
+      <div
+        id="articleAnalyticsEmpty"
+        class="article-empty"
+        style="display:none;"
+      >
+        No article analytics available.
+      </div>
+
+
+      <div
+        id="articleAnalyticsError"
+        class="article-error"
+        style="display:none;"
+      >
+        Unable to load article analytics.
+      </div>
+
+
+      <div
+        id="articleAnalyticsTableWrap"
+        style="display:none;"
+      >
+
+        <table class="article-table">
+
+          <thead>
+
+            <tr>
+
+              <th>
+                Article
+              </th>
+
+              <th>
+                Views
+              </th>
+
+              <th>
+                Likes
+              </th>
+
+              <th>
+                Comments
+              </th>
+
+              <th>
+                Replies
+              </th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody id="articleAnalyticsBody"></tbody>
+
+        </table>
+
+      </div>
 
     </div>
 
@@ -1111,6 +1345,10 @@
 
     </div>
 
+
+    <!-- =========================
+         REGISTERED USERS
+    ========================== -->
 
     <div class="users-card">
 
@@ -1516,7 +1754,7 @@
 
         showAdmin();
 
-        loadCommunityData();
+        loadDashboardData();
 
       } catch (
         error
@@ -1548,7 +1786,7 @@
 
 
   /* =========================
-     COMMUNITY DATA
+     HELPERS
   ========================== */
 
   function escapeHtml(
@@ -1626,69 +1864,13 @@
   }
 
 
-  async function loadCommunityData() {
+  /* =========================
+     LOAD REGISTERED USERS
+  ========================== */
 
-    const {
-      data,
-      error
-    } =
-      await supabaseClient
-        .rpc(
-          "get_dissentverse_admin_data"
-        );
-
-
-    if (
-      error
-    ) {
-
-      console.error(
-        "Community data error:",
-        error
-      );
-
-
-      document.getElementById(
-        "usersLoading"
-      ).textContent =
-        "Unable to load registered users.";
-
-      return;
-
-    }
-
-
-    document.getElementById(
-      "registeredUsersCount"
-    ).textContent =
-      data.registeredUsers ?? 0;
-
-
-    document.getElementById(
-      "commentsCount"
-    ).textContent =
-      data.comments ?? 0;
-
-
-    document.getElementById(
-      "repliesCount"
-    ).textContent =
-      data.replies ?? 0;
-
-
-    document.getElementById(
-      "articleLikesCount"
-    ).textContent =
-      data.articleLikes ?? 0;
-
-
-    const users =
-      Array.isArray(
-        data.users
-      )
-        ? data.users
-        : [];
-
+  function renderUsers(
+    users
+  ) {
 
     const loading =
       document.getElementById(
@@ -1731,6 +1913,10 @@
       return;
 
     }
+
+
+    empty.style.display =
+      "none";
 
 
     tbody.innerHTML =
@@ -1805,6 +1991,342 @@
 
 
   /* =========================
+     ARTICLE ANALYTICS
+  ========================== */
+
+  function getArticleViews(
+    article
+  ) {
+
+    const hits =
+      article &&
+      article.goatCounter &&
+      Array.isArray(
+        article.goatCounter.hits
+      )
+        ? article.goatCounter.hits
+        : [];
+
+
+    if (
+      !hits.length
+    ) {
+
+      return 0;
+
+    }
+
+
+    const hit =
+      hits[0];
+
+
+    /*
+      GoatCounter returns the article
+      statistics under the matching path.
+
+      The current response contains:
+      count: 1
+      and daily statistics.
+
+      We use the returned count for
+      the dashboard's article statistic.
+    */
+
+    return Number(
+      hit.count || 0
+    );
+
+  }
+
+
+  function renderArticleAnalytics(
+    articles,
+    community
+  ) {
+
+    const loading =
+      document.getElementById(
+        "articleAnalyticsLoading"
+      );
+
+
+    const empty =
+      document.getElementById(
+        "articleAnalyticsEmpty"
+      );
+
+
+    const errorBox =
+      document.getElementById(
+        "articleAnalyticsError"
+      );
+
+
+    const tableWrap =
+      document.getElementById(
+        "articleAnalyticsTableWrap"
+      );
+
+
+    const tbody =
+      document.getElementById(
+        "articleAnalyticsBody"
+      );
+
+
+    loading.style.display =
+      "none";
+
+    errorBox.style.display =
+      "none";
+
+
+    if (
+      !Array.isArray(articles) ||
+      !articles.length
+    ) {
+
+      empty.style.display =
+        "block";
+
+      tableWrap.style.display =
+        "none";
+
+      return;
+
+    }
+
+
+    empty.style.display =
+      "none";
+
+
+    /*
+      At the moment the Edge Function
+      returns one article and aggregate
+      community totals.
+
+      Therefore these community totals
+      correctly represent the current
+      article while there is one article
+      in the returned analytics data.
+    */
+
+    tbody.innerHTML =
+      articles
+        .map(
+          article => {
+
+            const views =
+              getArticleViews(
+                article
+              );
+
+
+            return `
+              <tr>
+
+                <td class="article-title-cell">
+                  ${escapeHtml(
+                    article.title ||
+                    "Untitled Article"
+                  )}
+                </td>
+
+                <td>
+                  <span class="article-number">
+                    ${views}
+                  </span>
+                </td>
+
+                <td>
+                  <span class="article-number">
+                    ${Number(
+                      community.articleLikes || 0
+                    )}
+                  </span>
+                </td>
+
+                <td>
+                  <span class="article-number">
+                    ${Number(
+                      community.comments || 0
+                    )}
+                  </span>
+                </td>
+
+                <td>
+                  <span class="article-number">
+                    ${Number(
+                      community.replies || 0
+                    )}
+                  </span>
+                </td>
+
+              </tr>
+            `;
+
+          }
+        )
+        .join("");
+
+
+    tableWrap.style.display =
+      "block";
+
+  }
+
+
+  /* =========================
+     LOAD DASHBOARD DATA
+  ========================== */
+
+  async function loadDashboardData() {
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .functions
+        .invoke(
+          "dissentverse-analytics"
+        );
+
+
+    if (
+      error
+    ) {
+
+      console.error(
+        "Dashboard data error:",
+        error
+      );
+
+
+      document.getElementById(
+        "usersLoading"
+      ).textContent =
+        "Unable to load registered users.";
+
+
+      document.getElementById(
+        "articleAnalyticsLoading"
+      ).style.display =
+        "none";
+
+
+      document.getElementById(
+        "articleAnalyticsError"
+      ).style.display =
+        "block";
+
+
+      return;
+
+    }
+
+
+    if (
+      !data ||
+      !data.success
+    ) {
+
+      console.error(
+        "Invalid dashboard response:",
+        data
+      );
+
+
+      document.getElementById(
+        "articleAnalyticsLoading"
+      ).style.display =
+        "none";
+
+
+      document.getElementById(
+        "articleAnalyticsError"
+      ).style.display =
+        "block";
+
+
+      return;
+
+    }
+
+
+    /* =========================
+       COMMUNITY COUNTS
+    ========================== */
+
+    const community =
+      data.community ||
+      {};
+
+
+    document.getElementById(
+      "registeredUsersCount"
+    ).textContent =
+      community.registeredUsers ?? 0;
+
+
+    document.getElementById(
+      "commentsCount"
+    ).textContent =
+      community.comments ?? 0;
+
+
+    document.getElementById(
+      "repliesCount"
+    ).textContent =
+      community.replies ?? 0;
+
+
+    document.getElementById(
+      "articleLikesCount"
+    ).textContent =
+      community.articleLikes ?? 0;
+
+
+    /* =========================
+       REGISTERED USERS
+    ========================== */
+
+    const users =
+      Array.isArray(
+        data.users
+      )
+        ? data.users
+        : [];
+
+
+    renderUsers(
+      users
+    );
+
+
+    /* =========================
+       ARTICLE ANALYTICS
+    ========================== */
+
+    const articles =
+      Array.isArray(
+        data.articles
+      )
+        ? data.articles
+        : [];
+
+
+    renderArticleAnalytics(
+      articles,
+      community
+    );
+
+  }
+
+
+  /* =========================
      LOG OUT
   ========================== */
 
@@ -1864,7 +2386,7 @@
 
           showAdmin();
 
-          loadCommunityData();
+          loadDashboardData();
 
         } else {
 
