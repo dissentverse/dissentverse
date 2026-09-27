@@ -2174,7 +2174,9 @@
 
           showAdmin();
 
-          await loadAdminData();
+loadAdminData().catch(function (error) {
+  console.error("Dashboard data error:", error);
+});
 
         } else {
 
