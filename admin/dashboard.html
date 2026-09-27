@@ -502,6 +502,182 @@
 
 
     /* =========================
+       COMMUNITY
+    ========================== */
+
+    .community-grid {
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      gap:
+        14px;
+
+      margin-bottom:
+        20px;
+    }
+
+
+    .community-stat {
+      background:
+        white;
+
+      border:
+        1px solid
+        #eadfea;
+
+      border-radius:
+        14px;
+
+      padding:
+        18px;
+
+      box-shadow:
+        0 8px 25px
+        rgba(80,45,75,.04);
+    }
+
+
+    .community-stat-label {
+      color:
+        #756d74;
+
+      font-size:
+        12px;
+
+      margin-bottom:
+        8px;
+    }
+
+
+    .community-stat-value {
+      color:
+        #352732;
+
+      font-family:
+        Georgia,
+        serif;
+
+      font-size:
+        28px;
+
+      font-weight:
+        700;
+    }
+
+
+    .users-card {
+      background:
+        white;
+
+      border:
+        1px solid
+        #eadfea;
+
+      border-radius:
+        16px;
+
+      padding:
+        20px;
+
+      box-shadow:
+        0 10px 30px
+        rgba(80,45,75,.05);
+
+      overflow-x:
+        auto;
+    }
+
+
+    .users-table {
+      width:
+        100%;
+
+      border-collapse:
+        collapse;
+
+      min-width:
+        720px;
+    }
+
+
+    .users-table th,
+    .users-table td {
+      padding:
+        12px 10px;
+
+      text-align:
+        left;
+
+      border-bottom:
+        1px solid
+        #eee5ed;
+
+      font-size:
+        12px;
+
+      vertical-align:
+        top;
+    }
+
+
+    .users-table th {
+      color:
+        #5c4c58;
+
+      font-weight:
+        700;
+
+      background:
+        #faf4f8;
+    }
+
+
+    .users-table td {
+      color:
+        #4b4149;
+    }
+
+
+    .users-table tr:last-child td {
+      border-bottom:
+        none;
+    }
+
+
+    .user-status {
+      font-weight:
+        700;
+    }
+
+
+    .user-status.confirmed {
+      color:
+        #2f7a4b;
+    }
+
+
+    .user-status.unconfirmed {
+      color:
+        #9a6a28;
+    }
+
+
+    .empty-users {
+      color:
+        #756d74;
+
+      font-size:
+        13px;
+
+      padding:
+        10px 0;
+    }
+
+
+    /* =========================
        ADMIN LINKS
     ========================== */
 
@@ -653,6 +829,12 @@
       .tools-grid {
         grid-template-columns:
           1fr;
+      }
+
+
+      .community-grid {
+        grid-template-columns:
+          repeat(2, 1fr);
       }
 
     }
@@ -854,6 +1036,162 @@
 
 
     <!-- =========================
+         COMMUNITY
+    ========================== -->
+
+    <h2 class="section-title">
+      Community
+    </h2>
+
+
+    <div class="community-grid">
+
+      <div class="community-stat">
+
+        <div class="community-stat-label">
+          Registered Users
+        </div>
+
+        <div
+          class="community-stat-value"
+          id="registeredUsersCount"
+        >
+          —
+        </div>
+
+      </div>
+
+
+      <div class="community-stat">
+
+        <div class="community-stat-label">
+          Comments
+        </div>
+
+        <div
+          class="community-stat-value"
+          id="commentsCount"
+        >
+          —
+        </div>
+
+      </div>
+
+
+      <div class="community-stat">
+
+        <div class="community-stat-label">
+          Replies
+        </div>
+
+        <div
+          class="community-stat-value"
+          id="repliesCount"
+        >
+          —
+        </div>
+
+      </div>
+
+
+      <div class="community-stat">
+
+        <div class="community-stat-label">
+          Article Likes
+        </div>
+
+        <div
+          class="community-stat-value"
+          id="articleLikesCount"
+        >
+          —
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="users-card">
+
+      <h3
+        style="
+          margin:0 0 15px;
+          font-family:Georgia,serif;
+          font-size:20px;
+        "
+      >
+        Registered Users
+      </h3>
+
+
+      <div
+        id="usersLoading"
+        class="empty-users"
+      >
+        Loading registered users...
+      </div>
+
+
+      <div
+        id="usersTableWrap"
+        style="display:none;"
+      >
+
+        <table class="users-table">
+
+          <thead>
+
+            <tr>
+
+              <th>
+                Name
+              </th>
+
+              <th>
+                Username
+              </th>
+
+              <th>
+                Email
+              </th>
+
+              <th>
+                Email Status
+              </th>
+
+              <th>
+                Joined
+              </th>
+
+              <th>
+                Last Sign-in
+              </th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody id="usersTableBody"></tbody>
+
+        </table>
+
+      </div>
+
+
+      <div
+        id="usersEmpty"
+        class="empty-users"
+        style="display:none;"
+      >
+        No registered users found.
+      </div>
+
+    </div>
+
+
+    <!-- =========================
          ADMIN TOOLS
     ========================== -->
 
@@ -900,8 +1238,10 @@
 
 
     <div class="note">
+
       Visitor statistics are provided by GoatCounter. The built-in counter is separate from your
       DissentVerse account system and does not require exposing an API token in your website code.
+
     </div>
 
   </section>
@@ -917,10 +1257,12 @@
   ========================== */
 
   const SUPABASE_URL =
-      "https://yplvpgigfkihgmyfsqyl.supabase.co";
+    "https://yplvpgigfkihgmyfsqyl.supabase.co";
 
-    const SUPABASE_PUBLISHABLE_KEY =
-      "sb_publishable_wnafq5zQ9Y2b9WsH-j5U9Q_WmcgYV1L";
+
+  const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_wnafq5zQ9Y2b9WsH-j5U9Q_WmcgYV1L";
+
 
   const supabaseClient =
     window.supabase.createClient(
@@ -928,6 +1270,7 @@
       SUPABASE_PUBLISHABLE_KEY,
       {
         auth: {
+
           persistSession:
             true,
 
@@ -936,6 +1279,7 @@
 
           detectSessionInUrl:
             true
+
         }
       }
     );
@@ -1172,6 +1516,8 @@
 
         showAdmin();
 
+        loadCommunityData();
+
       } catch (
         error
       ) {
@@ -1199,6 +1545,263 @@
 
     }
   );
+
+
+  /* =========================
+     COMMUNITY DATA
+  ========================== */
+
+  function escapeHtml(
+    value
+  ) {
+
+    return String(
+      value ?? ""
+    )
+      .replace(
+        /&/g,
+        "&amp;"
+      )
+      .replace(
+        /</g,
+        "&lt;"
+      )
+      .replace(
+        />/g,
+        "&gt;"
+      )
+      .replace(
+        /"/g,
+        "&quot;"
+      )
+      .replace(
+        /'/g,
+        "&#039;"
+      );
+
+  }
+
+
+  function formatDate(
+    value
+  ) {
+
+    if (
+      !value
+    ) {
+
+      return "—";
+
+    }
+
+
+    const date =
+      new Date(
+        value
+      );
+
+
+    if (
+      Number.isNaN(
+        date.getTime()
+      )
+    ) {
+
+      return "—";
+
+    }
+
+
+    return date.toLocaleString(
+      undefined,
+      {
+        dateStyle:
+          "medium",
+
+        timeStyle:
+          "short"
+      }
+    );
+
+  }
+
+
+  async function loadCommunityData() {
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .rpc(
+          "get_dissentverse_admin_data"
+        );
+
+
+    if (
+      error
+    ) {
+
+      console.error(
+        "Community data error:",
+        error
+      );
+
+
+      document.getElementById(
+        "usersLoading"
+      ).textContent =
+        "Unable to load registered users.";
+
+      return;
+
+    }
+
+
+    document.getElementById(
+      "registeredUsersCount"
+    ).textContent =
+      data.registeredUsers ?? 0;
+
+
+    document.getElementById(
+      "commentsCount"
+    ).textContent =
+      data.comments ?? 0;
+
+
+    document.getElementById(
+      "repliesCount"
+    ).textContent =
+      data.replies ?? 0;
+
+
+    document.getElementById(
+      "articleLikesCount"
+    ).textContent =
+      data.articleLikes ?? 0;
+
+
+    const users =
+      Array.isArray(
+        data.users
+      )
+        ? data.users
+        : [];
+
+
+    const loading =
+      document.getElementById(
+        "usersLoading"
+      );
+
+
+    const tableWrap =
+      document.getElementById(
+        "usersTableWrap"
+      );
+
+
+    const empty =
+      document.getElementById(
+        "usersEmpty"
+      );
+
+
+    const tbody =
+      document.getElementById(
+        "usersTableBody"
+      );
+
+
+    loading.style.display =
+      "none";
+
+
+    if (
+      !users.length
+    ) {
+
+      empty.style.display =
+        "block";
+
+      tableWrap.style.display =
+        "none";
+
+      return;
+
+    }
+
+
+    tbody.innerHTML =
+      users
+        .map(
+          user => {
+
+            const status =
+              user.emailConfirmed
+
+                ? '<span class="user-status confirmed">Confirmed</span>'
+
+                : '<span class="user-status unconfirmed">Not confirmed</span>';
+
+
+            return `
+              <tr>
+
+                <td>
+                  ${escapeHtml(
+                    user.name ||
+                    "User"
+                  )}
+                </td>
+
+                <td>
+                  ${escapeHtml(
+                    user.username ||
+                    "—"
+                  )}
+                </td>
+
+                <td>
+                  ${escapeHtml(
+                    user.email ||
+                    "—"
+                  )}
+                </td>
+
+                <td>
+                  ${status}
+                </td>
+
+                <td>
+                  ${escapeHtml(
+                    formatDate(
+                      user.joinedAt
+                    )
+                  )}
+                </td>
+
+                <td>
+                  ${escapeHtml(
+                    formatDate(
+                      user.lastSignInAt
+                    )
+                  )}
+                </td>
+
+              </tr>
+            `;
+
+          }
+        )
+        .join("");
+
+
+    tableWrap.style.display =
+      "block";
+
+  }
 
 
   /* =========================
@@ -1260,6 +1863,8 @@
         ) {
 
           showAdmin();
+
+          loadCommunityData();
 
         } else {
 
