@@ -1612,53 +1612,109 @@
 
   async function loadAdminData() {
 
-    dataError.style.display =
-      "none";
+  usersList.innerHTML =
+    '<div class="users-loading">Loading registered users...</div>';
 
-    dataError.textContent =
-      "";
+  dataError.style.display =
+    "none";
+
+  dataError.textContent =
+    "";
+
+  try {
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient.rpc(
+        "get_dissentverse_admin_data"
+      );
+
+
+    if (error) {
+
+      throw error;
+
+    }
+
+
+    if (!data) {
+
+      throw new Error(
+        "No dashboard data was returned."
+      );
+
+    }
+
+
+    /* =========================
+       COMMUNITY COUNTS
+    ========================== */
+
+    document.getElementById(
+      "registeredUsers"
+    ).textContent =
+      formatNumber(
+        data.registeredUsers
+      );
+
+
+    document.getElementById(
+      "commentsCount"
+    ).textContent =
+      formatNumber(
+        data.comments
+      );
+
+
+    document.getElementById(
+      "repliesCount"
+    ).textContent =
+      formatNumber(
+        data.replies
+      );
+
+
+    document.getElementById(
+      "articleLikes"
+    ).textContent =
+      formatNumber(
+        data.articleLikes
+      );
+
+
+    /* =========================
+       REGISTERED USERS
+    ========================== */
+
+    renderUsers(
+      data.users || []
+    );
+
+
+  } catch (error) {
+
+    console.error(
+      "Admin data error:",
+      error
+    );
 
 
     usersList.innerHTML =
-      '<div class="users-loading">Loading registered users...</div>';
+      '<div class="users-error">Unable to load registered users.</div>';
 
 
-    try {
+    dataError.textContent =
+      error.message ||
+      "Community data could not be loaded.";
 
-      const {
-        data,
-        error
-      } =
-        await supabaseClient
-          .functions
-          .invoke(
-            "dissentverse-analytics",
-            {
-              body: {}
-            }
-          );
+    dataError.style.display =
+      "block";
 
+  }
 
-      if (
-        error
-      ) {
-
-        throw error;
-
-      }
-
-
-      if (
-        !data ||
-        data.success !== true
-      ) {
-
-        throw new Error(
-          data?.error ||
-          "The admin data could not be loaded."
-        );
-
-      }
+}
 
 
       /* =========================
