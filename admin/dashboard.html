@@ -141,13 +141,6 @@
     }
 
 
-    .header-actions a:hover,
-    .header-actions button:hover {
-      background:
-        #ffffff;
-    }
-
-
     /* =========================
        CONTAINER
     ========================== */
@@ -304,12 +297,6 @@
     }
 
 
-    .primary-btn:hover {
-      background:
-        #76204f;
-    }
-
-
     .primary-btn:disabled {
       opacity:
         .65;
@@ -418,7 +405,7 @@
 
 
     /* =========================
-       SECTIONS
+       ANALYTICS
     ========================== */
 
     .section-title {
@@ -436,10 +423,6 @@
         #352732;
     }
 
-
-    /* =========================
-       ANALYTICS
-    ========================== */
 
     .analytics-card {
       background:
@@ -480,7 +463,7 @@
       width:
         100%;
 
-      height:
+      min-height:
         105px;
 
       border:
@@ -519,285 +502,7 @@
 
 
     /* =========================
-       COMMUNITY
-    ========================== */
-
-    .community-grid {
-      display:
-        grid;
-
-      grid-template-columns:
-        repeat(4, 1fr);
-
-      gap:
-        15px;
-    }
-
-
-    .community-card {
-      background:
-        white;
-
-      border:
-        1px solid
-        #eadfea;
-
-      border-radius:
-        15px;
-
-      padding:
-        20px;
-
-      box-shadow:
-        0 8px 25px
-        rgba(80,45,75,.05);
-    }
-
-
-    .community-label {
-      color:
-        #777;
-
-      font-size:
-        12px;
-
-      margin-bottom:
-        9px;
-    }
-
-
-    .community-number {
-      color:
-        #8f2860;
-
-      font-size:
-        29px;
-
-      font-weight:
-        700;
-    }
-
-
-    /* =========================
-       REGISTERED USERS
-    ========================== */
-
-    .users-box {
-      background:
-        white;
-
-      border:
-        1px solid
-        #eadfea;
-
-      border-radius:
-        16px;
-
-      overflow:
-        hidden;
-
-      box-shadow:
-        0 10px 30px
-        rgba(80,45,75,.05);
-    }
-
-
-    .users-header {
-      display:
-        grid;
-
-      grid-template-columns:
-        1.1fr 1fr 1.5fr 1fr;
-
-      gap:
-        15px;
-
-      padding:
-        14px 18px;
-
-      background:
-        #faf4f8;
-
-      border-bottom:
-        1px solid
-        #eadfea;
-
-      color:
-        #6f626c;
-
-      font-size:
-        11px;
-
-      font-weight:
-        700;
-
-      text-transform:
-        uppercase;
-
-      letter-spacing:
-        .4px;
-    }
-
-
-    .user-row {
-      display:
-        grid;
-
-      grid-template-columns:
-        1.1fr 1fr 1.5fr 1fr;
-
-      gap:
-        15px;
-
-      align-items:
-        center;
-
-      padding:
-        16px 18px;
-
-      border-bottom:
-        1px solid
-        #f0e7ee;
-    }
-
-
-    .user-row:last-child {
-      border-bottom:
-        none;
-    }
-
-
-    .user-name {
-      font-size:
-        13px;
-
-      font-weight:
-        700;
-
-      color:
-        #443342;
-    }
-
-
-    .user-username {
-      font-size:
-        12px;
-
-      color:
-        #8f2860;
-
-      overflow-wrap:
-        anywhere;
-    }
-
-
-    .user-email {
-      font-size:
-        12px;
-
-      color:
-        #655d63;
-
-      overflow-wrap:
-        anywhere;
-    }
-
-
-    .user-joined {
-      font-size:
-        11px;
-
-      color:
-        #8a8088;
-    }
-
-
-    .verified {
-      display:
-        block;
-
-      margin-top:
-        4px;
-
-      font-size:
-        9px;
-
-      color:
-        #287a3e;
-
-      font-weight:
-        700;
-    }
-
-
-    .not-verified {
-      display:
-        block;
-
-      margin-top:
-        4px;
-
-      font-size:
-        9px;
-
-      color:
-        #9b6262;
-
-      font-weight:
-        700;
-    }
-
-
-    .users-loading {
-      padding:
-        30px;
-
-      text-align:
-        center;
-
-      color:
-        #8a8088;
-
-      font-size:
-        13px;
-    }
-
-
-    .users-error {
-      padding:
-        25px;
-
-      text-align:
-        center;
-
-      color:
-        #b00020;
-
-      font-size:
-        13px;
-
-      line-height:
-        1.5;
-    }
-
-
-    .users-empty {
-      padding:
-        30px;
-
-      text-align:
-        center;
-
-      color:
-        #8a8088;
-
-      font-size:
-        13px;
-    }
-
-
-    /* =========================
-       ADMIN TOOLS
+       ADMIN LINKS
     ========================== */
 
     .tools-grid {
@@ -915,60 +620,12 @@
     ========================== */
 
     @media (
-      max-width: 850px
-    ) {
-
-      .community-grid {
-        grid-template-columns:
-          repeat(2, 1fr);
-      }
-
-
-      .users-header {
-        display:
-          none;
-      }
-
-
-      .user-row {
-        display:
-          block;
-
-        padding:
-          18px;
-      }
-
-
-      .user-name,
-      .user-username,
-      .user-email,
-      .user-joined {
-        margin-bottom:
-          7px;
-      }
-
-
-      .user-joined {
-        margin-bottom:
-          0;
-      }
-
-    }
-
-
-    @media (
       max-width: 650px
     ) {
 
       .header {
         padding:
           16px;
-      }
-
-
-      .header-actions {
-        justify-content:
-          flex-start;
       }
 
 
@@ -993,25 +650,7 @@
       }
 
 
-      .community-grid {
-        grid-template-columns:
-          1fr 1fr;
-      }
-
-
       .tools-grid {
-        grid-template-columns:
-          1fr;
-      }
-
-    }
-
-
-    @media (
-      max-width: 450px
-    ) {
-
-      .community-grid {
         grid-template-columns:
           1fr;
       }
@@ -1178,7 +817,7 @@
 
 
     <!-- =========================
-         WEBSITE ANALYTICS
+         ANALYTICS
     ========================== -->
 
     <h2 class="section-title">
@@ -1210,128 +849,6 @@
       >
         Open complete GoatCounter analytics →
       </a>
-
-    </div>
-
-
-    <!-- =========================
-         COMMUNITY
-    ========================== -->
-
-    <h2 class="section-title">
-      Community
-    </h2>
-
-
-    <div class="community-grid">
-
-
-      <div class="community-card">
-
-        <div class="community-label">
-          Registered Users
-        </div>
-
-        <div
-          class="community-number"
-          id="registeredUsers"
-        >
-          —
-        </div>
-
-      </div>
-
-
-      <div class="community-card">
-
-        <div class="community-label">
-          Comments
-        </div>
-
-        <div
-          class="community-number"
-          id="commentsCount"
-        >
-          —
-        </div>
-
-      </div>
-
-
-      <div class="community-card">
-
-        <div class="community-label">
-          Replies
-        </div>
-
-        <div
-          class="community-number"
-          id="repliesCount"
-        >
-          —
-        </div>
-
-      </div>
-
-
-      <div class="community-card">
-
-        <div class="community-label">
-          Article Likes
-        </div>
-
-        <div
-          class="community-number"
-          id="articleLikes"
-        >
-          —
-        </div>
-
-      </div>
-
-
-    </div>
-
-
-    <!-- =========================
-         REGISTERED USERS
-    ========================== -->
-
-    <h2 class="section-title">
-      Registered Users
-    </h2>
-
-
-    <div class="users-box">
-
-      <div class="users-header">
-
-        <div>
-          Name
-        </div>
-
-        <div>
-          Username
-        </div>
-
-        <div>
-          Email
-        </div>
-
-        <div>
-          Joined
-        </div>
-
-      </div>
-
-
-      <div id="usersList">
-
-        <div class="users-loading">
-          Loading registered users...
-        </div>
-
-      </div>
 
     </div>
 
@@ -1383,16 +900,9 @@
 
 
     <div class="note">
-      Visitor statistics are provided by GoatCounter. Registered-user information is retrieved
-      through the protected DissentVerse admin system.
+      Visitor statistics are provided by GoatCounter. The built-in counter is separate from your
+      DissentVerse account system and does not require exposing an API token in your website code.
     </div>
-
-
-    <div
-      id="dataError"
-      class="users-error"
-      style="display:none;"
-    ></div>
 
   </section>
 
@@ -1407,12 +917,10 @@
   ========================== */
 
   const SUPABASE_URL =
-    "https://yplvpgigfkihgmyfsqyl.supabase.co";
+      "https://yplvpgigfkihgmyfsqyl.supabase.co";
 
-
-  const SUPABASE_PUBLISHABLE_KEY =
-    "sb_publishable_wnafq5zQ9Y2b9WsH-j5U9Q_WmcgV1L";
-
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_wnafq5zQ9Y2b9WsH-j5U9Q_WmcgYV1L";
 
   const supabaseClient =
     window.supabase.createClient(
@@ -1479,33 +987,6 @@
     );
 
 
-  const usersList =
-    document.getElementById(
-      "usersList"
-    );
-
-
-  const dataError =
-    document.getElementById(
-      "dataError"
-    );
-
-
-  /* =========================
-     FORMAT NUMBER
-  ========================== */
-
-  function formatNumber(
-    value
-  ) {
-
-    return Number(
-      value || 0
-    ).toLocaleString();
-
-  }
-
-
   /* =========================
      SHOW LOGIN
   ========================== */
@@ -1523,22 +1004,11 @@
     headerActions.style.display =
       "none";
 
-
     loginMessage.textContent =
       message;
 
-
-    if (message) {
-
-      loginMessage.className =
-        "message error";
-
-    } else {
-
-      loginMessage.className =
-        "message";
-
-    }
+    loginMessage.className =
+      "message error";
 
   }
 
@@ -1596,380 +1066,17 @@
       error
     ) {
 
+      console.error(
+        "Admin check error:",
+        error
+      );
+
       throw error;
 
     }
 
 
     return !!data;
-
-  }
-
-
-  /* =========================
-     LOAD ADMIN DATA
-  ========================== */
-
-  async function loadAdminData() {
-
-  usersList.innerHTML =
-    '<div class="users-loading">Loading registered users...</div>';
-
-  dataError.style.display =
-    "none";
-
-  dataError.textContent =
-    "";
-
-  try {
-
-    const {
-      data,
-      error
-    } =
-      await supabaseClient.rpc(
-        "get_dissentverse_admin_data"
-      );
-
-
-    if (error) {
-
-      throw error;
-
-    }
-
-
-    if (!data) {
-
-      throw new Error(
-        "No dashboard data was returned."
-      );
-
-    }
-
-
-    /* =========================
-       COMMUNITY COUNTS
-    ========================== */
-
-    document.getElementById(
-      "registeredUsers"
-    ).textContent =
-      formatNumber(
-        data.registeredUsers
-      );
-
-
-    document.getElementById(
-      "commentsCount"
-    ).textContent =
-      formatNumber(
-        data.comments
-      );
-
-
-    document.getElementById(
-      "repliesCount"
-    ).textContent =
-      formatNumber(
-        data.replies
-      );
-
-
-    document.getElementById(
-      "articleLikes"
-    ).textContent =
-      formatNumber(
-        data.articleLikes
-      );
-
-
-    /* =========================
-       REGISTERED USERS
-    ========================== */
-
-    renderUsers(
-      data.users || []
-    );
-
-
-  } catch (error) {
-
-    console.error(
-      "Admin data error:",
-      error
-    );
-
-
-    usersList.innerHTML =
-      '<div class="users-error">Unable to load registered users.</div>';
-
-
-    dataError.textContent =
-      error.message ||
-      "Community data could not be loaded.";
-
-    dataError.style.display =
-      "block";
-
-  }
-
-}
-
-
-      /* =========================
-         COMMUNITY COUNTS
-      ========================== */
-
-      document.getElementById(
-        "registeredUsers"
-      ).textContent =
-        formatNumber(
-          data.community?.registeredUsers
-        );
-
-
-      document.getElementById(
-        "commentsCount"
-      ).textContent =
-        formatNumber(
-          data.community?.comments
-        );
-
-
-      document.getElementById(
-        "repliesCount"
-      ).textContent =
-        formatNumber(
-          data.community?.replies
-        );
-
-
-      document.getElementById(
-        "articleLikes"
-      ).textContent =
-        formatNumber(
-          data.community?.articleLikes
-        );
-
-
-      /* =========================
-         USERS
-      ========================== */
-
-      renderUsers(
-        data.users || []
-      );
-
-
-    } catch (
-      error
-    ) {
-
-      console.error(
-        "Admin data error:",
-        error
-      );
-
-
-      usersList.innerHTML =
-        '<div class="users-error">Unable to load registered users.</div>';
-
-
-      dataError.textContent =
-        "Community data could not be loaded right now. Your admin login is still working.";
-
-      dataError.style.display =
-        "block";
-
-    }
-
-  }
-
-
-  /* =========================
-     RENDER USERS
-  ========================== */
-
-  function renderUsers(
-    users
-  ) {
-
-    if (
-      !users ||
-      users.length === 0
-    ) {
-
-      usersList.innerHTML =
-        '<div class="users-empty">No registered users yet.</div>';
-
-      return;
-
-    }
-
-
-    usersList.innerHTML =
-      "";
-
-
-    users.forEach(
-      function(user) {
-
-        const row =
-          document.createElement(
-            "div"
-          );
-
-
-        row.className =
-          "user-row";
-
-
-        const name =
-          document.createElement(
-            "div"
-          );
-
-
-        name.className =
-          "user-name";
-
-
-        name.textContent =
-          user.name ||
-          "User";
-
-
-        const username =
-          document.createElement(
-            "div"
-          );
-
-
-        username.className =
-          "user-username";
-
-
-        username.textContent =
-          user.username
-            ? "@" +
-              user.username
-            : "No username";
-
-
-        const email =
-          document.createElement(
-            "div"
-          );
-
-
-        email.className =
-          "user-email";
-
-
-        email.textContent =
-          user.email ||
-          "";
-
-
-        const verification =
-          document.createElement(
-            "span"
-          );
-
-
-        if (
-          user.emailConfirmed
-        ) {
-
-          verification.className =
-            "verified";
-
-          verification.textContent =
-            "Email verified";
-
-        } else {
-
-          verification.className =
-            "not-verified";
-
-          verification.textContent =
-            "Email not verified";
-
-        }
-
-
-        email.appendChild(
-          verification
-        );
-
-
-        const joined =
-          document.createElement(
-            "div"
-          );
-
-
-        joined.className =
-          "user-joined";
-
-
-        if (
-          user.joinedAt
-        ) {
-
-          const date =
-            new Date(
-              user.joinedAt
-            );
-
-
-          joined.textContent =
-            date.toLocaleDateString(
-              undefined,
-              {
-                day:
-                  "numeric",
-
-                month:
-                  "long",
-
-                year:
-                  "numeric"
-              }
-            );
-
-        } else {
-
-          joined.textContent =
-            "—";
-
-        }
-
-
-        row.appendChild(
-          name
-        );
-
-        row.appendChild(
-          username
-        );
-
-        row.appendChild(
-          email
-        );
-
-        row.appendChild(
-          joined
-        );
-
-
-        usersList.appendChild(
-          row
-        );
-
-      }
-    );
 
   }
 
@@ -1992,7 +1099,6 @@
 
       loginButton.textContent =
         "Signing in...";
-
 
       loginMessage.textContent =
         "";
@@ -2024,8 +1130,7 @@
           data,
           error
         } =
-          await supabaseClient
-            .auth
+          await supabaseClient.auth
             .signInWithPassword({
 
               email:
@@ -2056,10 +1161,7 @@
           !isAdmin
         ) {
 
-          await supabaseClient
-            .auth
-            .signOut();
-
+          await supabaseClient.auth.signOut();
 
           throw new Error(
             "This account does not have admin access."
@@ -2069,17 +1171,6 @@
 
 
         showAdmin();
-
-
-        /*
-          Important:
-          Dashboard data is loaded separately.
-          If analytics/community data fails,
-          the successful admin login remains intact.
-        */
-
-        await loadAdminData();
-
 
       } catch (
         error
@@ -2118,10 +1209,7 @@
     "click",
     async function() {
 
-      await supabaseClient
-        .auth
-        .signOut();
-
+      await supabaseClient.auth.signOut();
 
       loginForm.reset();
 
@@ -2143,8 +1231,7 @@
         data,
         error
       } =
-        await supabaseClient
-          .auth
+        await supabaseClient.auth
           .getSession();
 
 
@@ -2174,16 +1261,9 @@
 
           showAdmin();
 
-loadAdminData().catch(function (error) {
-  console.error("Dashboard data error:", error);
-});
-
         } else {
 
-          await supabaseClient
-            .auth
-            .signOut();
-
+          await supabaseClient.auth.signOut();
 
           showLogin(
             "This account does not have admin access."
