@@ -6597,7 +6597,34 @@
 
     })();
 
-  </script>
+  <script>
+  (async function () {
+    try {
+      const articleSlug = "{{ page.slug }}";
+
+      if (!articleSlug) return;
+
+      await fetch(
+        "https://yplvpgigfkihgmyfsqyl.supabase.co/rest/v1/article_pageviews",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "apikey": "YOUR_SUPABASE_PUBLISHABLE_KEY",
+            "Prefer": "return=minimal"
+          },
+          body: JSON.stringify({
+            article_slug: articleSlug
+          }),
+          keepalive: true
+        }
+      );
+
+    } catch (error) {
+      console.error("Pageview recording error:", error);
+    }
+  })();
+</script>
 
 
 </body>
