@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Subscribers | DissentVerse</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.111.0"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f7f3f8;
+      color: #222;
+    }
+
+    .header {
+      background: #ffffff;
+      border-bottom: 1px solid #e5dce8;
+      padding: 18px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 22px;
+      font-weight: 700;
+      color: #35134f;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header-actions a,
+    .logout-button {
+      text-decoration: none;
+      border: 1px solid #d8c8df;
+      background: #fff;
+      color: #35134f;
+      padding: 9px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .header-actions a:hover,
+    .logout-button:hover {
+      background: #f5edf8;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .login-box,
+    .admin-box {
+      background: #fff;
+      border-radius: 14px;
+      padding: 30px;
+      box-shadow: 0 4px 18px rgba(53, 19, 79, 0.08);
+    }
+
+    .login-box {
+      max-width: 450px;
+      margin: 70px auto;
+    }
+
+    h1 {
+      margin-top: 0;
+      color: #35134f;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #35134f;
+    }
+
+    .subtitle {
+      color: #666;
+      margin-bottom: 25px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d8c8df;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #7d3fa1;
+    }
+
+    .primary-button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: #5b2678;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .primary-button:hover {
+      background: #482060;
+    }
+
+    .message {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .stats {
+      display: flex;
+      gap: 18px;
+      margin: 25px 0;
+      flex-wrap: wrap;
+    }
+
+    .stat-card {
+      background: #faf7fb;
+      border: 1px solid #e6dbea;
+      border-radius: 10px;
+      padding: 18px 22px;
+      min-width: 180px;
+    }
+
+    .stat-label {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .stat-value {
+      color: #35134f;
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+      margin-top: 25px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+    }
+
+    th,
+    td {
+      padding: 14px 12px;
+      text-align: left;
+      border-bottom: 1px solid #e8e1eb;
+    }
+
+    th {
+      background: #f7f2f9;
+      color: #35134f;
+      font-size: 14px;
+    }
+
+    td {
+      font-size: 14px;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 40px 20px;
+      color: #777;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 35px;
+      color: #666;
+    }
+
+    .error {
+      color: #b42318;
+    }
+
+    @media (max-width: 700px) {
+      .header {
+        padding: 15px;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .header-actions {
+        width: 100%;
+        flex-wrap: wrap;
+      }
+
+      .container {
+        margin: 25px auto;
+      }
+
+      .admin-box {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+
+    <div class="brand">
+      DissentVerse Admin
+    </div>
+
+    <div id="headerActions" class="header-actions hidden">
+      <a href="/dissentverse/admin/">
+        Dashboard
+      </a>
+
+      <a href="/dissentverse/admin/comments.html">
+        Comments
+      </a>
+
+      <button class="logout-button" onclick="logout()">
+        Log Out
+      </button>
+    </div>
+
+  </header>
+
+
+  <!-- LOGIN -->
+
+  <main id="loginSection" class="container">
+
+    <div class="login-box">
+
+      <h1>Admin Login</h1>
+
+      <p class="subtitle">
+        Sign in to manage DissentVerse subscribers.
+      </p>
+
+      <form onsubmit="login(event)">
+
+        <div class="form-group">
+          <label for="email">
+            Email
+          </label>
+
+          <input
+            type="email"
+            id="email"
+            required
+          >
+        </div>
+
+
+        <div class="form-group">
+          <label for="password">
+            Password
+          </label>
+
+          <input
+            type="password"
+            id="password"
+            required
+          >
+        </div>
+
+
+        <button
+          type="submit"
+          class="primary-button"
+        >
+          Log In
+        </button>
+
+      </form>
+
+      <div id="loginMessage" class="message"></div>
+
+    </div>
+
+  </main>
+
+
+  <!-- ADMIN -->
+
+  <main id="adminSection" class="container hidden">
+
+    <div class="admin-box">
+
+      <h1>Subscribers</h1>
+
+      <p class="subtitle">
+        People who have joined the DissentVerse email list.
+      </p>
+
+
+      <div class="stats">
+
+        <div class="stat-card">
+
+          <div class="stat-label">
+            Total Subscribers
+          </div>
+
+          <div id="subscriberCount" class="stat-value">
+            0
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div id="loading" class="loading">
+        Loading subscribers...
+      </div>
+
+
+      <div id="tableWrapper" class="table-wrapper hidden">
+
+        <table>
+
+          <thead>
+            <tr>
+              <th>Email</th>
+              <th>Subscribed On</th>
+            </tr>
+          </thead>
+
+          <tbody id="subscriberTableBody"></tbody>
+
+        </table>
+
+      </div>
+
+
+      <div id="emptyMessage" class="empty hidden">
+        No subscribers yet.
+      </div>
+
+
+      <div id="adminMessage" class="message"></div>
+
+    </div>
+
+  </main>
+
+
+  <script>
+
+    const supabaseClient = window.supabase.createClient(
+      "https://yplvpgigfkihgmyfsqyl.supabase.co",
+      "YOUR_EXISTING_PUBLISHABLE_KEY",
+      {
+        auth: {
+          persistSession: true,
+          autoRefreshToken: true,
+          detectSessionInUrl: true
+        }
+      }
+    );
+
+
+    async function checkAdmin(user) {
+
+      if (!user) {
+        return false;
+      }
+
+      const { data, error } = await supabaseClient
+        .from("admin_users")
+        .select("user_id")
+        .eq("user_id", user.id)
+        .maybeSingle();
+
+      if (error) {
+        console.error("Admin check error:", error);
+        return false;
+      }
+
+      return !!data;
+    }
+
+
+    async function login(event) {
+
+      event.preventDefault();
+
+      const email =
+        document.getElementById("email").value.trim();
+
+      const password =
+        document.getElementById("password").value;
+
+      const message =
+        document.getElementById("loginMessage");
+
+      message.textContent = "Logging in...";
+      message.className = "message";
+
+
+      const { data, error } =
+        await supabaseClient.auth.signInWithPassword({
+          email,
+          password
+        });
+
+
+      if (error) {
+
+        message.textContent =
+          error.message;
+
+        message.className =
+          "message error";
+
+        return;
+      }
+
+
+      const isAdmin =
+        await checkAdmin(data.user);
+
+
+      if (!isAdmin) {
+
+        await supabaseClient.auth.signOut();
+
+        message.textContent =
+          "This account does not have admin access.";
+
+        message.className =
+          "message error";
+
+        return;
+      }
+
+
+      showAdmin();
+
+      loadSubscribers();
+    }
+
+
+    function showAdmin() {
+
+      document
+        .getElementById("loginSection")
+        .classList.add("hidden");
+
+      document
+        .getElementById("adminSection")
+        .classList.remove("hidden");
+
+      document
+        .getElementById("headerActions")
+        .classList.remove("hidden");
+    }
+
+
+    function showLogin() {
+
+      document
+        .getElementById("loginSection")
+        .classList.remove("hidden");
+
+      document
+        .getElementById("adminSection")
+        .classList.add("hidden");
+
+      document
+        .getElementById("headerActions")
+        .classList.add("hidden");
+    }
+
+
+    async function loadSubscribers() {
+
+      const loading =
+        document.getElementById("loading");
+
+      const tableWrapper =
+        document.getElementById("tableWrapper");
+
+      const emptyMessage =
+        document.getElementById("emptyMessage");
+
+      const tableBody =
+        document.getElementById("subscriberTableBody");
+
+      const adminMessage =
+        document.getElementById("adminMessage");
+
+
+      loading.classList.remove("hidden");
+      tableWrapper.classList.add("hidden");
+      emptyMessage.classList.add("hidden");
+      adminMessage.textContent = "";
+      tableBody.innerHTML = "";
+
+
+      const {
+        data,
+        error
+      } = await supabaseClient.rpc(
+        "get_dissentverse_subscribers"
+      );
+
+
+      loading.classList.add("hidden");
+
+
+      if (error) {
+
+        console.error(
+          "Subscriber loading error:",
+          error
+        );
+
+        adminMessage.textContent =
+          error.message;
+
+        adminMessage.className =
+          "message error";
+
+        return;
+      }
+
+
+      const subscribers =
+        Array.isArray(data)
+          ? data
+          : [];
+
+
+      document
+        .getElementById("subscriberCount")
+        .textContent =
+          subscribers.length;
+
+
+      if (subscribers.length === 0) {
+
+        emptyMessage.classList.remove("hidden");
+
+        return;
+      }
+
+
+      subscribers.forEach(subscriber => {
+
+        const row =
+          document.createElement("tr");
+
+
+        const emailCell =
+          document.createElement("td");
+
+        emailCell.textContent =
+          subscriber.email;
+
+
+        const dateCell =
+          document.createElement("td");
+
+        dateCell.textContent =
+          formatDate(subscriber.subscribedAt);
+
+
+        row.appendChild(emailCell);
+        row.appendChild(dateCell);
+
+        tableBody.appendChild(row);
+
+      });
+
+
+      tableWrapper.classList.remove("hidden");
+    }
+
+
+    function formatDate(dateString) {
+
+      if (!dateString) {
+        return "—";
+      }
+
+      const date =
+        new Date(dateString);
+
+      return date.toLocaleString(
+        "en-IN",
+        {
+          day: "2-digit",
+          month: "short",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit"
+        }
+      );
+    }
+
+
+    async function logout() {
+
+      await supabaseClient.auth.signOut();
+
+      showLogin();
+
+      document
+        .getElementById("loginMessage")
+        .textContent = "";
+    }
+
+
+    async function initialize() {
+
+      const {
+        data
+      } = await supabaseClient.auth.getSession();
+
+
+      const session =
+        data.session;
+
+
+      if (!session || !session.user) {
+        showLogin();
+        return;
+      }
+
+
+      const isAdmin =
+        await checkAdmin(session.user);
+
+
+      if (!isAdmin) {
+
+        await supabaseClient.auth.signOut();
+
+        showLogin();
+
+        return;
+      }
+
+
+      showAdmin();
+
+      loadSubscribers();
+    }
+
+
+    initialize();
+
+  </script>
+
+</body>
+</html>
