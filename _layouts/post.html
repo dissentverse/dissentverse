@@ -6584,46 +6584,53 @@
         );
 
 
-          })();
+      } finally {
+
+        updateAccountButtons();
+
+
+        await loadArticleLikeState();
+
+
+        await loadComments();
+      }
+
+    })();
 
   </script>
+
 
   <script>
     (async function () {
-      // pageview code
+      try {
+        const articleSlug = "{{ page.slug }}";
+
+        if (!articleSlug) return;
+
+        await fetch(
+          "https://yplvpgigfkihgmyfsqyl.supabase.co/rest/v1/article_pageviews",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "apikey": "YOUR_EXISTING_ANON_KEY",
+              "Prefer": "return=minimal"
+            },
+            body: JSON.stringify({
+              article_slug: articleSlug
+            }),
+            keepalive: true
+          }
+        );
+
+      } catch (error) {
+        console.error(
+          "Pageview recording error:",
+          error
+        );
+      }
     })();
   </script>
-
-</body>
-</html>
-  (async function () {
-    try {
-      const articleSlug = "{{ page.slug }}";
-
-      if (!articleSlug) return;
-
-      await fetch(
-        "https://yplvpgigfkihgmyfsqyl.supabase.co/rest/v1/article_pageviews",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "apikey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlwbHZwZ2lnZmtpaGdteWZzcXlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAwMzkyNzksImV4cCI6MjEwNTYxNTI3OX0.9nHT9NIDBH3ndJyZPJF2-uvy40Kz0aF7oimyDEJuPPg",
-            "Prefer": "return=minimal"
-          },
-          body: JSON.stringify({
-            article_slug: articleSlug
-          }),
-          keepalive: true
-        }
-      );
-
-    } catch (error) {
-      console.error("Pageview recording error:", error);
-    }
-  })();
-</script>
-
 
 </body>
 </html>
