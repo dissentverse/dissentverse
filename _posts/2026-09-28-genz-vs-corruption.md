@@ -6,8 +6,6 @@ date: 17-09-2025
 ---
 Generation Z, often shortened to Gen Z and also known as Zoomers, are those who are born between 1997 to 2012. This is the generation which actually grew up with internet, where memes are their language and social media is their hub. Still, most of the time we hear people saying that this generation is irresponsible, careless, always stuck on phones and yes, sometimes even depressed. But one thing is 100% true – their opinions, views and mindset are totally different from the last generation.
 
-![](https://dissentverse.wordpress.com/wp-content/uploads/2025/09/img-20250917-wa0004-2-e1758103119718.jpg?w=1024)
-
 They don’t just want to study, get a degree, and do a job. They want a lot more. They want to explore new things, question this society, and see the world in their own way. And being a Gen Z myself, I can totally feel it. I’ve even studied a bit on this topic, but today I’m not here to talk about Gen Z in general. I’m here to talk about Nepal, the protest that is being led by the students and the youth , The Gen Z.
 
 ***✊ Gen Z in Nepal’s Protest***
