@@ -2041,141 +2041,142 @@
 
 
   function renderArticleAnalytics(
-    articles,
-    community
+  articles,
+  community
+) {
+
+  const loading =
+    document.getElementById(
+      "articleAnalyticsLoading"
+    );
+
+
+  const empty =
+    document.getElementById(
+      "articleAnalyticsEmpty"
+    );
+
+
+  const errorBox =
+    document.getElementById(
+      "articleAnalyticsError"
+    );
+
+
+  const tableWrap =
+    document.getElementById(
+      "articleAnalyticsTableWrap"
+    );
+
+
+  const tbody =
+    document.getElementById(
+      "articleAnalyticsBody"
+    );
+
+
+  loading.style.display =
+    "none";
+
+  errorBox.style.display =
+    "none";
+
+
+  if (
+    !Array.isArray(articles) ||
+    !articles.length
   ) {
 
-    const loading =
-      document.getElementById(
-        "articleAnalyticsLoading"
-      );
-
-
-    const empty =
-      document.getElementById(
-        "articleAnalyticsEmpty"
-      );
-
-
-    const errorBox =
-      document.getElementById(
-        "articleAnalyticsError"
-      );
-
-
-    const tableWrap =
-      document.getElementById(
-        "articleAnalyticsTableWrap"
-      );
-
-
-    const tbody =
-      document.getElementById(
-        "articleAnalyticsBody"
-      );
-
-
-    loading.style.display =
-      "none";
-
-    errorBox.style.display =
-      "none";
-
-
-    if (
-      !Array.isArray(articles) ||
-      !articles.length
-    ) {
-
-      empty.style.display =
-        "block";
-
-      tableWrap.style.display =
-        "none";
-
-      return;
-
-    }
-
-
     empty.style.display =
-      "none";
-
-
-    /*
-      At the moment the Edge Function
-      returns one article and aggregate
-      community totals.
-
-      Therefore these community totals
-      correctly represent the current
-      article while there is one article
-      in the returned analytics data.
-    */
-
-    tbody.innerHTML =
-      articles
-        .map(
-          article => {
-
-            const views =
-              getArticleViews(
-                article
-              );
-
-
-            return `
-              <tr>
-
-                <td class="article-title-cell">
-                  ${escapeHtml(
-                    article.title ||
-                    "Untitled Article"
-                  )}
-                </td>
-
-                <td>
-                  <span class="article-number">
-                    ${views}
-                  </span>
-                </td>
-
-                <td>
-                  <span class="article-number">
-                    ${Number(
-                      community.articleLikes || 0
-                    )}
-                  </span>
-                </td>
-
-                <td>
-                  <span class="article-number">
-                    ${Number(
-                      community.comments || 0
-                    )}
-                  </span>
-                </td>
-
-                <td>
-                  <span class="article-number">
-                    ${Number(
-                      community.replies || 0
-                    )}
-                  </span>
-                </td>
-
-              </tr>
-            `;
-
-          }
-        )
-        .join("");
-
-
-    tableWrap.style.display =
       "block";
 
+    tableWrap.style.display =
+      "none";
+
+    return;
+
   }
+
+
+  empty.style.display =
+    "none";
+
+
+  tbody.innerHTML =
+    articles
+      .map(
+        article => {
+
+          const views =
+            Number(
+              article.views || 0
+            );
+
+
+          const likes =
+            Number(
+              article.likes || 0
+            );
+
+
+          const comments =
+            Number(
+              article.comments || 0
+            );
+
+
+          const replies =
+            Number(
+              article.replies || 0
+            );
+
+
+          return `
+            <tr>
+
+              <td class="article-title-cell">
+                ${escapeHtml(
+                  article.title ||
+                  "Untitled Article"
+                )}
+              </td>
+
+              <td>
+                <span class="article-number">
+                  ${views}
+                </span>
+              </td>
+
+              <td>
+                <span class="article-number">
+                  ${likes}
+                </span>
+              </td>
+
+              <td>
+                <span class="article-number">
+                  ${comments}
+                </span>
+              </td>
+
+              <td>
+                <span class="article-number">
+                  ${replies}
+                </span>
+              </td>
+
+            </tr>
+          `;
+
+        }
+      )
+      .join("");
+
+
+  tableWrap.style.display =
+    "block";
+
+}
 
 
   /* =========================
