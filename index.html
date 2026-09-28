@@ -212,6 +212,11 @@
       background: #72204d;
     }
 
+    .join-button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
     /* =========================
        RECENT POSTS
        ========================= */
@@ -795,9 +800,23 @@
           required
         >
 
-        <button type="submit" class="join-button">
+        <button
+          type="submit"
+          class="join-button"
+          id="joinButton"
+        >
           Join Us →
         </button>
+
+        <div
+          id="joinMessage"
+          style="
+            display:none;
+            font-size:11px;
+            line-height:1.5;
+            margin-top:3px;
+          "
+        ></div>
 
       </form>
 
@@ -1047,7 +1066,7 @@
 
 const supabaseClient = window.supabase.createClient(
   "https://yplvpgigfkihgmyfsqyl.supabase.co",
-  "sb_publishable_wnafq5zQ9Y2b9WsH-j5U9Q_WmcgV1L",
+  "YOUR_EXISTING_PUBLISHABLE_KEY",
   {
     auth: {
       persistSession: true,
@@ -1070,28 +1089,88 @@ supabaseClient.auth.onAuthStateChange(function (event) {
 });
 
 
-function joinDissentVerse(event) {
+async function joinDissentVerse(event) {
 
   event.preventDefault();
 
+  const emailInput =
+    document.getElementById("joinEmail");
+
+  const joinButton =
+    document.getElementById("joinButton");
+
+  const joinMessage =
+    document.getElementById("joinMessage");
+
   const email =
-    document.getElementById("joinEmail").value.trim();
+    emailInput.value.trim().toLowerCase();
 
-  if (!email) return;
 
-  const subject =
-    encodeURIComponent("Join DissentVerse");
+  if (!email) {
+    return;
+  }
 
-  const body =
-    encodeURIComponent(
-      "I would like to join DissentVerse.\n\nMy email: " + email
-    );
 
-  window.location.href =
-    "mailto:dissentverse@gmail.com?subject=" +
-    subject +
-    "&body=" +
-    body;
+  joinButton.disabled = true;
+  joinButton.textContent = "Joining...";
+
+  joinMessage.style.display = "none";
+  joinMessage.textContent = "";
+
+
+  const { error } =
+    await supabaseClient
+      .from("subscribers")
+      .insert({
+        email: email
+      });
+
+
+  if (error) {
+
+    console.error("Subscription error:", error);
+
+
+    if (error.code === "23505") {
+
+      joinMessage.textContent =
+        "You're already subscribed.";
+
+      joinMessage.style.color =
+        "#8f2860";
+
+    } else {
+
+      joinMessage.textContent =
+        "Something went wrong. Please try again.";
+
+      joinMessage.style.color =
+        "#b42318";
+    }
+
+
+    joinMessage.style.display = "block";
+
+    joinButton.disabled = false;
+    joinButton.textContent = "Join Us →";
+
+    return;
+  }
+
+
+  joinMessage.textContent =
+    "You're subscribed! Thanks for joining DissentVerse.";
+
+  joinMessage.style.color =
+    "#357a4b";
+
+  joinMessage.style.display = "block";
+
+
+  emailInput.value = "";
+
+  joinButton.disabled = false;
+  joinButton.textContent = "Joined ✓";
 
 }
 
