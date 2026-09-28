@@ -1,0 +1,11 @@
+---
+---
+[
+{% for post in site.posts %}
+  {
+    "title": {{ post.title | jsonify }},
+    "path": {{ post.url | absolute_url | jsonify }},
+    "slug": {{ post.slug | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
+{% endfor %}
+]
