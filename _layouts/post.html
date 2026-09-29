@@ -33,123 +33,96 @@
     }
 
 
-    <!-- =========================
-     HEADER
-========================= -->
+    /* =========================
+       HEADER
+    ========================= */
 
-<header class="top-header">
+    .site-header {
+      background:
+        linear-gradient(
+          135deg,
+          #b96b9f,
+          #c98ab6 55%,
+          #ead8e8
+        );
 
-  <div class="top-brand">
+      border-bottom: 1px solid rgba(150,80,130,.20);
+      backdrop-filter: blur(8px);
 
-    <img
-      class="site-logo"
-      src="https://dissentverse.wordpress.com/wp-content/uploads/2025/08/cropped-img-20250811-wa0002.jpg"
-      alt="DissentVerse logo"
-    >
+      padding: 20px 30px;
+    }
 
-    <div>
-      Dissent<span>Verse</span>
-    </div>
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
 
-  </div>
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
 
+      gap: 30px;
+    }
 
-  <div class="search-box">
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
 
-    <input
-      type="search"
-      placeholder="Search..."
-      aria-label="Search"
-      autocomplete="off"
-      name="site-search"
-    >
+    .site-logo {
+      width: 52px;
+      height: 52px;
 
-    <i class="fa-solid fa-magnifying-glass"></i>
+      border-radius: 50%;
+      object-fit: cover;
 
-  </div>
+      border: 2px solid rgba(255,255,255,.75);
+      box-shadow: 0 4px 15px rgba(80,30,70,.15);
+    }
 
-</header>
+    .brand {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 31px;
+      font-weight: 700;
+      color: #241b24;
+      letter-spacing: -0.5px;
+    }
 
+    .brand span {
+      color: #B02A72;
+    }
 
-<nav class="nav-bar">
+    .tagline {
+      margin-top: 2px;
 
-  <a href="/dissentverse/">
-    HOME
-  </a>
+      font-family: "DM Sans", sans-serif;
+      font-size: 12px;
+      color: #4d3045;
 
-  <a href="/dissentverse/about.html">
-    ABOUT
-  </a>
+      letter-spacing: .4px;
+    }
 
-  <a
-    href="/dissentverse/articles.html"
-    class="active"
-  >
-    ARTICLES
-  </a>
+    nav {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
 
-  <a href="mailto:dissentverse@gmail.com">
-    CONTACT
-  </a>
+    nav a {
+      text-decoration: none;
 
-</nav>
+      font-family: "DM Sans", sans-serif;
+      font-size: 12px;
+      font-weight: 600;
 
+      color: #3f2838;
 
-/* =========================
-   NAV
-========================= */
+      letter-spacing: .6px;
+    }
 
-.nav-bar {
-  background: #eee1ed;
-  min-height: 58px;
-
-  display: flex;
-  align-items: center;
-
-  padding: 0 7%;
-  gap: 34px;
-
-  border-bottom: 1px solid #e5d6e3;
-}
-
-.nav-bar a {
-  font-family: "DM Sans", sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.7px;
-
-  color: #50474e;
-
-  position: relative;
-  padding: 20px 0;
-
-  text-decoration: none;
-}
-
-.nav-bar a::after {
-  content: "";
-  position: absolute;
-
-  left: 0;
-  bottom: 13px;
-
-  width: 0;
-  height: 2px;
-
-  background: #8f2860;
-
-  transition: width 0.25s ease;
-}
-
-.nav-bar a:hover,
-.nav-bar a.active {
-  color: #8f2860;
-}
-
-.nav-bar a:hover::after,
-.nav-bar a.active::after {
-  width: 100%;
-}
+    nav a:hover {
+      color: #ffffff;
+    }
 
 
     /* =========================
@@ -1184,57 +1157,25 @@
       </div>
 
 
-      <header class="top-header">
+      <nav>
 
-  <div class="top-brand">
+        <a href="/dissentverse/">
+          HOME
+        </a>
 
-    <img
-      class="site-logo"
-      src="https://dissentverse.wordpress.com/wp-content/uploads/2025/08/cropped-img-20250811-wa0002.jpg"
-      alt="DissentVerse logo"
-    >
+        <a href="/dissentverse/about.html">
+          ABOUT
+        </a>
 
-    <span>DissentVerse</span>
+        <a href="/dissentverse/articles.html">
+          ARTICLES
+        </a>
 
-  </div>
+      </nav>
 
+    </div>
 
-  <div class="search-box">
-
-    <input
-      type="text"
-      placeholder="Search..."
-      aria-label="Search"
-    >
-
-    <i class="fa-solid fa-magnifying-glass"></i>
-
-  </div>
-
-</header>
-
-
-<nav class="nav-bar">
-
-  <a href="/dissentverse/">
-    HOME
-  </a>
-
-  <a href="/dissentverse/about.html">
-    ABOUT
-  </a>
-
-  <a
-    href="/dissentverse/articles.html"
-  >
-    ARTICLES
-  </a>
-
-  <a href="mailto:dissentverse@gmail.com">
-    CONTACT
-  </a>
-
-</nav>
+  </header>
 
 
   <!-- =========================
