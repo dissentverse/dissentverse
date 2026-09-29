@@ -2,3 +2,6 @@ title: DissentVerse
 baseurl: "/dissentverse"
 url: "https://dissentverse.github.io"
 future: true
+
+plugins:
+  - jekyll-sitemap
