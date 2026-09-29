@@ -614,30 +614,27 @@
 
     @media (max-width: 900px) {
 
-  .page-wrapper {
-    display: contents;
-  }
+      .page-wrapper {
+        display: flex;
+        flex-direction: column;
+      }
 
-  .main-content {
-    order: 1;
-  }
+      .main-content {
+        order: 1;
+      }
 
-  .sidebar {
-    order: 2;
-    width: 100%;
-    min-width: 0;
-    height: auto;
-    position: relative;
-    border-right: none;
-    border-top: 1px solid #eee5ed;
-    padding: 45px 25px;
-  }
+      .sidebar {
+        order: 2;
+        width: 100%;
+        min-width: 0;
+        height: auto;
+        position: relative;
+        border-right: none;
+        border-top: 1px solid #eee5ed;
+        padding: 45px 25px;
+      }
 
-  footer {
-    order: 3;
-  }
-
-  .top-header {
+      .top-header {
         padding: 30px 6%;
       }
 
