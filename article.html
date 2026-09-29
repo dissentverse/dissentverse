@@ -10,6 +10,19 @@ permalink: /articles.html
 
   <title>Articles | DissentVerse</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Lora:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&display=swap"
+  rel="stylesheet"
+>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
+
   <style>
     * {
       box-sizing: border-box;
@@ -50,87 +63,110 @@ permalink: /articles.html
 
 
     /* =========================
-       HEADER
-       ========================= */
+   HEADER
+   ========================= */
 
-    .site-header {
-      background:
-        linear-gradient(
-          135deg,
-          #b96b9f,
-          #c98ab6 55%,
-          #ead8e8
-        );
+.top-header {
+  min-height: 145px;
+  padding: 32px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
 
-      border-bottom: 1px solid rgba(150, 80, 130, 0.20);
+  background: linear-gradient(
+    135deg,
+    #b96b9d 0%,
+    #d495bd 42%,
+    #e8cfe5 72%,
+    #f5eaf4 100%
+  );
+}
 
-      backdrop-filter: blur(8px);
+.top-brand {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(36px, 5vw, 65px);
+  font-style: italic;
+  font-weight: 700;
+  line-height: 1;
+  color: #111111;
+}
 
-      padding: 20px 30px;
-    }
+.top-brand span {
+  color: #70204d;
+}
 
-    .header-inner {
-      max-width: 1100px;
-      margin: 0 auto;
+.search-box {
+  width: 270px;
+  position: relative;
+}
 
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+.search-box input {
+  width: 100%;
+  padding: 12px 43px 12px 16px;
+  border: none;
+  border-radius: 25px;
+  outline: none;
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  background: rgba(255,255,255,0.82);
+}
 
-    .brand-block {
-      display: flex;
-      flex-direction: column;
-    }
+.search-box i {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #765b6c;
+  font-size: 14px;
+}
 
-    .brand-row {
-      display: flex;
-      align-items: center;
-    }
 
-    .brand {
-      text-decoration: none;
+/* =========================
+   NAV
+   ========================= */
 
-      color: #171717;
+.nav-bar {
+  background: #eee1ed;
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+  padding: 0 7%;
+  gap: 34px;
+  border-bottom: 1px solid #e5d6e3;
+}
 
-      font-size: 25px;
-      font-weight: bold;
+.nav-bar a {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  color: #50474e;
+  position: relative;
+  padding: 20px 0;
+  text-decoration: none;
+}
 
-      letter-spacing: -0.5px;
-    }
+.nav-bar a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 13px;
+  width: 0;
+  height: 2px;
+  background: #8f2860;
+  transition: width 0.25s ease;
+}
 
-    .brand span {
-      color: #7d1f58;
-    }
+.nav-bar a:hover,
+.nav-bar a.active {
+  color: #8f2860;
+}
 
-    .tagline {
-      margin-top: 4px;
-      margin-left: 0;
-
-      color: #594250;
-
-      font-size: 11px;
-      font-style: italic;
-    }
-
-    .navigation {
-      display: flex;
-      gap: 24px;
-    }
-
-    .navigation a {
-      color: #3f2838;
-
-      text-decoration: none;
-
-      font-size: 14px;
-      font-weight: bold;
-    }
-
-    .navigation a:hover {
-      color: #7d1f58;
-    }
-
+.nav-bar a:hover::after,
+.nav-bar a.active::after {
+  width: 100%;
+}
 
     /* =========================
        ARTICLES PAGE
