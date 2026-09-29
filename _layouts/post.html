@@ -38,92 +38,170 @@
     ========================= */
 
     .site-header {
-      background:
-        linear-gradient(
-          135deg,
-          #b96b9f,
-          #c98ab6 55%,
-          #ead8e8
-        );
+  min-height: 145px;
+  padding: 32px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  background: linear-gradient(
+    135deg,
+    #b96b9d 0%,
+    #d495bd 42%,
+    #e8cfe5 72%,
+    #f5eaf4 100%
+  );
+  border-bottom: 1px solid #e5d6e3;
+}
 
-      border-bottom: 1px solid rgba(150,80,130,.20);
-      backdrop-filter: blur(8px);
+.header-inner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
 
-      padding: 20px 30px;
-    }
+.brand-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
 
-    .header-inner {
-      max-width: 1200px;
-      margin: 0 auto;
+.site-logo {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255,255,255,.85);
+  box-shadow: 0 4px 15px rgba(80,30,70,.15);
+  flex-shrink: 0;
+}
 
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+.brand {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(36px, 5vw, 65px);
+  font-style: italic;
+  font-weight: 700;
+  line-height: 1;
+  color: #111111;
+  letter-spacing: 0;
+}
 
-      gap: 30px;
-    }
+.brand span {
+  color: #70204d;
+}
 
-    .brand-row {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
+.tagline {
+  margin-top: 6px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  color: #4d3045;
+  letter-spacing: .4px;
+}
 
-    .site-logo {
-      width: 52px;
-      height: 52px;
+.site-header nav {
+  display: flex;
+  gap: 34px;
+  align-items: center;
+}
 
-      border-radius: 50%;
-      object-fit: cover;
+.site-header nav a {
+  text-decoration: none;
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #50474e;
+  letter-spacing: .7px;
+  position: relative;
+  padding: 20px 0;
+}
 
-      border: 2px solid rgba(255,255,255,.75);
-      box-shadow: 0 4px 15px rgba(80,30,70,.15);
-    }
+.site-header nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 13px;
+  width: 0;
+  height: 2px;
+  background: #8f2860;
+  transition: width 0.25s ease;
+}
 
-    .brand {
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: 31px;
-      font-weight: 700;
-      color: #241b24;
-      letter-spacing: -0.5px;
-    }
+.site-header nav a:hover {
+  color: #8f2860;
+}
 
-    .brand span {
-      color: #B02A72;
-    }
+.site-header nav a:hover::after {
+  width: 100%;
+}
 
-    .tagline {
-      margin-top: 2px;
+.search-box {
+  width: 270px;
+  position: relative;
+}
 
-      font-family: "DM Sans", sans-serif;
-      font-size: 12px;
-      color: #4d3045;
+.search-box input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 43px 12px 16px;
+  border: none;
+  border-radius: 25px;
+  outline: none;
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  background: rgba(255,255,255,0.82);
+}
 
-      letter-spacing: .4px;
-    }
+.search-box i {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #765b6c;
+  font-size: 14px;
+}
 
-    nav {
-      display: flex;
-      gap: 24px;
-      align-items: center;
-    }
+@media (max-width: 900px) {
+  .site-header {
+    padding: 30px 6%;
+  }
+}
 
-    nav a {
-      text-decoration: none;
+@media (max-width: 650px) {
+  .site-header {
+    min-height: 125px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+  }
 
-      font-family: "DM Sans", sans-serif;
-      font-size: 12px;
-      font-weight: 600;
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
 
-      color: #3f2838;
+  .brand {
+    font-size: 40px;
+  }
 
-      letter-spacing: .6px;
-    }
+  .search-box {
+    width: 100%;
+  }
 
-    nav a:hover {
-      color: #ffffff;
-    }
+  .site-header nav {
+    width: 100%;
+    gap: 22px;
+    overflow-x: auto;
+  }
 
+  .site-header nav a {
+    white-space: nowrap;
+    padding: 17px 0;
+  }
+}
 
     /* =========================
        ARTICLE
