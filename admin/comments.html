@@ -736,36 +736,251 @@
             "";
 
 
-          const deleteButton =
-            document.createElement("button");
+          const replyButton =
+  document.createElement("button");
 
-          deleteButton.className =
-            "delete-btn";
+replyButton.className =
+  "reply-btn";
 
-          deleteButton.type =
-            "button";
+replyButton.type =
+  "button";
 
-          deleteButton.textContent =
-            "Delete";
+replyButton.textContent =
+  "Reply";
 
 
-          deleteButton.addEventListener(
-            "click",
-            function () {
+replyButton.addEventListener(
+  "click",
+  function () {
 
-              deleteComment(
-                comment.id,
-                deleteButton
-              );
+    const existingReplyBox =
+      card.querySelector(".reply-box");
 
-            }
+    if (existingReplyBox) {
+      existingReplyBox.remove();
+      return;
+    }
+
+
+    const replyBox =
+      document.createElement("div");
+
+    replyBox.className =
+      "reply-box";
+
+
+    const replyTextarea =
+      document.createElement("textarea");
+
+    replyTextarea.placeholder =
+      "Write your reply...";
+
+
+    const submitReplyButton =
+      document.createElement("button");
+
+    submitReplyButton.className =
+      "reply-submit-btn";
+
+    submitReplyButton.type =
+      "button";
+
+    submitReplyButton.textContent =
+      "Post Reply";
+
+
+    const cancelReplyButton =
+      document.createElement("button");
+
+    cancelReplyButton.className =
+      "reply-cancel-btn";
+
+    cancelReplyButton.type =
+      "button";
+
+    cancelReplyButton.textContent =
+      "Cancel";
+
+
+    replyBox.appendChild(
+      replyTextarea
+    );
+
+    replyBox.appendChild(
+      submitReplyButton
+    );
+
+    replyBox.appendChild(
+      cancelReplyButton
+    );
+
+
+    cancelReplyButton.addEventListener(
+      "click",
+      function () {
+
+        replyBox.remove();
+
+      }
+    );
+
+
+    submitReplyButton.addEventListener(
+      "click",
+      async function () {
+
+        const replyText =
+          replyTextarea.value.trim();
+
+
+        if (!replyText) {
+
+          alert(
+            "Please write a reply first."
           );
 
+          replyTextarea.focus();
 
-          card.appendChild(top);
-          card.appendChild(article);
-          card.appendChild(text);
-          card.appendChild(deleteButton);
+          return;
+
+        }
+
+
+        submitReplyButton.disabled =
+          true;
+
+        submitReplyButton.textContent =
+          "Posting...";
+
+
+        const {
+          data: sessionData
+        } =
+          await supabaseClient.auth.getSession();
+
+
+        const session =
+          sessionData.session;
+
+
+        if (
+          !session ||
+          !session.user
+        ) {
+
+          alert(
+            "Your admin session has expired. Please log in again."
+          );
+
+          submitReplyButton.disabled =
+            false;
+
+          submitReplyButton.textContent =
+            "Post Reply";
+
+          return;
+
+        }
+
+
+        const {
+          error: replyError
+        } =
+          await supabaseClient
+            .from("comments")
+            .insert({
+              article_slug:
+                comment.article_slug,
+
+              parent_id:
+                comment.id,
+
+              display_name:
+                "DissentVerse",
+
+              comment_text:
+                replyText,
+
+              is_anonymous:
+                false,
+
+              approved:
+                true,
+
+              user_id:
+                session.user.id
+            });
+
+
+        if (replyError) {
+
+          console.error(
+            "Reply error:",
+            replyError
+          );
+
+          alert(
+            "Unable to post this reply."
+          );
+
+          submitReplyButton.disabled =
+            false;
+
+          submitReplyButton.textContent =
+            "Post Reply";
+
+          return;
+
+        }
+
+
+        await loadComments();
+
+      }
+    );
+
+
+    card.appendChild(
+      replyBox
+    );
+
+    replyTextarea.focus();
+
+  }
+);
+
+
+const deleteButton =
+  document.createElement("button");
+
+deleteButton.className =
+  "delete-btn";
+
+deleteButton.type =
+  "button";
+
+deleteButton.textContent =
+  "Delete";
+
+
+deleteButton.addEventListener(
+  "click",
+  function () {
+
+    deleteComment(
+      comment.id,
+      deleteButton
+    );
+
+  }
+);
+
+
+card.appendChild(top);
+card.appendChild(article);
+card.appendChild(text);
+card.appendChild(replyButton);
+card.appendChild(deleteButton);
 
           commentsList.appendChild(card);
 
