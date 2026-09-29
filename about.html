@@ -214,6 +214,12 @@ permalink: /about.html
       background: #72204d;
     }
 
+    .join-button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+
     /* =========================
        RECENT POSTS
        ========================= */
@@ -839,9 +845,20 @@ permalink: /about.html
         <button
           type="submit"
           class="join-button"
+          id="joinButton"
         >
           Join Us →
         </button>
+
+        <div
+          id="joinMessage"
+          style="
+            display: none;
+            font-size: 12px;
+            line-height: 1.5;
+            margin-top: 4px;
+          "
+        ></div>
 
       </form>
 
@@ -1077,6 +1094,34 @@ permalink: /about.html
 </div>
 
 
+<!-- SUPABASE -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+  const SUPABASE_URL =
+    "https://yplvpgigfkihgmyfsqyl.supabase.co";
+
+  const SUPABASE_PUBLISHABLE_KEY =
+    "PASTE_THE_SAME_PUBLISHABLE_KEY_USED_IN_YOUR_WORKING_COMMENTS_HTML_HERE";
+
+  const supabaseClient =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY,
+      {
+        auth: {
+          persistSession: true,
+          autoRefreshToken: true,
+          detectSessionInUrl: true
+        }
+      }
+    );
+
+</script>
+
+
 <!-- JOIN US SCRIPT -->
 
 <script>
@@ -1175,29 +1220,87 @@ async function loadRecentPosts() {
 
 loadRecentPosts();
 
-function joinDissentVerse(event) {
+async function joinDissentVerse(event) {
 
   event.preventDefault();
 
+  const emailInput =
+    document.getElementById("joinEmail");
+
+  const joinButton =
+    document.getElementById("joinButton");
+
+  const joinMessage =
+    document.getElementById("joinMessage");
+
   const email =
-    document.getElementById("joinEmail").value.trim();
+    emailInput.value.trim().toLowerCase();
 
   if (!email) return;
 
-  const subject =
-    encodeURIComponent("Join DissentVerse");
+  joinButton.disabled = true;
+  joinButton.textContent = "Joining...";
 
-  const body =
-    encodeURIComponent(
-      "I would like to join DissentVerse.\n\nMy email: " + email
+  joinMessage.style.display = "none";
+  joinMessage.textContent = "";
+
+  const { error } =
+    await supabaseClient
+      .from("subscribers")
+      .insert({ email: email });
+
+  if (error) {
+
+    console.error(
+      "Subscription error:",
+      error
     );
 
-  window.location.href =
-    "mailto:dissentverse@gmail.com?subject=" +
-    subject +
-    "&body=" +
-    body;
+    if (error.code === "23505") {
 
+      joinMessage.textContent =
+        "You're already subscribed.";
+
+      joinMessage.style.color =
+        "#8f2860";
+
+    } else {
+
+      joinMessage.textContent =
+        "Something went wrong. Please try again.";
+
+      joinMessage.style.color =
+        "#b42318";
+    }
+
+    joinMessage.style.display =
+      "block";
+
+    joinButton.disabled =
+      false;
+
+    joinButton.textContent =
+      "Join Us →";
+
+    return;
+  }
+
+  joinMessage.textContent =
+    "You're subscribed! Thanks for joining DissentVerse.";
+
+  joinMessage.style.color =
+    "#357a4b";
+
+  joinMessage.style.display =
+    "block";
+
+  emailInput.value = "";
+
+  joinButton.disabled =
+    false;
+
+  joinButton.textContent =
+    "Joined ✓";
 }
 
 </script>
