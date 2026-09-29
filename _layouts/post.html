@@ -33,81 +33,66 @@
     }
 
 
-    /* =========================
-   HEADER
-========================= */
+    <!-- =========================
+     HEADER
+========================= -->
 
-.top-header {
-  min-height: 145px;
-  padding: 32px 7%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 30px;
+<header class="top-header">
 
-  background: linear-gradient(
-    135deg,
-    #b96b9d 0%,
-    #d495bd 42%,
-    #e8cfe5 72%,
-    #f5eaf4 100%
-  );
-}
+  <div class="top-brand">
 
-.top-brand {
-  display: flex;
-  align-items: center;
-  gap: 14px;
+    <img
+      class="site-logo"
+      src="https://dissentverse.wordpress.com/wp-content/uploads/2025/08/cropped-img-20250811-wa0002.jpg"
+      alt="DissentVerse logo"
+    >
 
-  font-family: "Playfair Display", serif;
-  font-size: clamp(36px, 5vw, 65px);
-  font-style: italic;
-  font-weight: 700;
-  line-height: 1;
-  color: #111111;
-}
+    <div>
+      Dissent<span>Verse</span>
+    </div>
 
-.top-brand span {
-  color: #70204d;
-}
+  </div>
 
-.top-brand .site-logo {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  object-fit: cover;
 
-  border: 2px solid rgba(255,255,255,.75);
-  box-shadow: 0 4px 15px rgba(80,30,70,.15);
-}
+  <div class="search-box">
 
-.search-box {
-  width: 270px;
-  position: relative;
-}
+    <input
+      type="search"
+      placeholder="Search..."
+      aria-label="Search"
+      autocomplete="off"
+      name="site-search"
+    >
 
-.search-box input {
-  width: 100%;
-  padding: 12px 43px 12px 16px;
-  border: none;
-  border-radius: 25px;
-  outline: none;
+    <i class="fa-solid fa-magnifying-glass"></i>
 
-  font-family: "DM Sans", sans-serif;
-  font-size: 13px;
+  </div>
 
-  background: rgba(255,255,255,0.82);
-}
+</header>
 
-.search-box i {
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
 
-  color: #765b6c;
-  font-size: 14px;
-}
+<nav class="nav-bar">
+
+  <a href="/dissentverse/">
+    HOME
+  </a>
+
+  <a href="/dissentverse/about.html">
+    ABOUT
+  </a>
+
+  <a
+    href="/dissentverse/articles.html"
+    class="active"
+  >
+    ARTICLES
+  </a>
+
+  <a href="mailto:dissentverse@gmail.com">
+    CONTACT
+  </a>
+
+</nav>
 
 
 /* =========================
