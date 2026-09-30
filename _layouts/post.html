@@ -141,9 +141,10 @@
   position: relative;
 }
 
-.search-box input {
+.search-box .search-input {
   width: 100%;
   box-sizing: border-box;
+  min-height: 40px;
   padding: 12px 43px 12px 16px;
   border: none;
   border-radius: 25px;
@@ -151,8 +152,17 @@
   font-family: "DM Sans", sans-serif;
   font-size: 13px;
   background: rgba(255,255,255,0.82);
+  color: #242024;
 }
 
+.search-box .search-input:empty::before {
+  content: attr(data-placeholder);
+  color: #765b6c;
+}
+
+.search-box .search-input:focus:empty::before {
+  content: "";
+}
 .search-box i {
   position: absolute;
   right: 16px;
@@ -6740,24 +6750,100 @@
 
     const siteSearch = document.getElementById("siteSearch");
 
-    if (siteSearch) {
-      siteSearch.addEventListener("focus", function () {
-        this.removeAttribute("readonly");
-        this.value = "";
-      });
+if (siteSearch) {
 
-      siteSearch.addEventListener("keydown", function (event) {
-        if (event.key === "Enter") {
-          event.preventDefault();
+  function clearSearchHighlights() {
+    document.querySelectorAll("mark.site-search-highlight").forEach(mark => {
+      mark.replaceWith(document.createTextNode(mark.textContent));
+    });
+  }
 
-          const query = this.value.trim();
+  function highlightSearchResults(query) {
+    clearSearchHighlights();
 
-          if (!query) return;
+    if (!query) return;
 
-          window.find(query);
+    const walker = document.createTreeWalker(
+      document.body,
+      NodeFilter.SHOW_TEXT,
+      {
+        acceptNode(node) {
+          const parent = node.parentElement;
+
+          if (
+            !parent ||
+            parent.closest("#siteSearch") ||
+            ["SCRIPT", "STYLE", "NOSCRIPT"].includes(parent.tagName)
+          ) {
+            return NodeFilter.FILTER_REJECT;
+          }
+
+          return node.textContent
+            .toLowerCase()
+            .includes(query.toLowerCase())
+            ? NodeFilter.FILTER_ACCEPT
+            : NodeFilter.FILTER_REJECT;
         }
-      });
+      }
+    );
+
+    const nodes = [];
+
+    while (walker.nextNode()) {
+      nodes.push(walker.currentNode);
     }
+
+    nodes.forEach(node => {
+      const text = node.textContent;
+      const lowerText = text.toLowerCase();
+      const lowerQuery = query.toLowerCase();
+
+      const fragment = document.createDocumentFragment();
+      let position = 0;
+      let matchIndex;
+
+      while ((matchIndex = lowerText.indexOf(lowerQuery, position)) !== -1) {
+
+        fragment.appendChild(
+          document.createTextNode(text.slice(position, matchIndex))
+        );
+
+        const mark = document.createElement("mark");
+        mark.className = "site-search-highlight";
+        mark.textContent = text.slice(
+          matchIndex,
+          matchIndex + query.length
+        );
+
+        fragment.appendChild(mark);
+
+        position = matchIndex + query.length;
+      }
+
+      fragment.appendChild(
+        document.createTextNode(text.slice(position))
+      );
+
+      node.parentNode.replaceChild(fragment, node);
+    });
+  }
+
+  siteSearch.addEventListener("keydown", function(event) {
+
+    if (event.key === "Enter") {
+      event.preventDefault();
+
+      const query = this.textContent.trim();
+
+      highlightSearchResults(query);
+    }
+
+    if (event.key === "Escape") {
+      this.textContent = "";
+      clearSearchHighlights();
+    }
+  });
+}
 </script>
 
 </body>
