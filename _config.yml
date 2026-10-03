@@ -5,3 +5,9 @@ future: true
 
 plugins:
   - jekyll-sitemap
+
+defaults:
+  - scope:
+      path: "admin"
+    values:
+      sitemap: false
