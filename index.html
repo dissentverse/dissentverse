@@ -151,7 +151,7 @@
        ========================= */
 
     .join-box {
-      background: #ffffff;
+      background: linear-gradient(
         145deg,
         #f8edf6,
         #f3e4f0
@@ -162,25 +162,6 @@
       margin-bottom: 28px;
     }
 
-
-.join-section {
-  max-width: 900px;
-  width: calc(100% - 50px);
-  margin: 30px auto 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.join-section .join-box {
-  margin-bottom: 0;
-}
-
-@media (max-width: 900px) {
-  .join-section {
-    margin-top: 25px;
-  }
-}
-    
     .join-box h3 {
       font-family: "Playfair Display", serif;
       font-size: 19px;
@@ -737,36 +718,9 @@
 
 <div class="page-wrapper">
 
-  ```html
-<!-- HAMBURGER BUTTON -->
-<button
-  class="drawer-toggle"
-  id="drawerToggle"
-  type="button"
-  aria-label="Open navigation"
-  aria-controls="siteDrawer"
-  aria-expanded="false"
->
-  <span></span>
-  <span></span>
-  <span></span>
-</button>
+  <!-- SIDEBAR -->
 
-<!-- DRAWER OVERLAY -->
-<div class="drawer-overlay" id="drawerOverlay"></div>
-
-<!-- SIDEBAR DRAWER -->
-<aside class="sidebar" id="siteDrawer" aria-label="Site navigation">
-
-  <button
-    class="drawer-close"
-    id="drawerClose"
-    type="button"
-    aria-label="Close navigation"
-  >&times;</button>
-
-  <!-- BRAND -->
-  <div class="sidebar-brand">
+  <aside class="sidebar">
 
     <img
       src="https://dissentverse.wordpress.com/wp-content/uploads/2025/08/cropped-img-20250811-wa0002.jpg"
@@ -774,89 +728,126 @@
       class="sidebar-logo"
     >
 
+    <div class="welcome">
+      Welcome to
+    </div>
+
     <div class="sidebar-title">
       Dissent<span>Verse</span>
     </div>
 
-    <p class="sidebar-tagline">Where Dissent finds its Verse.</p>
+    <p class="sidebar-description">
+      A space for questioning the things we often accept without questioning.
+      From education and career choices to social expectations, technology,
+      culture, and the realities shaping everyday life, DissentVerse explores
+      what lies beneath the surface.
+    </p>
 
-  </div>
+    <div class="connect-title">
+      Let's connect
+    </div>
 
-  <!-- SIDEBAR NAVIGATION -->
-  <nav class="sidebar-nav" aria-label="Main navigation">
-
-    <a href="{{ '/about/' | relative_url }}">About</a>
-
-    <a href="{{ '/articles/' | relative_url }}">Articles</a>
-
-    <!-- EXPANDABLE SOCIAL LINKS -->
-    <button
-      class="connect-toggle"
-      id="connectToggle"
-      type="button"
-      aria-expanded="false"
-      aria-controls="socialLinks"
-    >
-      <span>Let's Connect</span>
-      <span class="connect-chevron" aria-hidden="true">⌄</span>
-    </button>
-
-    <div class="social-links" id="socialLinks" hidden>
+    <div class="social-links">
 
       <a href="" aria-label="Instagram">
         <i class="fa-brands fa-instagram"></i>
-        <span>Instagram</span>
       </a>
 
-      <a
-        href="https://pin.it/4ZKIbFLnW"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Pinterest"
-      >
+      <a href="https://pin.it/4ZKIbFLnW"
+         target="_blank"
+         rel="noopener"
+         aria-label="Pinterest">
         <i class="fa-brands fa-pinterest-p"></i>
-        <span>Pinterest</span>
       </a>
 
-      <a
-        href="https://www.youtube.com/@DissentVerse"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="YouTube"
-      >
+      <a href="https://www.youtube.com/@DissentVerse"
+         target="_blank"
+         rel="noopener"
+         aria-label="YouTube">
         <i class="fa-brands fa-youtube"></i>
-        <span>YouTube</span>
       </a>
 
-      <a
-        href="https://t.me/dissentverse"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Telegram"
-      >
+      <a href="https://t.me/dissentverse"
+         target="_blank"
+         rel="noopener"
+         aria-label="Telegram">
         <i class="fa-brands fa-telegram"></i>
-        <span>Telegram</span>
       </a>
 
-      <a href="mailto:dissentverse@gmail.com" aria-label="Email">
+      <a href="mailto:dissentverse@gmail.com"
+         aria-label="Email">
         <i class="fa-solid fa-envelope"></i>
-        <span>Email</span>
       </a>
 
     </div>
 
-    <a href="{{ '/about/' | relative_url }}#founder">Founder</a>
 
-  </nav>
+    <!-- JOIN US -->
 
-  <!-- BOTTOM TAGLINE -->
-  <p class="sidebar-quote">
-    Looking beyond what we <em>simply accept.</em>
-  </p>
+    <div class="join-box">
 
-</aside>
-```
+      <h3>Join Us</h3>
 
+      <p>
+        Stay updated with our latest articles and ideas by joining our blog.
+      </p>
+
+      <form class="join-form" onsubmit="joinDissentVerse(event)">
+
+        <input
+          type="email"
+          id="joinEmail"
+          class="email-input"
+          placeholder="Enter your email"
+          required
+        >
+
+        <button
+          type="submit"
+          class="join-button"
+          id="joinButton"
+        >
+          Join Us →
+        </button>
+
+        <div
+          id="joinMessage"
+          style="
+            display:none;
+            font-size:11px;
+            line-height:1.5;
+            margin-top:3px;
+          "
+        ></div>
+
+      </form>
+
+    </div>
+
+
+    <!-- RECENT POSTS -->
+
+    <div class="recent-title">
+      Recent Posts
+    </div>
+
+    <ul class="recent-posts">
+
+      {% assign recent_posts = site.posts | sort: "date" | reverse %}
+
+      {% for post in recent_posts limit: 6 %}
+
+      <li>
+        <a href="{{ post.url | relative_url }}">
+          {{ post.title }}
+        </a>
+      </li>
+
+      {% endfor %}
+
+    </ul>
+
+  </aside>
 
 
   <!-- MAIN -->
@@ -944,46 +935,6 @@
       </p>
 
     </div>
-
-    
-<!-- JOIN US -->
-
-<section class="join-section">
-  <div class="join-box">
-
-    <h3>Join Us</h3>
-
-    <p>
-      Stay updated with our latest articles and ideas by joining our blog.
-    </p>
-
-    <form class="join-form" onsubmit="joinDissentVerse(event)">
-
-      <input
-        type="email"
-        id="joinEmail"
-        class="email-input"
-        placeholder="Enter your email"
-        required
-      >
-
-      <button
-        type="submit"
-        class="join-button"
-        id="joinButton"
-      >
-        Join Us →
-      </button>
-
-      <div
-        id="joinMessage"
-        style="display:none; font-size:12px; line-height:1.5; margin-top:3px;"
-      ></div>
-
-    </form>
-
-  </div>
-</section>
 
 
     <!-- LATEST ARTICLES -->
