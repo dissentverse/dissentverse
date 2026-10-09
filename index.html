@@ -737,9 +737,36 @@
 
 <div class="page-wrapper">
 
-  <!-- SIDEBAR -->
+  ```html
+<!-- HAMBURGER BUTTON -->
+<button
+  class="drawer-toggle"
+  id="drawerToggle"
+  type="button"
+  aria-label="Open navigation"
+  aria-controls="siteDrawer"
+  aria-expanded="false"
+>
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
 
-  <aside class="sidebar">
+<!-- DRAWER OVERLAY -->
+<div class="drawer-overlay" id="drawerOverlay"></div>
+
+<!-- SIDEBAR DRAWER -->
+<aside class="sidebar" id="siteDrawer" aria-label="Site navigation">
+
+  <button
+    class="drawer-close"
+    id="drawerClose"
+    type="button"
+    aria-label="Close navigation"
+  >&times;</button>
+
+  <!-- BRAND -->
+  <div class="sidebar-brand">
 
     <img
       src="https://dissentverse.wordpress.com/wp-content/uploads/2025/08/cropped-img-20250811-wa0002.jpg"
@@ -747,74 +774,89 @@
       class="sidebar-logo"
     >
 
-    <div class="welcome">
-      Welcome to
-    </div>
-
     <div class="sidebar-title">
       Dissent<span>Verse</span>
     </div>
 
- 
-<!-- SIDEBAR NAVIGATION -->
+    <p class="sidebar-tagline">Where Dissent finds its Verse.</p>
 
-<nav class="sidebar-nav" aria-label="Main navigation">
+  </div>
 
-  <div class="nav-heading">EXPLORE</div>
+  <!-- SIDEBAR NAVIGATION -->
+  <nav class="sidebar-nav" aria-label="Main navigation">
 
-  <a href="{{ '/' | relative_url }}">Home</a>
-  <a href="{{ '/about/' | relative_url }}">About</a>
-  <a href="{{ '/articles/' | relative_url }}">Articles</a>
-  <a href="mailto:dissentverse@gmail.com">Contact</a>
+    <a href="{{ '/about/' | relative_url }}">About</a>
 
-  <div class="nav-heading">YOUR SPACE</div>
-  <a href="{{ '/comments/' | relative_url }}">Comments</a>
+    <a href="{{ '/articles/' | relative_url }}">Articles</a>
 
-  <div class="nav-heading">FOUNDER</div>
-  <a href="{{ '/about/' | relative_url }}#founder">Meet the Founder</a>
+    <!-- EXPANDABLE SOCIAL LINKS -->
+    <button
+      class="connect-toggle"
+      id="connectToggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="socialLinks"
+    >
+      <span>Let's Connect</span>
+      <span class="connect-chevron" aria-hidden="true">⌄</span>
+    </button>
 
-</nav>   
-    
-    <div class="connect-title">
-      Let's connect
-    </div>
-
-    <div class="social-links">
+    <div class="social-links" id="socialLinks" hidden>
 
       <a href="" aria-label="Instagram">
         <i class="fa-brands fa-instagram"></i>
+        <span>Instagram</span>
       </a>
 
-      <a href="https://pin.it/4ZKIbFLnW"
-         target="_blank"
-         rel="noopener"
-         aria-label="Pinterest">
+      <a
+        href="https://pin.it/4ZKIbFLnW"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Pinterest"
+      >
         <i class="fa-brands fa-pinterest-p"></i>
+        <span>Pinterest</span>
       </a>
 
-      <a href="https://www.youtube.com/@DissentVerse"
-         target="_blank"
-         rel="noopener"
-         aria-label="YouTube">
+      <a
+        href="https://www.youtube.com/@DissentVerse"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="YouTube"
+      >
         <i class="fa-brands fa-youtube"></i>
+        <span>YouTube</span>
       </a>
 
-      <a href="https://t.me/dissentverse"
-         target="_blank"
-         rel="noopener"
-         aria-label="Telegram">
+      <a
+        href="https://t.me/dissentverse"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Telegram"
+      >
         <i class="fa-brands fa-telegram"></i>
+        <span>Telegram</span>
       </a>
 
-      <a href="mailto:dissentverse@gmail.com"
-         aria-label="Email">
+      <a href="mailto:dissentverse@gmail.com" aria-label="Email">
         <i class="fa-solid fa-envelope"></i>
+        <span>Email</span>
       </a>
 
     </div>
 
+    <a href="{{ '/about/' | relative_url }}#founder">Founder</a>
 
-  </aside>
+  </nav>
+
+  <!-- BOTTOM TAGLINE -->
+  <p class="sidebar-quote">
+    Looking beyond what we <em>simply accept.</em>
+  </p>
+
+</aside>
+```
+
 
 
   <!-- MAIN -->
