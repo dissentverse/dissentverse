@@ -755,12 +755,7 @@
       Dissent<span>Verse</span>
     </div>
 
-    <p class="sidebar-description">
-      A space for questioning the things we often accept without questioning.
-      From education and career choices to social expectations, technology,
-      culture, and the realities shaping everyday life, DissentVerse explores
-      what lies beneath the surface.
-    </p>
+    
 
     <div class="connect-title">
       Let's connect
@@ -800,26 +795,6 @@
 
     </div>
 
-
-    <!-- RECENT POSTS -->
-
-    <div class="recent-title">
-      Recent Posts
-    </div>
-
-    <ul class="recent-posts">
-
-      {% assign recent_posts = site.posts | sort: "date" | reverse %}
-
-      {% for post in recent_posts limit: 6 %}
-
-      <li>
-        <a href="{{ post.url | relative_url }}">
-          {{ post.title }}
-        </a>
-      </li>
-
-      {% endfor %}
 
     </ul>
 
