@@ -1,27 +1,20 @@
+
 ---
 permalink: /about.html
 ---
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>About | DissentVerse</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Lora:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Lora:wght@400;500;600;700&family=Source+Serif+4:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
   <style>
-
     * {
       margin: 0;
       padding: 0;
@@ -30,247 +23,70 @@ permalink: /about.html
 
     html {
       scroll-behavior: smooth;
+      min-height: 100%;
     }
 
     body {
+      min-height: 100vh;
+      overflow-x: hidden;
       font-family: "DM Sans", sans-serif;
-      background: #f7f3f7;
       color: #252225;
       line-height: 1.7;
+      background:
+        radial-gradient(circle at 90% 15%, rgba(202,126,177,0.18) 0 80px, transparent 81px),
+        radial-gradient(circle at 8% 85%, rgba(170,116,181,0.12) 0 110px, transparent 111px),
+        linear-gradient(135deg, #fbf7fb 0%, #f7eef7 100%);
+      background-attachment: fixed;
     }
 
     a {
-      text-decoration: none;
       color: inherit;
+      text-decoration: none;
     }
-
-    /* =========================
-       PAGE
-       ========================= */
 
     .page-wrapper {
-      display: flex;
-      flex-wrap: wrap;
+      display: block;
+      width: 100%;
       min-height: 100vh;
     }
-
-    /* =========================
-       SIDEBAR
-       ========================= */
-
-    .sidebar {
-      width: 270px;
-      min-width: 270px;
-      background: #ffffff;
-      padding: 34px 25px;
-      border-right: 1px solid #eee5ed;
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .sidebar-logo {
-      width: 115px;
-      height: 115px;
-      border-radius: 50%;
-      object-fit: cover;
-      display: block;
-      margin: 0 auto 22px;
-    }
-
-    .welcome {
-      text-align: center;
-      color: #777077;
-      font-size: 14px;
-      margin-bottom: 2px;
-    }
-
-    .sidebar-title {
-      text-align: center;
-      font-family: "Playfair Display", serif;
-      font-size: 27px;
-      font-style: italic;
-      font-weight: 600;
-      margin-bottom: 18px;
-      color: #171417;
-    }
-
-    .sidebar-title span {
-      color: #8f2860;
-    }
-
-    .sidebar-description {
-      font-size: 13px;
-      line-height: 1.7;
-      text-align: center;
-      color: #696269;
-      margin-bottom: 25px;
-    }
-
-    .connect-title {
-      font-family: "Playfair Display", serif;
-      font-size: 18px;
-      font-style: italic;
-      text-align: center;
-      margin-bottom: 13px;
-      color: #2b252a;
-    }
-
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 9px;
-      flex-wrap: wrap;
-      margin-bottom: 27px;
-    }
-
-    .social-links a {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #f5eaf4;
-      color: #8f2860;
-      font-size: 14px;
-      transition: all 0.25s ease;
-    }
-
-    .social-links a:hover {
-      background: #8f2860;
-      color: white;
-      transform: translateY(-2px);
-    }
-
-    /* =========================
-       JOIN US
-       ========================= */
-
-    .join-box {
-      background: linear-gradient(
-        145deg,
-        #f8edf6,
-        #f3e4f0
-      );
-      border: 1px solid #ead7e6;
-      border-radius: 14px;
-      padding: 18px 15px;
-      margin-bottom: 28px;
-    }
-
-    .join-box h3 {
-      font-family: "Playfair Display", serif;
-      font-size: 19px;
-      margin-bottom: 6px;
-      color: #30272e;
-    }
-
-    .join-box p {
-      font-size: 12px;
-      line-height: 1.6;
-      color: #716971;
-      margin-bottom: 13px;
-    }
-
-    .join-form {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .email-input {
-      width: 100%;
-      padding: 10px 11px;
-      border: 1px solid #ddcbd9;
-      border-radius: 7px;
-      background: white;
-      font-family: "DM Sans", sans-serif;
-      font-size: 12px;
-      outline: none;
-    }
-
-    .email-input:focus {
-      border-color: #a94d82;
-    }
-
-    .join-button {
-      border: none;
-      background: #8f2860;
-      color: white;
-      padding: 10px;
-      border-radius: 7px;
-      font-family: "DM Sans", sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.2s ease;
-    }
-
-    .join-button:hover {
-      background: #72204d;
-    }
-
-    .join-button:disabled {
-      opacity: 0.7;
-      cursor: not-allowed;
-    }
-
-
-    /* =========================
-       RECENT POSTS
-       ========================= */
-
-    .recent-title {
-      font-family: "Playfair Display", serif;
-      font-size: 18px;
-      font-style: italic;
-      color: #30272e;
-      margin-bottom: 10px;
-    }
-
-    .recent-posts {
-      list-style: none;
-    }
-
-    .recent-posts li {
-      padding: 8px 0;
-      border-bottom: 1px solid #eee7ed;
-    }
-
-    .recent-posts li:last-child {
-      border-bottom: none;
-    }
-
-    .recent-posts a {
-      font-size: 12px;
-      line-height: 1.5;
-      color: #625b61;
-      transition: color 0.2s ease;
-    }
-
-    .recent-posts a:hover {
-      color: #8f2860;
-    }
-
-    /* =========================
-       MAIN
-       ========================= */
 
     .main-content {
-      flex: 1;
-      min-width: 0;
-      min-height: 100vh;
       display: flex;
       flex-direction: column;
+      width: 100%;
+      min-width: 0;
+      min-height: 100vh;
+      position: relative;
+      isolation: isolate;
+      background: transparent;
     }
 
-    /* =========================
-       HEADER
-       ========================= */
+    .main-content::before,
+    .main-content::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      border-radius: 50%;
+      pointer-events: none;
+      background: rgba(170,116,181,0.10);
+    }
+
+    .main-content::before {
+      width: 220px;
+      height: 220px;
+      left: -105px;
+      top: 380px;
+    }
+
+    .main-content::after {
+      width: 145px;
+      height: 145px;
+      right: -55px;
+      top: 980px;
+      background: rgba(202,126,177,0.13);
+    }
+
+    /* HEADER */
 
     .top-header {
       min-height: 145px;
@@ -279,7 +95,6 @@ permalink: /about.html
       align-items: center;
       justify-content: space-between;
       gap: 30px;
-
       background: linear-gradient(
         135deg,
         #b96b9d 0%,
@@ -295,10 +110,11 @@ permalink: /about.html
       font-style: italic;
       font-weight: 700;
       line-height: 1;
-      color: #111111;
+      color: #111;
     }
 
-    .top-brand span {
+    .top-brand span,
+    .footer-brand span {
       color: #70204d;
     }
 
@@ -327,9 +143,7 @@ permalink: /about.html
       font-size: 14px;
     }
 
-    /* =========================
-       NAV
-       ========================= */
+    /* NAVIGATION */
 
     .nav-bar {
       background: #eee1ed;
@@ -348,6 +162,7 @@ permalink: /about.html
       color: #50474e;
       position: relative;
       padding: 20px 0;
+      white-space: nowrap;
     }
 
     .nav-bar a::after {
@@ -371,41 +186,36 @@ permalink: /about.html
       width: 100%;
     }
 
-    /* =========================
-       ABOUT HERO
-       ========================= */
+    /* ABOUT HERO */
 
     .about-hero {
       position: relative;
       overflow: hidden;
       padding: 90px 8% 80px;
-
-      background:
-        radial-gradient(circle at 90% 15%, rgba(202,126,177,0.18) 0 80px, transparent 81px),
-        radial-gradient(circle at 8% 85%, rgba(170,116,181,0.12) 0 110px, transparent 111px),
-        linear-gradient(135deg, #fbf7fb 0%, #f7eef7 100%);
-
-      border-bottom: 1px solid #eee2ed;
+      text-align: center;
+      background: transparent;
+      border: 0;
     }
 
-    .about-label {
-      display: inline-block;
+    .about-label,
+    .founder-label {
+      display: block;
+      color: #8f2860;
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 2.5px;
       text-transform: uppercase;
-      color: #8f2860;
       margin-bottom: 15px;
     }
 
     .about-heading {
-      max-width: 850px;
+      max-width: 900px;
+      margin: 0 auto 25px;
       font-family: "Playfair Display", serif;
       font-size: clamp(42px, 6vw, 76px);
       line-height: 1.04;
       font-weight: 600;
       color: #171417;
-      margin-bottom: 25px;
     }
 
     .about-heading span {
@@ -415,79 +225,66 @@ permalink: /about.html
 
     .about-intro {
       max-width: 760px;
+      margin: 0 auto;
       font-family: "Playfair Display", serif;
       font-size: clamp(19px, 2vw, 25px);
       line-height: 1.65;
       color: #51494f;
     }
 
-    /* =========================
-       ABOUT BODY
-       ========================= */
+    /* ABOUT CONTENT — WHITE BOX */
 
     .about-section {
+      width: min(950px, calc(100% - 48px));
       max-width: 950px;
-      margin: 0 auto;
-      padding: 75px 8%;
+      margin: 42px auto 38px;
+      padding: 38px 48px;
+      background: rgba(255,255,255,0.96);
+      border: 1px solid #ead8e7;
+      border-radius: 18px;
+      box-shadow: 0 12px 35px rgba(83,45,73,0.055);
+      position: relative;
+      z-index: 1;
     }
 
     .about-section p {
-      font-size: 17px;
-      line-height: 1.9;
-      color: #514b50;
-      margin-bottom: 30px;
+      max-width: none;
+      margin: 0 0 23px;
+      color: #171317;
+      font-family: "Source Serif 4", "Lora", Georgia, serif;
+      font-size: clamp(18px, 1.55vw, 20px);
+      line-height: 1.8;
+      font-weight: 700;
+      letter-spacing: 0.005em;
     }
 
-    .about-section p:last-child {
-      margin-bottom: 0;
-    }
-
-    .highlight {
+    .about-section p.strong-point {
       color: #8f2860;
       font-weight: 700;
     }
 
-    /* =========================
-       STATEMENT
-       ========================= */
-
-    .statement {
-      margin: 45px 0;
-      padding: 35px 38px;
-      border-left: 4px solid #8f2860;
-
-      background: linear-gradient(
-        135deg,
-        #f8edf6,
-        #f2e4f0
-      );
-
-      border-radius: 0 15px 15px 0;
+    .about-section p.closing-principles {
+      margin-top: 28px;
+      margin-bottom: 0;
     }
 
-    .statement p {
-      margin: 0;
-      font-family: "Lora", Georgia, serif;
-      font-size: clamp(20px, 2.4vw, 29px);
-      line-height: 1.55;
-      font-style: normal;
-      font-weight: 500;
-      letter-spacing: 0.05px;
-      color: #30252d;
-    }
+    /* CLOSING STATEMENT */
 
-    .statement p span {
-      color: #8f2860;
-      font-weight: 600;
+    .closing-wrap {
+      width: min(950px, calc(100% - 48px));
+      max-width: 950px;
+      margin: 0 auto 38px;
+      padding: 0;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      position: relative;
+      z-index: 1;
     }
-
-    /* =========================
-       CLOSING
-       ========================= */
 
     .closing-section {
       text-align: center;
-      margin-top: 20px;
+      margin: 0;
       padding: 65px 30px;
       background: #292329;
       border-radius: 18px;
@@ -524,7 +321,7 @@ permalink: /about.html
       font-size: clamp(27px, 4vw, 42px);
       line-height: 1.3;
       font-weight: 600;
-      color: white;
+      color: #fff;
       margin-bottom: 14px;
     }
 
@@ -543,14 +340,62 @@ permalink: /about.html
       margin: 0;
     }
 
-    /* =========================
-       FOOTER
-       ========================= */
+    /* ABOUT THE FOUNDER — WHITE BOX */
+
+    .founder-section {
+      width: min(950px, calc(100% - 48px));
+      max-width: 950px;
+      margin: 0 auto 58px;
+      padding: 40px 48px;
+      background: rgba(255,255,255,0.96);
+      border: 1px solid #ead8e7;
+      border-radius: 18px;
+      box-shadow: 0 12px 35px rgba(83,45,73,0.055);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .founder-label {
+      margin-bottom: 12px;
+    }
+
+    .founder-section h2 {
+      margin-bottom: 15px;
+      color: #252025;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(30px, 3.7vw, 40px);
+      line-height: 1.25;
+    }
+
+    .founder-rule {
+      width: 58px;
+      height: 3px;
+      margin: 0 auto 22px;
+      border: 0;
+      border-radius: 3px;
+      background: #a02b6b;
+    }
+
+    .founder-section .founder-note {
+      display: block;
+      max-width: 680px;
+      margin: 15px auto 0;
+      padding: 0;
+      background: transparent;
+      color: #8f2860;
+      font-family: "Lora", Georgia, serif;
+      font-size: 15px;
+      font-style: italic;
+      line-height: 1.9;
+    }
+
+    /* FOOTER */
 
     footer {
       width: 100%;
-      background: #ffffff;
-      border-top: 1px solid #eee5ed;
+      background: #fff;
+      border-top: 1px solid #ead8e7;
       padding: 40px 7% 24px;
       text-align: center;
       min-height: 190px;
@@ -558,6 +403,7 @@ permalink: /about.html
       flex-direction: column;
       align-items: center;
       margin-top: auto;
+      position: relative;
     }
 
     .footer-brand {
@@ -567,10 +413,6 @@ permalink: /about.html
       font-weight: 600;
       color: #181518;
       margin-bottom: 4px;
-    }
-
-    .footer-brand span {
-      color: #8f2860;
     }
 
     .footer-tagline {
@@ -603,7 +445,7 @@ permalink: /about.html
 
     .footer-social a:hover {
       background: #8f2860;
-      color: white;
+      color: #fff;
     }
 
     .footer-copy {
@@ -615,38 +457,9 @@ permalink: /about.html
       width: 100%;
     }
 
-    /* =========================
-       MOBILE
-       ========================= */
+    /* RESPONSIVE DESIGN */
 
     @media (max-width: 900px) {
-
-      .page-wrapper {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: nowrap;
-      }
-
-      .main-content {
-        order: 1;
-      }
-
-      .sidebar {
-        order: 2;
-        width: 100%;
-        min-width: 0;
-        height: auto;
-        position: relative;
-        border-right: none;
-        border-top: 1px solid #eee5ed;
-        padding: 45px 25px;
-      }
-
-      footer {
-        order: 3;
-        width: 100%;
-      }
-
       .top-header {
         padding: 30px 6%;
       }
@@ -662,12 +475,24 @@ permalink: /about.html
       }
 
       .about-section {
-        padding: 60px 7%;
+        width: calc(100% - 40px);
+        padding: 34px 32px;
       }
 
+      .closing-wrap,
+      .founder-section {
+        width: calc(100% - 40px);
+      }
+
+      .founder-section {
+        padding: 36px 32px;
+      }
     }
 
     @media (max-width: 650px) {
+      body {
+        background-attachment: scroll;
+      }
 
       .top-header {
         min-height: 125px;
@@ -675,6 +500,7 @@ permalink: /about.html
         align-items: flex-start;
         justify-content: center;
         gap: 20px;
+        padding: 30px 6%;
       }
 
       .top-brand {
@@ -691,7 +517,6 @@ permalink: /about.html
       }
 
       .nav-bar a {
-        white-space: nowrap;
         padding: 17px 0;
       }
 
@@ -703,350 +528,161 @@ permalink: /about.html
         font-size: 43px;
       }
 
-      .about-intro {
+      .about-hero .about-intro {
         font-size: 19px;
       }
 
       .about-section {
-        padding: 50px 7%;
+        width: calc(100% - 28px);
+        margin: 26px auto 30px;
+        padding: 28px 22px;
+        border-radius: 15px;
       }
 
       .about-section p {
-        font-size: 16px;
+        font-size: 17px;
         line-height: 1.8;
+        margin-bottom: 21px;
       }
 
-      .statement {
-        margin: 35px 0;
-        padding: 27px 25px;
+      .about-section p.closing-principles {
+        margin-top: 28px;
+        margin-bottom: 0;
       }
 
-      .statement p {
-        font-size: 24px;
+      .closing-wrap,
+      .founder-section {
+        width: calc(100% - 28px);
+      }
+
+      .closing-wrap {
+        margin-bottom: 30px;
       }
 
       .closing-section {
-        padding: 50px 22px;
+        padding: 42px 22px;
+      }
+
+      .closing-section h2 {
+        font-size: 27px;
+      }
+
+      .founder-section {
+        margin: 0 auto 40px;
+        padding: 30px 22px;
+      }
+
+      .founder-section p {
+        font-size: 15px;
+      }
+
+      footer {
+        padding: 35px 6% 22px;
       }
 
       .footer-copy {
         text-align: center;
       }
-
     }
-
-  /* Hide sidebar on About page */
-.sidebar {
-  display: none;
-}
-
-.page-wrapper {
-  display: block;
-}
-
-.main-content {
-  width: 100%;
-}
   </style>
-
 </head>
 
-
 <body>
-
-<div class="page-wrapper">
-
-
-  <!-- SIDEBAR -->
-
-  <aside class="sidebar">
-
-    <img
-      src="https://dissentverse.wordpress.com/wp-content/uploads/2025/08/cropped-img-20250811-wa0002.jpg"
-      alt="DissentVerse logo"
-      class="sidebar-logo"
-    >
-
-    <div class="welcome">
-      Welcome to
-    </div>
-
-    <div class="sidebar-title">
-      Dissent<span>Verse</span>
-    </div>
-
-    <p class="sidebar-description">
-      A space for questioning the things we often accept without questioning.
-      From education and career choices to social expectations, technology,
-      culture, and the realities shaping everyday life, DissentVerse explores
-      what lies beneath the surface.
-    </p>
-
-    <div class="connect-title">
-      Let's connect
-    </div>
-
-    <div class="social-links">
-
-      <a href="" aria-label="Instagram">
-        <i class="fa-brands fa-instagram"></i>
-      </a>
-
-      <a
-        href="https://pin.it/4ZKIbFLnW"
-        target="_blank"
-        rel="noopener"
-        aria-label="Pinterest"
-      >
-        <i class="fa-brands fa-pinterest-p"></i>
-      </a>
-
-      <a
-        href="https://www.youtube.com/@DissentVerse"
-        target="_blank"
-        rel="noopener"
-        aria-label="YouTube"
-      >
-        <i class="fa-brands fa-youtube"></i>
-      </a>
-
-      <a
-        href="https://t.me/dissentverse"
-        target="_blank"
-        rel="noopener"
-        aria-label="Telegram"
-      >
-        <i class="fa-brands fa-telegram"></i>
-      </a>
-
-      <a
-        href="mailto:dissentverse@gmail.com"
-        aria-label="Email"
-      >
-        <i class="fa-solid fa-envelope"></i>
-      </a>
-
-    </div>
-
-
-    <!-- JOIN US -->
-
-    <div class="join-box">
-
-      <h3>
-        Join Us
-      </h3>
-
-      <p>
-        Stay updated with our latest articles and ideas by joining our blog.
-      </p>
-
-      <form
-        class="join-form"
-        onsubmit="joinDissentVerse(event)"
-      >
-
-        <input
-          type="email"
-          id="joinEmail"
-          class="email-input"
-          placeholder="Enter your email"
-          required
-        >
-
-        <button
-          type="submit"
-          class="join-button"
-          id="joinButton"
-        >
-          Join Us →
-        </button>
-
-        <div
-          id="joinMessage"
-          style="
-            display: none;
-            font-size: 12px;
-            line-height: 1.5;
-            margin-top: 4px;
-          "
-        ></div>
-
-      </form>
-
-    </div>
-
-
-    <!-- RECENT POSTS -->
-
-    <div class="recent-title">
-      Recent Posts
-    </div>
-
-    <ul class="recent-posts" id="recentPosts">
-
-      <li class="recent-loading">Loading recent posts...</li>
-
-    </ul>
-
-  </aside>
-
-
-  <!-- MAIN -->
-
-  <main class="main-content">
-
-
-    <!-- HEADER -->
-
-    <header class="top-header">
-
-      <div class="top-brand">
-        Dissent<span>Verse</span>
-      </div>
-
-      <div class="search-box">
-
-        <input
-          type="text"
-          placeholder="Search..."
-          aria-label="Search"
-        >
-
-        <i class="fa-solid fa-magnifying-glass"></i>
-
-      </div>
-
-    </header>
-
-
-    <!-- NAV -->
-
-    <nav class="nav-bar">
-
-      <a href="/dissentverse/">
-        HOME
-      </a>
-
-      <a
-        href="/dissentverse/about.html"
-        class="active"
-      >
-        ABOUT
-      </a>
-
-      <a href="/dissentverse/articles.html">
-        ARTICLES
-      </a>
-
-      <a href="#">
-        CONTACT
-      </a>
-
-    </nav>
-
-
-    <!-- ABOUT HERO -->
-
-    <section class="about-hero">
-
-      <div class="about-label">
-        ABOUT DISSENTVERSE
-      </div>
-
-      <h1 class="about-heading">
-        Looking beyond what we
-        <span>simply accept.</span>
-      </h1>
-
-      <p class="about-intro">
-        DissentVerse is an independent space for examining the ideas,
-        experiences and everyday realities that shape how we see the world.
-      </p>
-
-    </section>
-
-
-    <!-- ABOUT CONTENT -->
-
-    <section class="about-section">
-
-      <p>
-        From education and career choices to social expectations, technology,
-        competition and changing cultural norms, DissentVerse looks beyond what
-        is commonly accepted to explore the questions beneath it.
-      </p>
-
-
-      <div class="statement">
-
-        <p>
-          Rather than offering quick answers or telling readers
-          what to think, DissentVerse aims to
-          <span>question, explore and understand.</span>
+  <div class="page-wrapper">
+    <main class="main-content">
+
+      <!-- HEADER -->
+      <header class="top-header">
+        <div class="top-brand">
+          Dissent<span>Verse</span>
+        </div>
+
+        <div class="search-box">
+          <input type="text" placeholder="Search..." aria-label="Search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+      </header>
+
+      <!-- NAVIGATION -->
+      <nav class="nav-bar">
+        <a href="https://dissentverse.github.io/dissentverse/">HOME</a>
+        <a href="https://dissentverse.github.io/dissentverse/about.html" class="active">ABOUT</a>
+        <a href="https://dissentverse.github.io/dissentverse/articles.html">ARTICLES</a>
+        <a href="mailto:dissentverse@gmail.com">CONTACT</a>
+      </nav>
+
+      <!-- ABOUT HERO -->
+      <section class="about-hero">
+        <div class="about-label">ABOUT DISSENTVERSE</div>
+
+        <h1 class="about-heading">
+          Looking beyond what we
+          <span>simply accept.</span>
+        </h1>
+
+        <p class="about-intro">
+          DissentVerse is the official website of an independent writing and
+          publishing platform exploring the ideas, experiences and everyday
+          realities that shape how we see the world.
+        </p>
+      </section>
+
+      <!-- ABOUT CONTENT -->
+      <section class="about-section">
+        <p class="about-intro">
+          DissentVerse explores the ideas, expectations and everyday issues that
+          shape how people think and live — from education and careers to
+          society, technology and culture.
         </p>
 
-      </div>
-
-
-      <p>
-        The platform focuses on thoughtful writing that examines familiar
-        issues from different perspectives. Rather than offering quick answers
-        or telling readers what to think, DissentVerse aims to
-        <span class="highlight">
-          question, explore and understand
-        </span>—
-        and create space for ideas that are often overlooked or left
-        unquestioned.
-      </p>
-
-
-      <p>
-        What began as a space for expressing thoughts is growing into a
-        platform for conversations that challenge familiar ideas and look at
-        ordinary things from a different perspective.
-      </p>
-
-
-      <div class="statement">
-
-        <p>
-          <span>Ideas deserve space.</span>
-          Questions deserve attention.
-          Perspectives deserve to be heard.
+        <p class="about-intro strong-point">
+          Beyond common beliefs and ready-made answers, DissentVerse encourages
+          curiosity, critical thinking and fresh perspectives.
         </p>
 
-      </div>
-
-
-      <!-- CLOSING -->
-
-      <div class="closing-section">
-
-        <h2>
-          DissentVerse is a space for
-          <span>
-            questions that deserve to be heard.
-          </span>
-        </h2>
-
-        <p>
-          Welcome to DissentVerse, Where Dissent finds its Verse.
+        <p class="about-intro">
+          Through clear, thoughtful writing, it questions familiar ideas and
+          explores what often goes unnoticed.
         </p>
 
-      </div>
+        <p class="about-intro">
+          What began as a space for expression is growing into an independent
+          publishing platform for curious minds and ideas that deserve a closer
+          look.
+        </p>
 
-    </section>
+        <p class="about-intro strong-point closing-principles">
+          Ideas deserve space. Questions deserve attention. Perspectives
+          deserve to be heard.
+        </p>
+      </section>
 
+      <!-- CLOSING STATEMENT -->
+      <section class="closing-wrap">
+        <div class="closing-section">
+          <h2>
+            DissentVerse is a space for
+            <span>questions that deserve to be heard.</span>
+          </h2>
 
+          <p>
+            Welcome to DissentVerse, Where Dissent finds its Verse.
+          </p>
+        </div>
+      </section>
 
+      <!-- ABOUT THE FOUNDER -->
+      <section class="founder-section">
+        <div class="founder-label">The person behind the platform</div>
+        <h2>About the Founder</h2>
+        <hr class="founder-rule">
+        <p class="founder-note">Will be shared soon.</p>
+      </section>
 
-  </main>
+    </main>
 
-  <!-- FOOTER -->
-
-  <footer>
-
+    <!-- FOOTER -->
+    <footer>
       <div class="footer-brand">
         Dissent<span>Verse</span>
       </div>
@@ -1056,7 +692,6 @@ permalink: /about.html
       </div>
 
       <div class="footer-social">
-
         <a href="" aria-label="Instagram">
           <i class="fa-brands fa-instagram"></i>
         </a>
@@ -1088,234 +723,15 @@ permalink: /about.html
           <i class="fa-brands fa-telegram"></i>
         </a>
 
-        <a
-          href="mailto:dissentverse@gmail.com"
-          aria-label="Email"
-        >
+        <a href="mailto:dissentverse@gmail.com" aria-label="Email">
           <i class="fa-solid fa-envelope"></i>
         </a>
-
       </div>
 
       <div class="footer-copy">
         © 2026 DissentVerse. All rights reserved.
       </div>
-
-  </footer>
-
-</div>
-
-
-<!-- SUPABASE -->
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script>
-
-  const SUPABASE_URL =
-    "https://yplvpgigfkihgmyfsqyl.supabase.co";
-
-  const SUPABASE_PUBLISHABLE_KEY =
-    "sb_publishable_wnafq5zQ9Y2b9WsH-j5U9Q_WmcgYV1L";
-
-  const supabaseClient =
-    window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_PUBLISHABLE_KEY,
-      {
-        auth: {
-          persistSession: true,
-          autoRefreshToken: true,
-          detectSessionInUrl: true
-        }
-      }
-    );
-
-</script>
-
-
-<!-- JOIN US SCRIPT -->
-
-<script>
-
-async function loadRecentPosts() {
-
-  const list = document.getElementById("recentPosts");
-
-  if (!list) return;
-
-  try {
-
-    const response = await fetch(
-      "https://api.github.com/repos/dissentverse/dissentverse/contents/_posts?ref=main"
-    );
-
-    if (!response.ok) {
-      throw new Error("Could not load posts");
-    }
-
-    const files = await response.json();
-
-    const postFiles = files
-      .filter(file => file.type === "file" && file.name.endsWith(".md"))
-      .sort((a, b) => b.name.localeCompare(a.name))
-      .slice(0, 6);
-
-    const posts = await Promise.all(
-      postFiles.map(async file => {
-
-        const rawResponse = await fetch(file.download_url);
-
-        if (!rawResponse.ok) return null;
-
-        const text = await rawResponse.text();
-        const frontMatterMatch = text.match(/^---\s*\n([\s\S]*?)\n---/);
-        const frontMatter = frontMatterMatch ? frontMatterMatch[1] : "";
-
-        const titleMatch = frontMatter.match(/^title:\s*["']?(.*?)["']?\s*$/m);
-        const permalinkMatch = frontMatter.match(/^permalink:\s*["']?(.*?)["']?\s*$/m);
-        const dateMatch = file.name.match(/^(\d{4})-(\d{2})-(\d{2})-(.+)\.md$/);
-
-        if (!titleMatch || !dateMatch) return null;
-
-        const title = titleMatch[1].trim();
-        const year = dateMatch[1];
-        const month = dateMatch[2];
-        const day = dateMatch[3];
-        const slug = dateMatch[4];
-
-        let url;
-
-        if (permalinkMatch) {
-          const permalink = permalinkMatch[1].trim();
-          url = permalink.startsWith("/")
-            ? "/dissentverse" + permalink
-            : "/dissentverse/" + permalink;
-        } else {
-          url = `/dissentverse/${year}/${month}/${day}/${slug}.html`;
-        }
-
-        return { title, url };
-
-      })
-    );
-
-    const validPosts = posts.filter(Boolean);
-
-    list.innerHTML = "";
-
-    if (!validPosts.length) {
-      list.innerHTML = '<li><span class="recent-empty">No posts yet.</span></li>';
-      return;
-    }
-
-    validPosts.forEach(post => {
-
-      const li = document.createElement("li");
-      const link = document.createElement("a");
-
-      link.href = post.url;
-      link.textContent = post.title;
-
-      li.appendChild(link);
-      list.appendChild(li);
-
-    });
-
-  } catch (error) {
-
-    list.innerHTML = '<li><span class="recent-empty">Recent posts unavailable.</span></li>';
-
-  }
-
-}
-
-loadRecentPosts();
-
-async function joinDissentVerse(event) {
-
-  event.preventDefault();
-
-  const emailInput =
-    document.getElementById("joinEmail");
-
-  const joinButton =
-    document.getElementById("joinButton");
-
-  const joinMessage =
-    document.getElementById("joinMessage");
-
-  const email =
-    emailInput.value.trim().toLowerCase();
-
-  if (!email) return;
-
-  joinButton.disabled = true;
-  joinButton.textContent = "Joining...";
-
-  joinMessage.style.display = "none";
-  joinMessage.textContent = "";
-
-  const { error } =
-    await supabaseClient
-      .from("subscribers")
-      .insert({ email: email });
-
-  if (error) {
-
-    console.error(
-      "Subscription error:",
-      error
-    );
-
-    if (error.code === "23505") {
-
-      joinMessage.textContent =
-        "You're already subscribed.";
-
-      joinMessage.style.color =
-        "#8f2860";
-
-    } else {
-
-      joinMessage.textContent =
-        "Something went wrong. Please try again.";
-
-      joinMessage.style.color =
-        "#b42318";
-    }
-
-    joinMessage.style.display =
-      "block";
-
-    joinButton.disabled =
-      false;
-
-    joinButton.textContent =
-      "Join Us →";
-
-    return;
-  }
-
-  joinMessage.textContent =
-    "You're subscribed! Thanks for joining DissentVerse.";
-
-  joinMessage.style.color =
-    "#357a4b";
-
-  joinMessage.style.display =
-    "block";
-
-  emailInput.value = "";
-
-  joinButton.disabled =
-    false;
-
-  joinButton.textContent =
-    "Joined ✓";
-}
-
-</script>
-
+    </footer>
+  </div>
 </body>
 </html>
