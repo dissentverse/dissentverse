@@ -1168,6 +1168,45 @@
         title="DissentVerse total visitor count"
         src="https://dissentverse.goatcounter.com/counter/TOTAL.html"
       ></iframe>
+      <div class="homepage-views-card" style="margin: 24px 0; padding: 20px; border: 1px solid #e5dce3; border-radius: 12px;">
+  <h3 style="margin: 0 0 8px;">Homepage Views</h3>
+  <p style="margin: 0 0 12px; color: #666;">
+    Total recorded views of the DissentVerse homepage.
+  </p>
+  <p id="homepage-view-count" style="font-size: 32px; font-weight: 700; margin: 0;">
+    Loading...
+  </p>
+  <p id="homepage-view-status" style="font-size: 13px; color: #666; margin: 8px 0 0;">
+    Fetching latest count from GoatCounter
+  </p>
+</div>
+
+<script>
+  (async function loadHomepageViews() {
+    const countElement = document.getElementById("homepage-view-count");
+    const statusElement = document.getElementById("homepage-view-status");
+
+    try {
+      const response = await fetch(
+        "https://dissentverse.goatcounter.com/counter/%2Fdissentverse%2F.json",
+        { cache: "no-store" }
+      );
+
+      if (!response.ok) {
+        throw new Error("HTTP " + response.status);
+      }
+
+      const data = await response.json();
+      countElement.textContent = Number(data.count).toLocaleString();
+      statusElement.textContent = "Source: GoatCounter";
+    } catch (error) {
+      countElement.textContent = "Unavailable";
+      statusElement.textContent =
+        "Could not load the count. Open GoatCounter analytics to check.";
+      console.error("Homepage views error:", error);
+    }
+  })();
+</script>
 
 
       <a
