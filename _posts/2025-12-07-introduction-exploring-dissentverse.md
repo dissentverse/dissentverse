@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Introduction : Exploring DissentVerse"
+writer_name: Dissentverse
 featured_image: /images/uploads/img-20260628-wa0007-1-.jpg
 date: 12-08-2025
 ---
