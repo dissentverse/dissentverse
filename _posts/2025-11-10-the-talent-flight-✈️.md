@@ -37,4 +37,4 @@ India has already started moving in the right direction. With growing startups, 
 
 In the end, chasing dreams abroad isn’t wrong, but true success is when those dreams also help build the nation that raised us.
 
-*What do you think – is brain drain really a loss or just a new way of growing globally? I’d love to hear your take and any suggestions that could make this piece even better. Thanks for reading till the end!* ![🌍](https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/svg/1f30d.svg)![💫](https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/svg/1f4ab.svg)
+*What do you think – is brain drain really a loss or just a new way of growing globally? I’d love to hear your take and any suggestions that could make this piece even better. Thanks for reading till the end!*![🌍](https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/svg/1f30d.svg)![💫](https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/svg/1f4ab.svg)
