@@ -1,6 +1,7 @@
 ---
 layout: post
 title: The Good Student Trap
+writer_name: Dissentverse
 featured_image: /images/uploads/img-20261010-wa0001.jpg
 date: 10-10-2026
 ---
