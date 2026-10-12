@@ -1,6 +1,7 @@
 ---
 layout: post
 title: The Talent Flight ✈️
+writer_name: DissentVerse
 featured_image: /images/uploads/screenshot-2026-10-05-11.26.20-am.png
 date: 11-11-2025
 ---
