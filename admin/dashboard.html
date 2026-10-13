@@ -1197,17 +1197,21 @@
       }
 
       const data = await response.json();
+
+      if (data.count === undefined || !Number.isFinite(Number(data.count))) {
+        throw new Error("Invalid counter response");
+      }
+
       countElement.textContent = Number(data.count).toLocaleString();
       statusElement.textContent = "Source: GoatCounter";
     } catch (error) {
       countElement.textContent = "Unavailable";
       statusElement.textContent =
-        "Could not load the count. Open GoatCounter analytics to check.";
+        "Your browser may be blocking GoatCounter. Try allowing it for this site.";
       console.error("Homepage views error:", error);
     }
   })();
 </script>
-
 
       <a
         class="analytics-link"
