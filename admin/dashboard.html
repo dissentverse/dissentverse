@@ -1020,15 +1020,6 @@
     </a>
 
 
-    <a
-      href="https://dissentverse.goatcounter.com/"
-      target="_blank"
-      rel="noopener"
-    >
-      Full Analytics
-    </a>
-
-
     <button
       type="button"
       id="logoutButton"
@@ -1145,84 +1136,31 @@
     </div>
 
 
-    <!-- =========================
-         WEBSITE ANALYTICS
-    ========================== -->
+   
+<!-- =========================
+     WEBSITE ANALYTICS
+========================== -->
 
-    <h2 class="section-title">
-      Website Analytics
-    </h2>
+<h2 class="section-title">
+  Website Analytics
+</h2>
 
+<div class="analytics-card">
 
-    <div class="analytics-card">
-
-      <p class="analytics-intro">
-        This counter shows the total number of recorded views for the DissentVerse site.
-        GoatCounter may cache counter results for a period of time, so very recent activity
-        may not appear immediately.
-      </p>
-
-
-      <iframe
-        class="counter-frame"
-        title="DissentVerse total visitor count"
-        src="https://dissentverse.goatcounter.com/counter/TOTAL.html"
-      ></iframe>
-      <div class="homepage-views-card" style="margin: 24px 0; padding: 20px; border: 1px solid #e5dce3; border-radius: 12px;">
-  <h3 style="margin: 0 0 8px;">Homepage Views</h3>
-  <p style="margin: 0 0 12px; color: #666;">
-    Total recorded views of the DissentVerse homepage.
+  <p class="analytics-intro">
+    Track website visits, page views, popular pages and visitor locations in Cloudflare Web Analytics.
   </p>
-  <p id="homepage-view-count" style="font-size: 32px; font-weight: 700; margin: 0;">
-    Loading...
-  </p>
-  <p id="homepage-view-status" style="font-size: 13px; color: #666; margin: 8px 0 0;">
-    Fetching latest count from GoatCounter
-  </p>
+
+  <a
+    class="analytics-link"
+    href="https://dash.cloudflare.com/"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Open Cloudflare Dashboard →
+  </a>
+
 </div>
-
-<script>
-  (async function loadHomepageViews() {
-    const countElement = document.getElementById("homepage-view-count");
-    const statusElement = document.getElementById("homepage-view-status");
-
-    try {
-      const response = await fetch(
-        "https://dissentverse.goatcounter.com/counter/%2Fdissentverse%2F.json",
-        { cache: "no-store" }
-      );
-
-      if (!response.ok) {
-        throw new Error("HTTP " + response.status);
-      }
-
-      const data = await response.json();
-
-      if (data.count === undefined || !Number.isFinite(Number(data.count))) {
-        throw new Error("Invalid counter response");
-      }
-
-      countElement.textContent = Number(data.count).toLocaleString();
-      statusElement.textContent = "Source: GoatCounter";
-    } catch (error) {
-      countElement.textContent = "Unavailable";
-      statusElement.textContent =
-        "Your browser may be blocking GoatCounter. Try allowing it for this site.";
-      console.error("Homepage views error:", error);
-    }
-  })();
-</script>
-
-      <a
-        class="analytics-link"
-        href="https://dissentverse.goatcounter.com/"
-        target="_blank"
-        rel="noopener"
-      >
-        Open complete GoatCounter analytics →
-      </a>
-
-    </div>
 
 
     <!-- =========================
@@ -1237,8 +1175,9 @@
     <div class="article-analytics-card">
 
       <p class="article-analytics-intro">
-        Article-level activity from GoatCounter and the DissentVerse community system.
-      </p>
+  Article likes, comments and replies from the DissentVerse community system.
+  View counts will be available here when a supported integration is configured.
+</p>
 
 
       <div
@@ -1533,11 +1472,9 @@
 
 
     <div class="note">
-
-      Visitor statistics are provided by GoatCounter. The built-in counter is separate from your
-      DissentVerse account system and does not require exposing an API token in your website code.
-
-    </div>
+  Website traffic statistics are available in Cloudflare Web Analytics.
+  Community statistics are provided by the DissentVerse account system.
+</div>
 
   </section>
 
@@ -2050,52 +1987,6 @@
   /* =========================
      ARTICLE ANALYTICS
   ========================== */
-
-  function getArticleViews(
-    article
-  ) {
-
-    const hits =
-      article &&
-      article.goatCounter &&
-      Array.isArray(
-        article.goatCounter.hits
-      )
-        ? article.goatCounter.hits
-        : [];
-
-
-    if (
-      !hits.length
-    ) {
-
-      return 0;
-
-    }
-
-
-    const hit =
-      hits[0];
-
-
-    /*
-      GoatCounter returns the article
-      statistics under the matching path.
-
-      The current response contains:
-      count: 1
-      and daily statistics.
-
-      We use the returned count for
-      the dashboard's article statistic.
-    */
-
-    return Number(
-      hit.count || 0
-    );
-
-  }
-
 
   function renderArticleAnalytics(
   articles,
